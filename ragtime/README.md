@@ -1,10 +1,10 @@
 # Ragtime
 
-Email Investigation Batch Processor using Claude-mem's email-investigation mode.
+Email Investigation Batch Processor using Claude-mem-file's email-investigation mode.
 
 ## Overview
 
-Ragtime processes email corpus files through Claude, using the email-investigation mode for entity/relationship/timeline extraction. Each file gets a NEW session - context is managed by Claude-mem's context injection hook, not by conversation continuation.
+Ragtime processes email corpus files through Claude, using the email-investigation mode for entity/relationship/timeline extraction. Each file gets a NEW session - context is managed by Claude-mem-file's context injection hook, not by conversation continuation.
 
 ## Features
 
@@ -58,7 +58,7 @@ Each markdown file should contain a single email or document to analyze.
 2. **Processing**: For each file:
    - Starts a NEW Claude session (no continuation)
    - Claude reads the file and analyzes entities, relationships, timeline events
-   - Claude-mem's context injection hook provides relevant past observations
+   - Claude-mem-file's context injection hook provides relevant past observations
    - Worker processes and stores new observations
 3. **Cleanup**: Periodic and final transcript cleanup prevents buildup
 

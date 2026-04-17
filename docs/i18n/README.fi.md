@@ -6,7 +6,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -77,7 +77,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -93,7 +93,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem säilyttää kontekstin saumattomasti istuntojen välillä tallentamalla automaattisesti työkalujen käyttöhavaintoja, luomalla semanttisia yhteenvetoja ja asettamalla ne tulevien istuntojen saataville. Tämä mahdollistaa Clauden säilyttää tiedon jatkuvuuden projekteista senkin jälkeen, kun istunnot päättyvät tai yhteys palautuu.
+  Claude-Mem-File säilyttää kontekstin saumattomasti istuntojen välillä tallentamalla automaattisesti työkalujen käyttöhavaintoja, luomalla semanttisia yhteenvetoja ja asettamalla ne tulevien istuntojen saataville. Tämä mahdollistaa Clauden säilyttää tiedon jatkuvuuden projekteista senkin jälkeen, kun istunnot päättyvät tai yhteys palautuu.
 </p>
 
 ---
@@ -132,20 +132,20 @@ Käynnistä Claude Code uudelleen. Aiempien istuntojen konteksti ilmestyy automa
 ### Aloitus
 
 - **[Asennusopas](https://docs.claude-mem-file.ai/installation)** - Pikaopas ja edistynyt asennus
-- **[Käyttöopas](https://docs.claude-mem-file.ai/usage/getting-started)** - Miten Claude-Mem toimii automaattisesti
+- **[Käyttöopas](https://docs.claude-mem-file.ai/usage/getting-started)** - Miten Claude-Mem-File toimii automaattisesti
 - **[Hakutyökalut](https://docs.claude-mem-file.ai/usage/search-tools)** - Kysy projektihistoriaasi luonnollisella kielellä
 - **[Beta-ominaisuudet](https://docs.claude-mem-file.ai/beta-features)** - Kokeile kokeellisia ominaisuuksia kuten Endless Mode
 
 ### Parhaat käytännöt
 
 - **[Kontekstisuunnittelu](https://docs.claude-mem-file.ai/context-engineering)** - AI-agentin kontekstin optimointiperiaatteet
-- **[Asteittainen paljastaminen](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia Claude-Mem-kontekstin valmistelustrategian takana
+- **[Asteittainen paljastaminen](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia Claude-Mem-File-kontekstin valmistelustrategian takana
 
 ### Arkkitehtuuri
 
 - **[Yleiskatsaus](https://docs.claude-mem-file.ai/architecture/overview)** - Järjestelmän komponentit ja datavirta
 - **[Arkkitehtuurin kehitys](https://docs.claude-mem-file.ai/architecture-evolution)** - Matka versiosta v3 versioon v5
-- **[Koukku-arkkitehtuuri](https://docs.claude-mem-file.ai/hooks-architecture)** - Miten Claude-Mem käyttää elinkaarikkoukkuja
+- **[Koukku-arkkitehtuuri](https://docs.claude-mem-file.ai/hooks-architecture)** - Miten Claude-Mem-File käyttää elinkaarikkoukkuja
 - **[Koukku-viittaus](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 koukku-skriptiä selitettynä
 - **[Worker-palvelu](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API ja Bun-hallinta
 - **[Tietokanta](https://docs.claude-mem-file.ai/architecture/database)** - SQLite-skeema ja FTS5-haku
@@ -176,7 +176,7 @@ Katso [Arkkitehtuurin yleiskatsaus](https://docs.claude-mem-file.ai/architecture
 
 ## mem-search-taito
 
-Claude-Mem tarjoaa älykkään haun mem-search-taidon kautta, joka käynnistyy automaattisesti kun kysyt aiemmasta työstä:
+Claude-Mem-File tarjoaa älykkään haun mem-search-taidon kautta, joka käynnistyy automaattisesti kun kysyt aiemmasta työstä:
 
 **Miten se toimii:**
 - Kysy vain luonnollisesti: *"Mitä teimme viime istunnossa?"* tai *"Korjasimmeko tämän bugin aiemmin?"*
@@ -211,7 +211,7 @@ Katso [Hakutyökalujen opas](https://docs.claude-mem-file.ai/usage/search-tools)
 
 ## Beta-ominaisuudet
 
-Claude-Mem tarjoaa **beta-kanavan** kokeellisilla ominaisuuksilla kuten **Endless Mode** (biomimeettinen muistiarkkitehtuuri pidennetyille istunnoille). Vaihda vakaan ja beta-version välillä web-katselukäyttöliittymästä osoitteessa http://localhost:37777 → Settings.
+Claude-Mem-File tarjoaa **beta-kanavan** kokeellisilla ominaisuuksilla kuten **Endless Mode** (biomimeettinen muistiarkkitehtuuri pidennetyille istunnoille). Vaihda vakaan ja beta-version välillä web-katselukäyttöliittymästä osoitteessa http://localhost:37777 → Settings.
 
 Katso **[Beta-ominaisuuksien dokumentaatio](https://docs.claude-mem-file.ai/beta-features)** yksityiskohdista Endless Moden ja sen kokeilemisen osalta.
 

@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem은 도구 사용 관찰을 자동으로 캡처하고 의미론적 요약을 생성하여 향후 세션에서 사용할 수 있도록 함으로써 세션 간 컨텍스트를 원활하게 보존합니다. 이를 통해 Claude는 세션이 종료되거나 재연결된 후에도 프로젝트에 대한 지식의 연속성을 유지할 수 있습니다.
+  Claude-Mem-File은 도구 사용 관찰을 자동으로 캡처하고 의미론적 요약을 생성하여 향후 세션에서 사용할 수 있도록 함으로써 세션 간 컨텍스트를 원활하게 보존합니다. 이를 통해 Claude는 세션이 종료되거나 재연결된 후에도 프로젝트에 대한 지식의 연속성을 유지할 수 있습니다.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Claude Code를 재시작하세요. 이전 세션의 컨텍스트가 자동으로
 ### 시작하기
 
 - **[설치 가이드](https://docs.claude-mem-file.ai/installation)** - 빠른 시작 및 고급 설치
-- **[사용 가이드](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem이 자동으로 작동하는 방법
+- **[사용 가이드](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File이 자동으로 작동하는 방법
 - **[검색 도구](https://docs.claude-mem-file.ai/usage/search-tools)** - 자연어로 프로젝트 기록 쿼리
 - **[베타 기능](https://docs.claude-mem-file.ai/beta-features)** - Endless Mode와 같은 실험적 기능 시도
 
 ### 모범 사례
 
 - **[컨텍스트 엔지니어링](https://docs.claude-mem-file.ai/context-engineering)** - AI 에이전트 컨텍스트 최적화 원칙
-- **[점진적 공개](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem의 컨텍스트 프라이밍 전략의 철학
+- **[점진적 공개](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem-File의 컨텍스트 프라이밍 전략의 철학
 
 ### 아키텍처
 
 - **[개요](https://docs.claude-mem-file.ai/architecture/overview)** - 시스템 구성 요소 및 데이터 흐름
 - **[아키텍처 진화](https://docs.claude-mem-file.ai/architecture-evolution)** - v3에서 v5로의 여정
-- **[후크 아키텍처](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem이 라이프사이클 후크를 사용하는 방법
+- **[후크 아키텍처](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File이 라이프사이클 후크를 사용하는 방법
 - **[후크 참조](https://docs.claude-mem-file.ai/architecture/hooks)** - 7개 후크 스크립트 설명
 - **[워커 서비스](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API 및 Bun 관리
 - **[데이터베이스](https://docs.claude-mem-file.ai/architecture/database)** - SQLite 스키마 및 FTS5 검색
@@ -177,7 +177,7 @@ Claude Code를 재시작하세요. 이전 세션의 컨텍스트가 자동으로
 
 ## mem-search 스킬
 
-Claude-Mem은 과거 작업에 대해 질문할 때 자동으로 호출되는 mem-search 스킬을 통해 지능형 검색을 제공합니다:
+Claude-Mem-File은 과거 작업에 대해 질문할 때 자동으로 호출되는 mem-search 스킬을 통해 지능형 검색을 제공합니다:
 
 **작동 방식:**
 - 자연스럽게 질문하세요: *"지난 세션에서 무엇을 했나요?"* 또는 *"이 버그를 이전에 수정했나요?"*
@@ -212,7 +212,7 @@ Claude-Mem은 과거 작업에 대해 질문할 때 자동으로 호출되는 me
 
 ## 베타 기능
 
-Claude-Mem은 **Endless Mode**(확장된 세션을 위한 생체모방 메모리 아키텍처)와 같은 실험적 기능을 제공하는 **베타 채널**을 제공합니다. http://localhost:37777 → Settings의 웹 뷰어 UI에서 안정 버전과 베타 버전 간 전환이 가능합니다.
+Claude-Mem-File은 **Endless Mode**(확장된 세션을 위한 생체모방 메모리 아키텍처)와 같은 실험적 기능을 제공하는 **베타 채널**을 제공합니다. http://localhost:37777 → Settings의 웹 뷰어 UI에서 안정 버전과 베타 버전 간 전환이 가능합니다.
 
 Endless Mode 및 사용 방법에 대한 자세한 내용은 **[베타 기능 문서](https://docs.claude-mem-file.ai/beta-features)**를 참조하세요.
 

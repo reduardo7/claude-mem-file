@@ -582,8 +582,8 @@ INFO (informational):
     full: logger.info('SYSTEM', 'MCP server shutting down')
 
   src/servers/mcp-server.ts:296 [SYSTEM]
-    message: "Claude-mem search server started"
-    full: logger.info('SYSTEM', 'Claude-mem search server started')
+    message: "Claude-mem-file search server started"
+    full: logger.info('SYSTEM', 'Claude-mem-file search server started')
 
   src/servers/mcp-server.ts:306 [SYSTEM]
     message: "Worker available"

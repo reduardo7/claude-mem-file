@@ -290,7 +290,7 @@ export function configureCursorMcp(target: CursorInstallTarget): number {
  * No longer copies shell scripts - uses node CLI directly
  */
 export async function installCursorHooks(target: CursorInstallTarget): Promise<number> {
-  console.log(`\nInstalling Claude-Mem Cursor hooks (${target} level)...\n`);
+  console.log(`\nInstalling Claude-Mem-File Cursor hooks (${target} level)...\n`);
 
   const targetDir = getTargetDir(target);
   if (!targetDir) {
@@ -426,7 +426,7 @@ async function setupProjectContext(targetDir: string, workspaceRoot: string): Pr
     const rulesFile = path.join(rulesDir, 'claude-mem-file-context.mdc');
     const placeholderContent = `---
 alwaysApply: true
-description: "Claude-mem context from past sessions (auto-updated)"
+description: "Claude-mem-file context from past sessions (auto-updated)"
 ---
 
 # Memory Context from Past Sessions
@@ -448,7 +448,7 @@ Use claude-mem-file's MCP search tools for manual memory queries.
  * Uninstall Cursor hooks
  */
 export function uninstallCursorHooks(target: CursorInstallTarget): number {
-  console.log(`\nUninstalling Claude-Mem Cursor hooks (${target} level)...\n`);
+  console.log(`\nUninstalling Claude-Mem-File Cursor hooks (${target} level)...\n`);
 
   const targetDir = getTargetDir(target);
   if (!targetDir) {
@@ -510,7 +510,7 @@ export function uninstallCursorHooks(target: CursorInstallTarget): number {
  * Check Cursor hooks installation status
  */
 export function checkCursorHooksStatus(): number {
-  console.log('\nClaude-Mem Cursor Hooks Status\n');
+  console.log('\nClaude-Mem-File Cursor Hooks Status\n');
 
   const locations: Array<{ name: string; dir: string }> = [
     { name: 'Project', dir: path.join(process.cwd(), '.cursor') },
@@ -641,7 +641,7 @@ export async function handleCursorCommand(subcommand: string, args: string[]): P
 
     default: {
       console.log(`
-Claude-Mem Cursor Integration
+Claude-Mem-File Cursor Integration
 
 Usage: claude-mem-file cursor <command> [options]
 

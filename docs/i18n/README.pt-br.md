@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem preserva o contexto perfeitamente entre sessões, capturando automaticamente observações de uso de ferramentas, gerando resumos semânticos e disponibilizando-os para sessões futuras. Isso permite que Claude mantenha a continuidade do conhecimento sobre projetos mesmo após o término ou reconexão de sessões.
+  Claude-Mem-File preserva o contexto perfeitamente entre sessões, capturando automaticamente observações de uso de ferramentas, gerando resumos semânticos e disponibilizando-os para sessões futuras. Isso permite que Claude mantenha a continuidade do conhecimento sobre projetos mesmo após o término ou reconexão de sessões.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Reinicie o Claude Code. O contexto de sessões anteriores aparecerá automaticam
 ### Começando
 
 - **[Guia de Instalação](https://docs.claude-mem-file.ai/installation)** - Início rápido e instalação avançada
-- **[Guia de Uso](https://docs.claude-mem-file.ai/usage/getting-started)** - Como Claude-Mem funciona automaticamente
+- **[Guia de Uso](https://docs.claude-mem-file.ai/usage/getting-started)** - Como Claude-Mem-File funciona automaticamente
 - **[Ferramentas de Busca](https://docs.claude-mem-file.ai/usage/search-tools)** - Consulte seu histórico de projeto com linguagem natural
 - **[Recursos Beta](https://docs.claude-mem-file.ai/beta-features)** - Experimente recursos experimentais como o Endless Mode
 
 ### Melhores Práticas
 
 - **[Engenharia de Contexto](https://docs.claude-mem-file.ai/context-engineering)** - Princípios de otimização de contexto para agentes de IA
-- **[Divulgação Progressiva](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia por trás da estratégia de preparação de contexto do Claude-Mem
+- **[Divulgação Progressiva](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia por trás da estratégia de preparação de contexto do Claude-Mem-File
 
 ### Arquitetura
 
 - **[Visão Geral](https://docs.claude-mem-file.ai/architecture/overview)** - Componentes do sistema e fluxo de dados
 - **[Evolução da Arquitetura](https://docs.claude-mem-file.ai/architecture-evolution)** - A jornada da v3 à v5
-- **[Arquitetura de Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Como Claude-Mem usa hooks de ciclo de vida
+- **[Arquitetura de Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Como Claude-Mem-File usa hooks de ciclo de vida
 - **[Referência de Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 scripts de hook explicados
 - **[Serviço Worker](https://docs.claude-mem-file.ai/architecture/worker-service)** - API HTTP e gerenciamento do Bun
 - **[Banco de Dados](https://docs.claude-mem-file.ai/architecture/database)** - Schema SQLite e busca FTS5
@@ -177,7 +177,7 @@ Veja [Visão Geral da Arquitetura](https://docs.claude-mem-file.ai/architecture/
 
 ## Skill mem-search
 
-Claude-Mem fornece busca inteligente através da skill mem-search que se auto-invoca quando você pergunta sobre trabalhos anteriores:
+Claude-Mem-File fornece busca inteligente através da skill mem-search que se auto-invoca quando você pergunta sobre trabalhos anteriores:
 
 **Como Funciona:**
 - Apenas pergunte naturalmente: *"O que fizemos na última sessão?"* ou *"Já corrigimos esse bug antes?"*
@@ -212,7 +212,7 @@ Veja [Guia de Ferramentas de Busca](https://docs.claude-mem-file.ai/usage/search
 
 ## Recursos Beta
 
-Claude-Mem oferece um **canal beta** com recursos experimentais como **Endless Mode** (arquitetura de memória biomimética para sessões estendidas). Alterne entre versões estável e beta pela interface de visualização web em http://localhost:37777 → Settings.
+Claude-Mem-File oferece um **canal beta** com recursos experimentais como **Endless Mode** (arquitetura de memória biomimética para sessões estendidas). Alterne entre versões estável e beta pela interface de visualização web em http://localhost:37777 → Settings.
 
 Veja **[Documentação de Recursos Beta](https://docs.claude-mem-file.ai/beta-features)** para detalhes sobre o Endless Mode e como experimentá-lo.
 

@@ -1,4 +1,4 @@
-# OpenClaw Claude-Mem Plugin — Testing Guide
+# OpenClaw Claude-Mem-File Plugin — Testing Guide
 
 ## Quick Start (Docker)
 
@@ -177,7 +177,7 @@ For testing with a real claude-mem-file worker and real messaging channel:
 ### Prerequisites
 
 - OpenClaw gateway installed and configured
-- Claude-Mem worker running on port 37777
+- Claude-Mem-File worker running on port 37777
 - Plugin built: `cd openclaw && npm run build`
 
 ### 1. Install the plugin
@@ -238,7 +238,7 @@ Start a Claude Code session with claude-mem-file enabled and perform any action.
 Check the target messaging channel for:
 
 ```
-🧠 Claude-Mem Observation
+🧠 Claude-Mem-File Observation
 **Observation Title**
 Optional subtitle
 ```

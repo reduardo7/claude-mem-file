@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem păstrează contextul fără întrerupere între sesiuni prin capturarea automată a observațiilor de utilizare a instrumentelor, generarea de rezumate semantice și punerea lor la dispoziție în sesiunile viitoare. Aceasta permite lui Claude să mențină continuitatea cunoștințelor despre proiecte chiar și după încheierea sau reconectarea sesiunilor.
+  Claude-Mem-File păstrează contextul fără întrerupere între sesiuni prin capturarea automată a observațiilor de utilizare a instrumentelor, generarea de rezumate semantice și punerea lor la dispoziție în sesiunile viitoare. Aceasta permite lui Claude să mențină continuitatea cunoștințelor despre proiecte chiar și după încheierea sau reconectarea sesiunilor.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Reporniți Claude Code. Contextul din sesiunile anterioare va apărea automat î
 ### Introducere
 
 - **[Ghid de Instalare](https://docs.claude-mem-file.ai/installation)** - Start rapid și instalare avansată
-- **[Ghid de Utilizare](https://docs.claude-mem-file.ai/usage/getting-started)** - Cum funcționează Claude-Mem automat
+- **[Ghid de Utilizare](https://docs.claude-mem-file.ai/usage/getting-started)** - Cum funcționează Claude-Mem-File automat
 - **[Instrumente de Căutare](https://docs.claude-mem-file.ai/usage/search-tools)** - Interogați istoricul proiectului cu limbaj natural
 - **[Funcții Beta](https://docs.claude-mem-file.ai/beta-features)** - Încercați funcții experimentale precum Endless Mode
 
 ### Practici Recomandate
 
 - **[Inginerie Context](https://docs.claude-mem-file.ai/context-engineering)** - Principii de optimizare a contextului pentru agenți AI
-- **[Dezvăluire Progresivă](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia din spatele strategiei de pregătire a contextului Claude-Mem
+- **[Dezvăluire Progresivă](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofia din spatele strategiei de pregătire a contextului Claude-Mem-File
 
 ### Arhitectură
 
 - **[Prezentare Generală](https://docs.claude-mem-file.ai/architecture/overview)** - Componente de sistem și flux de date
 - **[Evoluția Arhitecturii](https://docs.claude-mem-file.ai/architecture-evolution)** - Parcursul de la v3 la v5
-- **[Arhitectura Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Cum folosește Claude-Mem hook-urile de ciclu de viață
+- **[Arhitectura Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Cum folosește Claude-Mem-File hook-urile de ciclu de viață
 - **[Referință Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 scripturi de hook explicate
 - **[Serviciu Worker](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API și gestionare Bun
 - **[Baza de Date](https://docs.claude-mem-file.ai/architecture/database)** - Schemă SQLite și căutare FTS5
@@ -177,7 +177,7 @@ Consultați [Prezentarea Generală a Arhitecturii](https://docs.claude-mem-file.
 
 ## Abilitatea mem-search
 
-Claude-Mem oferă căutare inteligentă prin abilitatea mem-search care se invocă automat când întrebați despre lucrul trecut:
+Claude-Mem-File oferă căutare inteligentă prin abilitatea mem-search care se invocă automat când întrebați despre lucrul trecut:
 
 **Cum Funcționează:**
 - Întrebați natural: *"Ce am făcut în sesiunea trecută?"* sau *"Am rezolvat acest bug înainte?"*
@@ -212,7 +212,7 @@ Consultați [Ghidul Instrumentelor de Căutare](https://docs.claude-mem-file.ai/
 
 ## Funcții Beta
 
-Claude-Mem oferă un **canal beta** cu funcții experimentale precum **Endless Mode** (arhitectură de memorie biomimetică pentru sesiuni extinse). Comutați între versiunile stabile și beta din interfața web viewer la http://localhost:37777 → Settings.
+Claude-Mem-File oferă un **canal beta** cu funcții experimentale precum **Endless Mode** (arhitectură de memorie biomimetică pentru sesiuni extinse). Comutați între versiunile stabile și beta din interfața web viewer la http://localhost:37777 → Settings.
 
 Consultați **[Documentația Funcțiilor Beta](https://docs.claude-mem-file.ai/beta-features)** pentru detalii despre Endless Mode și cum să îl încercați.
 

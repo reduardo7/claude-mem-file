@@ -3,7 +3,7 @@
  * RAGTIME - Email Investigation Batch Processor
  *
  * Processes email corpus files through Claude using email-investigation mode.
- * Each file gets a NEW session - context is managed by Claude-mem's context
+ * Each file gets a NEW session - context is managed by Claude-mem-file's context
  * injection hook, not by conversation continuation.
  *
  * Features:
@@ -44,7 +44,7 @@ const CONFIG = {
   sessionDelayMs: parseInt(process.env.RAGTIME_SESSION_DELAY || "2000", 10),
 };
 
-// Set email-investigation mode for Claude-mem
+// Set email-investigation mode for Claude-mem-file
 process.env.CLAUDE_MEM_MODE = "email-investigation";
 
 /**
@@ -189,7 +189,7 @@ async function waitForQueueToEmpty(): Promise<void> {
 
 /**
  * Process a single file in a NEW session
- * Context is injected by Claude-mem hooks, not conversation continuation
+ * Context is injected by Claude-mem-file hooks, not conversation continuation
  */
 async function processFile(file: string, index: number, total: number): Promise<void> {
   const filename = path.basename(file);

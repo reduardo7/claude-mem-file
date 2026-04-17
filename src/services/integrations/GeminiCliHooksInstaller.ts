@@ -272,7 +272,7 @@ ${contextEndTag}`;
  * @returns 0 on success, 1 on failure
  */
 export async function installGeminiCliHooks(): Promise<number> {
-  console.log('\nInstalling Claude-Mem Gemini CLI hooks...\n');
+  console.log('\nInstalling Claude-Mem-File Gemini CLI hooks...\n');
 
   // Find required paths
   const workerServicePath = findWorkerServicePath();
@@ -345,7 +345,7 @@ Context Injection:
  * @returns 0 on success, 1 on failure
  */
 export function uninstallGeminiCliHooks(): number {
-  console.log('\nUninstalling Claude-Mem Gemini CLI hooks...\n');
+  console.log('\nUninstalling Claude-Mem-File Gemini CLI hooks...\n');
 
   try {
     if (!existsSync(GEMINI_SETTINGS_PATH)) {
@@ -412,7 +412,7 @@ export function uninstallGeminiCliHooks(): number {
  * @returns 0 always (informational)
  */
 export function checkGeminiCliHooksStatus(): number {
-  console.log('\nClaude-Mem Gemini CLI Hooks Status\n');
+  console.log('\nClaude-Mem-File Gemini CLI Hooks Status\n');
 
   if (!existsSync(GEMINI_SETTINGS_PATH)) {
     console.log('Gemini CLI settings: Not found');
@@ -492,7 +492,7 @@ export async function handleGeminiCliCommand(subcommand: string, _args: string[]
 
     default:
       console.log(`
-Claude-Mem Gemini CLI Integration
+Claude-Mem-File Gemini CLI Integration
 
 Usage: claude-mem-file gemini-cli <command>
 

@@ -1,4 +1,4 @@
-# Claude-Mem for Cursor (No Claude Code Required)
+# Claude-Mem-File for Cursor (No Claude Code Required)
 
 > **Persistent AI Memory for Cursor - Zero Cost to Start**
 
@@ -12,7 +12,7 @@ Use claude-mem-file's persistent memory in Cursor without a Claude Code subscrip
 - **Context injection** via `.cursor/rules/` - relevant history included in every chat
 - **Web viewer** at http://localhost:37777 - browse and search your project history
 
-**Why This Matters**: Every Cursor session starts fresh. Claude-mem bridges that gap - your AI agent builds cumulative knowledge about your codebase, decisions, and patterns over time.
+**Why This Matters**: Every Cursor session starts fresh. Claude-mem-file bridges that gap - your AI agent builds cumulative knowledge about your codebase, decisions, and patterns over time.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Use claude-mem-file's persistent memory in Cursor without a Claude Code subscrip
 - Git
 - PowerShell 5.1+ (included with Windows 10/11)
 
-## Step 1: Clone Claude-Mem
+## Step 1: Clone Claude-Mem-File
 
 ```bash
 # Clone the repository

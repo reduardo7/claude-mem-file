@@ -1,7 +1,7 @@
 {
   "id": "claude-mem-file",
-  "name": "Claude-Mem (Persistent Memory)",
-  "description": "Official OpenClaw plugin for Claude-Mem. Records observations from embedded runner sessions and streams them to messaging channels.",
+  "name": "Claude-Mem-File (Persistent Memory)",
+  "description": "Official OpenClaw plugin for Claude-Mem-File. Records observations from embedded runner sessions and streams them to messaging channels.",
   "kind": "memory",
   "version": "10.4.1",
   "author": "thedotmack",
@@ -25,12 +25,12 @@
       "workerPort": {
         "type": "number",
         "default": 37777,
-        "description": "Port for Claude-Mem worker service"
+        "description": "Port for Claude-Mem-File worker service"
       },
       "workerHost": {
         "type": "string",
         "default": "127.0.0.1",
-        "description": "Hostname for Claude-Mem worker service. Set to host.docker.internal when the gateway runs in Docker and the worker runs on the host."
+        "description": "Hostname for Claude-Mem-File worker service. Set to host.docker.internal when the gateway runs in Docker and the worker runs on the host."
       },
       "project": {
         "type": "string",

@@ -70,7 +70,7 @@ if (!session.memorySessionId && message.session_id) {
 
 ### 3.1 Session ID Architecture
 
-Claude-mem uses a dual session ID system (documented in `docs/SESSION_ID_ARCHITECTURE.md`):
+Claude-mem-file uses a dual session ID system (documented in `docs/SESSION_ID_ARCHITECTURE.md`):
 
 | ID | Purpose | Source |
 |----|---------|--------|

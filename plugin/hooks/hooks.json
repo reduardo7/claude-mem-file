@@ -1,5 +1,5 @@
 {
-  "description": "Claude-mem memory system hooks",
+  "description": "Claude-mem-file memory system hooks",
   "hooks": {
     "Setup": [
       {

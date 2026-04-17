@@ -115,7 +115,7 @@ export function renderFooter(
 
 ### Current State: No Detection Exists
 
-**Finding:** Claude-mem does **NOT** currently differentiate between Claude Code and Claude Desktop environments.
+**Finding:** Claude-mem-file does **NOT** currently differentiate between Claude Code and Claude Desktop environments.
 
 **Evidence:**
 1. Searched entire `src/` directory for environment detection patterns:

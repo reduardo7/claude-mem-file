@@ -1,4 +1,4 @@
-# Claude-Mem ↔ Cursor Integration Architecture
+# Claude-Mem-File ↔ Cursor Integration Architecture
 
 ## Overview
 
@@ -47,7 +47,7 @@ This integration connects claude-mem-file's persistent memory system to Cursor's
        │
        ▼
 ┌─────────────────────────────────────┐
-│   Claude-Mem Worker Service         │
+│   Claude-Mem-File Worker Service         │
 │   (Port 37777)                      │
 │  ┌────────────────────────────────┐ │
 │  │ /api/sessions/init            │ │
@@ -131,14 +131,14 @@ session-summary.sh
 
 ### Session ID Mapping
 
-| Cursor Field | Claude-Mem Field | Notes |
+| Cursor Field | Claude-Mem-File Field | Notes |
 |-------------|------------------|-------|
 | `conversation_id` | `contentSessionId` | Stable across turns, used as primary session identifier |
 | `generation_id` | (fallback) | Used if conversation_id unavailable |
 
 ### Tool Mapping
 
-| Cursor Event | Claude-Mem Tool Name | Input Format |
+| Cursor Event | Claude-Mem-File Tool Name | Input Format |
 |-------------|---------------------|--------------|
 | `afterMCPExecution` | `tool_name` from event | `tool_input` as JSON |
 | `afterShellExecution` | `"Bash"` | `{command: "..."}` |

@@ -350,7 +350,7 @@ export function uninstallOpenClawPlugin(): number {
  * @returns 0 always (informational only)
  */
 export function checkOpenClawStatus(): number {
-  console.log('\nClaude-Mem OpenClaw Integration Status\n');
+  console.log('\nClaude-Mem-File OpenClaw Integration Status\n');
 
   const configDirectory = getOpenClawConfigDirectory();
   const extensionDirectory = getOpenClawClaudeMemExtensionDirectory();
@@ -404,7 +404,7 @@ export function checkOpenClawStatus(): number {
  * @returns 0 on success, 1 on failure
  */
 export async function installOpenClawIntegration(): Promise<number> {
-  console.log('\nInstalling Claude-Mem for OpenClaw...\n');
+  console.log('\nInstalling Claude-Mem-File for OpenClaw...\n');
 
   // Step 1: Install plugin files and register in config
   const pluginResult = installOpenClawPlugin();

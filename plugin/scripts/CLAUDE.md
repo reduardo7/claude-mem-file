@@ -48,7 +48,7 @@ Never read built source files in this directory. These are compiled outputs — 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #24636 | 10:46 PM | 🔵 | Duplicate Smart Install Scripts in Project Structure | ~288 |
-| #24635 | " | 🔵 | Claude-Mem Smart Install Script Architecture | ~371 |
+| #24635 | " | 🔵 | Claude-Mem-File Smart Install Script Architecture | ~371 |
 | #24359 | 7:00 PM | 🟣 | Phase 1 Critical Code Fixes Completed via Agent Task | ~441 |
 | #24358 | 6:59 PM | ✅ | Completed Phase 1 Code Fixes for better-sqlite3 Migration | ~385 |
 | #24357 | " | ✅ | Removed createRequire Import from smart-install.js | ~284 |

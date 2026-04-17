@@ -1,4 +1,4 @@
-# Claude-Mem Rules for Cursor
+# Claude-Mem-File Rules for Cursor
 
 ## Automatic Context Injection
 

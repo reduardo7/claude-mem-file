@@ -1,14 +1,4 @@
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+# claude-mem-file
 
 <p align="center">
   <a href="docs/i18n/README.zh.md">🇨🇳 中文</a> •
@@ -56,7 +46,7 @@
         <picture>
           <img
             src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
-            alt="Claude-Mem Preview"
+            alt="Claude-Mem-File Preview"
             width="500"
           >
         </picture>
@@ -181,20 +171,20 @@ The script opens the SQLite database read-only and is idempotent (duplicates are
 
 - **[Installation Guide](https://docs.claude-mem-file.ai/installation)** - Quick start & advanced installation
 - **[Gemini CLI Setup](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Dedicated guide for Google's Gemini CLI integration
-- **[Usage Guide](https://docs.claude-mem-file.ai/usage/getting-started)** - How Claude-Mem works automatically
+- **[Usage Guide](https://docs.claude-mem-file.ai/usage/getting-started)** - How Claude-Mem-File works automatically
 - **[Search Tools](https://docs.claude-mem-file.ai/usage/search-tools)** - Query your project history with natural language
 - **[Beta Features](https://docs.claude-mem-file.ai/beta-features)** - Try experimental features like Endless Mode
 
 ### Best Practices
 
 - **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - AI agent context optimization principles
-- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Philosophy behind Claude-Mem's context priming strategy
+- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Philosophy behind Claude-Mem-File's context priming strategy
 
 ### Architecture
 
 - **[Overview](https://docs.claude-mem-file.ai/architecture/overview)** - System components & data flow
 - **[Architecture Evolution](https://docs.claude-mem-file.ai/architecture-evolution)** - The journey from v3 to v5
-- **[Hooks Architecture](https://docs.claude-mem-file.ai/hooks-architecture)** - How Claude-Mem uses lifecycle hooks
+- **[Hooks Architecture](https://docs.claude-mem-file.ai/hooks-architecture)** - How Claude-Mem-File uses lifecycle hooks
 - **[Hooks Reference](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook scripts explained
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & Bun management
 - **[Docs Vault](docs/)** - Obsidian-style Markdown vault for shared project knowledge
@@ -223,7 +213,7 @@ See [Architecture Overview](https://docs.claude-mem-file.ai/architecture/overvie
 
 ## MCP Search Tools
 
-Claude-Mem provides intelligent memory search through **4 MCP tools** following a token-efficient **3-layer workflow pattern**:
+Claude-Mem-File provides intelligent memory search through **4 MCP tools** following a token-efficient **3-layer workflow pattern**:
 
 **The 3-Layer Workflow:**
 
@@ -263,7 +253,7 @@ See [Search Tools Guide](https://docs.claude-mem-file.ai/usage/search-tools) for
 
 ## Beta Features
 
-Claude-Mem offers a **beta channel** with experimental features like **Endless Mode** (biomimetic memory architecture for extended sessions). Switch between stable and beta versions from the web viewer UI at http://localhost:37777 → Settings.
+Claude-Mem-File offers a **beta channel** with experimental features like **Endless Mode** (biomimetic memory architecture for extended sessions). Switch between stable and beta versions from the web viewer UI at http://localhost:37777 → Settings.
 
 See **[Beta Features Documentation](https://docs.claude-mem-file.ai/beta-features)** for details on Endless Mode and how to try it.
 
@@ -297,7 +287,7 @@ See the **[Configuration Guide](https://docs.claude-mem-file.ai/configuration)**
 
 ### Mode & Language Configuration
 
-Claude-Mem supports multiple workflow modes and languages via the `CLAUDE_MEM_MODE` setting.
+Claude-Mem-File supports multiple workflow modes and languages via the `CLAUDE_MEM_MODE` setting.
 
 This option controls both:
 
@@ -409,4 +399,4 @@ See the [LICENSE](LICENSE) file for full details.
 
 ### What About $CMEM?
 
-$CMEM is a solana token created by a 3rd party without Claude-Mem's prior consent, but officially embraced by the creator of Claude-Mem (Alex Newman, @thedotmack). The token acts as a community catalyst for growth and a vehicle for bringing real-time agent data to the developers and knowledge workers that need it most. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS
+$CMEM is a solana token created by a 3rd party without Claude-Mem-File's prior consent, but officially embraced by the creator of Claude-Mem-File (Alex Newman, @thedotmack). The token acts as a community catalyst for growth and a vehicle for bringing real-time agent data to the developers and knowledge workers that need it most. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

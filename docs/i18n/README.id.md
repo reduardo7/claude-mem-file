@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem secara mulus mempertahankan konteks di seluruh sesi dengan secara otomatis menangkap observasi penggunaan alat, menghasilkan ringkasan semantik, dan membuatnya tersedia untuk sesi mendatang. Ini memungkinkan Claude untuk mempertahankan kontinuitas pengetahuan tentang proyek bahkan setelah sesi berakhir atau tersambung kembali.
+  Claude-Mem-File secara mulus mempertahankan konteks di seluruh sesi dengan secara otomatis menangkap observasi penggunaan alat, menghasilkan ringkasan semantik, dan membuatnya tersedia untuk sesi mendatang. Ini memungkinkan Claude untuk mempertahankan kontinuitas pengetahuan tentang proyek bahkan setelah sesi berakhir atau tersambung kembali.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di
 ### Memulai
 
 - **[Panduan Instalasi](https://docs.claude-mem-file.ai/installation)** - Mulai cepat & instalasi lanjutan
-- **[Panduan Penggunaan](https://docs.claude-mem-file.ai/usage/getting-started)** - Bagaimana Claude-Mem bekerja secara otomatis
+- **[Panduan Penggunaan](https://docs.claude-mem-file.ai/usage/getting-started)** - Bagaimana Claude-Mem-File bekerja secara otomatis
 - **[Alat Pencarian](https://docs.claude-mem-file.ai/usage/search-tools)** - Query riwayat proyek Anda dengan bahasa alami
 - **[Fitur Beta](https://docs.claude-mem-file.ai/beta-features)** - Coba fitur eksperimental seperti Endless Mode
 
 ### Praktik Terbaik
 
 - **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - Prinsip optimisasi konteks agen AI
-- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofi di balik strategi priming konteks Claude-Mem
+- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filosofi di balik strategi priming konteks Claude-Mem-File
 
 ### Arsitektur
 
 - **[Ringkasan](https://docs.claude-mem-file.ai/architecture/overview)** - Komponen sistem & aliran data
 - **[Evolusi Arsitektur](https://docs.claude-mem-file.ai/architecture-evolution)** - Perjalanan dari v3 ke v5
-- **[Arsitektur Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Bagaimana Claude-Mem menggunakan lifecycle hooks
+- **[Arsitektur Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Bagaimana Claude-Mem-File menggunakan lifecycle hooks
 - **[Referensi Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 skrip hook dijelaskan
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & manajemen Bun
 - **[Database](https://docs.claude-mem-file.ai/architecture/database)** - Skema SQLite & pencarian FTS5
@@ -177,7 +177,7 @@ Lihat [Ringkasan Arsitektur](https://docs.claude-mem-file.ai/architecture/overvi
 
 ## mem-search Skill
 
-Claude-Mem menyediakan pencarian cerdas melalui mem-search skill yang secara otomatis dipanggil saat Anda bertanya tentang pekerjaan masa lalu:
+Claude-Mem-File menyediakan pencarian cerdas melalui mem-search skill yang secara otomatis dipanggil saat Anda bertanya tentang pekerjaan masa lalu:
 
 **Cara Kerja:**
 - Tanya saja secara alami: *"Apa yang kita lakukan sesi terakhir?"* atau *"Apakah kita sudah memperbaiki bug ini sebelumnya?"*
@@ -212,7 +212,7 @@ Lihat [Panduan Alat Pencarian](https://docs.claude-mem-file.ai/usage/search-tool
 
 ## Fitur Beta
 
-Claude-Mem menawarkan **beta channel** dengan fitur eksperimental seperti **Endless Mode** (arsitektur memori biomimetik untuk sesi yang diperpanjang). Beralih antara versi stabil dan beta dari web viewer UI di http://localhost:37777 → Settings.
+Claude-Mem-File menawarkan **beta channel** dengan fitur eksperimental seperti **Endless Mode** (arsitektur memori biomimetik untuk sesi yang diperpanjang). Beralih antara versi stabil dan beta dari web viewer UI di http://localhost:37777 → Settings.
 
 Lihat **[Dokumentasi Fitur Beta](https://docs.claude-mem-file.ai/beta-features)** untuk detail tentang Endless Mode dan cara mencobanya.
 

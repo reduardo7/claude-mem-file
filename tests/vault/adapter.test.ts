@@ -12,7 +12,7 @@ let vault: VaultStore;
 let adapter: VaultStoreAdapter;
 
 beforeEach(async () => {
-  tmpRoot = mkdtempSync(join(tmpdir(), 'claude-mem-adapter-'));
+  tmpRoot = mkdtempSync(join(tmpdir(), 'claude-mem-file-adapter-'));
   const paths = getVaultPaths(tmpRoot);
   ensureVaultScaffold(paths);
   vault = new VaultStore(tmpRoot);

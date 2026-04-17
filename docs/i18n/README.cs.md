@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem bezproblémově zachovává kontext napříč sezeními tím, že automaticky zaznamenává pozorování použití nástrojů, generuje sémantické souhrny a zpřístupňuje je budoucím sezením. To umožňuje Claude udržovat kontinuitu znalostí o projektech i po ukončení nebo opětovném připojení sezení.
+  Claude-Mem-File bezproblémově zachovává kontext napříč sezeními tím, že automaticky zaznamenává pozorování použití nástrojů, generuje sémantické souhrny a zpřístupňuje je budoucím sezením. To umožňuje Claude udržovat kontinuitu znalostí o projektech i po ukončení nebo opětovném připojení sezení.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Restartujte Claude Code. Kontext z předchozích sezení se automaticky objeví 
 ### Začínáme
 
 - **[Průvodce instalací](https://docs.claude-mem-file.ai/installation)** - Rychlý start a pokročilá instalace
-- **[Průvodce použitím](https://docs.claude-mem-file.ai/usage/getting-started)** - Jak Claude-Mem funguje automaticky
+- **[Průvodce použitím](https://docs.claude-mem-file.ai/usage/getting-started)** - Jak Claude-Mem-File funguje automaticky
 - **[Vyhledávací nástroje](https://docs.claude-mem-file.ai/usage/search-tools)** - Dotazujte se na historii projektu pomocí přirozeného jazyka
 - **[Beta funkce](https://docs.claude-mem-file.ai/beta-features)** - Vyzkoušejte experimentální funkce jako Endless Mode
 
 ### Osvědčené postupy
 
 - **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - Principy optimalizace kontextu AI agenta
-- **[Postupné odhalování](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filozofie strategie přípravy kontextu Claude-Mem
+- **[Postupné odhalování](https://docs.claude-mem-file.ai/progressive-disclosure)** - Filozofie strategie přípravy kontextu Claude-Mem-File
 
 ### Architektura
 
 - **[Přehled](https://docs.claude-mem-file.ai/architecture/overview)** - Systémové komponenty a tok dat
 - **[Evoluce architektury](https://docs.claude-mem-file.ai/architecture-evolution)** - Cesta z v3 na v5
-- **[Architektura háčků](https://docs.claude-mem-file.ai/hooks-architecture)** - Jak Claude-Mem používá lifecycle hooks
+- **[Architektura háčků](https://docs.claude-mem-file.ai/hooks-architecture)** - Jak Claude-Mem-File používá lifecycle hooks
 - **[Reference háčků](https://docs.claude-mem-file.ai/architecture/hooks)** - Vysvětlení 7 hook skriptů
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API a správa Bun
 - **[Databáze](https://docs.claude-mem-file.ai/architecture/database)** - SQLite schéma a FTS5 vyhledávání
@@ -177,7 +177,7 @@ Podrobnosti najdete v [Přehledu architektury](https://docs.claude-mem-file.ai/a
 
 ## Dovednost mem-search
 
-Claude-Mem poskytuje inteligentní vyhledávání prostřednictvím dovednosti mem-search, která se automaticky vyvolá, když se ptáte na minulou práci:
+Claude-Mem-File poskytuje inteligentní vyhledávání prostřednictvím dovednosti mem-search, která se automaticky vyvolá, když se ptáte na minulou práci:
 
 **Jak to funguje:**
 - Stačí se zeptat přirozeně: *"Co jsme dělali minulé sezení?"* nebo *"Opravovali jsme tuto chybu dříve?"*
@@ -212,7 +212,7 @@ Podrobné příklady najdete v [Průvodci vyhledávacími nástroji](https://doc
 
 ## Beta funkce
 
-Claude-Mem nabízí **beta kanál** s experimentálními funkcemi jako **Endless Mode** (biomimetická architektura paměti pro prodloužená sezení). Přepínejte mezi stabilní a beta verzí z webového rozhraní na http://localhost:37777 → Settings.
+Claude-Mem-File nabízí **beta kanál** s experimentálními funkcemi jako **Endless Mode** (biomimetická architektura paměti pro prodloužená sezení). Přepínejte mezi stabilní a beta verzí z webového rozhraní na http://localhost:37777 → Settings.
 
 Podrobnosti o Endless Mode a jak jej vyzkoušet najdete v **[Dokumentaci beta funkcí](https://docs.claude-mem-file.ai/beta-features)**.
 

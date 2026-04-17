@@ -5,7 +5,7 @@ date: 2026-02-04
 status: archived
 ---
 
-# Claude-Mem PR Shipping Report
+# Claude-Mem-File PR Shipping Report
 *Generated: 2026-02-04*
 
 ## Executive Summary

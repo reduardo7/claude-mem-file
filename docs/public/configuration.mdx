@@ -1,6 +1,6 @@
 ---
 title: "Configuration"
-description: "Environment variables and settings for Claude-Mem"
+description: "Environment variables and settings for Claude-Mem-File"
 ---
 
 # Configuration
@@ -155,7 +155,7 @@ Hooks are configured in `plugin/hooks/hooks.json`:
 
 ```json
 {
-  "description": "Claude-mem memory system hooks",
+  "description": "Claude-mem-file memory system hooks",
   "hooks": {
     "SessionStart": [{
       "hooks": [{
@@ -192,7 +192,7 @@ Hooks are configured in `plugin/hooks/hooks.json`:
 
 ### Search Configuration
 
-Claude-Mem provides MCP search tools for querying your project history.
+Claude-Mem-File provides MCP search tools for querying your project history.
 
 **No configuration required** - MCP tools are automatically available in Claude Code sessions.
 
@@ -203,7 +203,7 @@ Search operations are provided via:
 
 ## Version Channel
 
-Claude-Mem supports switching between stable and beta versions via the web viewer UI.
+Claude-Mem-File supports switching between stable and beta versions via the web viewer UI.
 
 ### Accessing Version Channel
 
@@ -229,7 +229,7 @@ Worker service is managed by Bun as a background process. The worker auto-starts
 
 ## Folder Context Files
 
-Claude-mem can automatically generate `CLAUDE.md` files in your project folders with activity timelines. This feature is disabled by default.
+Claude-mem-file can automatically generate `CLAUDE.md` files in your project folders with activity timelines. This feature is disabled by default.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
@@ -239,7 +239,7 @@ See [Folder Context Files](usage/folder-context) for full documentation on how t
 
 ## Context Injection Configuration
 
-Claude-Mem injects past observations into each new session, giving Claude awareness of recent work. You can configure exactly what gets injected using the **Context Settings Modal**.
+Claude-Mem-File injects past observations into each new session, giving Claude awareness of recent work. You can configure exactly what gets injected using the **Context Settings Modal**.
 
 ### Context Settings Modal
 

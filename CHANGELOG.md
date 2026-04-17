@@ -1103,7 +1103,7 @@ Closes #1063, closes #695. Relates to #1010, #707.
 
 ## OpenClaw Plugin — Persistent Memory for OpenClaw Agents
 
-Claude-mem now has an official [OpenClaw](https://openclaw.ai) plugin, bringing persistent memory to agents running on the OpenClaw gateway. This is a major milestone — claude-mem-file's memory system is no longer limited to Claude Code sessions.
+Claude-mem-file now has an official [OpenClaw](https://openclaw.ai) plugin, bringing persistent memory to agents running on the OpenClaw gateway. This is a major milestone — claude-mem-file's memory system is no longer limited to Claude Code sessions.
 
 ### What It Does
 
@@ -2073,11 +2073,11 @@ Migration 17 renamed session ID columns but used a single check to determine if 
 
 # Cursor Support Now Available 🎉
 
-This is a major release introducing **full Cursor IDE support**. Claude-mem now works with Cursor, bringing persistent AI memory to Cursor users with or without a Claude Code subscription.
+This is a major release introducing **full Cursor IDE support**. Claude-mem-file now works with Cursor, bringing persistent AI memory to Cursor users with or without a Claude Code subscription.
 
 ## Highlights
 
-**Give Cursor persistent memory.** Every Cursor session starts fresh - your AI doesn't remember what it worked on yesterday. Claude-mem changes that. Your agent builds cumulative knowledge about your codebase, decisions, and patterns over time.
+**Give Cursor persistent memory.** Every Cursor session starts fresh - your AI doesn't remember what it worked on yesterday. Claude-mem-file changes that. Your agent builds cumulative knowledge about your codebase, decisions, and patterns over time.
 
 ### Works Without Claude Code
 
@@ -4197,7 +4197,7 @@ Documentation alignment release - merged PR #116 fixing hybrid search architectu
 
 ## Changes
 
-- Updated user message hook with Claude-Mem community discussion link for better user engagement and support
+- Updated user message hook with Claude-Mem-File community discussion link for better user engagement and support
 
 ## What's Changed
 - Enhanced startup context messaging with community connection information

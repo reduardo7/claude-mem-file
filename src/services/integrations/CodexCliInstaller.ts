@@ -182,7 +182,7 @@ const cleanupLegacyCodexAgentsMdContext = removeCodexAgentsMdContext;
  * @returns 0 on success, 1 on failure
  */
 export async function installCodexCli(): Promise<number> {
-  console.log('\nInstalling Claude-Mem for Codex CLI (transcript watching)...\n');
+  console.log('\nInstalling Claude-Mem-File for Codex CLI (transcript watching)...\n');
 
   try {
     // Step 1: Merge transcript-watch config
@@ -232,7 +232,7 @@ Next steps:
  * @returns 0 on success, 1 on failure
  */
 export function uninstallCodexCli(): number {
-  console.log('\nUninstalling Claude-Mem Codex CLI integration...\n');
+  console.log('\nUninstalling Claude-Mem-File Codex CLI integration...\n');
 
   try {
     // Step 1: Remove codex watch from transcript-watch.json
@@ -278,7 +278,7 @@ export function uninstallCodexCli(): number {
  * @returns 0 always (informational)
  */
 export function checkCodexCliStatus(): number {
-  console.log('\nClaude-Mem Codex CLI Integration Status\n');
+  console.log('\nClaude-Mem-File Codex CLI Integration Status\n');
 
   // Check transcript-watch.json
   if (!existsSync(DEFAULT_CONFIG_PATH)) {

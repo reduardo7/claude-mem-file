@@ -10,7 +10,7 @@
 A user reports that the `/claude-mem-file diagnostics` command returns "Unknown slash command: claude-mem-file" after installing claude-mem-file v8.5.9 on Windows.
 
 ### Reported Environment
-- Claude-mem version: 8.5.9
+- Claude-mem-file version: 8.5.9
 - Claude Code version: 2.0.76
 - Node.js version: v22.21.0
 - Bun version: 1.3.5
@@ -27,9 +27,9 @@ A user reports that the `/claude-mem-file diagnostics` command returns "Unknown 
 
 **Critical Discovery**: The `/claude-mem-file diagnostics` command does not exist in claude-mem-file. After extensive codebase analysis:
 
-1. **No slash command registration found**: The `plugin/commands/` directory is empty. Claude-mem does not register any slash commands.
+1. **No slash command registration found**: The `plugin/commands/` directory is empty. Claude-mem-file does not register any slash commands.
 
-2. **Skills, not commands**: Claude-mem uses Claude Code's **skill system**, not the command system. Skills are defined in `plugin/skills/`:
+2. **Skills, not commands**: Claude-mem-file uses Claude Code's **skill system**, not the command system. Skills are defined in `plugin/skills/`:
    - `mem-search/` - Memory search functionality
    - `troubleshoot/` - Troubleshooting functionality
    - `search/` - Search operations
@@ -177,7 +177,7 @@ Create a `/claude-mem-file` command for diagnostics. File: `plugin/commands/clau
 ```json
 {
   "name": "claude-mem-file",
-  "description": "Claude-mem diagnostics and status",
+  "description": "Claude-mem-file diagnostics and status",
   "handler": "scripts/diagnostic-command.js"
 }
 ```

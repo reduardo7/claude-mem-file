@@ -142,7 +142,7 @@ export function injectContextIntoAgentsMd(contextContent: string): number {
   const agentsMdPath = getOpenCodeAgentsMdPath();
 
   try {
-    injectContextIntoMarkdownFile(agentsMdPath, contextContent, '# Claude-Mem Memory Context');
+    injectContextIntoMarkdownFile(agentsMdPath, contextContent, '# Claude-Mem-File Memory Context');
     logger.info('OPENCODE', 'Context injected into AGENTS.md', { path: agentsMdPath });
     return 0;
   } catch (error) {
@@ -226,7 +226,7 @@ export function uninstallOpenCodePlugin(): number {
         const trimmedContent = content.trim();
         if (
           trimmedContent.length === 0 ||
-          trimmedContent === '# Claude-Mem Memory Context'
+          trimmedContent === '# Claude-Mem-File Memory Context'
         ) {
           unlinkSync(agentsMdPath);
           console.log(`  Removed empty AGENTS.md`);
@@ -255,7 +255,7 @@ export function uninstallOpenCodePlugin(): number {
  * @returns 0 always (informational only)
  */
 export function checkOpenCodeStatus(): number {
-  console.log('\nClaude-Mem OpenCode Integration Status\n');
+  console.log('\nClaude-Mem-File OpenCode Integration Status\n');
 
   const configDirectory = getOpenCodeConfigDirectory();
   const pluginPath = getInstalledPluginPath();
@@ -293,7 +293,7 @@ export function checkOpenCodeStatus(): number {
  * @returns 0 on success, 1 on failure
  */
 export async function installOpenCodeIntegration(): Promise<number> {
-  console.log('\nInstalling Claude-Mem for OpenCode...\n');
+  console.log('\nInstalling Claude-Mem-File for OpenCode...\n');
 
   // Step 1: Install plugin
   const pluginResult = installOpenCodePlugin();

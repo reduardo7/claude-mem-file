@@ -14,7 +14,7 @@ const logs = [];
 
 const mockApi = {
   id: "claude-mem-file",
-  name: "Claude-Mem (Persistent Memory)",
+  name: "Claude-Mem-File (Persistent Memory)",
   version: "1.0.0",
   source: "/test/extensions/claude-mem-file/dist/index.js",
   config: {},

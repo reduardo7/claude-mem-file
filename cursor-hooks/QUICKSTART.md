@@ -1,4 +1,4 @@
-# Quick Start: Claude-Mem + Cursor Integration
+# Quick Start: Claude-Mem-File + Cursor Integration
 
 > **Give your Cursor AI persistent memory in under 5 minutes**
 

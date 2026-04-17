@@ -265,7 +265,7 @@ function mergeAndWriteHooksJson(
  * Merges with existing hooks.json to preserve other integrations.
  */
 export async function installWindsurfHooks(): Promise<number> {
-  console.log('\nInstalling Claude-Mem Windsurf hooks (user level)...\n');
+  console.log('\nInstalling Claude-Mem-File Windsurf hooks (user level)...\n');
 
   // Find the worker-service.cjs path
   const workerServicePath = findWorkerServicePath();
@@ -378,7 +378,7 @@ Use claude-mem-file's MCP search tools for manual memory queries.
  * Uninstall Windsurf hooks — removes claude-mem-file entries from hooks.json
  */
 export function uninstallWindsurfHooks(): number {
-  console.log('\nUninstalling Claude-Mem Windsurf hooks...\n');
+  console.log('\nUninstalling Claude-Mem-File Windsurf hooks...\n');
 
   try {
     // Remove our entries from hooks.json (preserve other integrations)
@@ -439,7 +439,7 @@ export function uninstallWindsurfHooks(): number {
  * Check Windsurf hooks installation status
  */
 export function checkWindsurfHooksStatus(): number {
-  console.log('\nClaude-Mem Windsurf Hooks Status\n');
+  console.log('\nClaude-Mem-File Windsurf Hooks Status\n');
 
   if (existsSync(WINDSURF_HOOKS_JSON_PATH)) {
     console.log(`User-level: Installed`);
@@ -492,7 +492,7 @@ export async function handleWindsurfCommand(subcommand: string, _args: string[])
 
     default: {
       console.log(`
-Claude-Mem Windsurf Integration
+Claude-Mem-File Windsurf Integration
 
 Usage: claude-mem-file windsurf <command>
 

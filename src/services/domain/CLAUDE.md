@@ -8,5 +8,5 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #41877 | 12:09 PM | ⚖️ | Deploy Existing Consumer Preview Without Creating New Packages | ~361 |
-| #41873 | 12:03 PM | 🔵 | Claude-mem mode configuration system types documented | ~504 |
+| #41873 | 12:03 PM | 🔵 | Claude-mem-file mode configuration system types documented | ~504 |
 </claude-mem-file-context>

@@ -80,7 +80,7 @@ Located at: `.cursor/rules/claude-mem-file-context.mdc`
 ```markdown
 ---
 alwaysApply: true
-description: "Claude-mem context from past sessions (auto-updated)"
+description: "Claude-mem-file context from past sessions (auto-updated)"
 ---
 
 # Memory Context from Past Sessions

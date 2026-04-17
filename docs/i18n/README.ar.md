@@ -5,7 +5,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -77,7 +77,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center"  dir="rtl">
-Claude-Mem هو نظام متطور مصمم لضغط وحفظ الذاكرة لسياق عمل Claude Code. وظيفته الأساسية هي جعل "كلود" يتذكر ما فعله في جلسات العمل السابقة بسلاسة، عبر تسجيل تحركاته، وإنشاء ملخصات ذكية، واستدعائها في الجلسات المستقبلية. هذا يضمن عدم ضياع سياق المشروع حتى لو أغلقت البرنامج وفتحته لاحقاً.
+Claude-Mem-File هو نظام متطور مصمم لضغط وحفظ الذاكرة لسياق عمل Claude Code. وظيفته الأساسية هي جعل "كلود" يتذكر ما فعله في جلسات العمل السابقة بسلاسة، عبر تسجيل تحركاته، وإنشاء ملخصات ذكية، واستدعائها في الجلسات المستقبلية. هذا يضمن عدم ضياع سياق المشروع حتى لو أغلقت البرنامج وفتحته لاحقاً.
 </p>
 
 ---
@@ -136,20 +136,20 @@ Claude-Mem هو نظام متطور مصمم لضغط وحفظ الذاكرة ل
 ### البدء
 
 - **[دليل التثبيت](https://docs.claude-mem-file.ai/installation)** - البدء السريع والتثبيت المتقدم
-- **[دليل الاستخدام](https://docs.claude-mem-file.ai/usage/getting-started)** - كيف يعمل Claude-Mem تلقائيًا
+- **[دليل الاستخدام](https://docs.claude-mem-file.ai/usage/getting-started)** - كيف يعمل Claude-Mem-File تلقائيًا
 - **[أدوات البحث](https://docs.claude-mem-file.ai/usage/search-tools)** - استعلم عن سجل مشروعك بلغتك
 - **[الميزات التجريبية](https://docs.claude-mem-file.ai/beta-features)** - جرّب الميزات التجريبية مثل Endless Mode
 
 ### أفضل الممارسات
 
 - **[هندسة السياق](https://docs.claude-mem-file.ai/context-engineering)** - مبادئ تحسين سياق وكيل الذكاء الاصطناعي
-- **[الكشف التدريجي](https://docs.claude-mem-file.ai/progressive-disclosure)** - الفلسفة وراء استراتيجية تهيئة السياق في Claude-Mem
+- **[الكشف التدريجي](https://docs.claude-mem-file.ai/progressive-disclosure)** - الفلسفة وراء استراتيجية تهيئة السياق في Claude-Mem-File
 
 ### البنية المعمارية
 
 - **[نظرة عامة](https://docs.claude-mem-file.ai/architecture/overview)** - مكونات النظام وتدفق البيانات
 - **[تطور البنية المعمارية](https://docs.claude-mem-file.ai/architecture-evolution)** - تطور المعمارية من v3 إلى v5
-- **[بنية برامج الربط (Hooks)](https://docs.claude-mem-file.ai/hooks-architecture)** - كيف يستخدم Claude-Mem خطافات دورة الحياة
+- **[بنية برامج الربط (Hooks)](https://docs.claude-mem-file.ai/hooks-architecture)** - كيف يستخدم Claude-Mem-File خطافات دورة الحياة
 - **[مرجع برامج الربط (Hooks)](https://docs.claude-mem-file.ai/architecture/hooks)** - شرح 7 سكريبتات خطافات
 - **[خدمة العامل](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API وإدارة Bun
 - **[قاعدة البيانات](https://docs.claude-mem-file.ai/architecture/database)** - مخطط SQLite وبحث FTS5
@@ -179,7 +179,7 @@ Claude-Mem هو نظام متطور مصمم لضغط وحفظ الذاكرة ل
 ---
 
 ## أدوات البحث (MCP Search Tools)
-يوفر Claude-Mem بحثًا ذكيًا من خلال مهارة mem-search التي تُستدعى تلقائيًا عندما تسأل عن العمل السابق:
+يوفر Claude-Mem-File بحثًا ذكيًا من خلال مهارة mem-search التي تُستدعى تلقائيًا عندما تسأل عن العمل السابق:
 
 **كيف يعمل:**
 - فقط اسأل بشكل طبيعي: *"ماذا فعلنا في الجلسة الأخيرة؟"* أو *"هل أصلحنا هذا الخطأ من قبل؟"*
@@ -214,7 +214,7 @@ Claude-Mem هو نظام متطور مصمم لضغط وحفظ الذاكرة ل
 
 ## الميزات التجريبية
 
-يقدم Claude-Mem **قناة تجريبية** بميزات تجريبية مثل **Endless Mode** (بنية ذاكرة بيوميمتية للجلسات الممتدة). بدّل بين الإصدارات المستقرة والتجريبية من واجهة مستخدم عارض الويب على http://localhost:37777 ← الإعدادات.
+يقدم Claude-Mem-File **قناة تجريبية** بميزات تجريبية مثل **Endless Mode** (بنية ذاكرة بيوميمتية للجلسات الممتدة). بدّل بين الإصدارات المستقرة والتجريبية من واجهة مستخدم عارض الويب على http://localhost:37777 ← الإعدادات.
 
 انظر **[توثيق الميزات التجريبية](https://docs.claude-mem-file.ai/beta-features)** لتفاصيل حول Endless Mode وكيفية تجربته.
 

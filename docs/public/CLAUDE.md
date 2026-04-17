@@ -1,4 +1,4 @@
-# Claude-Mem Public Documentation
+# Claude-Mem-File Public Documentation
 
 ## What This Folder Is
 

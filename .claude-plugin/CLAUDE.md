@@ -34,7 +34,7 @@
 |----|------|---|-------|------|
 | #4099 | 1:13 PM | 🟣 | Theme Toggle for Light/Dark Mode | ~253 |
 | #4096 | " | ✅ | Marketplace Metadata Version Sync | ~179 |
-| #4092 | 1:12 PM | 🔵 | Marketplace Configuration for Claude-Mem Plugin | ~194 |
+| #4092 | 1:12 PM | 🔵 | Marketplace Configuration for Claude-Mem-File Plugin | ~194 |
 | #4078 | 12:50 PM | 🔴 | Fixed PM2 ENOENT error on Windows systems | ~286 |
 | #4075 | 12:49 PM | ✅ | Marketplace plugin version synchronized to 5.1.1 | ~189 |
 
@@ -51,7 +51,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #5150 | 7:37 PM | 🟣 | Troubleshooting Skill Added to Claude-Mem Plugin | ~427 |
+| #5150 | 7:37 PM | 🟣 | Troubleshooting Skill Added to Claude-Mem-File Plugin | ~427 |
 | #5133 | 7:29 PM | ✅ | Version 5.2.3 Released with Build Process | ~487 |
 
 ### Nov 9, 2025

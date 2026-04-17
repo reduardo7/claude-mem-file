@@ -6,7 +6,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -77,7 +77,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -93,7 +93,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem รักษาบริบทข้ามเซสชันได้อย่างราบรื่นโดยการบันทึกผลการสังเกตจากการใช้เครื่องมือโดยอัตโนมัติ สร้างสรุปความหมาย และทำให้พร้อมใช้งานสำหรับเซสชันในอนาคต ทำให้ Claude สามารถรักษาความต่อเนื่องของความรู้เกี่ยวกับโปรเจกต์แม้หลังจากเซสชันสิ้นสุดหรือเชื่อมต่อใหม่
+  Claude-Mem-File รักษาบริบทข้ามเซสชันได้อย่างราบรื่นโดยการบันทึกผลการสังเกตจากการใช้เครื่องมือโดยอัตโนมัติ สร้างสรุปความหมาย และทำให้พร้อมใช้งานสำหรับเซสชันในอนาคต ทำให้ Claude สามารถรักษาความต่อเนื่องของความรู้เกี่ยวกับโปรเจกต์แม้หลังจากเซสชันสิ้นสุดหรือเชื่อมต่อใหม่
 </p>
 
 ---
@@ -132,20 +132,20 @@
 ### เริ่มต้นใช้งาน
 
 - **[คู่มือการติดตั้ง](https://docs.claude-mem-file.ai/installation)** - เริ่มต้นอย่างรวดเร็วและการติดตั้งขั้นสูง
-- **[คู่มือการใช้งาน](https://docs.claude-mem-file.ai/usage/getting-started)** - วิธีที่ Claude-Mem ทำงานโดยอัตโนมัติ
+- **[คู่มือการใช้งาน](https://docs.claude-mem-file.ai/usage/getting-started)** - วิธีที่ Claude-Mem-File ทำงานโดยอัตโนมัติ
 - **[เครื่องมือค้นหา](https://docs.claude-mem-file.ai/usage/search-tools)** - สืบค้นประวัติโปรเจกต์ของคุณด้วยภาษาธรรมชาติ
 - **[คุณสมบัติ Beta](https://docs.claude-mem-file.ai/beta-features)** - ลองคุณสมบัติทดลองเช่น Endless Mode
 
 ### แนวปฏิบัติที่ดี
 
 - **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - หลักการปรับบริบทสำหรับเอเจนต์ AI
-- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - ปรัชญาเบื้องหลังกลยุทธ์การเตรียมบริบทของ Claude-Mem
+- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - ปรัชญาเบื้องหลังกลยุทธ์การเตรียมบริบทของ Claude-Mem-File
 
 ### สถาปัตยกรรม
 
 - **[ภาพรวม](https://docs.claude-mem-file.ai/architecture/overview)** - ส่วนประกอบของระบบและการไหลของข้อมูล
 - **[วิวัฒนาการของสถาปัตยกรรม](https://docs.claude-mem-file.ai/architecture-evolution)** - การเดินทางจาก v3 สู่ v5
-- **[สถาปัตยกรรม Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - วิธีที่ Claude-Mem ใช้ lifecycle hooks
+- **[สถาปัตยกรรม Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - วิธีที่ Claude-Mem-File ใช้ lifecycle hooks
 - **[การอ้างอิง Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - อธิบาย hook scripts ทั้ง 7 ตัว
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API และการจัดการ Bun
 - **[ฐานข้อมูล](https://docs.claude-mem-file.ai/architecture/database)** - SQLite schema และการค้นหา FTS5
@@ -176,7 +176,7 @@
 
 ## ทักษะ mem-search
 
-Claude-Mem ให้บริการการค้นหาอัจฉริยะผ่านทักษะ mem-search ที่เรียกใช้อัตโนมัติเมื่อคุณถามเกี่ยวกับงานที่ผ่านมา:
+Claude-Mem-File ให้บริการการค้นหาอัจฉริยะผ่านทักษะ mem-search ที่เรียกใช้อัตโนมัติเมื่อคุณถามเกี่ยวกับงานที่ผ่านมา:
 
 **วิธีการทำงาน:**
 - เพียงถามตามธรรมชาติ: *"เราทำอะไรในเซสชันที่แล้ว?"* หรือ *"เราแก้บั๊กนี้ไปแล้วหรือยัง?"*
@@ -211,7 +211,7 @@ Claude-Mem ให้บริการการค้นหาอัจฉริ
 
 ## คุณสมบัติ Beta
 
-Claude-Mem นำเสนอ **beta channel** พร้อมคุณสมบัติทดลองเช่น **Endless Mode** (สถาปัตยกรรมหน่วยความจำแบบชีวมิติสำหรับเซสชันที่ขยายออกไป) สลับระหว่างเวอร์ชันเสถียรและเบต้าจาก web viewer UI ที่ http://localhost:37777 → Settings
+Claude-Mem-File นำเสนอ **beta channel** พร้อมคุณสมบัติทดลองเช่น **Endless Mode** (สถาปัตยกรรมหน่วยความจำแบบชีวมิติสำหรับเซสชันที่ขยายออกไป) สลับระหว่างเวอร์ชันเสถียรและเบต้าจาก web viewer UI ที่ http://localhost:37777 → Settings
 
 ดู **[เอกสารคุณสมบัติ Beta](https://docs.claude-mem-file.ai/beta-features)** สำหรับรายละเอียดเกี่ยวกับ Endless Mode และวิธีการลอง
 

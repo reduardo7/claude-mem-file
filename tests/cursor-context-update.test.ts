@@ -59,7 +59,7 @@ describe('Cursor Context Update', () => {
       writeContextFile(workspacePath, 'test context');
 
       const content = readContextFile(workspacePath);
-      expect(content).toContain('description: "Claude-mem context from past sessions (auto-updated)"');
+      expect(content).toContain('description: "Claude-mem-file context from past sessions (auto-updated)"');
     });
 
     it('includes the provided context in the file body', () => {

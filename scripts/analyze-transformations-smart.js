@@ -35,7 +35,7 @@ import { globSync } from 'glob';
 //
 // REPLACEMENT FORMAT:
 // Original output gets replaced with:
-//   "[Strategically Omitted by Claude-Mem to save tokens]
+//   "[Strategically Omitted by Claude-Mem-File to save tokens]
 //
 //    [Observation: Title here]
 //    Facts: ...

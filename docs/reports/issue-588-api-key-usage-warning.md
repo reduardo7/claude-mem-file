@@ -15,7 +15,7 @@ A user with a Claude Max subscription ($100/month) began receiving unexpected "A
 
 **Financial Impact:** The user expected all AI costs to be covered by their Claude Max subscription. Instead, the plugin consumed their Anthropic API credits separately, triggering auto-recharge billing.
 
-**Root Cause:** The Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`) automatically discovers and uses `ANTHROPIC_API_KEY` from environment variables or `.env` files. Claude-mem's worker service runs AI operations (observation compression, summaries) through this SDK, which consumes API credits independently of the user's Claude Max subscription.
+**Root Cause:** The Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`) automatically discovers and uses `ANTHROPIC_API_KEY` from environment variables or `.env` files. Claude-mem-file's worker service runs AI operations (observation compression, summaries) through this SDK, which consumes API credits independently of the user's Claude Max subscription.
 
 ---
 
@@ -46,7 +46,7 @@ A user with a Claude Max subscription ($100/month) began receiving unexpected "A
 
 ### How claude-mem-file Uses the Claude Agent SDK
 
-Claude-mem uses `@anthropic-ai/claude-agent-sdk` (version ^0.1.76) for AI-powered operations:
+Claude-mem-file uses `@anthropic-ai/claude-agent-sdk` (version ^0.1.76) for AI-powered operations:
 
 **File:** `/Users/alexnewman/conductor/workspaces/claude-mem-file/budapest/src/services/worker/SDKAgent.ts`
 
@@ -119,7 +119,7 @@ This means any `ANTHROPIC_API_KEY` present in the parent process environment or 
 
 ### Alternative Providers (Not Using Anthropic API)
 
-Claude-mem supports alternative AI providers that DO NOT use the Anthropic API:
+Claude-mem-file supports alternative AI providers that DO NOT use the Anthropic API:
 
 **File:** `/Users/alexnewman/conductor/workspaces/claude-mem-file/budapest/src/services/worker/GeminiAgent.ts`
 
@@ -410,7 +410,7 @@ Issue #588 represents a critical UX and financial issue where the plugin's use o
 
 ### API Key Usage Disclosure
 
-Claude-mem uses AI for observation compression and session summaries.
+Claude-mem-file uses AI for observation compression and session summaries.
 If you have an `ANTHROPIC_API_KEY` configured (in ~/.anthropic/api_key,
 environment variables, or project .env files), the plugin will use
 Anthropic API credits for these operations.

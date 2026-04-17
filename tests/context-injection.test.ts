@@ -74,7 +74,7 @@ describe('Context Injection', () => {
   describe('headerLine support', () => {
     it('prepends headerLine when creating a new file', () => {
       const filePath = join(tempDir, 'AGENTS.md');
-      const headerLine = '# Claude-Mem Memory Context';
+      const headerLine = '# Claude-Mem-File Memory Context';
 
       injectContextIntoMarkdownFile(filePath, 'context data', headerLine);
 

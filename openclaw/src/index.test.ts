@@ -16,7 +16,7 @@ function createMockApi(pluginConfigOverride: Record<string, any> = {}) {
 
   const api = {
     id: "claude-mem-file",
-    name: "Claude-Mem (Persistent Memory)",
+    name: "Claude-Mem-File (Persistent Memory)",
     version: "1.0.0",
     source: "/test/extensions/claude-mem-file/dist/index.js",
     config: {},
@@ -274,7 +274,7 @@ describe("Observation I/O event handlers", () => {
 
           if (req.url?.startsWith("/api/context/inject")) {
             res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-            res.end("# Claude-Mem Context\n\n## Timeline\n- Session 1: Did some work");
+            res.end("# Claude-Mem-File Context\n\n## Timeline\n- Session 1: Did some work");
             return;
           }
 
@@ -542,7 +542,7 @@ describe("before_prompt_build context injection", () => {
   let workerServer: Server;
   let workerPort: number;
   let receivedRequests: Array<{ method: string; url: string; body: any }> = [];
-  let contextResponse = "# Claude-Mem Context\n\n## Timeline\n- Session 1: Did some work";
+  let contextResponse = "# Claude-Mem-File Context\n\n## Timeline\n- Session 1: Did some work";
 
   function startWorkerMock(): Promise<number> {
     return new Promise((resolve) => {
@@ -586,7 +586,7 @@ describe("before_prompt_build context injection", () => {
 
   beforeEach(async () => {
     receivedRequests = [];
-    contextResponse = "# Claude-Mem Context\n\n## Timeline\n- Session 1: Did some work";
+    contextResponse = "# Claude-Mem-File Context\n\n## Timeline\n- Session 1: Did some work";
     workerPort = await startWorkerMock();
   });
 
@@ -611,7 +611,7 @@ describe("before_prompt_build context injection", () => {
 
     assert.ok(result, "should return a result");
     assert.ok(result.appendSystemContext, "should return appendSystemContext");
-    assert.ok(result.appendSystemContext.includes("Claude-Mem Context"), "should contain context");
+    assert.ok(result.appendSystemContext.includes("Claude-Mem-File Context"), "should contain context");
     assert.ok(result.appendSystemContext.includes("Session 1"), "should contain timeline");
     assert.ok(logs.some((l) => l.includes("Context injected via system prompt")));
   });

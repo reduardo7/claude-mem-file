@@ -1,4 +1,4 @@
-# Feature Parity: Claude-Mem Hooks vs Cursor Hooks
+# Feature Parity: Claude-Mem-File Hooks vs Cursor Hooks
 
 This document compares claude-mem-file's Claude Code hooks with the Cursor hooks implementation to ensure feature parity.
 

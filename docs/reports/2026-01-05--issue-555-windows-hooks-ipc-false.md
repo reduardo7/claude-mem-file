@@ -8,7 +8,7 @@
 
 ## Issue Summary
 
-On Windows 11 with Git Bash, Claude-mem plugin hooks are not executing at all. While the worker service starts successfully and responds to health checks, no observations are being saved and no hook-related logs appear.
+On Windows 11 with Git Bash, Claude-mem-file plugin hooks are not executing at all. While the worker service starts successfully and responds to health checks, no observations are being saved and no hook-related logs appear.
 
 ### Reported Symptoms
 

@@ -103,7 +103,7 @@ export function writeContextFile(workspacePath: string, context: string): void {
 
   const content = `---
 alwaysApply: true
-description: "Claude-mem context from past sessions (auto-updated)"
+description: "Claude-mem-file context from past sessions (auto-updated)"
 ---
 
 # Memory Context from Past Sessions

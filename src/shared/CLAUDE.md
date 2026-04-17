@@ -109,5 +109,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #38175 | 7:26 PM | 🔵 | Complete Claude-Mem Hook Output Architecture Documented | ~530 |
+| #38175 | 7:26 PM | 🔵 | Complete Claude-Mem-File Hook Output Architecture Documented | ~530 |
 </claude-mem-file-context>

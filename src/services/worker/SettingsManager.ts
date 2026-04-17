@@ -2,7 +2,7 @@
  * SettingsManager: viewer UI settings persistence.
  *
  * Stores sidebar/project/theme preferences in a small JSON file under the
- * user's claude-mem data dir. Replaced the SQLite-backed table used pre-v13.
+ * user's claude-mem-file data dir. Replaced the SQLite-backed table used pre-v13.
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';

@@ -96,7 +96,7 @@ interface McpInstallerConfig {
  */
 function installMcpIntegration(config: McpInstallerConfig): () => Promise<number> {
   return async (): Promise<number> => {
-    console.log(`\nInstalling Claude-Mem MCP integration for ${config.ideLabel}...\n`);
+    console.log(`\nInstalling Claude-Mem-File MCP integration for ${config.ideLabel}...\n`);
 
     const mcpServerPath = findMcpServerPath();
     if (!mcpServerPath) {
@@ -265,7 +265,7 @@ function buildGooseClaudeMemEntryYaml(mcpServerPath: string): string {
  * @returns 0 on success, 1 on failure
  */
 export async function installGooseMcpIntegration(): Promise<number> {
-  console.log('\nInstalling Claude-Mem MCP integration for Goose...\n');
+  console.log('\nInstalling Claude-Mem-File MCP integration for Goose...\n');
 
   const mcpServerPath = findMcpServerPath();
   if (!mcpServerPath) {

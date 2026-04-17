@@ -1,4 +1,4 @@
-# Claude-Mem OpenClaw Plugin — Setup Guide
+# Claude-Mem-File OpenClaw Plugin — Setup Guide
 
 This guide walks through setting up the claude-mem-file plugin on an OpenClaw gateway. By the end, your agents will have persistent memory across sessions via system prompt context injection, and optionally a real-time observation feed streaming to a messaging channel.
 
@@ -40,7 +40,7 @@ After installation, skip to [Step 4: Restart the Gateway and Verify](#step-4-res
 
 The steps below are for manual installation if you prefer not to use the automated installer, or need to troubleshoot individual steps.
 
-### Step 1: Clone the Claude-Mem Repo
+### Step 1: Clone the Claude-Mem-File Repo
 
 First, clone the claude-mem-file repository to a location accessible by your OpenClaw gateway. This gives you the worker service source and the plugin code.
 
@@ -157,7 +157,7 @@ Restart your OpenClaw gateway so it picks up the new plugin configuration. After
 If you see this, the plugin is loaded. You can also verify by running `/claude_mem_status` in any OpenClaw chat:
 
 ```
-Claude-Mem Worker Status
+Claude-Mem-File Worker Status
 Status: ok
 Port: 37777
 Active sessions: 0
@@ -190,7 +190,7 @@ The observation feed connects to the claude-mem-file worker's SSE (Server-Sent E
 Every time claude-mem-file creates a new observation from your agent's tool usage, a message like this appears in your channel:
 
 ```
-🧠 Claude-Mem Observation
+🧠 Claude-Mem-File Observation
 **Implemented retry logic for API client**
 Added exponential backoff with configurable max retries to handle transient failures
 ```
@@ -330,7 +330,7 @@ Restart the gateway. Check the logs for these three lines in order:
 Then run `/claude_mem_feed` in any OpenClaw chat:
 
 ```
-Claude-Mem Observation Feed
+Claude-Mem-File Observation Feed
 Enabled: yes
 Channel: telegram
 Target: 123456789
@@ -353,7 +353,7 @@ Reports worker health and current session state.
 
 Output:
 ```
-Claude-Mem Worker Status
+Claude-Mem-File Worker Status
 Status: ok
 Port: 37777
 Active sessions: 2
@@ -382,7 +382,7 @@ OpenClaw Gateway
   └── gateway_start ────────→ Reset session tracking + context cache
                     │
                     ▼
-         Claude-Mem Worker (localhost:37777)
+         Claude-Mem-File Worker (localhost:37777)
            ├── POST /api/sessions/init
            ├── POST /api/sessions/observations
            ├── POST /api/sessions/summarize
@@ -456,7 +456,7 @@ A background service connects to the worker's SSE stream and forwards `new_obser
 | `project` | string | `"openclaw"` | Project name scoping observations in the database |
 | `syncMemoryFile` | boolean | `true` | Inject observation context into agent system prompt |
 | `syncMemoryFileExclude` | string[] | `[]` | Agent IDs excluded from context injection |
-| `workerPort` | number | `37777` | Claude-mem worker service port |
+| `workerPort` | number | `37777` | Claude-mem-file worker service port |
 | `observationFeed.enabled` | boolean | `false` | Stream observations to a messaging channel |
 | `observationFeed.channel` | string | — | Channel type: `telegram`, `discord`, `slack`, `signal`, `whatsapp`, `line` |
 | `observationFeed.to` | string | — | Target chat/channel/user ID |

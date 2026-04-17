@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem स्वचालित रूप से टूल उपयोग अवलोकनों को कैप्चर करके, सिमेंटिक सारांश उत्पन्न करके, और उन्हें भविष्य के सत्रों के लिए उपलब्ध कराकर सत्रों में संदर्भ को निर्बाध रूप से संरक्षित करता है। यह Claude को परियोजनाओं के बारे में ज्ञान की निरंतरता बनाए रखने में सक्षम बनाता है, भले ही सत्र समाप्त हो जाएं या पुनः कनेक्ट हो जाएं।
+  Claude-Mem-File स्वचालित रूप से टूल उपयोग अवलोकनों को कैप्चर करके, सिमेंटिक सारांश उत्पन्न करके, और उन्हें भविष्य के सत्रों के लिए उपलब्ध कराकर सत्रों में संदर्भ को निर्बाध रूप से संरक्षित करता है। यह Claude को परियोजनाओं के बारे में ज्ञान की निरंतरता बनाए रखने में सक्षम बनाता है, भले ही सत्र समाप्त हो जाएं या पुनः कनेक्ट हो जाएं।
 </p>
 
 ---
@@ -133,20 +133,20 @@ Claude Code को पुनः आरंभ करें। पिछले स
 ### शुरुआत करना
 
 - **[इंस्टॉलेशन गाइड](https://docs.claude-mem-file.ai/installation)** - त्वरित शुरुआत और उन्नत इंस्टॉलेशन
-- **[उपयोग गाइड](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem स्वचालित रूप से कैसे काम करता है
+- **[उपयोग गाइड](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File स्वचालित रूप से कैसे काम करता है
 - **[खोज उपकरण](https://docs.claude-mem-file.ai/usage/search-tools)** - प्राकृतिक भाषा के साथ अपने प्रोजेक्ट इतिहास को क्वेरी करें
 - **[बीटा सुविधाएं](https://docs.claude-mem-file.ai/beta-features)** - Endless Mode जैसी प्रायोगिक सुविधाओं को आज़माएं
 
 ### सर्वोत्तम अभ्यास
 
 - **[संदर्भ इंजीनियरिंग](https://docs.claude-mem-file.ai/context-engineering)** - AI एजेंट संदर्भ अनुकूलन सिद्धांत
-- **[प्रगतिशील प्रकटीकरण](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem की संदर्भ प्राइमिंग रणनीति के पीछे का दर्शन
+- **[प्रगतिशील प्रकटीकरण](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem-File की संदर्भ प्राइमिंग रणनीति के पीछे का दर्शन
 
 ### आर्किटेक्चर
 
 - **[अवलोकन](https://docs.claude-mem-file.ai/architecture/overview)** - सिस्टम घटक और डेटा प्रवाह
 - **[आर्किटेक्चर विकास](https://docs.claude-mem-file.ai/architecture-evolution)** - v3 से v5 तक की यात्रा
-- **[Hooks आर्किटेक्चर](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem जीवनचक्र hooks का उपयोग कैसे करता है
+- **[Hooks आर्किटेक्चर](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File जीवनचक्र hooks का उपयोग कैसे करता है
 - **[Hooks संदर्भ](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook स्क्रिप्ट समझाई गई
 - **[Worker सेवा](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API और Bun प्रबंधन
 - **[डेटाबेस](https://docs.claude-mem-file.ai/architecture/database)** - SQLite स्कीमा और FTS5 खोज
@@ -177,7 +177,7 @@ Claude Code को पुनः आरंभ करें। पिछले स
 
 ## mem-search स्किल
 
-Claude-Mem mem-search स्किल के माध्यम से बुद्धिमान खोज प्रदान करता है जो स्वचालित रूप से सक्रिय हो जाती है जब आप पिछले काम के बारे में पूछते हैं:
+Claude-Mem-File mem-search स्किल के माध्यम से बुद्धिमान खोज प्रदान करता है जो स्वचालित रूप से सक्रिय हो जाती है जब आप पिछले काम के बारे में पूछते हैं:
 
 **यह कैसे काम करता है:**
 - बस स्वाभाविक रूप से पूछें: *"हमने पिछले सत्र में क्या किया?"* या *"क्या हमने पहले इस बग को ठीक किया था?"*
@@ -212,7 +212,7 @@ Claude-Mem mem-search स्किल के माध्यम से बुद
 
 ## बीटा सुविधाएं
 
-Claude-Mem **बीटा चैनल** के साथ **Endless Mode** (विस्तारित सत्रों के लिए बायोमिमेटिक मेमोरी आर्किटेक्चर) जैसी प्रायोगिक सुविधाएं प्रदान करता है। http://localhost:37777 → Settings पर वेब व्यूअर UI से स्थिर और बीटा संस्करणों के बीच स्विच करें।
+Claude-Mem-File **बीटा चैनल** के साथ **Endless Mode** (विस्तारित सत्रों के लिए बायोमिमेटिक मेमोरी आर्किटेक्चर) जैसी प्रायोगिक सुविधाएं प्रदान करता है। http://localhost:37777 → Settings पर वेब व्यूअर UI से स्थिर और बीटा संस्करणों के बीच स्विच करें।
 
 Endless Mode के विवरण और इसे आज़माने के तरीके के लिए **[बीटा सुविधाएं दस्तावेज़ीकरण](https://docs.claude-mem-file.ai/beta-features)** देखें।
 

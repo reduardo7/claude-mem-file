@@ -1044,7 +1044,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.registerCommand({
     name: "claude_mem_feed",
-    description: "Show or toggle Claude-Mem observation feed status",
+    description: "Show or toggle Claude-Mem-File observation feed status",
     acceptsArgs: true,
     handler: async (ctx) => {
       const feedConfig = userConfig.observationFeed;
@@ -1066,7 +1066,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       }
 
       return { text: [
-        "Claude-Mem Observation Feed",
+        "Claude-Mem-File Observation Feed",
         `Enabled: ${feedConfig.enabled ? "yes" : "no"}`,
         `Channel: ${feedConfig.channel || "not set"}`,
         `Target: ${feedConfig.to || "not set"}`,
@@ -1081,7 +1081,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.registerCommand({
     name: "claude-mem-file-search",
-    description: "Search Claude-Mem observations by query",
+    description: "Search Claude-Mem-File observations by query",
     acceptsArgs: true,
     handler: async (ctx) => {
       const raw = ctx.args?.trim() || "";
@@ -1102,12 +1102,12 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       );
 
       if (!data) {
-        return "Claude-Mem search failed (worker unavailable or invalid response).";
+        return "Claude-Mem-File search failed (worker unavailable or invalid response).";
       }
 
       const items = Array.isArray(data.items) ? data.items : [];
       return [
-        `Claude-Mem Search: \"${query}\"`,
+        `Claude-Mem-File Search: \"${query}\"`,
         summarizeSearchResults(items, limit),
       ].join("\n");
     },
@@ -1119,7 +1119,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.registerCommand({
     name: "claude-mem-file-recent",
-    description: "Show recent Claude-Mem context for a project",
+    description: "Show recent Claude-Mem-File context for a project",
     acceptsArgs: true,
     handler: async (ctx) => {
       const raw = ctx.args?.trim() || "";
@@ -1140,14 +1140,14 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       );
 
       if (!data) {
-        return "Claude-Mem recent context failed (worker unavailable or invalid response).";
+        return "Claude-Mem-File recent context failed (worker unavailable or invalid response).";
       }
 
       const summaries = Array.isArray(data.session_summaries) ? data.session_summaries : [];
       const observations = Array.isArray(data.recent_observations) ? data.recent_observations : [];
 
       return [
-        "Claude-Mem Recent Context",
+        "Claude-Mem-File Recent Context",
         `Project: ${project || "(auto)"}`,
         `Session summaries: ${summaries.length}`,
         `Recent observations: ${observations.length}`,
@@ -1196,14 +1196,14 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       );
 
       if (!data) {
-        return "Claude-Mem timeline lookup failed (worker unavailable or invalid response).";
+        return "Claude-Mem-File timeline lookup failed (worker unavailable or invalid response).";
       }
 
       const timeline = Array.isArray(data.timeline) ? data.timeline : [];
       const anchor = data.anchor ? String(data.anchor) : "(none)";
 
       return [
-        `Claude-Mem Timeline: \"${query}\"`,
+        `Claude-Mem-File Timeline: \"${query}\"`,
         `Anchor: ${anchor}`,
         summarizeSearchResults(timeline, 8),
       ].join("\n");
@@ -1215,24 +1215,24 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.registerCommand({
     name: "claude_mem_status",
-    description: "Check Claude-Mem worker health and session status",
+    description: "Check Claude-Mem-File worker health and session status",
     handler: async () => {
       const healthText = await workerGetText(workerPort, "/api/health", api.logger);
       if (!healthText) {
-        return { text: `Claude-Mem worker unreachable at port ${workerPort}` };
+        return { text: `Claude-Mem-File worker unreachable at port ${workerPort}` };
       }
 
       try {
         const health = JSON.parse(healthText);
         return { text: [
-          "Claude-Mem Worker Status",
+          "Claude-Mem-File Worker Status",
           `Status: ${health.status || "unknown"}`,
           `Port: ${workerPort}`,
           `Active sessions: ${sessionIds.size}`,
           `Observation feed: ${connectionState}`,
         ].join("\n") };
       } catch {
-        return { text: `Claude-Mem worker responded but returned unexpected data` };
+        return { text: `Claude-Mem-File worker responded but returned unexpected data` };
       }
     },
   });

@@ -6,7 +6,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -77,7 +77,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -93,7 +93,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem, araç kullanım gözlemlerini otomatik olarak yakalayarak, anlamsal özetler oluşturarak ve bunları gelecekteki oturumlarda kullanılabilir hale getirerek bağlamı oturumlar arası sorunsuzca korur. Bu, Claude'un oturumlar sona erse veya yeniden bağlansa bile projeler hakkındaki bilgi sürekliliğini korumasını sağlar.
+  Claude-Mem-File, araç kullanım gözlemlerini otomatik olarak yakalayarak, anlamsal özetler oluşturarak ve bunları gelecekteki oturumlarda kullanılabilir hale getirerek bağlamı oturumlar arası sorunsuzca korur. Bu, Claude'un oturumlar sona erse veya yeniden bağlansa bile projeler hakkındaki bilgi sürekliliğini korumasını sağlar.
 </p>
 
 ---
@@ -132,20 +132,20 @@ Claude Code'u yeniden başlatın. Önceki oturumlardaki bağlam otomatik olarak 
 ### Başlarken
 
 - **[Kurulum Kılavuzu](https://docs.claude-mem-file.ai/installation)** - Hızlı başlangıç ve gelişmiş kurulum
-- **[Kullanım Kılavuzu](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem otomatik olarak nasıl çalışır
+- **[Kullanım Kılavuzu](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File otomatik olarak nasıl çalışır
 - **[Arama Araçları](https://docs.claude-mem-file.ai/usage/search-tools)** - Doğal dil ile proje geçmişinizi sorgulayın
 - **[Beta Özellikleri](https://docs.claude-mem-file.ai/beta-features)** - Endless Mode gibi deneysel özellikleri deneyin
 
 ### En İyi Uygulamalar
 
 - **[Bağlam Mühendisliği](https://docs.claude-mem-file.ai/context-engineering)** - AI ajan bağlam optimizasyon ilkeleri
-- **[Aşamalı Açıklama](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem'in bağlam hazırlama stratejisinin ardındaki felsefe
+- **[Aşamalı Açıklama](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem-File'in bağlam hazırlama stratejisinin ardındaki felsefe
 
 ### Mimari
 
 - **[Genel Bakış](https://docs.claude-mem-file.ai/architecture/overview)** - Sistem bileşenleri ve veri akışı
 - **[Mimari Evrimi](https://docs.claude-mem-file.ai/architecture-evolution)** - v3'ten v5'e yolculuk
-- **[Hooks Mimarisi](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem yaşam döngüsü hook'larını nasıl kullanır
+- **[Hooks Mimarisi](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File yaşam döngüsü hook'larını nasıl kullanır
 - **[Hooks Referansı](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook betiği açıklandı
 - **[Worker Servisi](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API ve Bun yönetimi
 - **[Veritabanı](https://docs.claude-mem-file.ai/architecture/database)** - SQLite şeması ve FTS5 arama
@@ -176,7 +176,7 @@ Detaylar için [Mimari Genel Bakış](https://docs.claude-mem-file.ai/architectu
 
 ## mem-search Becerisi
 
-Claude-Mem, geçmiş çalışmalarınız hakkında sorduğunuzda otomatik olarak devreye giren mem-search becerisi aracılığıyla akıllı arama sağlar:
+Claude-Mem-File, geçmiş çalışmalarınız hakkında sorduğunuzda otomatik olarak devreye giren mem-search becerisi aracılığıyla akıllı arama sağlar:
 
 **Nasıl Çalışır:**
 - Sadece doğal bir şekilde sorun: *"Geçen oturumda ne yaptık?"* veya *"Bu hatayı daha önce düzelttik mi?"*
@@ -211,7 +211,7 @@ Detaylı örnekler için [Arama Araçları Kılavuzu](https://docs.claude-mem-fi
 
 ## Beta Özellikleri
 
-Claude-Mem, **Endless Mode** (genişletilmiş oturumlar için biyomimetik bellek mimarisi) gibi deneysel özellikler içeren bir **beta kanalı** sunar. http://localhost:37777 → Settings adresindeki web görüntüleyici arayüzünden kararlı ve beta sürümleri arasında geçiş yapın.
+Claude-Mem-File, **Endless Mode** (genişletilmiş oturumlar için biyomimetik bellek mimarisi) gibi deneysel özellikler içeren bir **beta kanalı** sunar. http://localhost:37777 → Settings adresindeki web görüntüleyici arayüzünden kararlı ve beta sürümleri arasında geçiş yapın.
 
 Endless Mode hakkında detaylar ve nasıl deneyeceğiniz için **[Beta Özellikleri Dokümantasyonu](https://docs.claude-mem-file.ai/beta-features)** bölümüne bakın.
 

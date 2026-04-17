@@ -90,7 +90,7 @@ function seedDb(dbPath: string): void {
 }
 
 test('migrate-to-vault CLI copies SQLite data into the vault', () => {
-  const root = mkdtempSync(join(tmpdir(), 'claude-mem-migrate-'));
+  const root = mkdtempSync(join(tmpdir(), 'claude-mem-file-migrate-'));
   const dbPath = resolve(root, 'legacy.db');
   const vaultRoot = resolve(root, 'docs', 'vault');
   try {
@@ -121,7 +121,7 @@ test('migrate-to-vault CLI rejects flag without value', () => {
 });
 
 test('migrate-to-vault CLI is idempotent (second run dedupes)', () => {
-  const root = mkdtempSync(join(tmpdir(), 'claude-mem-migrate-'));
+  const root = mkdtempSync(join(tmpdir(), 'claude-mem-file-migrate-'));
   const dbPath = resolve(root, 'legacy.db');
   const vaultRoot = resolve(root, 'docs', 'vault');
   try {

@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem bevarer problemfrit kontekst på tværs af sessioner ved automatisk at fange observationer af værktøjsbrug, generere semantiske resuméer og gøre dem tilgængelige for fremtidige sessioner. Dette gør det muligt for Claude at opretholde kontinuitet i viden om projekter, selv efter sessioner afsluttes eller genopretter forbindelse.
+  Claude-Mem-File bevarer problemfrit kontekst på tværs af sessioner ved automatisk at fange observationer af værktøjsbrug, generere semantiske resuméer og gøre dem tilgængelige for fremtidige sessioner. Dette gør det muligt for Claude at opretholde kontinuitet i viden om projekter, selv efter sessioner afsluttes eller genopretter forbindelse.
 </p>
 
 ---
@@ -133,7 +133,7 @@ Genstart Claude Code. Kontekst fra tidligere sessioner vil automatisk vises i ny
 ### Kom Godt I Gang
 
 - **[Installationsguide](https://docs.claude-mem-file.ai/installation)** - Hurtig start & avanceret installation
-- **[Brugervejledning](https://docs.claude-mem-file.ai/usage/getting-started)** - Sådan fungerer Claude-Mem automatisk
+- **[Brugervejledning](https://docs.claude-mem-file.ai/usage/getting-started)** - Sådan fungerer Claude-Mem-File automatisk
 - **[Søgeværktøjer](https://docs.claude-mem-file.ai/usage/search-tools)** - Forespørg din projekthistorik med naturligt sprog
 - **[Beta-funktioner](https://docs.claude-mem-file.ai/beta-features)** - Prøv eksperimentelle funktioner som Endless Mode
 
@@ -146,7 +146,7 @@ Genstart Claude Code. Kontekst fra tidligere sessioner vil automatisk vises i ny
 
 - **[Oversigt](https://docs.claude-mem-file.ai/architecture/overview)** - Systemkomponenter & dataflow
 - **[Arkitekturudvikling](https://docs.claude-mem-file.ai/architecture-evolution)** - Rejsen fra v3 til v5
-- **[Hooks-arkitektur](https://docs.claude-mem-file.ai/hooks-architecture)** - Hvordan Claude-Mem bruger livscyklus-hooks
+- **[Hooks-arkitektur](https://docs.claude-mem-file.ai/hooks-architecture)** - Hvordan Claude-Mem-File bruger livscyklus-hooks
 - **[Hooks-reference](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook-scripts forklaret
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & Bun-administration
 - **[Database](https://docs.claude-mem-file.ai/architecture/database)** - SQLite-skema & FTS5-søgning
@@ -177,7 +177,7 @@ Se [Arkitekturoversigt](https://docs.claude-mem-file.ai/architecture/overview) f
 
 ## mem-search-færdighed
 
-Claude-Mem leverer intelligent søgning gennem mem-search-færdigheden, der automatisk aktiveres, når du spørger om tidligere arbejde:
+Claude-Mem-File leverer intelligent søgning gennem mem-search-færdigheden, der automatisk aktiveres, når du spørger om tidligere arbejde:
 
 **Sådan Virker Det:**
 - Spørg bare naturligt: *"Hvad lavede vi sidste session?"* eller *"Har vi løst denne fejl før?"*
@@ -212,7 +212,7 @@ Se [Søgeværktøjsguide](https://docs.claude-mem-file.ai/usage/search-tools) fo
 
 ## Beta-funktioner
 
-Claude-Mem tilbyder en **beta-kanal** med eksperimentelle funktioner som **Endless Mode** (biomimetisk hukommelsesarkitektur til udvidede sessioner). Skift mellem stabile og beta-versioner fra web viewer UI på http://localhost:37777 → Settings.
+Claude-Mem-File tilbyder en **beta-kanal** med eksperimentelle funktioner som **Endless Mode** (biomimetisk hukommelsesarkitektur til udvidede sessioner). Skift mellem stabile og beta-versioner fra web viewer UI på http://localhost:37777 → Settings.
 
 Se **[Beta-funktionsdokumentation](https://docs.claude-mem-file.ai/beta-features)** for detaljer om Endless Mode og hvordan du prøver det.
 

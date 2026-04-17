@@ -25,11 +25,11 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #32309 | 3:09 PM | 🔵 | Claude-mem hooks system configuration structure | ~435 |
+| #32309 | 3:09 PM | 🔵 | Claude-mem-file hooks system configuration structure | ~435 |
 
 ### Jan 9, 2026
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #38802 | 5:11 PM | 🔵 | Claude-Mem Hook Configuration Architecture | ~450 |
+| #38802 | 5:11 PM | 🔵 | Claude-Mem-File Hook Configuration Architecture | ~450 |
 </claude-mem-file-context>

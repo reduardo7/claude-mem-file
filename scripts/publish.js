@@ -21,7 +21,7 @@ const question = (query) => new Promise((resolve) => rl.question(query, resolve)
 
 async function publish() {
   try {
-    console.log('📦 Claude-mem Marketplace Release Tool\n');
+    console.log('📦 Claude-mem-file Marketplace Release Tool\n');
 
     // Check git status
     console.log('🔍 Checking git status...');

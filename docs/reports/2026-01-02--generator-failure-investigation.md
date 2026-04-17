@@ -433,7 +433,7 @@ Anti-pattern code that had been previously removed during refactoring was re-add
 - Core memory system non-functional
 - No observations being saved
 - System unable to capture work context
-- Claude-mem's primary feature completely broken
+- Claude-mem-file's primary feature completely broken
 
 #### The Irony
 During a project to IMPROVE error handling, we broke the error logging system by adding back code that had been removed for being problematic.

@@ -156,7 +156,7 @@ async function main() {
 
   // Show summary
   console.log("📋 System Summary:");
-  console.log(`   Claude-mem: v${diagnostics.versions.claudeMem}`);
+  console.log(`   Claude-mem-file: v${diagnostics.versions.claudeMem}`);
   console.log(`   Claude Code: ${diagnostics.versions.claudeCode}`);
   console.log(
     `   Platform: ${diagnostics.platform.osVersion} (${diagnostics.platform.arch})`

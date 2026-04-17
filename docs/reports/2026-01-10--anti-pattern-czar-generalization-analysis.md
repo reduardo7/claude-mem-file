@@ -36,7 +36,7 @@ The script uses **purely regex-based detection** (no AST parsing) with two phase
    - `GENERIC_CATCH` - No `instanceof` or error type discrimination
    - `CATCH_AND_CONTINUE_CRITICAL_PATH` - Logging but not failing in critical code
 
-### Claude-Mem Specific Elements
+### Claude-Mem-File Specific Elements
 
 | Element | Location | Generalization Required |
 |---------|----------|-------------------------|
@@ -181,7 +181,7 @@ Option 3 enables both plugin distribution and community adoption.
 | Report formatting | High | Standard markdown output |
 | 4-step workflow | High | Applicable to any codebase |
 
-### What's Claude-Mem Specific
+### What's Claude-Mem-File Specific
 
 | Component | Specificity | Extraction Effort |
 |-----------|-------------|-------------------|

@@ -29,13 +29,13 @@
 | #5495 | 9:28 PM | 🔵 | Context Hook Audit Reveals Project Anti-Patterns | ~660 |
 | #5476 | 9:17 PM | 🔵 | Critical Code Audit Identified 14 Anti-Patterns in Context Hook | ~887 |
 | #5391 | 8:45 PM | 🔵 | Critical Code Quality Audit of Context Hook Implementation | ~720 |
-| #5150 | 7:37 PM | 🟣 | Troubleshooting Skill Added to Claude-Mem Plugin | ~427 |
+| #5150 | 7:37 PM | 🟣 | Troubleshooting Skill Added to Claude-Mem-File Plugin | ~427 |
 
 ### Nov 9, 2025
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #6161 | 11:55 PM | 🔵 | YC W26 Application Research and Preparation Completed for Claude-Mem | ~1628 |
+| #6161 | 11:55 PM | 🔵 | YC W26 Application Research and Preparation Completed for Claude-Mem-File | ~1628 |
 | #6155 | 11:47 PM | ✅ | Comprehensive Y Combinator Winter 2026 Application Notes Created | ~1045 |
 | #5979 | 7:58 PM | 🔵 | Smart Contextualization Feature Architecture | ~560 |
 | #5971 | 7:49 PM | 🔵 | Hooks Reference Documentation Structure | ~448 |

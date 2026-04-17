@@ -28,7 +28,7 @@ OpenClaw Gateway
   └── gateway_start ────────→ Reset session tracking + context cache
                     │
                     ▼
-         Claude-Mem Worker (localhost:37777)
+         Claude-Mem-File Worker (localhost:37777)
            ├── POST /api/sessions/init
            ├── POST /api/sessions/observations
            ├── POST /api/sessions/summarize
@@ -84,7 +84,7 @@ The observation feed sends a formatted message to your OpenClaw channel every ti
 Messages look like this in your channel:
 
 ```
-🧠 Claude-Mem Observation
+🧠 Claude-Mem-File Observation
 **Implemented retry logic for API client**
 Added exponential backoff with configurable max retries to handle transient failures
 ```
@@ -229,7 +229,7 @@ After starting the gateway, check that the feed is connected:
 
 2. **Use the status command** — Run `/claude_mem_feed` in any OpenClaw chat to see:
    ```
-   Claude-Mem Observation Feed
+   Claude-Mem-File Observation Feed
    Enabled: yes
    Channel: telegram
    Target: 123456789
@@ -376,6 +376,6 @@ Both are cleared on `gateway_start`.
 
 ## Requirements
 
-- Claude-mem worker service running on `localhost:37777` (or configured port)
+- Claude-mem-file worker service running on `localhost:37777` (or configured port)
 - OpenClaw gateway with plugin support
 - Network access between gateway and worker (localhost only)

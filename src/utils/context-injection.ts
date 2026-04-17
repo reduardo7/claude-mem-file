@@ -27,7 +27,7 @@ export const CONTEXT_TAG_CLOSE = '</claude-mem-file-context>';
  * @param filePath - Absolute path to the target markdown file.
  * @param contextContent - The content to place between the context tags.
  * @param headerLine - Optional first line written when creating a new file
- *                     (e.g. `"# Claude-Mem Memory Context"` for AGENTS.md).
+ *                     (e.g. `"# Claude-Mem-File Memory Context"` for AGENTS.md).
  */
 export function injectContextIntoMarkdownFile(
   filePath: string,

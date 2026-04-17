@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  A Claude-Mem zökkenőmentesen megőrzi a kontextust munkamenetek között azáltal, hogy automatikusan rögzíti az eszközhasználati megfigyeléseket, szemantikus összefoglalókat generál, és elérhetővé teszi azokat a jövőbeli munkamenetekben. Ez lehetővé teszi Claude számára, hogy fenntartsa a projektekkel kapcsolatos tudás folytonosságát még a munkamenetek befejezése vagy újracsatlakozása után is.
+  A Claude-Mem-File zökkenőmentesen megőrzi a kontextust munkamenetek között azáltal, hogy automatikusan rögzíti az eszközhasználati megfigyeléseket, szemantikus összefoglalókat generál, és elérhetővé teszi azokat a jövőbeli munkamenetekben. Ez lehetővé teszi Claude számára, hogy fenntartsa a projektekkel kapcsolatos tudás folytonosságát még a munkamenetek befejezése vagy újracsatlakozása után is.
 </p>
 
 ---
@@ -133,20 +133,20 @@ Indítsa újra a Claude Code-ot. A korábbi munkamenetek kontextusa automatikusa
 ### Első lépések
 
 - **[Telepítési útmutató](https://docs.claude-mem-file.ai/installation)** - Gyors indítás és haladó telepítés
-- **[Használati útmutató](https://docs.claude-mem-file.ai/usage/getting-started)** - Hogyan működik automatikusan a Claude-Mem
+- **[Használati útmutató](https://docs.claude-mem-file.ai/usage/getting-started)** - Hogyan működik automatikusan a Claude-Mem-File
 - **[Keresési eszközök](https://docs.claude-mem-file.ai/usage/search-tools)** - Projekt előzmények lekérdezése természetes nyelvvel
 - **[Béta funkciók](https://docs.claude-mem-file.ai/beta-features)** - Kísérleti funkciók, mint az Endless Mode kipróbálása
 
 ### Bevált gyakorlatok
 
 - **[Kontextus tervezés](https://docs.claude-mem-file.ai/context-engineering)** - AI ügynök kontextus optimalizálási elvek
-- **[Progresszív felfedés](https://docs.claude-mem-file.ai/progressive-disclosure)** - A Claude-Mem kontextus előkészítési stratégiájának filozófiája
+- **[Progresszív felfedés](https://docs.claude-mem-file.ai/progressive-disclosure)** - A Claude-Mem-File kontextus előkészítési stratégiájának filozófiája
 
 ### Architektúra
 
 - **[Áttekintés](https://docs.claude-mem-file.ai/architecture/overview)** - Rendszerkomponensek és adatfolyam
 - **[Architektúra fejlődés](https://docs.claude-mem-file.ai/architecture-evolution)** - Az út a v3-tól a v5-ig
-- **[Hooks architektúra](https://docs.claude-mem-file.ai/hooks-architecture)** - Hogyan használja a Claude-Mem az életciklus hookokat
+- **[Hooks architektúra](https://docs.claude-mem-file.ai/hooks-architecture)** - Hogyan használja a Claude-Mem-File az életciklus hookokat
 - **[Hooks referencia](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook szkript magyarázata
 - **[Worker szolgáltatás](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API és Bun kezelés
 - **[Adatbázis](https://docs.claude-mem-file.ai/architecture/database)** - SQLite séma és FTS5 keresés
@@ -177,7 +177,7 @@ További részletekért lásd az [Architektúra áttekintést](https://docs.clau
 
 ## mem-search Skill
 
-A Claude-Mem intelligens keresést biztosít a mem-search skillen keresztül, amely automatikusan aktiválódik, amikor múltbeli munkáról kérdez:
+A Claude-Mem-File intelligens keresést biztosít a mem-search skillen keresztül, amely automatikusan aktiválódik, amikor múltbeli munkáról kérdez:
 
 **Hogyan működik:**
 - Csak kérdezzen természetesen: *"Mit csináltunk az előző munkamenetben?"* vagy *"Javítottuk már ezt a hibát korábban?"*
@@ -212,7 +212,7 @@ Részletes példákért lásd a [Keresési eszközök útmutatót](https://docs.
 
 ## Béta funkciók
 
-A Claude-Mem **béta csatornát** kínál kísérleti funkciókkal, mint az **Endless Mode** (biomimetikus memória architektúra hosszabb munkamenetekhez). Váltson a stabil és béta verziók között a webes megjelenítő felületről a http://localhost:37777 → Settings címen.
+A Claude-Mem-File **béta csatornát** kínál kísérleti funkciókkal, mint az **Endless Mode** (biomimetikus memória architektúra hosszabb munkamenetekhez). Váltson a stabil és béta verziók között a webes megjelenítő felületről a http://localhost:37777 → Settings címen.
 
 További részletekért az Endless Mode-ról és annak kipróbálásáról lásd a **[Béta funkciók dokumentációt](https://docs.claude-mem-file.ai/beta-features)**.
 

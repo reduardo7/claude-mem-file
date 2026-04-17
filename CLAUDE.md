@@ -63,7 +63,7 @@ The SQLite DB is opened read-only; migration is idempotent (SHA-256 content hash
 
 ## Exit Code Strategy
 
-Claude-mem hooks use specific exit codes per Claude Code's hook contract:
+Claude-mem-file hooks use specific exit codes per Claude Code's hook contract:
 
 - **Exit 0**: Success or graceful shutdown (Windows Terminal closes tabs)
 - **Exit 1**: Non-blocking error (stderr shown to user, continues)
@@ -86,7 +86,7 @@ See `private/context/claude-code/exit-codes.md` for full hook behavior matrix.
 
 ## Pro Features Architecture
 
-Claude-mem is designed with a clean separation between open-source core functionality and optional Pro features.
+Claude-mem-file is designed with a clean separation between open-source core functionality and optional Pro features.
 
 **Open-Source Core** (this repository):
 

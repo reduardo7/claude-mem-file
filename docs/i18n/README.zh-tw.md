@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -77,7 +77,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -93,7 +93,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem 透過自動擷取工具使用觀察、產生語意摘要並在未來的工作階段中提供使用，無縫保留跨工作階段的脈絡。這使 Claude 即使在工作階段結束或重新連線後，仍能維持對專案的知識連續性。
+  Claude-Mem-File 透過自動擷取工具使用觀察、產生語意摘要並在未來的工作階段中提供使用，無縫保留跨工作階段的脈絡。這使 Claude 即使在工作階段結束或重新連線後，仍能維持對專案的知識連續性。
 </p>
 
 ---
@@ -132,20 +132,20 @@
 ### 入門指南
 
 - **[安裝指南](https://docs.claude-mem-file.ai/installation)** - 快速開始與進階安裝
-- **[使用指南](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem 如何自動運作
+- **[使用指南](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File 如何自動運作
 - **[搜尋工具](https://docs.claude-mem-file.ai/usage/search-tools)** - 使用自然語言查詢專案歷史
 - **[Beta 功能](https://docs.claude-mem-file.ai/beta-features)** - 試用 Endless Mode 等實驗性功能
 
 ### 最佳實務
 
 - **[脈絡工程](https://docs.claude-mem-file.ai/context-engineering)** - AI 代理脈絡最佳化原則
-- **[漸進式揭露](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem 脈絡啟動策略背後的理念
+- **[漸進式揭露](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem-File 脈絡啟動策略背後的理念
 
 ### 架構
 
 - **[概覽](https://docs.claude-mem-file.ai/architecture/overview)** - 系統元件與資料流程
 - **[架構演進](https://docs.claude-mem-file.ai/architecture-evolution)** - 從 v3 到 v5 的旅程
-- **[Hooks 架構](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem 如何使用生命週期掛鉤
+- **[Hooks 架構](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File 如何使用生命週期掛鉤
 - **[Hooks 參考](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 個掛鉤腳本說明
 - **[Worker 服務](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API 與 Bun 管理
 - **[資料庫](https://docs.claude-mem-file.ai/architecture/database)** - SQLite 結構描述與 FTS5 搜尋
@@ -176,7 +176,7 @@
 
 ## MCP 搜尋工具
 
-Claude-Mem 透過遵循 Token 高效的 **3 層工作流程模式**，以 **4 個 MCP 工具**提供智慧記憶搜尋：
+Claude-Mem-File 透過遵循 Token 高效的 **3 層工作流程模式**，以 **4 個 MCP 工具**提供智慧記憶搜尋：
 
 **3 層工作流程：**
 
@@ -217,7 +217,7 @@ get_observations(ids=[123, 456])
 
 ## Beta 功能
 
-Claude-Mem 提供具有實驗性功能的 **Beta 通道**，例如 **Endless Mode**（用於延長工作階段的仿生記憶架構）。在 http://localhost:37777 → Settings 的網頁檢視介面中切換穩定版與 Beta 版。
+Claude-Mem-File 提供具有實驗性功能的 **Beta 通道**，例如 **Endless Mode**（用於延長工作階段的仿生記憶架構）。在 http://localhost:37777 → Settings 的網頁檢視介面中切換穩定版與 Beta 版。
 
 有關 Endless Mode 與如何試用的詳情，請參閱 **[Beta 功能文件](https://docs.claude-mem-file.ai/beta-features)**。
 

@@ -7,7 +7,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -78,7 +78,7 @@
 <p align="center">
   <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem Preview" width="800">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@
 </p>
 
 <p align="center">
-  Το Claude-Mem διατηρεί απρόσκοπτα το πλαίσιο μεταξύ συνεδριών καταγράφοντας αυτόματα παρατηρήσεις χρήσης εργαλείων, δημιουργώντας σημασιολογικές περιλήψεις και καθιστώντας τες διαθέσιμες σε μελλοντικές συνεδρίες. Αυτό επιτρέπει στο Claude να διατηρεί τη συνέχεια της γνώσης για έργα ακόμη και μετά το τέλος ή την επανασύνδεση συνεδριών.
+  Το Claude-Mem-File διατηρεί απρόσκοπτα το πλαίσιο μεταξύ συνεδριών καταγράφοντας αυτόματα παρατηρήσεις χρήσης εργαλείων, δημιουργώντας σημασιολογικές περιλήψεις και καθιστώντας τες διαθέσιμες σε μελλοντικές συνεδρίες. Αυτό επιτρέπει στο Claude να διατηρεί τη συνέχεια της γνώσης για έργα ακόμη και μετά το τέλος ή την επανασύνδεση συνεδριών.
 </p>
 
 ---
@@ -133,20 +133,20 @@
 ### Ξεκινώντας
 
 - **[Οδηγός Εγκατάστασης](https://docs.claude-mem-file.ai/installation)** - Γρήγορη εκκίνηση & προηγμένη εγκατάσταση
-- **[Οδηγός Χρήσης](https://docs.claude-mem-file.ai/usage/getting-started)** - Πώς λειτουργεί αυτόματα το Claude-Mem
+- **[Οδηγός Χρήσης](https://docs.claude-mem-file.ai/usage/getting-started)** - Πώς λειτουργεί αυτόματα το Claude-Mem-File
 - **[Εργαλεία Αναζήτησης](https://docs.claude-mem-file.ai/usage/search-tools)** - Ερωτήματα στο ιστορικό του έργου σας με φυσική γλώσσα
 - **[Χαρακτηριστικά Beta](https://docs.claude-mem-file.ai/beta-features)** - Δοκιμάστε πειραματικά χαρακτηριστικά όπως το Endless Mode
 
 ### Βέλτιστες Πρακτικές
 
 - **[Μηχανική Πλαισίου](https://docs.claude-mem-file.ai/context-engineering)** - Αρχές βελτιστοποίησης πλαισίου για AI agents
-- **[Προοδευτική Αποκάλυψη](https://docs.claude-mem-file.ai/progressive-disclosure)** - Φιλοσοφία πίσω από τη στρατηγική προετοιμασίας πλαισίου του Claude-Mem
+- **[Προοδευτική Αποκάλυψη](https://docs.claude-mem-file.ai/progressive-disclosure)** - Φιλοσοφία πίσω από τη στρατηγική προετοιμασίας πλαισίου του Claude-Mem-File
 
 ### Αρχιτεκτονική
 
 - **[Επισκόπηση](https://docs.claude-mem-file.ai/architecture/overview)** - Συστατικά στοιχεία συστήματος & ροή δεδομένων
 - **[Εξέλιξη Αρχιτεκτονικής](https://docs.claude-mem-file.ai/architecture-evolution)** - Το ταξίδι από το v3 στο v5
-- **[Αρχιτεκτονική Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Πώς το Claude-Mem χρησιμοποιεί lifecycle hooks
+- **[Αρχιτεκτονική Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Πώς το Claude-Mem-File χρησιμοποιεί lifecycle hooks
 - **[Αναφορά Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - Επεξήγηση 7 hook scripts
 - **[Υπηρεσία Worker](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & διαχείριση Bun
 - **[Βάση Δεδομένων](https://docs.claude-mem-file.ai/architecture/database)** - Σχήμα SQLite & αναζήτηση FTS5
@@ -177,7 +177,7 @@
 
 ## Δεξιότητα mem-search
 
-Το Claude-Mem παρέχει έξυπνη αναζήτηση μέσω της δεξιότητας mem-search που ενεργοποιείται αυτόματα όταν ρωτάτε για παλαιότερη εργασία:
+Το Claude-Mem-File παρέχει έξυπνη αναζήτηση μέσω της δεξιότητας mem-search που ενεργοποιείται αυτόματα όταν ρωτάτε για παλαιότερη εργασία:
 
 **Πώς Λειτουργεί:**
 - Απλά ρωτήστε φυσικά: *"Τι κάναμε την προηγούμενη συνεδρία;"* ή *"Διορθώσαμε αυτό το σφάλμα νωρίτερα;"*
@@ -212,7 +212,7 @@
 
 ## Χαρακτηριστικά Beta
 
-Το Claude-Mem προσφέρει ένα **κανάλι beta** με πειραματικά χαρακτηριστικά όπως το **Endless Mode** (βιομιμητική αρχιτεκτονική μνήμης για εκτεταμένες συνεδρίες). Εναλλαγή μεταξύ σταθερών και beta εκδόσεων από τη διεπαφή web viewer στο http://localhost:37777 → Settings.
+Το Claude-Mem-File προσφέρει ένα **κανάλι beta** με πειραματικά χαρακτηριστικά όπως το **Endless Mode** (βιομιμητική αρχιτεκτονική μνήμης για εκτεταμένες συνεδρίες). Εναλλαγή μεταξύ σταθερών και beta εκδόσεων από τη διεπαφή web viewer στο http://localhost:37777 → Settings.
 
 Δείτε **[Τεκμηρίωση Χαρακτηριστικών Beta](https://docs.claude-mem-file.ai/beta-features)** για λεπτομέρειες σχετικά με το Endless Mode και πώς να το δοκιμάσετε.
 
