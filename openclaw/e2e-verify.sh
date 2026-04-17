@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# e2e-verify.sh — Automated E2E verification for claude-mem plugin on OpenClaw
+# e2e-verify.sh — Automated E2E verification for claude-mem-file plugin on OpenClaw
 #
 # This script verifies the complete plugin installation and operation flow:
 # 1. Plugin is installed and visible in OpenClaw
@@ -38,7 +38,7 @@ section "Phase 1: Plugin Discovery"
 
 # Check plugin is listed
 PLUGIN_LIST=$(node /app/openclaw.mjs plugins list 2>&1)
-if echo "$PLUGIN_LIST" | grep -q "claude-mem"; then
+if echo "$PLUGIN_LIST" | grep -q "claude-mem-file"; then
   pass "Plugin appears in 'plugins list'"
 else
   fail "Plugin NOT found in 'plugins list'"
@@ -46,16 +46,16 @@ else
 fi
 
 # Check plugin info
-PLUGIN_INFO=$(node /app/openclaw.mjs plugins info claude-mem 2>&1 || true)
-if echo "$PLUGIN_INFO" | grep -qi "claude-mem"; then
-  pass "Plugin info shows claude-mem details"
+PLUGIN_INFO=$(node /app/openclaw.mjs plugins info claude-mem-file 2>&1 || true)
+if echo "$PLUGIN_INFO" | grep -qi "claude-mem-file"; then
+  pass "Plugin info shows claude-mem-file details"
 else
   fail "Plugin info failed"
   echo "$PLUGIN_INFO"
 fi
 
 # Check plugin is enabled
-if echo "$PLUGIN_LIST" | grep -A1 "claude-mem" | grep -qi "enabled\|loaded"; then
+if echo "$PLUGIN_LIST" | grep -A1 "claude-mem-file" | grep -qi "enabled\|loaded"; then
   pass "Plugin is enabled"
 else
   # Try to check via info
@@ -84,7 +84,7 @@ section "Phase 2: Plugin Files"
 EXTENSIONS_DIR="/home/node/.openclaw/extensions/openclaw-plugin"
 if [ ! -d "$EXTENSIONS_DIR" ]; then
   # Try alternative naming
-  EXTENSIONS_DIR="/home/node/.openclaw/extensions/claude-mem"
+  EXTENSIONS_DIR="/home/node/.openclaw/extensions/claude-mem-file"
   if [ ! -d "$EXTENSIONS_DIR" ]; then
     # Search for it
     FOUND_DIR=$(find /home/node/.openclaw/extensions/ -name "openclaw.plugin.json" -exec dirname {} \; 2>/dev/null | head -1 || true)
@@ -115,7 +115,7 @@ done
 section "Phase 3: Mock Worker + Plugin Integration"
 
 # Start mock worker in background
-echo "  Starting mock claude-mem worker..."
+echo "  Starting mock claude-mem-file worker..."
 node /app/mock-worker.js &
 MOCK_PID=$!
 
@@ -148,7 +148,7 @@ fi
 section "Phase 4: Gateway Startup with Plugin"
 
 # Create a minimal config that enables the plugin with the mock worker.
-# The memory slot must be set to "claude-mem" to match what `plugins install` configured.
+# The memory slot must be set to "claude-mem-file" to match what `plugins install` configured.
 # Gateway auth is disabled via token for headless testing.
 mkdir -p /home/node/.openclaw
 cat > /home/node/.openclaw/openclaw.json << 'EOFCONFIG'
@@ -162,10 +162,10 @@ cat > /home/node/.openclaw/openclaw.json << 'EOFCONFIG'
   },
   "plugins": {
     "slots": {
-      "memory": "claude-mem"
+      "memory": "claude-mem-file"
     },
     "entries": {
-      "claude-mem": {
+      "claude-mem-file": {
         "enabled": true,
         "config": {
           "workerPort": 37777,
@@ -202,10 +202,10 @@ else
 fi
 
 # Check gateway log for plugin load messages
-if grep -qi "claude-mem" "$GATEWAY_LOG" 2>/dev/null; then
-  pass "Gateway log mentions claude-mem plugin"
+if grep -qi "claude-mem-file" "$GATEWAY_LOG" 2>/dev/null; then
+  pass "Gateway log mentions claude-mem-file plugin"
 else
-  fail "Gateway log does not mention claude-mem"
+  fail "Gateway log does not mention claude-mem-file"
   echo "  Gateway log (last 20 lines):"
   tail -20 "$GATEWAY_LOG" 2>/dev/null
 fi

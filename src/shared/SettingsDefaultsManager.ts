@@ -59,23 +59,13 @@ export interface SettingsDefaults {
   // Exclusion Settings
   CLAUDE_MEM_EXCLUDED_PROJECTS: string;  // Comma-separated glob patterns for excluded project paths
   CLAUDE_MEM_FOLDER_MD_EXCLUDE: string;  // JSON array of folder paths to exclude from CLAUDE.md generation
-  // Semantic Context Injection (per-prompt via Chroma)
+  // Semantic Context Injection (legacy, Chroma-based — no-op after vault refactor)
   CLAUDE_MEM_SEMANTIC_INJECT: string;        // 'true' | 'false' - inject relevant observations on each prompt
   CLAUDE_MEM_SEMANTIC_INJECT_LIMIT: string;  // Max observations to inject per prompt
   // Tier Routing (model selection by queue complexity)
   CLAUDE_MEM_TIER_ROUTING_ENABLED: string;   // 'true' | 'false' - enable model tier routing
   CLAUDE_MEM_TIER_SIMPLE_MODEL: string;      // Tier alias or model ID for simple tool observations (Read, Glob, Grep)
   CLAUDE_MEM_TIER_SUMMARY_MODEL: string;     // Tier alias or model ID for session summaries
-  // Chroma Vector Database Configuration
-  CLAUDE_MEM_CHROMA_ENABLED: string;   // 'true' | 'false' - set to 'false' for SQLite-only mode
-  CLAUDE_MEM_CHROMA_MODE: string;      // 'local' | 'remote'
-  CLAUDE_MEM_CHROMA_HOST: string;
-  CLAUDE_MEM_CHROMA_PORT: string;
-  CLAUDE_MEM_CHROMA_SSL: string;
-  // Future cloud support
-  CLAUDE_MEM_CHROMA_API_KEY: string;
-  CLAUDE_MEM_CHROMA_TENANT: string;
-  CLAUDE_MEM_CHROMA_DATABASE: string;
 }
 
 export class SettingsDefaultsManager {
@@ -99,11 +89,11 @@ export class SettingsDefaultsManager {
     CLAUDE_MEM_OPENROUTER_API_KEY: '',  // Empty by default, can be set via UI or env
     CLAUDE_MEM_OPENROUTER_MODEL: 'xiaomi/mimo-v2-flash:free',  // Default OpenRouter model (free tier)
     CLAUDE_MEM_OPENROUTER_SITE_URL: '',  // Optional: for OpenRouter analytics
-    CLAUDE_MEM_OPENROUTER_APP_NAME: 'claude-mem',  // App name for OpenRouter analytics
+    CLAUDE_MEM_OPENROUTER_APP_NAME: 'claude-mem-file',  // App name for OpenRouter analytics
     CLAUDE_MEM_OPENROUTER_MAX_CONTEXT_MESSAGES: '20',  // Max messages in context window
     CLAUDE_MEM_OPENROUTER_MAX_TOKENS: '100000',  // Max estimated tokens (~100k safety limit)
     // System Configuration
-    CLAUDE_MEM_DATA_DIR: join(homedir(), '.claude-mem'),
+    CLAUDE_MEM_DATA_DIR: join(homedir(), '.claude-mem-file'),
     CLAUDE_MEM_LOG_LEVEL: 'INFO',
     CLAUDE_MEM_PYTHON_VERSION: '3.13',
     CLAUDE_CODE_PATH: '', // Empty means auto-detect via 'which claude'
@@ -124,7 +114,7 @@ export class SettingsDefaultsManager {
     CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED: 'false',
     CLAUDE_MEM_FOLDER_USE_LOCAL_MD: 'false',  // When true, writes to CLAUDE.local.md instead of CLAUDE.md
     CLAUDE_MEM_TRANSCRIPTS_ENABLED: 'true',
-    CLAUDE_MEM_TRANSCRIPTS_CONFIG_PATH: join(homedir(), '.claude-mem', 'transcript-watch.json'),
+    CLAUDE_MEM_TRANSCRIPTS_CONFIG_PATH: join(homedir(), '.claude-mem-file', 'transcript-watch.json'),
     // Process Management
     CLAUDE_MEM_MAX_CONCURRENT_AGENTS: '2',  // Max concurrent Claude SDK agent subprocesses
     // Exclusion Settings
@@ -137,16 +127,6 @@ export class SettingsDefaultsManager {
     CLAUDE_MEM_TIER_ROUTING_ENABLED: 'true',         // Route observations to models by complexity
     CLAUDE_MEM_TIER_SIMPLE_MODEL: 'haiku', // Portable tier alias — works across Direct API, Bedrock, Vertex, Azure (see #1463)
     CLAUDE_MEM_TIER_SUMMARY_MODEL: '',                // Empty = use default model for summaries
-    // Chroma Vector Database Configuration
-    CLAUDE_MEM_CHROMA_ENABLED: 'true',         // Set to 'false' to disable Chroma and use SQLite-only search
-    CLAUDE_MEM_CHROMA_MODE: 'local',           // 'local' uses persistent chroma-mcp via uvx, 'remote' connects to existing server
-    CLAUDE_MEM_CHROMA_HOST: '127.0.0.1',
-    CLAUDE_MEM_CHROMA_PORT: '8000',
-    CLAUDE_MEM_CHROMA_SSL: 'false',
-    // Future cloud support (claude-mem pro)
-    CLAUDE_MEM_CHROMA_API_KEY: '',
-    CLAUDE_MEM_CHROMA_TENANT: 'default_tenant',
-    CLAUDE_MEM_CHROMA_DATABASE: 'default_database',
   };
 
   /**
@@ -181,7 +161,9 @@ export class SettingsDefaultsManager {
    * Handles both string 'true' and boolean true from JSON
    */
   static getBool(key: keyof SettingsDefaults): boolean {
-    const value = this.get(key);
+    // Settings are typed as `string` in SettingsDefaults but may arrive as
+    // booleans from JSON parsing — widen locally to accept both.
+    const value = this.get(key) as unknown as string | boolean;
     return value === 'true' || value === true;
   }
 
@@ -206,7 +188,7 @@ export class SettingsDefaultsManager {
    *
    * Configuration Priority:
    *   1. Environment variables (highest priority)
-   *   2. Settings file (~/.claude-mem/settings.json)
+   *   2. Settings file (~/.claude-mem-file/settings.json)
    *   3. Default values (lowest priority)
    */
   static loadFromFile(settingsPath: string): SettingsDefaults {

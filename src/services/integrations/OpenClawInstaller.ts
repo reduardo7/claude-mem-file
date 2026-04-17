@@ -1,14 +1,14 @@
 /**
- * OpenClawInstaller - OpenClaw gateway integration installer for claude-mem
+ * OpenClawInstaller - OpenClaw gateway integration installer for claude-mem-file
  *
- * Installs the pre-built claude-mem plugin into OpenClaw's extension directory
+ * Installs the pre-built claude-mem-file plugin into OpenClaw's extension directory
  * and registers it in ~/.openclaw/openclaw.json.
  *
  * Install strategy: File-based
  * - Copies the pre-built plugin from the npm package's openclaw/dist/ directory
- *   to ~/.openclaw/extensions/claude-mem/dist/
- * - Registers the plugin in openclaw.json under plugins.entries.claude-mem
- * - Sets the memory slot to claude-mem
+ *   to ~/.openclaw/extensions/claude-mem-file/dist/
+ * - Registers the plugin in openclaw.json under plugins.entries.claude-mem-file
+ * - Sets the memory slot to claude-mem-file
  *
  * Important: The OpenClaw plugin ships pre-built from the npm package.
  * It must NOT be rebuilt at install time.
@@ -46,10 +46,10 @@ export function getOpenClawExtensionsDirectory(): string {
 }
 
 /**
- * Resolve the claude-mem extension install directory.
+ * Resolve the claude-mem-file extension install directory.
  */
 export function getOpenClawClaudeMemExtensionDirectory(): string {
-  return path.join(getOpenClawExtensionsDirectory(), 'claude-mem');
+  return path.join(getOpenClawExtensionsDirectory(), 'claude-mem-file');
 }
 
 /**
@@ -70,7 +70,7 @@ export function getOpenClawConfigFilePath(): string {
  */
 export function findPreBuiltPluginDirectory(): string | null {
   const possibleRoots = [
-    // Marketplace install location (production — after `npx claude-mem install`)
+    // Marketplace install location (production — after `npx claude-mem-file install`)
     path.join(
       process.env.CLAUDE_CONFIG_DIR || path.join(homedir(), '.claude'),
       'plugins', 'marketplaces', 'thedotmack',
@@ -161,8 +161,8 @@ function writeOpenClawConfig(config: Record<string, any>): void {
 }
 
 /**
- * Register claude-mem in openclaw.json by merging into the existing config.
- * Does NOT overwrite the entire file -- only touches the claude-mem entry
+ * Register claude-mem-file in openclaw.json by merging into the existing config.
+ * Does NOT overwrite the entire file -- only touches the claude-mem-file entry
  * and the memory slot.
  */
 function registerPluginInOpenClawConfig(
@@ -177,12 +177,12 @@ function registerPluginInOpenClawConfig(
   if (!config.plugins.slots) config.plugins.slots = {};
   if (!config.plugins.entries) config.plugins.entries = {};
 
-  // Set the memory slot to claude-mem
-  config.plugins.slots.memory = 'claude-mem';
+  // Set the memory slot to claude-mem-file
+  config.plugins.slots.memory = 'claude-mem-file';
 
-  // Create or update the claude-mem plugin entry
-  if (!config.plugins.entries['claude-mem']) {
-    config.plugins.entries['claude-mem'] = {
+  // Create or update the claude-mem-file plugin entry
+  if (!config.plugins.entries['claude-mem-file']) {
+    config.plugins.entries['claude-mem-file'] = {
       enabled: true,
       config: {
         workerPort,
@@ -192,11 +192,11 @@ function registerPluginInOpenClawConfig(
     };
   } else {
     // Merge: enable and update config without losing existing user settings
-    config.plugins.entries['claude-mem'].enabled = true;
-    if (!config.plugins.entries['claude-mem'].config) {
-      config.plugins.entries['claude-mem'].config = {};
+    config.plugins.entries['claude-mem-file'].enabled = true;
+    if (!config.plugins.entries['claude-mem-file'].config) {
+      config.plugins.entries['claude-mem-file'].config = {};
     }
-    const existingPluginConfig = config.plugins.entries['claude-mem'].config;
+    const existingPluginConfig = config.plugins.entries['claude-mem-file'].config;
     // Only set defaults if not already configured
     if (existingPluginConfig.workerPort === undefined) existingPluginConfig.workerPort = workerPort;
     if (existingPluginConfig.project === undefined) existingPluginConfig.project = project;
@@ -207,7 +207,7 @@ function registerPluginInOpenClawConfig(
 }
 
 /**
- * Remove claude-mem from openclaw.json without deleting other config.
+ * Remove claude-mem-file from openclaw.json without deleting other config.
  */
 function unregisterPluginFromOpenClawConfig(): void {
   const configFilePath = getOpenClawConfigFilePath();
@@ -215,13 +215,13 @@ function unregisterPluginFromOpenClawConfig(): void {
 
   const config = readOpenClawConfig();
 
-  // Remove claude-mem entry
-  if (config.plugins?.entries?.['claude-mem']) {
-    delete config.plugins.entries['claude-mem'];
+  // Remove claude-mem-file entry
+  if (config.plugins?.entries?.['claude-mem-file']) {
+    delete config.plugins.entries['claude-mem-file'];
   }
 
-  // Clear memory slot if it points to claude-mem
-  if (config.plugins?.slots?.memory === 'claude-mem') {
+  // Clear memory slot if it points to claude-mem-file
+  if (config.plugins?.slots?.memory === 'claude-mem-file') {
     delete config.plugins.slots.memory;
   }
 
@@ -233,7 +233,7 @@ function unregisterPluginFromOpenClawConfig(): void {
 // ============================================================================
 
 /**
- * Install the claude-mem plugin into OpenClaw's extensions directory.
+ * Install the claude-mem-file plugin into OpenClaw's extensions directory.
  * Copies the pre-built plugin bundle and registers it in openclaw.json.
  *
  * @returns 0 on success, 1 on failure
@@ -276,7 +276,7 @@ export function installOpenClawPlugin(): number {
 
     // Create a minimal package.json for the extension (OpenClaw expects this)
     const extensionPackageJson = {
-      name: 'claude-mem',
+      name: 'claude-mem-file',
       version: '1.0.0',
       type: 'module',
       main: 'dist/index.js',
@@ -306,7 +306,7 @@ export function installOpenClawPlugin(): number {
 // ============================================================================
 
 /**
- * Remove the claude-mem plugin from OpenClaw.
+ * Remove the claude-mem-file plugin from OpenClaw.
  * Removes extension files and unregisters from openclaw.json.
  *
  * @returns 0 on success, 1 on failure
@@ -369,9 +369,9 @@ export function checkOpenClawStatus(): number {
   console.log(`Config (openclaw.json): ${configFilePath}`);
   if (existsSync(configFilePath)) {
     const config = readOpenClawConfig();
-    const isRegistered = config.plugins?.entries?.['claude-mem'] !== undefined;
-    const isEnabled = config.plugins?.entries?.['claude-mem']?.enabled === true;
-    const isMemorySlot = config.plugins?.slots?.memory === 'claude-mem';
+    const isRegistered = config.plugins?.entries?.['claude-mem-file'] !== undefined;
+    const isEnabled = config.plugins?.entries?.['claude-mem-file']?.enabled === true;
+    const isMemorySlot = config.plugins?.slots?.memory === 'claude-mem-file';
 
     console.log(`  Exists: yes`);
     console.log(`  Registered: ${isRegistered ? 'yes' : 'no'}`);
@@ -379,7 +379,7 @@ export function checkOpenClawStatus(): number {
     console.log(`  Memory slot: ${isMemorySlot ? 'yes' : 'no'}`);
 
     if (isRegistered) {
-      const pluginConfig = config.plugins.entries['claude-mem'].config;
+      const pluginConfig = config.plugins.entries['claude-mem-file'].config;
       if (pluginConfig) {
         console.log(`  Worker port: ${pluginConfig.workerPort ?? 'default'}`);
         console.log(`  Project: ${pluginConfig.project ?? 'default'}`);
@@ -421,7 +421,7 @@ Plugin installed to: ${extensionDirectory}
 Config updated: ${getOpenClawConfigFilePath()}
 
 Next steps:
-  1. Start claude-mem worker: npx claude-mem start
+  1. Start claude-mem-file worker: npx claude-mem-file start
   2. Restart OpenClaw to load the plugin
   3. Memory capture is automatic from then on
 `);

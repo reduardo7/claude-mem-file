@@ -63,16 +63,16 @@ describe('replaceTaggedContent', () => {
   it('should wrap new content in tags when existing content is empty', () => {
     const result = replaceTaggedContent('', 'New content here');
 
-    expect(result).toBe('<claude-mem-context>\nNew content here\n</claude-mem-context>');
+    expect(result).toBe('<claude-mem-file-context>\nNew content here\n</claude-mem-file-context>');
   });
 
   it('should replace only tagged section when existing content has tags', () => {
-    const existingContent = 'User content before\n<claude-mem-context>\nOld generated content\n</claude-mem-context>\nUser content after';
+    const existingContent = 'User content before\n<claude-mem-file-context>\nOld generated content\n</claude-mem-file-context>\nUser content after';
     const newContent = 'New generated content';
 
     const result = replaceTaggedContent(existingContent, newContent);
 
-    expect(result).toBe('User content before\n<claude-mem-context>\nNew generated content\n</claude-mem-context>\nUser content after');
+    expect(result).toBe('User content before\n<claude-mem-file-context>\nNew generated content\n</claude-mem-file-context>\nUser content after');
   });
 
   it('should append tagged content with separator when no tags exist in existing content', () => {
@@ -81,34 +81,34 @@ describe('replaceTaggedContent', () => {
 
     const result = replaceTaggedContent(existingContent, newContent);
 
-    expect(result).toBe('User written documentation\n\n<claude-mem-context>\nGenerated timeline\n</claude-mem-context>');
+    expect(result).toBe('User written documentation\n\n<claude-mem-file-context>\nGenerated timeline\n</claude-mem-file-context>');
   });
 
   it('should append when only opening tag exists (no matching end tag)', () => {
-    const existingContent = 'Some content\n<claude-mem-context>\nIncomplete tag section';
+    const existingContent = 'Some content\n<claude-mem-file-context>\nIncomplete tag section';
     const newContent = 'New content';
 
     const result = replaceTaggedContent(existingContent, newContent);
 
-    expect(result).toBe('Some content\n<claude-mem-context>\nIncomplete tag section\n\n<claude-mem-context>\nNew content\n</claude-mem-context>');
+    expect(result).toBe('Some content\n<claude-mem-file-context>\nIncomplete tag section\n\n<claude-mem-file-context>\nNew content\n</claude-mem-file-context>');
   });
 
   it('should append when only closing tag exists (no matching start tag)', () => {
-    const existingContent = 'Some content\n</claude-mem-context>\nMore content';
+    const existingContent = 'Some content\n</claude-mem-file-context>\nMore content';
     const newContent = 'New content';
 
     const result = replaceTaggedContent(existingContent, newContent);
 
-    expect(result).toBe('Some content\n</claude-mem-context>\nMore content\n\n<claude-mem-context>\nNew content\n</claude-mem-context>');
+    expect(result).toBe('Some content\n</claude-mem-file-context>\nMore content\n\n<claude-mem-file-context>\nNew content\n</claude-mem-file-context>');
   });
 
   it('should preserve newlines in new content', () => {
-    const existingContent = '<claude-mem-context>\nOld content\n</claude-mem-context>';
+    const existingContent = '<claude-mem-file-context>\nOld content\n</claude-mem-file-context>';
     const newContent = 'Line 1\nLine 2\nLine 3';
 
     const result = replaceTaggedContent(existingContent, newContent);
 
-    expect(result).toBe('<claude-mem-context>\nLine 1\nLine 2\nLine 3\n</claude-mem-context>');
+    expect(result).toBe('<claude-mem-file-context>\nLine 1\nLine 2\nLine 3\n</claude-mem-file-context>');
   });
 });
 
@@ -190,9 +190,9 @@ describe('writeClaudeMdToFolder', () => {
     expect(existsSync(claudeMdPath)).toBe(true);
 
     const fileContent = readFileSync(claudeMdPath, 'utf-8');
-    expect(fileContent).toContain('<claude-mem-context>');
+    expect(fileContent).toContain('<claude-mem-file-context>');
     expect(fileContent).toContain('Test content');
-    expect(fileContent).toContain('</claude-mem-context>');
+    expect(fileContent).toContain('</claude-mem-file-context>');
   });
 
   it('should preserve user content outside tags', () => {
@@ -200,7 +200,7 @@ describe('writeClaudeMdToFolder', () => {
     mkdirSync(folderPath, { recursive: true });
 
     const claudeMdPath = join(folderPath, 'CLAUDE.md');
-    const userContent = 'User-written docs\n<claude-mem-context>\nOld content\n</claude-mem-context>\nMore user docs';
+    const userContent = 'User-written docs\n<claude-mem-file-context>\nOld content\n</claude-mem-file-context>\nMore user docs';
     writeFileSync(claudeMdPath, userContent);
 
     const newContent = 'New generated content';
@@ -571,7 +571,7 @@ describe('path validation in updateFolderClaudeMdFiles', () => {
     global.fetch = fetchMock;
 
     await updateFolderClaudeMdFiles(
-      ['~/.claude-mem/logs/worker.log'],
+      ['~/.claude-mem-file/logs/worker.log'],
       'test-project',
       37777,
       tempDir
@@ -1036,9 +1036,9 @@ describe('CLAUDE.local.md support', () => {
     expect(existsSync(regularMdPath)).toBe(false);
 
     const fileContent = readFileSync(localMdPath, 'utf-8');
-    expect(fileContent).toContain('<claude-mem-context>');
+    expect(fileContent).toContain('<claude-mem-file-context>');
     expect(fileContent).toContain('Test content');
-    expect(fileContent).toContain('</claude-mem-context>');
+    expect(fileContent).toContain('</claude-mem-file-context>');
   });
 
   it('should preserve user content in CLAUDE.local.md outside tags', () => {
@@ -1046,7 +1046,7 @@ describe('CLAUDE.local.md support', () => {
     mkdirSync(folderPath, { recursive: true });
 
     const localMdPath = join(folderPath, 'CLAUDE.local.md');
-    const userContent = 'My personal notes\n<claude-mem-context>\nOld content\n</claude-mem-context>\nMore notes';
+    const userContent = 'My personal notes\n<claude-mem-file-context>\nOld content\n</claude-mem-file-context>\nMore notes';
     writeFileSync(localMdPath, userContent);
 
     writeClaudeMdToFolder(folderPath, 'New generated content', 'CLAUDE.local.md');

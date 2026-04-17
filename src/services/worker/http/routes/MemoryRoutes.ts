@@ -36,7 +36,6 @@ export class MemoryRoutes extends BaseRouteHandler {
     }
 
     const sessionStore = this.dbManager.getSessionStore();
-    const chromaSync = this.dbManager.getChromaSync();
 
     // 1. Get or create manual session for project
     const memorySessionId = sessionStore.getOrCreateManualSession(targetProject);
@@ -53,7 +52,8 @@ export class MemoryRoutes extends BaseRouteHandler {
       files_modified: [] as string[]
     };
 
-    // 3. Store to SQLite
+    // 3. Persist: SessionStore writes to SQLite; DualWriteBridge mirrors into
+    // the Markdown vault (the canonical, git-versioned store).
     const result = sessionStore.storeObservation(
       memorySessionId,
       targetProject,
@@ -68,20 +68,7 @@ export class MemoryRoutes extends BaseRouteHandler {
       title: observation.title
     });
 
-    // 4. Sync to ChromaDB (async, fire-and-forget)
-    chromaSync.syncObservation(
-      result.id,
-      memorySessionId,
-      targetProject,
-      observation,
-      0,
-      result.createdAtEpoch,
-      0
-    ).catch(err => {
-      logger.error('CHROMA', 'ChromaDB sync failed', { id: result.id }, err as Error);
-    });
-
-    // 5. Return success
+    // 4. Return success
     res.json({
       success: true,
       id: result.id,

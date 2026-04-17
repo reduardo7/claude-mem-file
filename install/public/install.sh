@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# claude-mem installer redirect
-# The old curl-pipe-bash installer has been replaced by npx claude-mem.
+# claude-mem-file installer redirect
+# The old curl-pipe-bash installer has been replaced by npx claude-mem-file.
 # This script now redirects users to the new install method.
 
 # Colors
@@ -15,11 +15,11 @@ NC='\033[0m' # No Color
 echo ""
 echo -e "${YELLOW}The curl-pipe-bash installer has been replaced.${NC}"
 echo ""
-echo -e "${GREEN}Install claude-mem with a single command:${NC}"
+echo -e "${GREEN}Install claude-mem-file with a single command:${NC}"
 echo ""
-echo -e "  ${CYAN}npx claude-mem install${NC}"
+echo -e "  ${CYAN}npx claude-mem-file install${NC}"
 echo ""
 echo -e "This requires Node.js >= 18. Get it from ${CYAN}https://nodejs.org${NC}"
 echo ""
-echo -e "For more info, visit: ${CYAN}https://docs.claude-mem.ai/installation${NC}"
+echo -e "For more info, visit: ${CYAN}https://docs.claude-mem-file.ai/installation${NC}"
 echo ""

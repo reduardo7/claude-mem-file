@@ -31,7 +31,7 @@ RAGTIME_FILE_LIMIT=5 bun ragtime/ragtime.ts
 | Environment Variable | Default | Description |
 |---------------------|---------|-------------|
 | `RAGTIME_CORPUS_PATH` | `./datasets/epstein-mode` | Path to folder containing .md email files |
-| `RAGTIME_PLUGIN_PATH` | `./plugin` | Path to claude-mem plugin |
+| `RAGTIME_PLUGIN_PATH` | `./plugin` | Path to claude-mem-file plugin |
 | `CLAUDE_MEM_WORKER_PORT` | `37777` | Worker service port |
 | `RAGTIME_TRANSCRIPT_MAX_AGE` | `24` | Max age of transcripts to keep (hours) |
 | `RAGTIME_PROJECT_NAME` | `ragtime-investigation` | Project name for grouping |
@@ -76,7 +76,7 @@ See [LICENSE](./LICENSE) for full terms.
 
 ### Why a different license?
 
-The main claude-mem repository is licensed under AGPL 3.0, but ragtime uses the more restrictive PolyForm Noncommercial license to ensure it remains freely available for personal and educational use while preventing commercial exploitation.
+The main claude-mem-file repository is licensed under AGPL 3.0, but ragtime uses the more restrictive PolyForm Noncommercial license to ensure it remains freely available for personal and educational use while preventing commercial exploitation.
 
 ---
 

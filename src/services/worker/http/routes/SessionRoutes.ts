@@ -102,12 +102,9 @@ export class SessionRoutes extends BaseRouteHandler {
 
     // Wall-clock age guard: refuse to start new generators for sessions that have
     // been alive too long to prevent runaway API costs (Issue #1590).
-    // Use the persisted started_at_epoch from the DB so the guard survives worker
-    // restarts (session.startTime is reset to Date.now() on every re-activation).
-    const dbSessionRecord = this.dbManager.getSessionStore().db
-      .prepare('SELECT started_at_epoch FROM sdk_sessions WHERE id = ? LIMIT 1')
-      .get(sessionDbId) as { started_at_epoch: number } | undefined;
-    const sessionOriginMs = dbSessionRecord?.started_at_epoch ?? session.startTime;
+    // Use the vault-persisted started_at_epoch so the guard survives worker restarts.
+    const storedSession = this.dbManager.getSessionStore().getSessionById(sessionDbId);
+    const sessionOriginMs = storedSession?.started_at_epoch ?? session.startTime;
     const sessionAgeMs = Date.now() - sessionOriginMs;
     if (sessionAgeMs > SessionRoutes.MAX_SESSION_WALL_CLOCK_MS) {
       logger.warn('SESSION', 'Session exceeded wall-clock age limit — aborting to prevent runaway spend', {
@@ -395,10 +392,10 @@ export class SessionRoutes extends BaseRouteHandler {
 
     const session = this.sessionManager.initializeSession(sessionDbId, userPrompt, promptNumber);
 
-    // Get the latest user_prompt for this session to sync to Chroma
+    // Broadcast new prompt to SSE clients (for web UI). The prompt itself is
+    // already persisted by SessionStore (and mirrored to the vault via
+    // DualWriteBridge); Chroma sync was removed in the vault refactor.
     const latestPrompt = this.dbManager.getSessionStore().getLatestUserPrompt(session.contentSessionId);
-
-    // Broadcast new prompt to SSE clients (for web UI)
     if (latestPrompt) {
       this.eventBroadcaster.broadcastNewPrompt({
         id: latestPrompt.id,
@@ -408,33 +405,6 @@ export class SessionRoutes extends BaseRouteHandler {
         prompt_number: latestPrompt.prompt_number,
         prompt_text: latestPrompt.prompt_text,
         created_at_epoch: latestPrompt.created_at_epoch
-      });
-
-      // Sync user prompt to Chroma
-      const chromaStart = Date.now();
-      const promptText = latestPrompt.prompt_text;
-      this.dbManager.getChromaSync()?.syncUserPrompt(
-        latestPrompt.id,
-        latestPrompt.memory_session_id,
-        latestPrompt.project,
-        promptText,
-        latestPrompt.prompt_number,
-        latestPrompt.created_at_epoch
-      ).then(() => {
-        const chromaDuration = Date.now() - chromaStart;
-        const truncatedPrompt = promptText.length > 60
-          ? promptText.substring(0, 60) + '...'
-          : promptText;
-        logger.debug('CHROMA', 'User prompt synced', {
-          promptId: latestPrompt.id,
-          duration: `${chromaDuration}ms`,
-          prompt: truncatedPrompt
-        });
-      }).catch((error) => {
-        logger.error('CHROMA', 'User prompt sync failed, continuing without vector search', {
-          promptId: latestPrompt.id,
-          prompt: promptText.length > 60 ? promptText.substring(0, 60) + '...' : promptText
-        }, error);
       });
     }
 

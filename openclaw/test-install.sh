@@ -399,14 +399,14 @@ test_configure_new_config() {
   # Verify JSON structure
   local memory_slot
   memory_slot="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.slots.memory);")"
-  assert_eq "claude-mem" "$memory_slot" "Memory slot set to claude-mem in new config"
+  assert_eq "claude-mem-file" "$memory_slot" "Memory slot set to claude-mem-file in new config"
 
   local enabled
-  enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].enabled);")"
-  assert_eq "true" "$enabled" "claude-mem entry is enabled in new config"
+  enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].enabled);")"
+  assert_eq "true" "$enabled" "claude-mem-file entry is enabled in new config"
 
   local worker_port
-  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.workerPort);")"
+  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.workerPort);")"
   assert_eq "37777" "$worker_port" "Worker port is 37777 in new config"
 
   HOME="$ORIGINAL_HOME"
@@ -442,7 +442,7 @@ test_configure_existing_config() {
   # Verify memory slot was updated
   local memory_slot
   memory_slot="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.slots.memory);")"
-  assert_eq "claude-mem" "$memory_slot" "Memory slot updated from memory-core to claude-mem"
+  assert_eq "claude-mem-file" "$memory_slot" "Memory slot updated from memory-core to claude-mem-file"
 
   # Verify existing settings preserved
   local gateway_mode
@@ -454,10 +454,10 @@ test_configure_existing_config() {
   other_plugin="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['some-other-plugin'].enabled);")"
   assert_eq "true" "$other_plugin" "Existing plugin entries preserved"
 
-  # Verify claude-mem entry was added
+  # Verify claude-mem-file entry was added
   local cm_enabled
-  cm_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].enabled);")"
-  assert_eq "true" "$cm_enabled" "claude-mem entry added and enabled"
+  cm_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].enabled);")"
+  assert_eq "true" "$cm_enabled" "claude-mem-file entry added and enabled"
 
   HOME="$ORIGINAL_HOME"
   rm -rf "$fake_home"
@@ -465,7 +465,7 @@ test_configure_existing_config() {
 
 test_configure_existing_config
 
-# Test: configure_memory_slot() — preserves existing claude-mem config
+# Test: configure_memory_slot() — preserves existing claude-mem-file config
 test_configure_preserves_existing_cm_config() {
   local fake_home
   fake_home="$(mktemp -d)"
@@ -478,7 +478,7 @@ test_configure_preserves_existing_cm_config() {
       plugins: {
         slots: { memory: 'memory-core' },
         entries: {
-          'claude-mem': {
+          'claude-mem-file': {
             enabled: false,
             config: {
               workerPort: 38888,
@@ -495,15 +495,15 @@ test_configure_preserves_existing_cm_config() {
 
   # Should enable it but preserve existing config
   local cm_enabled
-  cm_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].enabled);")"
-  assert_eq "true" "$cm_enabled" "claude-mem entry enabled when previously disabled"
+  cm_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].enabled);")"
+  assert_eq "true" "$cm_enabled" "claude-mem-file entry enabled when previously disabled"
 
   local custom_port
-  custom_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.workerPort);")"
+  custom_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.workerPort);")"
   assert_eq "38888" "$custom_port" "Existing custom workerPort preserved"
 
   local feed_channel
-  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.channel);")"
+  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.channel);")"
   assert_eq "telegram" "$feed_channel" "Existing observationFeed config preserved"
 
   HOME="$ORIGINAL_HOME"
@@ -554,7 +554,7 @@ for fn in find_openclaw check_openclaw install_plugin configure_memory_slot; do
 done
 
 # Verify the CLAUDE_MEM_REPO constant
-assert_contains "$CLAUDE_MEM_REPO" "github.com/thedotmack/claude-mem" "CLAUDE_MEM_REPO points to correct repository"
+assert_contains "$CLAUDE_MEM_REPO" "github.com/thedotmack/claude-mem-file" "CLAUDE_MEM_REPO points to correct repository"
 
 # Verify AI provider functions exist
 for fn in setup_ai_provider write_settings mask_api_key; do
@@ -625,8 +625,8 @@ test_write_settings_new_file() {
 
   write_settings >/dev/null 2>&1
 
-  local settings_file="${fake_home}/.claude-mem/settings.json"
-  assert_file_exists "$settings_file" "settings.json created at ~/.claude-mem/settings.json"
+  local settings_file="${fake_home}/.claude-mem-file/settings.json"
+  assert_file_exists "$settings_file" "settings.json created at ~/.claude-mem-file/settings.json"
 
   # Verify it's valid JSON with expected defaults
   local provider
@@ -661,7 +661,7 @@ test_write_settings_gemini() {
 
   write_settings >/dev/null 2>&1
 
-  local settings_file="${fake_home}/.claude-mem/settings.json"
+  local settings_file="${fake_home}/.claude-mem-file/settings.json"
 
   local provider
   provider="$(node -e "const s = JSON.parse(require('fs').readFileSync('${settings_file}','utf8')); console.log(s.CLAUDE_MEM_PROVIDER);")"
@@ -691,7 +691,7 @@ test_write_settings_openrouter() {
 
   write_settings >/dev/null 2>&1
 
-  local settings_file="${fake_home}/.claude-mem/settings.json"
+  local settings_file="${fake_home}/.claude-mem-file/settings.json"
 
   local provider
   provider="$(node -e "const s = JSON.parse(require('fs').readFileSync('${settings_file}','utf8')); console.log(s.CLAUDE_MEM_PROVIDER);")"
@@ -718,8 +718,8 @@ test_write_settings_preserves_existing() {
   HOME="$fake_home"
 
   # Create existing settings with custom values
-  mkdir -p "${fake_home}/.claude-mem"
-  local settings_file="${fake_home}/.claude-mem/settings.json"
+  mkdir -p "${fake_home}/.claude-mem-file"
+  local settings_file="${fake_home}/.claude-mem-file/settings.json"
   node -e "
     const settings = {
       CLAUDE_MEM_PROVIDER: 'gemini',
@@ -766,7 +766,7 @@ test_write_settings_complete_schema() {
 
   write_settings >/dev/null 2>&1
 
-  local settings_file="${fake_home}/.claude-mem/settings.json"
+  local settings_file="${fake_home}/.claude-mem-file/settings.json"
 
   # Verify key count matches SettingsDefaultsManager (34 keys)
   local key_count
@@ -817,7 +817,7 @@ test_find_install_dir_not_found() {
 
 test_find_install_dir_not_found
 
-# Test: find_claude_mem_install_dir() — found in ~/.openclaw/extensions/claude-mem/
+# Test: find_claude_mem_install_dir() — found in ~/.openclaw/extensions/claude-mem-file/
 test_find_install_dir_openclaw_extensions() {
   local fake_home
   fake_home="$(mktemp -d)"
@@ -825,14 +825,14 @@ test_find_install_dir_openclaw_extensions() {
   CLAUDE_MEM_INSTALL_DIR=""
 
   # Create the expected directory structure
-  mkdir -p "${fake_home}/.openclaw/extensions/claude-mem/plugin/scripts"
-  touch "${fake_home}/.openclaw/extensions/claude-mem/plugin/scripts/worker-service.cjs"
+  mkdir -p "${fake_home}/.openclaw/extensions/claude-mem-file/plugin/scripts"
+  touch "${fake_home}/.openclaw/extensions/claude-mem-file/plugin/scripts/worker-service.cjs"
 
   if find_claude_mem_install_dir 2>/dev/null; then
-    test_pass "find_claude_mem_install_dir finds dir in ~/.openclaw/extensions/claude-mem/"
-    assert_eq "${fake_home}/.openclaw/extensions/claude-mem" "$CLAUDE_MEM_INSTALL_DIR" "CLAUDE_MEM_INSTALL_DIR set correctly for openclaw extensions"
+    test_pass "find_claude_mem_install_dir finds dir in ~/.openclaw/extensions/claude-mem-file/"
+    assert_eq "${fake_home}/.openclaw/extensions/claude-mem-file" "$CLAUDE_MEM_INSTALL_DIR" "CLAUDE_MEM_INSTALL_DIR set correctly for openclaw extensions"
   else
-    test_fail "find_claude_mem_install_dir should find dir in ~/.openclaw/extensions/claude-mem/"
+    test_fail "find_claude_mem_install_dir should find dir in ~/.openclaw/extensions/claude-mem-file/"
   fi
 
   HOME="$ORIGINAL_HOME"
@@ -884,7 +884,7 @@ test_start_worker_no_install_dir() {
     test_pass "start_worker returns error when install dir not found"
   fi
 
-  assert_contains "$output" "Cannot find claude-mem plugin installation directory" "start_worker error message mentions install dir"
+  assert_contains "$output" "Cannot find claude-mem-file plugin installation directory" "start_worker error message mentions install dir"
 
   HOME="$ORIGINAL_HOME"
   rm -rf "$fake_home"
@@ -954,7 +954,7 @@ test_print_completion_summary() {
   assert_contains "$output" "Claude Max Plan" "Completion summary shows correct provider"
   assert_contains "$output" "not configured" "Completion summary shows feed 'not configured' when skipped"
   assert_contains "$output" "What's next" "Completion summary shows What's next section"
-  assert_contains "$output" "/claude-mem-status" "Completion summary mentions status command"
+  assert_contains "$output" "/claude-mem-file-status" "Completion summary mentions status command"
   assert_contains "$output" "localhost:37777" "Completion summary mentions viewer URL"
   assert_contains "$output" "re-run this installer" "Completion summary shows re-run instructions"
 }
@@ -1120,15 +1120,15 @@ test_write_observation_feed_config_writes_json() {
   fake_home="$(mktemp -d)"
   HOME="$fake_home"
 
-  # Create an existing openclaw.json with claude-mem entry
+  # Create an existing openclaw.json with claude-mem-file entry
   mkdir -p "${fake_home}/.openclaw"
   local config_file="${fake_home}/.openclaw/openclaw.json"
   node -e "
     const config = {
       plugins: {
-        slots: { memory: 'claude-mem' },
+        slots: { memory: 'claude-mem-file' },
         entries: {
-          'claude-mem': {
+          'claude-mem-file': {
             enabled: true,
             config: { workerPort: 37777, syncMemoryFile: true }
           }
@@ -1146,20 +1146,20 @@ test_write_observation_feed_config_writes_json() {
 
   # Verify observationFeed was written
   local feed_enabled
-  feed_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.enabled);")"
+  feed_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.enabled);")"
   assert_eq "true" "$feed_enabled" "observationFeed.enabled is true"
 
   local feed_channel
-  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.channel);")"
+  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.channel);")"
   assert_eq "telegram" "$feed_channel" "observationFeed.channel is telegram"
 
   local feed_to
-  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.to);")"
+  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.to);")"
   assert_eq "123456789" "$feed_to" "observationFeed.to is 123456789"
 
   # Verify existing config preserved
   local worker_port
-  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.workerPort);")"
+  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.workerPort);")"
   assert_eq "37777" "$worker_port" "Existing workerPort preserved after feed config write"
 
   HOME="$ORIGINAL_HOME"
@@ -1209,7 +1209,7 @@ test_write_observation_feed_config_discord() {
     const config = {
       plugins: {
         entries: {
-          'claude-mem': { enabled: true, config: {} }
+          'claude-mem-file': { enabled: true, config: {} }
         }
       }
     };
@@ -1223,11 +1223,11 @@ test_write_observation_feed_config_discord() {
   write_observation_feed_config >/dev/null 2>&1
 
   local feed_channel
-  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.channel);")"
+  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.channel);")"
   assert_eq "discord" "$feed_channel" "Discord channel type written correctly"
 
   local feed_to
-  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.to);")"
+  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.to);")"
   assert_eq "1234567890123456789" "$feed_to" "Discord channel ID written correctly"
 
   HOME="$ORIGINAL_HOME"
@@ -1251,20 +1251,20 @@ verify_feed_config_json() {
   local config_file="$1" expected_channel="$2" expected_target="$3" label="$4"
 
   local feed_enabled
-  feed_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.enabled);")"
+  feed_enabled="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.enabled);")"
   assert_eq "true" "$feed_enabled" "${label}: observationFeed.enabled is true"
 
   local feed_channel
-  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.channel);")"
+  feed_channel="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.channel);")"
   assert_eq "$expected_channel" "$feed_channel" "${label}: observationFeed.channel correct"
 
   local feed_to
-  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.observationFeed.to);")"
+  feed_to="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.observationFeed.to);")"
   assert_eq "$expected_target" "$feed_to" "${label}: observationFeed.to correct"
 
   # Verify existing config preserved
   local worker_port
-  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem'].config.workerPort);")"
+  worker_port="$(node -e "const c = JSON.parse(require('fs').readFileSync('${config_file}','utf8')); console.log(c.plugins.entries['claude-mem-file'].config.workerPort);")"
   assert_eq "37777" "$worker_port" "${label}: existing workerPort preserved"
 }
 
@@ -1275,9 +1275,9 @@ create_seed_config() {
   node -e "
     const config = {
       plugins: {
-        slots: { memory: 'claude-mem' },
+        slots: { memory: 'claude-mem-file' },
         entries: {
-          'claude-mem': {
+          'claude-mem-file': {
             enabled: true,
             config: { workerPort: 37777, syncMemoryFile: true }
           }
@@ -1341,9 +1341,9 @@ test_write_feed_config_python3_path() {
     node -e "
       const config = {
         plugins: {
-          slots: { memory: \"claude-mem\" },
+          slots: { memory: \"claude-mem-file\" },
           entries: {
-            \"claude-mem\": {
+            \"claude-mem-file\": {
               enabled: true,
               config: { workerPort: 37777, syncMemoryFile: true }
             }
@@ -1406,9 +1406,9 @@ test_write_feed_config_node_path() {
     node -e "
       const config = {
         plugins: {
-          slots: { memory: \"claude-mem\" },
+          slots: { memory: \"claude-mem-file\" },
           entries: {
-            \"claude-mem\": {
+            \"claude-mem-file\": {
               enabled: true,
               config: { workerPort: 37777, syncMemoryFile: true }
             }
@@ -1447,14 +1447,14 @@ test_write_feed_config_node_path() {
 
       if (!config.plugins) config.plugins = {};
       if (!config.plugins.entries) config.plugins.entries = {};
-      if (!config.plugins.entries[\"claude-mem\"]) {
-        config.plugins.entries[\"claude-mem\"] = { enabled: true, config: {} };
+      if (!config.plugins.entries[\"claude-mem-file\"]) {
+        config.plugins.entries[\"claude-mem-file\"] = { enabled: true, config: {} };
       }
-      if (!config.plugins.entries[\"claude-mem\"].config) {
-        config.plugins.entries[\"claude-mem\"].config = {};
+      if (!config.plugins.entries[\"claude-mem-file\"].config) {
+        config.plugins.entries[\"claude-mem-file\"].config = {};
       }
 
-      config.plugins.entries[\"claude-mem\"].config.observationFeed = {
+      config.plugins.entries[\"claude-mem-file\"].config.observationFeed = {
         enabled: true,
         channel: channel,
         to: targetId
@@ -1520,7 +1520,7 @@ test_completion_summary_with_feed() {
   assert_contains "$output" "telegram" "Summary shows feed channel when configured"
   assert_contains "$output" "123456789" "Summary shows feed target when configured"
   assert_contains "$output" "What's next" "Summary includes What's next section"
-  assert_contains "$output" "/claude-mem-feed" "Summary includes feed check command when configured"
+  assert_contains "$output" "/claude-mem-file-feed" "Summary includes feed check command when configured"
 
   FEED_CONFIGURED=false
   FEED_CHANNEL=""
@@ -1541,7 +1541,7 @@ test_completion_summary_without_feed() {
 
   assert_contains "$output" "not configured" "Summary shows 'not configured' when feed skipped"
   assert_contains "$output" "What's next" "Summary includes What's next section without feed"
-  assert_contains "$output" "/claude-mem-status" "Summary includes status check command"
+  assert_contains "$output" "/claude-mem-file-status" "Summary includes status check command"
   assert_contains "$output" "localhost:37777" "Summary includes viewer URL"
 }
 
@@ -1819,7 +1819,7 @@ test_write_settings_via_provider_flag() {
   ' 2>/dev/null)" || true
 
   if [[ "$result" == *"DONE"* ]]; then
-    local settings_file="${fake_home}/.claude-mem/settings.json"
+    local settings_file="${fake_home}/.claude-mem-file/settings.json"
     local provider
     provider="$(node -e "const s = JSON.parse(require('fs').readFileSync('${settings_file}','utf8')); console.log(s.CLAUDE_MEM_PROVIDER);")"
     assert_eq "gemini" "$provider" "--provider flag: settings.json has provider=gemini"
@@ -1917,8 +1917,8 @@ test_is_claude_mem_installed_found() {
   CLAUDE_MEM_INSTALL_DIR=""
 
   # Create the expected directory structure
-  mkdir -p "${fake_home}/.openclaw/extensions/claude-mem/plugin/scripts"
-  touch "${fake_home}/.openclaw/extensions/claude-mem/plugin/scripts/worker-service.cjs"
+  mkdir -p "${fake_home}/.openclaw/extensions/claude-mem-file/plugin/scripts"
+  touch "${fake_home}/.openclaw/extensions/claude-mem-file/plugin/scripts/worker-service.cjs"
 
   if is_claude_mem_installed; then
     test_pass "is_claude_mem_installed returns true when plugin exists"
@@ -2231,7 +2231,7 @@ test_install_sh_has_set_euo_pipefail() {
 test_install_sh_has_set_euo_pipefail
 
 test_install_sh_has_stable_url_in_usage() {
-  if grep -q 'raw.githubusercontent.com/thedotmack/claude-mem/main/openclaw/install.sh' "$INSTALL_SCRIPT"; then
+  if grep -q 'raw.githubusercontent.com/thedotmack/claude-mem-file/main/openclaw/install.sh' "$INSTALL_SCRIPT"; then
     test_pass "install.sh usage comment has stable raw.githubusercontent.com URL"
   else
     test_fail "install.sh should reference stable raw.githubusercontent.com URL in usage"

@@ -15,10 +15,10 @@ function createMockApi(pluginConfigOverride: Record<string, any> = {}) {
   const eventHandlers: Map<string, Function[]> = new Map();
 
   const api = {
-    id: "claude-mem",
+    id: "claude-mem-file",
     name: "Claude-Mem (Persistent Memory)",
     version: "1.0.0",
-    source: "/test/extensions/claude-mem/dist/index.js",
+    source: "/test/extensions/claude-mem-file/dist/index.js",
     config: {},
     pluginConfig: pluginConfigOverride,
     logger: {
@@ -102,7 +102,7 @@ describe("claudeMemPlugin", () => {
     claudeMemPlugin(api);
 
     assert.ok(getService(), "service should be registered");
-    assert.equal(getService().id, "claude-mem-observation-feed");
+    assert.equal(getService().id, "claude-mem-file-observation-feed");
     assert.ok(getCommand("claude_mem_feed"), "feed command should be registered");
     assert.ok(getCommand("claude_mem_status"), "status command should be registered");
     assert.ok(getEventHandlers("session_start").length > 0, "session_start handler registered");
@@ -617,7 +617,7 @@ describe("before_prompt_build context injection", () => {
   });
 
   it("does not write MEMORY.md on before_agent_start", async () => {
-    const tmpDir = await mkdtemp(join(tmpdir(), "claude-mem-test-"));
+    const tmpDir = await mkdtemp(join(tmpdir(), "claude-mem-file-test-"));
     try {
       const { api, fireEvent } = createMockApi({ workerPort });
       claudeMemPlugin(api);
@@ -641,7 +641,7 @@ describe("before_prompt_build context injection", () => {
   });
 
   it("does not sync MEMORY.md on tool_result_persist", async () => {
-    const tmpDir = await mkdtemp(join(tmpdir(), "claude-mem-test-"));
+    const tmpDir = await mkdtemp(join(tmpdir(), "claude-mem-file-test-"));
     try {
       const { api, fireEvent } = createMockApi({ workerPort });
       claudeMemPlugin(api);

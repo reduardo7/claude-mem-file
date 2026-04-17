@@ -1,6 +1,6 @@
 # Claude-Mem-File: AI Development Instructions
 
-Claude-mem-file is a Claude Code plugin providing persistent memory across sessions. It captures tool usage, compresses observations using the Claude Agent SDK, and injects relevant context into future sessions. Project knowledge is stored as Markdown files in `docs/` — an Obsidian-style vault committed to the repository so all collaborators and future sessions share the same context.
+Claude-mem-file is a Claude Code plugin providing persistent memory across sessions. Learnings captured during each session are stored as Markdown files in a per-project Obsidian-style vault at `<project-root>/docs/vault/`, committed to git so collaborators and future sessions share the same context.
 
 ## Architecture
 
@@ -16,7 +16,13 @@ Claude-mem-file is a Claude Code plugin providing persistent memory across sessi
 
 **Execution Skill** (`plugin/skills/do/SKILL.md`) - Orchestrator instructions for executing phased plans using subagents
 
-**Docs Vault** (`docs/`) - Obsidian-style Markdown vault committed to the repo; the authoritative source for all architectural decisions, context, and plans shared across sessions and collaborators
+**Vault Module** (`src/services/vault/`) - Per-project Markdown vault that stores sessions, observations, summaries, prompts as `.md` files with YAML frontmatter. Indexed in-memory via `minisearch`, live-updated via `chokidar`. Lives at `<project-root>/docs/vault/` and is versioned via git. See `docs/markdown-vault-refactor-plan.md` for the full design.
+
+**DualWriteBridge** (`src/services/worker/DualWriteBridge.ts`) - Installed by `DatabaseManager.initialize()`. Monkey-patches `SessionStore.storeObservation / storeObservations / storeSummary` so every write the agents perform is mirrored into the Markdown vault. The vault is the **canonical, mergeable source of truth**; SQLite at `~/.claude-mem-file/claude-mem-file.db` is now a disposable local cache that powers the agent queue and can be regenerated from the vault.
+
+**No more Chroma** - `src/services/sync/` was removed in the vault refactor; semantic/vector search is gone. `minisearch` over the vault replaces it for fuzzy/keyword search; SQLite FTS5 remains for legacy strategy-based search.
+
+**Project Docs** (`docs/`) - Project-level design docs, architecture notes, issue reports. Separate from `docs/vault/` which holds hook-captured memories.
 
 **Viewer UI** (`src/ui/viewer/`) - React interface at http://localhost:37777, built to `plugin/ui/viewer.html`
 
@@ -33,14 +39,27 @@ npm run build-and-sync        # Build, sync to marketplace, restart worker
 
 ## Configuration
 
-Settings are managed in `~/.claude-mem/settings.json`. The file is auto-created with defaults on first run.
+Settings are managed in `~/.claude-mem-file/settings.json`. The file is auto-created with defaults on first run.
 
 ## File Locations
 
 - **Source**: `<project-root>/src/`
 - **Built Plugin**: `<project-root>/plugin/`
 - **Installed Plugin**: `~/.claude/plugins/marketplaces/thedotmack/`
-- **Knowledge Vault**: `<project-root>/docs/` (versioned, shared via git)
+- **Memory Vault**: `<project-root>/docs/vault/` (versioned via git, per-project, mergeable)
+- **Project Docs**: `<project-root>/docs/` (architectural decisions, design notes)
+
+## Migration from Legacy SQLite
+
+Historical users can migrate prior memories from `~/.claude-mem-file/claude-mem-file.db` into the new vault format with:
+
+```bash
+npm run migrate-to-vault               # run migration
+npm run migrate-to-vault:dry           # preview without writing
+bun scripts/migrate-to-vault.ts --help # full flag reference
+```
+
+The SQLite DB is opened read-only; migration is idempotent (SHA-256 content hashes dedup re-runs).
 
 ## Exit Code Strategy
 
@@ -61,7 +80,7 @@ See `private/context/claude-code/exit-codes.md` for full hook behavior matrix.
 
 ## Documentation
 
-**Public Docs**: https://docs.claude-mem.ai (Mintlify)
+**Public Docs**: https://docs.claude-mem-file.ai (Mintlify)
 **Source**: `docs/public/` - MDX files, edit `docs.json` for navigation
 **Deploy**: Auto-deploys from GitHub on push to main
 
@@ -87,10 +106,15 @@ This architecture preserves the open-source nature of the project while enabling
 
 ## Docs as Shared Memory (Obsidian-style)
 
-The `docs/` folder serves as a shared, project-level memory — similar to an Obsidian vault. All architectural decisions, context, plans, and notes relevant to the project should be stored here as Markdown files so they can be versioned, shared across sessions, and accessible to all team members collaborating on the repo.
+Two Obsidian-compatible vaults live in the repo:
+
+- `docs/` — curated project documentation: architecture, design decisions, plans, incident reports. Humans edit these.
+- `docs/vault/` — hook-populated memory (sessions, observations, summaries). Claude writes these via the vault module; humans can edit freely.
+
+Both are versioned in git and mergeable. No binary data, no local-only state — everything that matters travels with the repo.
 
 - Prefer writing context/decisions/plans to `docs/` over ephemeral conversation notes
-- Files in `docs/` are the source of truth for project knowledge
+- Files in `docs/` and `docs/vault/` are the source of truth for project knowledge
 - This memory is collaborative: changes are committed and shared via git
 
 ## Important

@@ -16,7 +16,7 @@ import { checkBinaryPlatformCompatibility } from '../plugin/scripts/smart-instal
  * using temp directories, without running actual bun/npm install.
  */
 
-const TEST_DIR = join(tmpdir(), `claude-mem-smart-install-test-${process.pid}`);
+const TEST_DIR = join(tmpdir(), `claude-mem-file-smart-install-test-${process.pid}`);
 
 function createDir(relativePath: string): string {
   const fullPath = join(TEST_DIR, relativePath);
@@ -26,7 +26,7 @@ function createDir(relativePath: string): string {
 
 function createPackageJson(dir: string, version = '10.0.0', deps: Record<string, string> = {}): void {
   writeFileSync(join(dir, 'package.json'), JSON.stringify({
-    name: 'claude-mem-plugin',
+    name: 'claude-mem-file-plugin',
     version,
     dependencies: deps
   }));
@@ -42,7 +42,7 @@ describe('smart-install resolveRoot logic', () => {
   });
 
   it('should prefer CLAUDE_PLUGIN_ROOT when it contains package.json', () => {
-    const cacheDir = createDir('cache/thedotmack/claude-mem/10.0.0');
+    const cacheDir = createDir('cache/thedotmack/claude-mem-file/10.0.0');
     createPackageJson(cacheDir);
 
     // Simulate what resolveRoot does
@@ -51,8 +51,8 @@ describe('smart-install resolveRoot logic', () => {
   });
 
   it('should detect cache-based install paths', () => {
-    // Cache installs have paths like ~/.claude/plugins/cache/thedotmack/claude-mem/<version>/
-    const cacheDir = createDir('plugins/cache/thedotmack/claude-mem/10.3.0');
+    // Cache installs have paths like ~/.claude/plugins/cache/thedotmack/claude-mem-file/<version>/
+    const cacheDir = createDir('plugins/cache/thedotmack/claude-mem-file/10.3.0');
     createPackageJson(cacheDir);
 
     // Marketplace dir does NOT exist (fresh cache install, no marketplace)
@@ -208,11 +208,11 @@ describe('smart-install stdout JSON output (#1253)', () => {
   it('should produce valid JSON when run with plugin disabled', () => {
     // Run the actual script with the plugin forcefully disabled via settings
     // This exercises the early exit path
-    const settingsDir = join(tmpdir(), `claude-mem-test-settings-${process.pid}`);
+    const settingsDir = join(tmpdir(), `claude-mem-file-test-settings-${process.pid}`);
     const settingsFile = join(settingsDir, 'settings.json');
     mkdirSync(settingsDir, { recursive: true });
     writeFileSync(settingsFile, JSON.stringify({
-      enabledPlugins: { 'claude-mem@thedotmack': false }
+      enabledPlugins: { 'claude-mem-file@thedotmack': false }
     }));
 
     try {
@@ -242,7 +242,7 @@ describe('smart-install stdout JSON output (#1253)', () => {
 /**
  * Tests for checkBinaryPlatformCompatibility() (#1547).
  *
- * The bundled plugin/scripts/claude-mem binary is macOS arm64 only.
+ * The bundled plugin/scripts/claude-mem-file binary is macOS arm64 only.
  * On Linux/Windows it cannot execute and hooks fail silently.
  * These tests call the production function directly, mocking process.platform
  * and passing controlled binary paths to verify Mach-O detection behaviour.
@@ -252,7 +252,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
   let originalPlatform: PropertyDescriptor | undefined;
 
   beforeEach(() => {
-    testDir = join(tmpdir(), `claude-mem-binary-compat-test-${process.pid}`);
+    testDir = join(tmpdir(), `claude-mem-file-binary-compat-test-${process.pid}`);
     mkdirSync(testDir, { recursive: true });
     originalPlatform = Object.getOwnPropertyDescriptor(process, 'platform');
   });
@@ -271,7 +271,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
 
   it('should detect native arm64/x86_64 Mach-O binary and warn on Linux', () => {
     // Real macOS arm64 binary header: bytes CF FA ED FE (MH_MAGIC_64)
-    const binaryPath = join(testDir, 'claude-mem');
+    const binaryPath = join(testDir, 'claude-mem-file');
     writeFileSync(binaryPath, Buffer.from([0xCF, 0xFA, 0xED, 0xFE, 0x0C, 0x00, 0x00, 0x01]));
 
     const stderrLines: string[] = [];
@@ -291,7 +291,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
 
   it('should detect byte-swapped Mach-O binary and warn on Linux', () => {
     // Byte-swapped 64-bit Mach-O: bytes FE ED FA CF (MH_CIGAM_64)
-    const binaryPath = join(testDir, 'claude-mem-swapped');
+    const binaryPath = join(testDir, 'claude-mem-file-swapped');
     writeFileSync(binaryPath, Buffer.from([0xFE, 0xED, 0xFA, 0xCF, 0x01, 0x00, 0x00, 0x0C]));
 
     const stderrLines: string[] = [];
@@ -310,7 +310,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
 
   it('should NOT warn for an ELF binary (Linux native) on Linux', () => {
     // ELF magic: 0x7F 'E' 'L' 'F'
-    const binaryPath = join(testDir, 'claude-mem-elf');
+    const binaryPath = join(testDir, 'claude-mem-file-elf');
     writeFileSync(binaryPath, Buffer.from([0x7f, 0x45, 0x4c, 0x46, 0x02, 0x01, 0x01, 0x00]));
 
     const stderrLines: string[] = [];
@@ -328,7 +328,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
   });
 
   it('should not throw when binary path does not exist', () => {
-    const binaryPath = join(testDir, 'nonexistent-claude-mem');
+    const binaryPath = join(testDir, 'nonexistent-claude-mem-file');
     expect(existsSync(binaryPath)).toBe(false);
 
     setPlatform('linux');
@@ -337,7 +337,7 @@ describe('smart-install binary platform compatibility (#1547)', () => {
 
   it('should skip the check entirely when platform is darwin', () => {
     // Write a Mach-O binary — on macOS the check returns early, so no warning
-    const binaryPath = join(testDir, 'claude-mem');
+    const binaryPath = join(testDir, 'claude-mem-file');
     writeFileSync(binaryPath, Buffer.from([0xCF, 0xFA, 0xED, 0xFE, 0x0C, 0x00, 0x00, 0x01]));
 
     const stderrLines: string[] = [];

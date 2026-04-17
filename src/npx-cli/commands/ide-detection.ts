@@ -23,7 +23,7 @@ export interface IDEInfo {
   label: string;
   /** Whether the IDE was detected on this system. */
   detected: boolean;
-  /** Whether claude-mem has implemented setup for this IDE. */
+  /** Whether claude-mem-file has implemented setup for this IDE. */
   supported: boolean;
   /** Short hint text shown in the multi-select. */
   hint?: string;
@@ -64,7 +64,7 @@ function hasVscodeExtension(extensionNameFragment: string): boolean {
 
 /**
  * Detect all known IDEs and return an array of `IDEInfo` objects.
- * Each entry indicates whether the IDE was found and whether claude-mem
+ * Each entry indicates whether the IDE was found and whether claude-mem-file
  * currently supports setting it up.
  */
 export function detectInstalledIDEs(): IDEInfo[] {

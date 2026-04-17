@@ -1,9 +1,9 @@
 /**
- * WindsurfHooksInstaller - Windsurf IDE integration for claude-mem
+ * WindsurfHooksInstaller - Windsurf IDE integration for claude-mem-file
  *
  * Handles:
  * - Windsurf hooks installation/uninstallation to ~/.codeium/windsurf/hooks.json
- * - Context file generation (.windsurf/rules/claude-mem-context.md)
+ * - Context file generation (.windsurf/rules/claude-mem-file-context.md)
  * - Project registry management for auto-context updates
  *
  * Windsurf hooks.json format:
@@ -161,24 +161,24 @@ export async function updateWindsurfContextForProject(projectName: string, works
 
 /**
  * Write context to the workspace-level Windsurf rules directory.
- * Windsurf rules are workspace-scoped: .windsurf/rules/claude-mem-context.md
+ * Windsurf rules are workspace-scoped: .windsurf/rules/claude-mem-file-context.md
  * Rule file limit: 6,000 chars per file.
  */
 export function writeWindsurfContextFile(workspacePath: string, context: string): void {
   const rulesDir = path.join(workspacePath, '.windsurf', 'rules');
-  const rulesFile = path.join(rulesDir, 'claude-mem-context.md');
+  const rulesFile = path.join(rulesDir, 'claude-mem-file-context.md');
   const tempFile = `${rulesFile}.tmp`;
 
   mkdirSync(rulesDir, { recursive: true });
 
   let content = `# Memory Context from Past Sessions
 
-The following context is from claude-mem, a persistent memory system that tracks your coding sessions.
+The following context is from claude-mem-file, a persistent memory system that tracks your coding sessions.
 
 ${context}
 
 ---
-*Auto-updated by claude-mem after each session. Use MCP search tools for detailed queries.*
+*Auto-updated by claude-mem-file after each session. Use MCP search tools for detailed queries.*
 `;
 
   // Enforce Windsurf's 6K char limit
@@ -239,7 +239,7 @@ function mergeAndWriteHooksJson(
     }
   }
 
-  // For each event, add our hook entry (remove any previous claude-mem entries first)
+  // For each event, add our hook entry (remove any previous claude-mem-file entries first)
   for (const eventName of WINDSURF_HOOK_EVENTS) {
     const command = buildHookCommand(bunPath, workerServicePath, eventName);
 
@@ -249,7 +249,7 @@ function mergeAndWriteHooksJson(
       working_directory: workingDirectory,
     };
 
-    // Get existing hooks for this event, filtering out old claude-mem ones
+    // Get existing hooks for this event, filtering out old claude-mem-file ones
     const existingHooks = (existingConfig.hooks[eventName] ?? []).filter(
       (hook) => !hook.command.includes('worker-service') || !hook.command.includes('windsurf')
     );
@@ -312,9 +312,9 @@ Events registered:
   - post_cascade_response (full AI response)
 
 Next steps:
-  1. Start claude-mem worker: claude-mem start
+  1. Start claude-mem-file worker: claude-mem-file start
   2. Restart Windsurf to load the hooks
-  3. Context is injected via .windsurf/rules/claude-mem-context.md (workspace-level)
+  3. Context is injected via .windsurf/rules/claude-mem-file-context.md (workspace-level)
 `);
 
     return 0;
@@ -358,12 +358,12 @@ async function setupWindsurfProjectContext(workspaceRoot: string): Promise<void>
     // Create placeholder context file
     const rulesDir = path.join(workspaceRoot, '.windsurf', 'rules');
     mkdirSync(rulesDir, { recursive: true });
-    const rulesFile = path.join(rulesDir, 'claude-mem-context.md');
+    const rulesFile = path.join(rulesDir, 'claude-mem-file-context.md');
     const placeholderContent = `# Memory Context from Past Sessions
 
 *No context yet. Complete your first session and context will appear here.*
 
-Use claude-mem's MCP search tools for manual memory queries.
+Use claude-mem-file's MCP search tools for manual memory queries.
 `;
     writeFileSync(rulesFile, placeholderContent);
     console.log(`  Created placeholder context file (will populate after first session)`);
@@ -375,7 +375,7 @@ Use claude-mem's MCP search tools for manual memory queries.
 }
 
 /**
- * Uninstall Windsurf hooks — removes claude-mem entries from hooks.json
+ * Uninstall Windsurf hooks — removes claude-mem-file entries from hooks.json
  */
 export function uninstallWindsurfHooks(): number {
   console.log('\nUninstalling Claude-Mem Windsurf hooks...\n');
@@ -404,7 +404,7 @@ export function uninstallWindsurfHooks(): number {
           console.log(`  Removed hooks.json (no hooks remaining)`);
         } else {
           writeFileSync(WINDSURF_HOOKS_JSON_PATH, JSON.stringify(config, null, 2));
-          console.log(`  Removed claude-mem entries from hooks.json (other hooks preserved)`);
+          console.log(`  Removed claude-mem-file entries from hooks.json (other hooks preserved)`);
         }
       } catch (error) {
         console.log(`  Warning: could not parse hooks.json — leaving file intact to preserve other hooks`);
@@ -415,7 +415,7 @@ export function uninstallWindsurfHooks(): number {
 
     // Remove context file from the current workspace
     const workspaceRoot = process.cwd();
-    const contextFile = path.join(workspaceRoot, '.windsurf', 'rules', 'claude-mem-context.md');
+    const contextFile = path.join(workspaceRoot, '.windsurf', 'rules', 'claude-mem-file-context.md');
     if (existsSync(contextFile)) {
       unlinkSync(contextFile);
       console.log(`  Removed context file`);
@@ -461,7 +461,7 @@ export function checkWindsurfHooksStatus(): number {
     }
 
     // Check for context file in current workspace
-    const contextFile = path.join(process.cwd(), '.windsurf', 'rules', 'claude-mem-context.md');
+    const contextFile = path.join(process.cwd(), '.windsurf', 'rules', 'claude-mem-file-context.md');
     if (existsSync(contextFile)) {
       console.log(`   Context: Active (current workspace)`);
     } else {
@@ -469,7 +469,7 @@ export function checkWindsurfHooksStatus(): number {
     }
   } else {
     console.log(`User-level: Not installed`);
-    console.log(`\nNo hooks installed. Run: claude-mem windsurf install\n`);
+    console.log(`\nNo hooks installed. Run: claude-mem-file windsurf install\n`);
   }
 
   console.log('');
@@ -494,7 +494,7 @@ export async function handleWindsurfCommand(subcommand: string, _args: string[])
       console.log(`
 Claude-Mem Windsurf Integration
 
-Usage: claude-mem windsurf <command>
+Usage: claude-mem-file windsurf <command>
 
 Commands:
   install     Install Windsurf hooks (user-level, ~/.codeium/windsurf/hooks.json)
@@ -502,11 +502,11 @@ Commands:
   status      Check installation status
 
 Examples:
-  claude-mem windsurf install      # Install hooks globally
-  claude-mem windsurf uninstall    # Remove hooks
-  claude-mem windsurf status       # Check if hooks are installed
+  claude-mem-file windsurf install      # Install hooks globally
+  claude-mem-file windsurf uninstall    # Remove hooks
+  claude-mem-file windsurf status       # Check if hooks are installed
 
-For more info: https://docs.claude-mem.ai/windsurf
+For more info: https://docs.claude-mem-file.ai/windsurf
       `);
       return 0;
     }

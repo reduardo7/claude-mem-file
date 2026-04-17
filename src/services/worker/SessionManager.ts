@@ -12,8 +12,8 @@ import { EventEmitter } from 'events';
 import { DatabaseManager } from './DatabaseManager.js';
 import { logger } from '../../utils/logger.js';
 import type { ActiveSession, PendingMessage, PendingMessageWithId, ObservationData } from '../worker-types.js';
-import { PendingMessageStore } from '../sqlite/PendingMessageStore.js';
-import { SessionQueueProcessor } from '../queue/SessionQueueProcessor.js';
+import { PendingQueue } from './PendingQueue.js';
+import { SessionQueueProcessor } from './SessionQueueProcessor.js';
 import { getProcessBySession, ensureProcessExit } from './ProcessRegistry.js';
 import { getSupervisor } from '../../supervisor/index.js';
 
@@ -80,20 +80,13 @@ export class SessionManager {
   private sessions: Map<number, ActiveSession> = new Map();
   private sessionQueues: Map<number, EventEmitter> = new Map();
   private onSessionDeletedCallback?: () => void;
-  private pendingStore: PendingMessageStore | null = null;
+  private readonly pendingStore: PendingQueue = new PendingQueue(3);
 
   constructor(dbManager: DatabaseManager) {
     this.dbManager = dbManager;
   }
 
-  /**
-   * Get or create PendingMessageStore (lazy initialization to avoid circular dependency)
-   */
-  private getPendingStore(): PendingMessageStore {
-    if (!this.pendingStore) {
-      const sessionStore = this.dbManager.getSessionStore();
-      this.pendingStore = new PendingMessageStore(sessionStore.db, 3);
-    }
+  private getPendingStore(): PendingQueue {
     return this.pendingStore;
   }
 
@@ -582,10 +575,8 @@ export class SessionManager {
     }
   }
 
-  /**
-   * Get the PendingMessageStore (for SDKAgent to mark messages as processed)
-   */
-  getPendingMessageStore(): PendingMessageStore {
+  /** Expose the queue so agents and routes can coordinate message lifecycle. */
+  getPendingMessageStore(): PendingQueue {
     return this.getPendingStore();
   }
 }

@@ -1,4 +1,4 @@
-import { SessionStore } from '../../sqlite/SessionStore.js';
+import type { VaultStoreAdapter } from '../VaultStoreAdapter.js';
 import { logger } from '../../../utils/logger.js';
 
 /**
@@ -18,7 +18,7 @@ export class PrivacyCheckValidator {
    * @returns User prompt text if public, null if private
    */
   static checkUserPromptPrivacy(
-    store: SessionStore,
+    store: VaultStoreAdapter,
     contentSessionId: string,
     promptNumber: number,
     operationType: 'observation' | 'summarize',

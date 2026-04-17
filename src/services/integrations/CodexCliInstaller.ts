@@ -1,10 +1,10 @@
 /**
- * CodexCliInstaller - Codex CLI integration for claude-mem
+ * CodexCliInstaller - Codex CLI integration for claude-mem-file
  *
  * Uses transcript-only watching (no notify hook). The watcher infrastructure
  * already exists in src/services/transcripts/. This installer:
  *
- * 1. Writes/merges transcript-watch config to ~/.claude-mem/transcript-watch.json
+ * 1. Writes/merges transcript-watch config to ~/.claude-mem-file/transcript-watch.json
  * 2. Sets up watch for ~/.codex/sessions/**\/*.jsonl using existing watcher
  * 3. Injects context via workspace-local AGENTS.md files (Codex reads these natively)
  *
@@ -32,7 +32,7 @@ import type { TranscriptWatchConfig, WatchTarget } from '../transcripts/types.js
 
 const CODEX_DIR = path.join(homedir(), '.codex');
 const CODEX_AGENTS_MD_PATH = path.join(CODEX_DIR, 'AGENTS.md');
-const CLAUDE_MEM_DIR = path.join(homedir(), '.claude-mem');
+const CLAUDE_MEM_DIR = path.join(homedir(), '.claude-mem-file');
 
 /**
  * The watch name used to identify the Codex CLI entry in transcript-watch.json.
@@ -130,7 +130,7 @@ function writeTranscriptWatchConfig(config: TranscriptWatchConfig): void {
 // ---------------------------------------------------------------------------
 
 /**
- * Remove legacy claude-mem context from ~/.codex/AGENTS.md.
+ * Remove legacy claude-mem-file context from ~/.codex/AGENTS.md.
  * Codex now uses workspace-local AGENTS.md files to avoid cross-project bleed.
  * Preserves any existing user content outside the tags.
  */
@@ -139,8 +139,8 @@ function removeCodexAgentsMdContext(): void {
     if (!existsSync(CODEX_AGENTS_MD_PATH)) return;
 
     const content = readFileSync(CODEX_AGENTS_MD_PATH, 'utf-8');
-    const startTag = '<claude-mem-context>';
-    const endTag = '</claude-mem-context>';
+    const startTag = '<claude-mem-file-context>';
+    const endTag = '</claude-mem-file-context>';
 
     const startIdx = content.indexOf(startTag);
     const endIdx = content.indexOf(endTag);
@@ -165,7 +165,7 @@ function removeCodexAgentsMdContext(): void {
 
 /**
  * @deprecated Codex now uses workspace-local AGENTS.md via transcript processor fallback.
- * Preserves user content outside the <claude-mem-context> tags.
+ * Preserves user content outside the <claude-mem-file-context> tags.
  */
 const cleanupLegacyCodexAgentsMdContext = removeCodexAgentsMdContext;
 
@@ -174,9 +174,9 @@ const cleanupLegacyCodexAgentsMdContext = removeCodexAgentsMdContext;
 // ---------------------------------------------------------------------------
 
 /**
- * Install Codex CLI integration for claude-mem.
+ * Install Codex CLI integration for claude-mem-file.
  *
- * 1. Merges Codex transcript-watch config into ~/.claude-mem/transcript-watch.json
+ * 1. Merges Codex transcript-watch config into ~/.claude-mem-file/transcript-watch.json
  * 2. Cleans up any legacy global context block in ~/.codex/AGENTS.md
  *
  * @returns 0 on success, 1 on failure
@@ -203,12 +203,12 @@ Transcript watch config: ${DEFAULT_CONFIG_PATH}
 Context files: <workspace>/AGENTS.md
 
 How it works:
-  - claude-mem watches Codex session JSONL files for new activity
+  - claude-mem-file watches Codex session JSONL files for new activity
   - No hooks needed -- transcript watching is fully automatic
   - Context from past sessions is injected via AGENTS.md in the active Codex workspace
 
 Next steps:
-  1. Start claude-mem worker: npx claude-mem start
+  1. Start claude-mem-file worker: npx claude-mem-file start
   2. Use Codex CLI as usual -- memory capture is automatic!
 `);
 
@@ -224,7 +224,7 @@ Next steps:
 // ---------------------------------------------------------------------------
 
 /**
- * Remove Codex CLI integration from claude-mem.
+ * Remove Codex CLI integration from claude-mem-file.
  *
  * 1. Removes the codex watch and schema from transcript-watch.json (preserves others)
  * 2. Removes context section from AGENTS.md (preserves user content)
@@ -259,7 +259,7 @@ export function uninstallCodexCli(): number {
     cleanupLegacyCodexAgentsMdContext();
 
     console.log('\nUninstallation complete!');
-    console.log('Restart claude-mem worker to apply changes.\n');
+    console.log('Restart claude-mem-file worker to apply changes.\n');
 
     return 0;
   } catch (error) {
@@ -284,7 +284,7 @@ export function checkCodexCliStatus(): number {
   if (!existsSync(DEFAULT_CONFIG_PATH)) {
     console.log('Status: Not installed');
     console.log(`  No transcript watch config at ${DEFAULT_CONFIG_PATH}`);
-    console.log('\nRun: npx claude-mem install --ide codex-cli\n');
+    console.log('\nRun: npx claude-mem-file install --ide codex-cli\n');
     return 0;
   }
 
@@ -298,7 +298,7 @@ export function checkCodexCliStatus(): number {
     if (!codexWatch) {
       console.log('Status: Not installed');
       console.log('  transcript-watch.json exists but no codex watch configured.');
-      console.log('\nRun: npx claude-mem install --ide codex-cli\n');
+      console.log('\nRun: npx claude-mem-file install --ide codex-cli\n');
       return 0;
     }
 
@@ -318,7 +318,7 @@ export function checkCodexCliStatus(): number {
     // Check legacy global AGENTS.md usage
     if (existsSync(CODEX_AGENTS_MD_PATH)) {
       const mdContent = readFileSync(CODEX_AGENTS_MD_PATH, 'utf-8');
-      if (mdContent.includes('<claude-mem-context>')) {
+      if (mdContent.includes('<claude-mem-file-context>')) {
         console.log(`  Legacy global context: Present (${CODEX_AGENTS_MD_PATH})`);
       } else {
         console.log(`  Legacy global context: Not active`);

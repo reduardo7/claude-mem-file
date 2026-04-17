@@ -16,7 +16,7 @@ import { join } from 'path';
 mock.module('../../src/shared/SettingsDefaultsManager.js', () => ({
   SettingsDefaultsManager: {
     get: (key: string) => {
-      if (key === 'CLAUDE_MEM_DATA_DIR') return join(homedir(), '.claude-mem');
+      if (key === 'CLAUDE_MEM_DATA_DIR') return join(homedir(), '.claude-mem-file');
       return '';
     },
     getInt: () => 0,

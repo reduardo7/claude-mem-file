@@ -12,7 +12,7 @@ WORKER_URL="http://localhost:37777"
 CORPUS_NAME="e2e-test-knowledge-agent"
 PASS_COUNT=0
 FAIL_COUNT=0
-LOG_FILE="${HOME}/.claude-mem/logs/e2e-knowledge-agents-$(date +%Y%m%d-%H%M%S).log"
+LOG_FILE="${HOME}/.claude-mem-file/logs/e2e-knowledge-agents-$(date +%Y%m%d-%H%M%S).log"
 
 # -- Helpers ------------------------------------------------------------------
 

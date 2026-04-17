@@ -287,7 +287,7 @@ function circuitAllow(logger: PluginLogger): boolean {
   if (_circuitState === "OPEN") {
     if (Date.now() - _circuitOpenedAt >= CIRCUIT_BREAKER_COOLDOWN_MS) {
       _circuitState = "HALF_OPEN";
-      logger.info("[claude-mem] Circuit breaker: probing worker connection");
+      logger.info("[claude-mem-file] Circuit breaker: probing worker connection");
       if (_halfOpenProbeInFlight) return false;
       _halfOpenProbeInFlight = true;
       return true;
@@ -302,7 +302,7 @@ function circuitAllow(logger: PluginLogger): boolean {
 
 function circuitOnSuccess(logger: PluginLogger): void {
   if (_circuitState !== "CLOSED") {
-    logger.info("[claude-mem] Worker connection restored — circuit closed");
+    logger.info("[claude-mem-file] Worker connection restored — circuit closed");
   }
   _circuitState = "CLOSED";
   _circuitFailures = 0;
@@ -319,7 +319,7 @@ function circuitOnFailure(logger: PluginLogger): void {
     _circuitState = "OPEN";
     _circuitOpenedAt = Date.now();
     logger.warn(
-      `[claude-mem] Worker unreachable — disabling requests for ${CIRCUIT_BREAKER_COOLDOWN_MS / 1000}s`
+      `[claude-mem-file] Worker unreachable — disabling requests for ${CIRCUIT_BREAKER_COOLDOWN_MS / 1000}s`
     );
   }
 }
@@ -346,7 +346,7 @@ async function workerPost(
     });
     if (!response.ok) {
       circuitOnFailure(logger);
-      logger.warn(`[claude-mem] Worker POST ${path} returned ${response.status}`);
+      logger.warn(`[claude-mem-file] Worker POST ${path} returned ${response.status}`);
       return null;
     }
     circuitOnSuccess(logger);
@@ -355,7 +355,7 @@ async function workerPost(
     const message = error instanceof Error ? error.message : String(error);
     circuitOnFailure(logger);
     if (_circuitState !== "OPEN") {
-      logger.warn(`[claude-mem] Worker POST ${path} failed: ${message}`);
+      logger.warn(`[claude-mem-file] Worker POST ${path} failed: ${message}`);
     }
     return null;
   }
@@ -375,7 +375,7 @@ function workerPostFireAndForget(
   }).then((response) => {
     if (!response.ok) {
       circuitOnFailure(logger);
-      logger.warn(`[claude-mem] Worker POST ${path} returned ${response.status}`);
+      logger.warn(`[claude-mem-file] Worker POST ${path} returned ${response.status}`);
       return;
     }
     circuitOnSuccess(logger);
@@ -383,7 +383,7 @@ function workerPostFireAndForget(
     const message = error instanceof Error ? error.message : String(error);
     circuitOnFailure(logger);
     if (_circuitState !== "OPEN") {
-      logger.warn(`[claude-mem] Worker POST ${path} failed: ${message}`);
+      logger.warn(`[claude-mem-file] Worker POST ${path} failed: ${message}`);
     }
   });
 }
@@ -398,7 +398,7 @@ async function workerGetText(
     const response = await fetch(`${workerBaseUrl(port)}${path}`);
     if (!response.ok) {
       circuitOnFailure(logger);
-      logger.warn(`[claude-mem] Worker GET ${path} returned ${response.status}`);
+      logger.warn(`[claude-mem-file] Worker GET ${path} returned ${response.status}`);
       return null;
     }
     circuitOnSuccess(logger);
@@ -407,7 +407,7 @@ async function workerGetText(
     const message = error instanceof Error ? error.message : String(error);
     circuitOnFailure(logger);
     if (_circuitState !== "OPEN") {
-      logger.warn(`[claude-mem] Worker GET ${path} failed: ${message}`);
+      logger.warn(`[claude-mem-file] Worker GET ${path} failed: ${message}`);
     }
     return null;
   }
@@ -424,7 +424,7 @@ async function workerGetJson(
   try {
     return JSON.parse(text) as Record<string, unknown>;
   } catch {
-    logger.warn(`[claude-mem] Worker GET ${path} returned non-JSON response`);
+    logger.warn(`[claude-mem-file] Worker GET ${path} returned non-JSON response`);
     return null;
   }
 }
@@ -476,11 +476,11 @@ async function sendDirectTelegram(
     });
     if (!response.ok) {
       const body = await response.text();
-      logger.warn(`[claude-mem] Direct Telegram send failed (${response.status}): ${body}`);
+      logger.warn(`[claude-mem-file] Direct Telegram send failed (${response.status}): ${body}`);
     }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    logger.warn(`[claude-mem] Direct Telegram send error: ${message}`);
+    logger.warn(`[claude-mem-file] Direct Telegram send error: ${message}`);
   }
 }
 
@@ -498,19 +498,19 @@ function sendToChannel(
 
   const mapping = CHANNEL_SEND_MAP[channel];
   if (!mapping) {
-    api.logger.warn(`[claude-mem] Unsupported channel type: ${channel}`);
+    api.logger.warn(`[claude-mem-file] Unsupported channel type: ${channel}`);
     return Promise.resolve();
   }
 
   const channelApi = api.runtime.channel[mapping.namespace];
   if (!channelApi) {
-    api.logger.warn(`[claude-mem] Channel "${channel}" not available in runtime`);
+    api.logger.warn(`[claude-mem-file] Channel "${channel}" not available in runtime`);
     return Promise.resolve();
   }
 
   const senderFunction = channelApi[mapping.functionName];
   if (!senderFunction) {
-    api.logger.warn(`[claude-mem] Channel "${channel}" has no ${mapping.functionName} function`);
+    api.logger.warn(`[claude-mem-file] Channel "${channel}" has no ${mapping.functionName} function`);
     return Promise.resolve();
   }
 
@@ -521,7 +521,7 @@ function sendToChannel(
 
   return senderFunction(...args).catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
-    api.logger.error(`[claude-mem] Failed to send to ${channel}: ${message}`);
+    api.logger.error(`[claude-mem-file] Failed to send to ${channel}: ${message}`);
   });
 }
 
@@ -541,7 +541,7 @@ async function connectToSSEStream(
   while (!abortController.signal.aborted) {
     try {
       setConnectionState("reconnecting");
-      api.logger.info(`[claude-mem] Connecting to SSE stream at ${workerBaseUrl(port)}/stream`);
+      api.logger.info(`[claude-mem-file] Connecting to SSE stream at ${workerBaseUrl(port)}/stream`);
 
       const response = await fetch(`${workerBaseUrl(port)}/stream`, {
         signal: abortController.signal,
@@ -558,7 +558,7 @@ async function connectToSSEStream(
 
       setConnectionState("connected");
       backoffMs = 1000;
-      api.logger.info("[claude-mem] Connected to SSE stream");
+      api.logger.info("[claude-mem-file] Connected to SSE stream");
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -571,7 +571,7 @@ async function connectToSSEStream(
         buffer += decoder.decode(value, { stream: true });
 
         if (buffer.length > MAX_SSE_BUFFER_SIZE) {
-          api.logger.warn("[claude-mem] SSE buffer overflow, clearing buffer");
+          api.logger.warn("[claude-mem-file] SSE buffer overflow, clearing buffer");
           buffer = "";
         }
 
@@ -598,7 +598,7 @@ async function connectToSSEStream(
             }
           } catch (parseError: unknown) {
             const errorMessage = parseError instanceof Error ? parseError.message : String(parseError);
-            api.logger.warn(`[claude-mem] Failed to parse SSE frame: ${errorMessage}`);
+            api.logger.warn(`[claude-mem-file] Failed to parse SSE frame: ${errorMessage}`);
           }
         }
       }
@@ -608,7 +608,7 @@ async function connectToSSEStream(
       }
       setConnectionState("reconnecting");
       const errorMessage = error instanceof Error ? error.message : String(error);
-      api.logger.warn(`[claude-mem] SSE stream error: ${errorMessage}. Reconnecting in ${backoffMs / 1000}s`);
+      api.logger.warn(`[claude-mem-file] SSE stream error: ${errorMessage}. Reconnecting in ${backoffMs / 1000}s`);
     }
 
     if (abortController.signal.aborted) break;
@@ -785,7 +785,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.on("session_start", async (_event, ctx) => {
     const { contentSessionId } = rememberSessionContext(ctx);
-    api.logger.info(`[claude-mem] Session tracking initialized: ${contentSessionId}`);
+    api.logger.info(`[claude-mem-file] Session tracking initialized: ${contentSessionId}`);
   });
 
   // ------------------------------------------------------------------
@@ -793,7 +793,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.on("message_received", async (event, ctx) => {
     const { canonicalKey, contentSessionId } = rememberSessionContext(ctx);
-    api.logger.info(`[claude-mem] Message received — prompt capture deferred to before_agent_start: session=${canonicalKey} contentSessionId=${contentSessionId} hasContent=${Boolean(event.content)}`);
+    api.logger.info(`[claude-mem-file] Message received — prompt capture deferred to before_agent_start: session=${canonicalKey} contentSessionId=${contentSessionId} hasContent=${Boolean(event.content)}`);
   });
 
   // ------------------------------------------------------------------
@@ -803,7 +803,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.on("after_compaction", async (_event, ctx) => {
     const { contentSessionId } = rememberSessionContext(ctx);
-    api.logger.info(`[claude-mem] Session preserved after compaction: ${contentSessionId}`);
+    api.logger.info(`[claude-mem-file] Session preserved after compaction: ${contentSessionId}`);
   });
 
   // ------------------------------------------------------------------
@@ -815,7 +815,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
     const promptText = event.prompt || "agent run";
 
     if (shouldSkipDuplicatePromptInit(contentSessionId, projectName, promptText)) {
-      api.logger.info(`[claude-mem] Skipping duplicate prompt init: contentSessionId=${contentSessionId} project=${projectName}`);
+      api.logger.info(`[claude-mem-file] Skipping duplicate prompt init: contentSessionId=${contentSessionId} project=${projectName}`);
       return;
     }
 
@@ -827,7 +827,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       prompt: promptText,
     }, api.logger);
 
-    api.logger.info(`[claude-mem] Session initialized via before_agent_start: contentSessionId=${contentSessionId} project=${projectName}`);
+    api.logger.info(`[claude-mem-file] Session initialized via before_agent_start: contentSessionId=${contentSessionId} project=${projectName}`);
   });
 
   // ------------------------------------------------------------------
@@ -843,7 +843,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
 
     const contextText = await getContextForPrompt(ctx);
     if (contextText) {
-      api.logger.info(`[claude-mem] Context injected via system prompt for agent=${ctx.agentId ?? "unknown"}`);
+      api.logger.info(`[claude-mem-file] Context injected via system prompt for agent=${ctx.agentId ?? "unknown"}`);
       return { appendSystemContext: contextText };
     }
   });
@@ -852,7 +852,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // Event: tool_result_persist — record tool observations
   // ------------------------------------------------------------------
   api.on("tool_result_persist", (event, ctx) => {
-    api.logger.info(`[claude-mem] tool_result_persist fired: tool=${event.toolName ?? "unknown"} agent=${ctx.agentId ?? "none"} session=${ctx.sessionKey ?? "none"}`);
+    api.logger.info(`[claude-mem-file] tool_result_persist fired: tool=${event.toolName ?? "unknown"} agent=${ctx.agentId ?? "none"} session=${ctx.sessionKey ?? "none"}`);
     const toolName = event.toolName;
     if (!toolName) return;
 
@@ -883,7 +883,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
     const workspaceDir = ctx.workspaceDir;
 
     if (!workspaceDir) {
-      api.logger.warn(`[claude-mem] Skipping observation persist because workspaceDir is unavailable: session=${canonicalKey} tool=${toolName}`);
+      api.logger.warn(`[claude-mem-file] Skipping observation persist because workspaceDir is unavailable: session=${canonicalKey} tool=${toolName}`);
       return;
     }
 
@@ -930,7 +930,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       last_assistant_message: lastAssistantMessage,
     }, api.logger);
 
-    api.logger.info(`[claude-mem] Scheduling session complete in ${completionDelayMs}ms: ${contentSessionId}`);
+    api.logger.info(`[claude-mem-file] Scheduling session complete in ${completionDelayMs}ms: ${contentSessionId}`);
     scheduleSessionComplete(contentSessionId);
   });
 
@@ -939,7 +939,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   // ------------------------------------------------------------------
   api.on("session_end", async (_event, ctx) => {
     clearSessionContext(ctx);
-    api.logger.info(`[claude-mem] Session tracking cleaned up`);
+    api.logger.info(`[claude-mem-file] Session tracking cleaned up`);
   });
 
   // ------------------------------------------------------------------
@@ -956,7 +956,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       clearTimeout(timer);
     }
     pendingCompletionTimers.clear();
-    api.logger.info("[claude-mem] Gateway started — session tracking reset");
+    api.logger.info("[claude-mem-file] Gateway started — session tracking reset");
   });
 
   // ------------------------------------------------------------------
@@ -967,7 +967,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   let connectionPromise: Promise<void> | null = null;
 
   api.registerService({
-    id: "claude-mem-observation-feed",
+    id: "claude-mem-file-observation-feed",
     start: async (_ctx) => {
       if (sseAbortController) {
         sseAbortController.abort();
@@ -980,16 +980,16 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       const feedConfig = userConfig.observationFeed;
 
       if (!feedConfig?.enabled) {
-        api.logger.info("[claude-mem] Observation feed disabled");
+        api.logger.info("[claude-mem-file] Observation feed disabled");
         return;
       }
 
       if (!feedConfig.channel || !feedConfig.to) {
-        api.logger.warn("[claude-mem] Observation feed misconfigured — channel or target missing");
+        api.logger.warn("[claude-mem-file] Observation feed misconfigured — channel or target missing");
         return;
       }
 
-      api.logger.info(`[claude-mem] Observation feed starting — channel: ${feedConfig.channel}, target: ${feedConfig.to}`);
+      api.logger.info(`[claude-mem-file] Observation feed starting — channel: ${feedConfig.channel}, target: ${feedConfig.to}`);
 
       sseAbortController = new AbortController();
       connectionPromise = connectToSSEStream(
@@ -1013,7 +1013,7 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
         connectionPromise = null;
       }
       connectionState = "disconnected";
-      api.logger.info("[claude-mem] Observation feed stopped — SSE connection closed");
+      api.logger.info("[claude-mem-file] Observation feed stopped — SSE connection closed");
     },
   });
 
@@ -1056,12 +1056,12 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
       const arg = ctx.args?.trim();
 
       if (arg === "on") {
-        api.logger.info("[claude-mem] Feed enable requested via command");
+        api.logger.info("[claude-mem-file] Feed enable requested via command");
         return { text: "Feed enable requested. Update observationFeed.enabled in your plugin config to persist." };
       }
 
       if (arg === "off") {
-        api.logger.info("[claude-mem] Feed disable requested via command");
+        api.logger.info("[claude-mem-file] Feed disable requested via command");
         return { text: "Feed disable requested. Update observationFeed.enabled in your plugin config to persist." };
       }
 
@@ -1076,17 +1076,17 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   });
 
   // ------------------------------------------------------------------
-  // Command: /claude-mem-search — query worker search API
-  // Usage: /claude-mem-search <query> [limit]
+  // Command: /claude-mem-file-search — query worker search API
+  // Usage: /claude-mem-file-search <query> [limit]
   // ------------------------------------------------------------------
   api.registerCommand({
-    name: "claude-mem-search",
+    name: "claude-mem-file-search",
     description: "Search Claude-Mem observations by query",
     acceptsArgs: true,
     handler: async (ctx) => {
       const raw = ctx.args?.trim() || "";
       if (!raw) {
-        return "Usage: /claude-mem-search <query> [limit]";
+        return "Usage: /claude-mem-file-search <query> [limit]";
       }
 
       const pieces = raw.split(/\s+/);
@@ -1114,11 +1114,11 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   });
 
   // ------------------------------------------------------------------
-  // Command: /claude-mem-recent — recent context snapshot
-  // Usage: /claude-mem-recent [project] [limit]
+  // Command: /claude-mem-file-recent — recent context snapshot
+  // Usage: /claude-mem-file-recent [project] [limit]
   // ------------------------------------------------------------------
   api.registerCommand({
-    name: "claude-mem-recent",
+    name: "claude-mem-file-recent",
     description: "Show recent Claude-Mem context for a project",
     acceptsArgs: true,
     handler: async (ctx) => {
@@ -1157,17 +1157,17 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
   });
 
   // ------------------------------------------------------------------
-  // Command: /claude-mem-timeline — search and timeline around best match
-  // Usage: /claude-mem-timeline <query> [depthBefore] [depthAfter]
+  // Command: /claude-mem-file-timeline — search and timeline around best match
+  // Usage: /claude-mem-file-timeline <query> [depthBefore] [depthAfter]
   // ------------------------------------------------------------------
   api.registerCommand({
-    name: "claude-mem-timeline",
+    name: "claude-mem-file-timeline",
     description: "Find best memory match and show nearby timeline events",
     acceptsArgs: true,
     handler: async (ctx) => {
       const raw = ctx.args?.trim() || "";
       if (!raw) {
-        return "Usage: /claude-mem-timeline <query> [depthBefore] [depthAfter]";
+        return "Usage: /claude-mem-file-timeline <query> [depthBefore] [depthAfter]";
       }
 
       const parts = raw.split(/\s+/);
@@ -1237,5 +1237,5 @@ export default function claudeMemPlugin(api: OpenClawPluginApi): void {
     },
   });
 
-  api.logger.info(`[claude-mem] OpenClaw plugin loaded — v1.0.0 (worker: ${_workerHost}:${workerPort})`);
+  api.logger.info(`[claude-mem-file] OpenClaw plugin loaded — v1.0.0 (worker: ${_workerHost}:${workerPort})`);
 }

@@ -1,68 +1,51 @@
 /**
- * SettingsManager: DRY settings CRUD utility
+ * SettingsManager: viewer UI settings persistence.
  *
- * Responsibility:
- * - DRY helper for viewer settings CRUD
- * - Eliminates duplication in settings read/write logic
- * - Type-safe settings management
+ * Stores sidebar/project/theme preferences in a small JSON file under the
+ * user's claude-mem data dir. Replaced the SQLite-backed table used pre-v13.
  */
 
-import { DatabaseManager } from './DatabaseManager.js';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import path from 'path';
+import os from 'os';
 import { logger } from '../../utils/logger.js';
 import type { ViewerSettings } from '../worker-types.js';
 
+const SETTINGS_DIR = path.join(os.homedir(), '.claude-mem-file');
+const SETTINGS_FILE = path.join(SETTINGS_DIR, 'viewer-settings.json');
+
 export class SettingsManager {
-  private dbManager: DatabaseManager;
   private readonly defaultSettings: ViewerSettings = {
     sidebarOpen: true,
     selectedProject: null,
-    theme: 'system'
+    theme: 'system',
   };
 
-  constructor(dbManager: DatabaseManager) {
-    this.dbManager = dbManager;
+  constructor(_dbManager?: unknown) {
+    // dbManager kept for call-site parity; no longer used since the viewer
+    // settings moved out of SQLite into a small JSON file.
   }
 
-  /**
-   * Get current viewer settings (with defaults)
-   */
   getSettings(): ViewerSettings {
-    const db = this.dbManager.getSessionStore().db;
-
     try {
-      const stmt = db.prepare('SELECT key, value FROM viewer_settings');
-      const rows = stmt.all() as Array<{ key: string; value: string }>;
-
-      const settings: ViewerSettings = { ...this.defaultSettings };
-      for (const row of rows) {
-        const key = row.key as keyof ViewerSettings;
-        if (key in settings) {
-          settings[key] = JSON.parse(row.value) as ViewerSettings[typeof key];
-        }
-      }
-
-      return settings;
+      if (!existsSync(SETTINGS_FILE)) return { ...this.defaultSettings };
+      const raw = readFileSync(SETTINGS_FILE, 'utf-8');
+      const parsed = JSON.parse(raw) as Partial<ViewerSettings>;
+      return { ...this.defaultSettings, ...parsed };
     } catch (error) {
-      logger.debug('WORKER', 'Failed to load settings, using defaults', {}, error as Error);
+      logger.debug('WORKER', 'Failed to load viewer settings, using defaults', {}, error as Error);
       return { ...this.defaultSettings };
     }
   }
 
-  /**
-   * Update viewer settings (partial update)
-   */
   updateSettings(updates: Partial<ViewerSettings>): ViewerSettings {
-    const db = this.dbManager.getSessionStore().db;
-
-    const stmt = db.prepare(`
-      INSERT OR REPLACE INTO viewer_settings (key, value)
-      VALUES (?, ?)
-    `);
-
-    for (const [key, value] of Object.entries(updates)) {
-      stmt.run(key, JSON.stringify(value));
+    const merged: ViewerSettings = { ...this.getSettings(), ...updates };
+    try {
+      if (!existsSync(SETTINGS_DIR)) mkdirSync(SETTINGS_DIR, { recursive: true });
+      writeFileSync(SETTINGS_FILE, JSON.stringify(merged, null, 2));
+    } catch (error) {
+      logger.warn('WORKER', 'Failed to persist viewer settings', {}, error as Error);
     }
-
-    return this.getSettings();
+    return merged;
   }
 }

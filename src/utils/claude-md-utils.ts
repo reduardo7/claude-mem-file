@@ -3,7 +3,7 @@
  *
  * Shared utilities for writing folder-level context files with
  * auto-generated context sections. Preserves user content outside
- * <claude-mem-context> tags.
+ * <claude-mem-file-context> tags.
  *
  * When CLAUDE_MEM_FOLDER_USE_LOCAL_MD is 'true', writes to CLAUDE.local.md
  * instead of CLAUDE.md. This keeps auto-generated context in a personal,
@@ -18,7 +18,7 @@ import { formatDate, groupByDate } from '../shared/timeline-formatting.js';
 import { SettingsDefaultsManager } from '../shared/SettingsDefaultsManager.js';
 import { workerHttpRequest } from '../shared/worker-utils.js';
 
-const SETTINGS_PATH = path.join(os.homedir(), '.claude-mem', 'settings.json');
+const SETTINGS_PATH = path.join(os.homedir(), '.claude-mem-file', 'settings.json');
 
 /** Default target filename */
 const CLAUDE_MD_FILENAME = 'CLAUDE.md';
@@ -103,8 +103,8 @@ function isValidPathForClaudeMd(filePath: string, projectRoot?: string): boolean
  * 3. No tags in existing content → appends tagged content at end
  */
 export function replaceTaggedContent(existingContent: string, newContent: string): string {
-  const startTag = '<claude-mem-context>';
-  const endTag = '</claude-mem-context>';
+  const startTag = '<claude-mem-file-context>';
+  const endTag = '</claude-mem-file-context>';
 
   // If no existing content, wrap new content in tags
   if (!existingContent) {
@@ -369,7 +369,7 @@ export async function updateFolderClaudeMdFiles(
 
   // Track folders containing CLAUDE.md files that were read/modified in this observation.
   // We must NOT update these - it would cause "file modified since read" errors in Claude Code.
-  // See: https://github.com/thedotmack/claude-mem/issues/859
+  // See: https://github.com/thedotmack/claude-mem-file/issues/859
   const foldersWithActiveClaudeMd = new Set<string>();
 
   // First pass: identify folders with actively-used CLAUDE.md or CLAUDE.local.md files

@@ -1,19 +1,19 @@
 /**
- * NPX CLI entry point for claude-mem.
+ * NPX CLI entry point for claude-mem-file.
  *
  * Usage:
- *   npx claude-mem                     → interactive install
- *   npx claude-mem install             → interactive install
- *   npx claude-mem install --ide <id>  → direct IDE setup
- *   npx claude-mem update              → update to latest version
- *   npx claude-mem uninstall           → remove plugin and IDE configs
- *   npx claude-mem version             → print version
- *   npx claude-mem start               → start worker service
- *   npx claude-mem stop                → stop worker service
- *   npx claude-mem restart             → restart worker service
- *   npx claude-mem status              → show worker status
- *   npx claude-mem search <query>      → search observations
- *   npx claude-mem transcript watch    → start transcript watcher
+ *   npx claude-mem-file                     → interactive install
+ *   npx claude-mem-file install             → interactive install
+ *   npx claude-mem-file install --ide <id>  → direct IDE setup
+ *   npx claude-mem-file update              → update to latest version
+ *   npx claude-mem-file uninstall           → remove plugin and IDE configs
+ *   npx claude-mem-file version             → print version
+ *   npx claude-mem-file start               → start worker service
+ *   npx claude-mem-file stop                → stop worker service
+ *   npx claude-mem-file restart             → restart worker service
+ *   npx claude-mem-file status              → show worker status
+ *   npx claude-mem-file search <query>      → search observations
+ *   npx claude-mem-file transcript watch    → start transcript watcher
  *
  * This file is pure Node.js — Bun is NOT required for install commands.
  * Runtime commands (`start`, `stop`, etc.) delegate to Bun via the installed plugin.
@@ -36,23 +36,23 @@ function printHelp(): void {
   const version = readPluginVersion();
 
   console.log(`
-${pc.bold('claude-mem')} v${version} — persistent memory for AI coding assistants
+${pc.bold('claude-mem-file')} v${version} — persistent memory for AI coding assistants
 
 ${pc.bold('Install Commands')} (no Bun required):
-  ${pc.cyan('npx claude-mem')}                     Interactive install
-  ${pc.cyan('npx claude-mem install')}              Interactive install
-  ${pc.cyan('npx claude-mem install --ide <id>')}   Install for specific IDE
-  ${pc.cyan('npx claude-mem update')}               Update to latest version
-  ${pc.cyan('npx claude-mem uninstall')}            Remove plugin and configs
-  ${pc.cyan('npx claude-mem version')}              Print version
+  ${pc.cyan('npx claude-mem-file')}                     Interactive install
+  ${pc.cyan('npx claude-mem-file install')}              Interactive install
+  ${pc.cyan('npx claude-mem-file install --ide <id>')}   Install for specific IDE
+  ${pc.cyan('npx claude-mem-file update')}               Update to latest version
+  ${pc.cyan('npx claude-mem-file uninstall')}            Remove plugin and configs
+  ${pc.cyan('npx claude-mem-file version')}              Print version
 
 ${pc.bold('Runtime Commands')} (requires Bun, delegates to installed plugin):
-  ${pc.cyan('npx claude-mem start')}                Start worker service
-  ${pc.cyan('npx claude-mem stop')}                 Stop worker service
-  ${pc.cyan('npx claude-mem restart')}              Restart worker service
-  ${pc.cyan('npx claude-mem status')}               Show worker status
-  ${pc.cyan('npx claude-mem search <query>')}       Search observations
-  ${pc.cyan('npx claude-mem transcript watch')}     Start transcript watcher
+  ${pc.cyan('npx claude-mem-file start')}                Start worker service
+  ${pc.cyan('npx claude-mem-file stop')}                 Stop worker service
+  ${pc.cyan('npx claude-mem-file restart')}              Restart worker service
+  ${pc.cyan('npx claude-mem-file status')}               Show worker status
+  ${pc.cyan('npx claude-mem-file search <query>')}       Search observations
+  ${pc.cyan('npx claude-mem-file transcript watch')}     Start transcript watcher
 
 ${pc.bold('IDE Identifiers')}:
   claude-code, cursor, gemini-cli, opencode, openclaw,
@@ -153,7 +153,7 @@ async function main(): Promise<void> {
         runTranscriptWatchCommand();
       } else {
         console.error(pc.red(`Unknown transcript subcommand: ${subCommand ?? '(none)'}`));
-        console.error(`Usage: npx claude-mem transcript watch`);
+        console.error(`Usage: npx claude-mem-file transcript watch`);
         process.exit(1);
       }
       break;
@@ -162,7 +162,7 @@ async function main(): Promise<void> {
     // -- Unknown -----------------------------------------------------------
     default: {
       console.error(pc.red(`Unknown command: ${command}`));
-      console.error(`Run ${pc.bold('npx claude-mem --help')} for usage information.`);
+      console.error(`Run ${pc.bold('npx claude-mem-file --help')} for usage information.`);
       process.exit(1);
     }
   }

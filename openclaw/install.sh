@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# claude-mem OpenClaw Plugin Installer
-# Installs the claude-mem persistent memory plugin for OpenClaw gateways.
+# claude-mem-file OpenClaw Plugin Installer
+# Installs the claude-mem-file persistent memory plugin for OpenClaw gateways.
 #
 # Usage:
 #   curl -fsSL https://install.cmem.ai/openclaw.sh | bash
@@ -229,7 +229,7 @@ check_port_37777() {
 }
 
 ###############################################################################
-# Upgrade detection — check if claude-mem is already installed
+# Upgrade detection — check if claude-mem-file is already installed
 ###############################################################################
 
 is_claude_mem_installed() {
@@ -404,7 +404,7 @@ print_banner() {
   echo -e "${COLOR_MAGENTA}${COLOR_BOLD}"
   cat << 'BANNER'
    ┌─────────────────────────────────────────┐
-   │    claude-mem  ×  OpenClaw              │
+   │    claude-mem-file  ×  OpenClaw              │
    │    Persistent Memory Plugin Installer   │
    └─────────────────────────────────────────┘
 BANNER
@@ -654,7 +654,7 @@ check_openclaw() {
   if ! find_openclaw; then
     error "OpenClaw gateway not found"
     error ""
-    error "The claude-mem plugin requires an OpenClaw gateway to be installed."
+    error "The claude-mem-file plugin requires an OpenClaw gateway to be installed."
     error "Please install OpenClaw first:"
     error ""
     error "  npm install -g openclaw"
@@ -681,7 +681,7 @@ run_openclaw() {
 # Flow based on openclaw/Dockerfile.e2e
 ###############################################################################
 
-CLAUDE_MEM_REPO="https://github.com/thedotmack/claude-mem.git"
+CLAUDE_MEM_REPO="https://github.com/thedotmack/claude-mem-file.git"
 CLAUDE_MEM_BRANCH="${CLI_BRANCH:-main}"
 PLUGIN_FRESHLY_INSTALLED=""
 
@@ -694,7 +694,7 @@ resolve_extension_dir() {
     existing_path="$(node -e "
       try {
         const c = require('$oc_config');
-        const p = c?.plugins?.installs?.['claude-mem']?.installPath;
+        const p = c?.plugins?.installs?.['claude-mem-file']?.installPath;
         if (p) console.log(p);
       } catch {}
     " 2>/dev/null)" || true
@@ -707,7 +707,7 @@ resolve_extension_dir() {
       try {
         const c = require('$oc_config');
         const paths = c?.plugins?.load?.paths || [];
-        const p = paths.find(p => p.endsWith('/claude-mem'));
+        const p = paths.find(p => p.endsWith('/claude-mem-file'));
         if (p) console.log(p);
       } catch {}
     " 2>/dev/null)" || true
@@ -716,7 +716,7 @@ resolve_extension_dir() {
       return
     fi
   fi
-  echo "${HOME}/.openclaw/extensions/claude-mem"
+  echo "${HOME}/.openclaw/extensions/claude-mem-file"
 }
 
 CLAUDE_MEM_EXTENSION_DIR=""
@@ -730,7 +730,7 @@ install_plugin() {
   # Remove existing plugin installation to allow clean re-install
   local existing_plugin_dir="$CLAUDE_MEM_EXTENSION_DIR"
   if [[ -d "$existing_plugin_dir" ]]; then
-    info "Removing existing claude-mem plugin at ${existing_plugin_dir}..."
+    info "Removing existing claude-mem-file plugin at ${existing_plugin_dir}..."
     rm -rf "$existing_plugin_dir"
   fi
 
@@ -738,25 +738,25 @@ install_plugin() {
   build_dir="$(mktemp -d)"
   register_cleanup_dir "$build_dir"
 
-  info "Cloning claude-mem repository (branch: ${CLAUDE_MEM_BRANCH})..."
-  if ! git clone --depth 1 --branch "$CLAUDE_MEM_BRANCH" "$CLAUDE_MEM_REPO" "$build_dir/claude-mem" 2>&1; then
-    error "Failed to clone claude-mem repository"
+  info "Cloning claude-mem-file repository (branch: ${CLAUDE_MEM_BRANCH})..."
+  if ! git clone --depth 1 --branch "$CLAUDE_MEM_BRANCH" "$CLAUDE_MEM_REPO" "$build_dir/claude-mem-file" 2>&1; then
+    error "Failed to clone claude-mem-file repository"
     error "Check your internet connection and try again."
     exit 1
   fi
 
-  local plugin_src="${build_dir}/claude-mem/openclaw"
+  local plugin_src="${build_dir}/claude-mem-file/openclaw"
 
   # Build the TypeScript plugin
   info "Building TypeScript plugin..."
   if ! (cd "$plugin_src" && NODE_ENV=development npm install --ignore-scripts 2>&1 && npx tsc 2>&1); then
-    error "Failed to build the claude-mem OpenClaw plugin"
+    error "Failed to build the claude-mem-file OpenClaw plugin"
     error "Make sure Node.js and npm are installed."
     exit 1
   fi
 
   # Create minimal installable package (matches Dockerfile.e2e pattern)
-  local installable_dir="${build_dir}/claude-mem-installable"
+  local installable_dir="${build_dir}/claude-mem-file-installable"
   mkdir -p "${installable_dir}/dist"
 
   cp "${plugin_src}/dist/index.js" "${installable_dir}/dist/"
@@ -766,7 +766,7 @@ install_plugin() {
   # Generate the installable package.json with openclaw.extensions field
   INSTALLER_PACKAGE_DIR="$installable_dir" node -e "
     const pkg = {
-      name: 'claude-mem',
+      name: 'claude-mem-file',
       version: '1.0.0',
       type: 'module',
       main: 'dist/index.js',
@@ -775,8 +775,8 @@ install_plugin() {
     require('fs').writeFileSync(process.env.INSTALLER_PACKAGE_DIR + '/package.json', JSON.stringify(pkg, null, 2));
   "
 
-  # Clean up stale claude-mem plugin entry before installing.
-  # If the config references claude-mem but the plugin isn't installed,
+  # Clean up stale claude-mem-file plugin entry before installing.
+  # If the config references claude-mem-file but the plugin isn't installed,
   # OpenClaw's config validator blocks ALL CLI commands (including plugins install).
   # We temporarily remove the entry and save the config so `plugins install` can run,
   # then `plugins install` + `plugins enable` will re-create it properly.
@@ -787,20 +787,20 @@ install_plugin() {
       const fs = require('fs');
       const configPath = process.env.INSTALLER_CONFIG_FILE;
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-      const entry = config?.plugins?.entries?.['claude-mem'];
-      const allowHasClaudeMem = Array.isArray(config?.plugins?.allow) && config.plugins.allow.includes('claude-mem');
-      if (entry || config?.plugins?.slots?.memory === 'claude-mem' || allowHasClaudeMem) {
+      const entry = config?.plugins?.entries?.['claude-mem-file'];
+      const allowHasClaudeMem = Array.isArray(config?.plugins?.allow) && config.plugins.allow.includes('claude-mem-file');
+      if (entry || config?.plugins?.slots?.memory === 'claude-mem-file' || allowHasClaudeMem) {
         // Save the config block so we can restore it after install
         process.stdout.write(JSON.stringify(entry?.config || {}));
         // Remove the stale entry so OpenClaw CLI can run
-        if (entry) delete config.plugins.entries['claude-mem'];
+        if (entry) delete config.plugins.entries['claude-mem-file'];
         // Also remove stale allowlist reference — this alone can block ALL CLI commands
         if (Array.isArray(config?.plugins?.allow)) {
-          config.plugins.allow = config.plugins.allow.filter((x) => x !== 'claude-mem');
+          config.plugins.allow = config.plugins.allow.filter((x) => x !== 'claude-mem-file');
         }
         // Also remove the slot reference — if the slot points to a plugin
         // that isn't in entries, OpenClaw's config validator rejects ALL commands
-        if (config?.plugins?.slots?.memory === 'claude-mem') {
+        if (config?.plugins?.slots?.memory === 'claude-mem-file') {
           delete config.plugins.slots.memory;
         }
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
@@ -809,22 +809,22 @@ install_plugin() {
   fi
 
   # Install the plugin using OpenClaw's CLI
-  info "Installing claude-mem plugin into OpenClaw..."
+  info "Installing claude-mem-file plugin into OpenClaw..."
   if ! run_openclaw plugins install "$installable_dir" 2>&1; then
-    error "Failed to install claude-mem plugin"
+    error "Failed to install claude-mem-file plugin"
     error "Try manually: ${OPENCLAW_PATH} plugins install <path>"
     exit 1
   fi
 
   # Enable the plugin
-  info "Enabling claude-mem plugin..."
-  if ! run_openclaw plugins enable claude-mem 2>&1; then
-    error "Failed to enable claude-mem plugin"
-    error "Try manually: ${OPENCLAW_PATH} plugins enable claude-mem"
+  info "Enabling claude-mem-file plugin..."
+  if ! run_openclaw plugins enable claude-mem-file 2>&1; then
+    error "Failed to enable claude-mem-file plugin"
+    error "Try manually: ${OPENCLAW_PATH} plugins enable claude-mem-file"
     exit 1
   fi
 
-  # Ensure claude-mem is present in plugins.allow after successful install+enable.
+  # Ensure claude-mem-file is present in plugins.allow after successful install+enable.
   # Some OpenClaw environments require explicit allowlisting for local plugins.
   # This write is guaranteed: if config doesn't exist, configure_memory_slot() will create it.
   if [[ -f "$oc_config" ]]; then
@@ -834,19 +834,19 @@ install_plugin() {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       if (!config.plugins) config.plugins = {};
       if (!Array.isArray(config.plugins.allow)) config.plugins.allow = [];
-      if (!config.plugins.allow.includes('claude-mem')) {
-        config.plugins.allow.push('claude-mem');
+      if (!config.plugins.allow.includes('claude-mem-file')) {
+        config.plugins.allow.push('claude-mem-file');
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
-        console.log('Added claude-mem to plugins.allow');
+        console.log('Added claude-mem-file to plugins.allow');
       } else {
-        console.log('claude-mem already in plugins.allow');
+        console.log('claude-mem-file already in plugins.allow');
       }
     " 2>&1; then
-      warn "Failed to write plugins.allow — claude-mem may need manual allowlisting"
+      warn "Failed to write plugins.allow — claude-mem-file may need manual allowlisting"
     fi
   else
     # Config doesn't exist yet; configure_memory_slot() will create it with plugins.allow
-    # We'll add claude-mem to the allowlist in a follow-up step after config is materialized
+    # We'll add claude-mem-file to the allowlist in a follow-up step after config is materialized
     info "OpenClaw config not yet materialized; will ensure allowlist in post-install"
     # Force config materialization by running a harmless OpenClaw command
     if run_openclaw status --json >/dev/null 2>&1 && [[ -f "$oc_config" ]]; then
@@ -856,10 +856,10 @@ install_plugin() {
         const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         if (!config.plugins) config.plugins = {};
         if (!Array.isArray(config.plugins.allow)) config.plugins.allow = [];
-        if (!config.plugins.allow.includes('claude-mem')) {
-          config.plugins.allow.push('claude-mem');
+        if (!config.plugins.allow.includes('claude-mem-file')) {
+          config.plugins.allow.push('claude-mem-file');
           fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
-          console.log('Added claude-mem to plugins.allow (post-materialization)');
+          console.log('Added claude-mem-file to plugins.allow (post-materialization)');
         }
       " 2>&1; then
         warn "Failed to write plugins.allow after materialization — configure manually"
@@ -876,14 +876,14 @@ install_plugin() {
       const configPath = process.env.INSTALLER_CONFIG_FILE;
       const savedConfig = JSON.parse(process.env.INSTALLER_SAVED_CONFIG);
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-      if (config?.plugins?.entries?.['claude-mem']) {
-        config.plugins.entries['claude-mem'].config = savedConfig;
+      if (config?.plugins?.entries?.['claude-mem-file']) {
+        config.plugins.entries['claude-mem-file'].config = savedConfig;
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
       }
     " 2>/dev/null || warn "Could not restore previous plugin config — configure manually"
   fi
 
-  success "claude-mem plugin installed and enabled"
+  success "claude-mem-file plugin installed and enabled"
 
   # ── Copy core plugin files (worker, hooks, scripts) to extension directory ──
   # The OpenClaw extension only contains the gateway hook (dist/index.js).
@@ -891,7 +891,7 @@ install_plugin() {
   # of the main repo. We copy them so find_claude_mem_install_dir() can locate
   # the worker-service.cjs and the worker runs the updated version.
   local extension_dir="$CLAUDE_MEM_EXTENSION_DIR"
-  local repo_root="${build_dir}/claude-mem"
+  local repo_root="${build_dir}/claude-mem-file"
 
   if [[ -d "$extension_dir" && -d "${repo_root}/plugin" ]]; then
     info "Copying core plugin files to ${extension_dir}..."
@@ -922,7 +922,7 @@ install_plugin() {
 
 ###############################################################################
 # Memory slot configuration
-# Sets plugins.slots.memory = "claude-mem" in ~/.openclaw/openclaw.json
+# Sets plugins.slots.memory = "claude-mem-file" in ~/.openclaw/openclaw.json
 ###############################################################################
 
 configure_memory_slot() {
@@ -933,13 +933,13 @@ configure_memory_slot() {
 
   if [[ ! -f "$config_file" ]]; then
     # No config file exists — create one with the memory slot
-    info "Creating OpenClaw configuration with claude-mem memory slot..."
+    info "Creating OpenClaw configuration with claude-mem-file memory slot..."
     INSTALLER_CONFIG_FILE="$config_file" node -e "
       const config = {
         plugins: {
-          slots: { memory: 'claude-mem' },
+          slots: { memory: 'claude-mem-file' },
           entries: {
-            'claude-mem': {
+            'claude-mem-file': {
               enabled: true,
               config: {
                 workerPort: 37777,
@@ -951,12 +951,12 @@ configure_memory_slot() {
       };
       require('fs').writeFileSync(process.env.INSTALLER_CONFIG_FILE, JSON.stringify(config, null, 2));
     "
-    success "Created ${config_file} with memory slot set to claude-mem"
+    success "Created ${config_file} with memory slot set to claude-mem-file"
     return 0
   fi
 
   # Config file exists — update it to set the memory slot
-  info "Updating OpenClaw configuration to use claude-mem memory slot..."
+  info "Updating OpenClaw configuration to use claude-mem-file memory slot..."
 
   # Use node for reliable JSON manipulation
   INSTALLER_CONFIG_FILE="$config_file" node -e "
@@ -969,12 +969,12 @@ configure_memory_slot() {
     if (!config.plugins.slots) config.plugins.slots = {};
     if (!config.plugins.entries) config.plugins.entries = {};
 
-    // Set memory slot to claude-mem
-    config.plugins.slots.memory = 'claude-mem';
+    // Set memory slot to claude-mem-file
+    config.plugins.slots.memory = 'claude-mem-file';
 
-    // Ensure claude-mem entry exists and is enabled
-    if (!config.plugins.entries['claude-mem']) {
-      config.plugins.entries['claude-mem'] = {
+    // Ensure claude-mem-file entry exists and is enabled
+    if (!config.plugins.entries['claude-mem-file']) {
+      config.plugins.entries['claude-mem-file'] = {
         enabled: true,
         config: {
           workerPort: 37777,
@@ -982,12 +982,12 @@ configure_memory_slot() {
         }
       };
     } else {
-      config.plugins.entries['claude-mem'].enabled = true;
+      config.plugins.entries['claude-mem-file'].enabled = true;
       // Remove unrecognized keys that cause OpenClaw config validation errors
       const allowedKeys = new Set(['enabled', 'config']);
-      for (const key of Object.keys(config.plugins.entries['claude-mem'])) {
+      for (const key of Object.keys(config.plugins.entries['claude-mem-file'])) {
         if (!allowedKeys.has(key)) {
-          delete config.plugins.entries['claude-mem'][key];
+          delete config.plugins.entries['claude-mem-file'][key];
         }
       }
     }
@@ -995,7 +995,7 @@ configure_memory_slot() {
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
   "
 
-  success "Memory slot set to claude-mem in ${config_file}"
+  success "Memory slot set to claude-mem-file in ${config_file}"
 }
 
 ###############################################################################
@@ -1039,7 +1039,7 @@ setup_ai_provider() {
         if [[ -n "$AI_PROVIDER_API_KEY" ]]; then
           success "Selected via --provider: Gemini (API key set via --api-key)"
         else
-          warn "Selected via --provider: Gemini (no API key — add later in ~/.claude-mem/settings.json)"
+          warn "Selected via --provider: Gemini (no API key — add later in ~/.claude-mem-file/settings.json)"
         fi
         ;;
       openrouter)
@@ -1048,7 +1048,7 @@ setup_ai_provider() {
         if [[ -n "$AI_PROVIDER_API_KEY" ]]; then
           success "Selected via --provider: OpenRouter (API key set via --api-key)"
         else
-          warn "Selected via --provider: OpenRouter (no API key — add later in ~/.claude-mem/settings.json)"
+          warn "Selected via --provider: OpenRouter (no API key — add later in ~/.claude-mem-file/settings.json)"
         fi
         ;;
       *)
@@ -1067,7 +1067,7 @@ setup_ai_provider() {
     return 0
   fi
 
-  echo -e "  Choose your AI provider for claude-mem:"
+  echo -e "  Choose your AI provider for claude-mem-file:"
   echo ""
   echo -e "  ${COLOR_BOLD}1)${COLOR_RESET} Claude Max Plan ${COLOR_GREEN}(recommended)${COLOR_RESET}"
   echo -e "     Uses your existing subscription, no API key needed"
@@ -1098,7 +1098,7 @@ setup_ai_provider() {
         read_tty -rs AI_PROVIDER_API_KEY
         echo ""
         if [[ -z "$AI_PROVIDER_API_KEY" ]]; then
-          warn "No API key provided — you can add it later in ~/.claude-mem/settings.json"
+          warn "No API key provided — you can add it later in ~/.claude-mem-file/settings.json"
         else
           success "Gemini API key set ($(mask_api_key "$AI_PROVIDER_API_KEY"))"
         fi
@@ -1111,7 +1111,7 @@ setup_ai_provider() {
         read_tty -rs AI_PROVIDER_API_KEY
         echo ""
         if [[ -z "$AI_PROVIDER_API_KEY" ]]; then
-          warn "No API key provided — you can add it later in ~/.claude-mem/settings.json"
+          warn "No API key provided — you can add it later in ~/.claude-mem-file/settings.json"
         else
           success "OpenRouter API key set ($(mask_api_key "$AI_PROVIDER_API_KEY"))"
         fi
@@ -1125,13 +1125,13 @@ setup_ai_provider() {
 }
 
 ###############################################################################
-# Write settings.json — creates ~/.claude-mem/settings.json with all defaults
+# Write settings.json — creates ~/.claude-mem-file/settings.json with all defaults
 # Schema: flat key-value (not nested { env: {...} })
 # Defaults sourced from SettingsDefaultsManager.ts
 ###############################################################################
 
 write_settings() {
-  local settings_dir="${HOME}/.claude-mem"
+  local settings_dir="${HOME}/.claude-mem-file"
   local settings_file="${settings_dir}/settings.json"
 
   mkdir -p "$settings_dir"
@@ -1163,10 +1163,10 @@ write_settings() {
       CLAUDE_MEM_OPENROUTER_API_KEY: '',
       CLAUDE_MEM_OPENROUTER_MODEL: 'xiaomi/mimo-v2-flash:free',
       CLAUDE_MEM_OPENROUTER_SITE_URL: '',
-      CLAUDE_MEM_OPENROUTER_APP_NAME: 'claude-mem',
+      CLAUDE_MEM_OPENROUTER_APP_NAME: 'claude-mem-file',
       CLAUDE_MEM_OPENROUTER_MAX_CONTEXT_MESSAGES: '20',
       CLAUDE_MEM_OPENROUTER_MAX_TOKENS: '100000',
-      CLAUDE_MEM_DATA_DIR: path.join(homedir, '.claude-mem'),
+      CLAUDE_MEM_DATA_DIR: path.join(homedir, '.claude-mem-file'),
       CLAUDE_MEM_LOG_LEVEL: 'INFO',
       CLAUDE_MEM_PYTHON_VERSION: '3.13',
       CLAUDE_CODE_PATH: '',
@@ -1227,7 +1227,7 @@ write_settings() {
 }
 
 ###############################################################################
-# Locate the installed claude-mem plugin directory
+# Locate the installed claude-mem-file plugin directory
 # Checks common OpenClaw and Claude Code plugin install paths
 ###############################################################################
 
@@ -1238,9 +1238,9 @@ find_claude_mem_install_dir() {
   resolved_dir="$(resolve_extension_dir)"
   local -a search_paths=(
     "$resolved_dir"
-    "${HOME}/.openclaw/extensions/claude-mem"
+    "${HOME}/.openclaw/extensions/claude-mem-file"
     "${HOME}/.claude/plugins/marketplaces/thedotmack"
-    "${HOME}/.openclaw/plugins/claude-mem"
+    "${HOME}/.openclaw/plugins/claude-mem-file"
   )
 
   for candidate in "${search_paths[@]}"; do
@@ -1273,7 +1273,7 @@ find_claude_mem_install_dir() {
 
 ###############################################################################
 # Worker service startup
-# Starts the claude-mem worker using bun in the background
+# Starts the claude-mem-file worker using bun in the background
 ###############################################################################
 
 WORKER_PID=""
@@ -1285,12 +1285,12 @@ WORKER_REPORTED_PID=""
 WORKER_UPTIME=""
 
 start_worker() {
-  info "Starting claude-mem worker service..."
+  info "Starting claude-mem-file worker service..."
 
   if ! find_claude_mem_install_dir; then
-    error "Cannot find claude-mem plugin installation directory"
+    error "Cannot find claude-mem-file plugin installation directory"
     error "Expected worker-service.cjs in one of:"
-    error "  ~/.openclaw/extensions/claude-mem/plugin/scripts/"
+    error "  ~/.openclaw/extensions/claude-mem-file/plugin/scripts/"
     error "  ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/"
     error ""
     error "Try reinstalling the plugin and re-running this installer."
@@ -1298,7 +1298,7 @@ start_worker() {
   fi
 
   local worker_script="${CLAUDE_MEM_INSTALL_DIR}/plugin/scripts/worker-service.cjs"
-  local log_dir="${HOME}/.claude-mem/logs"
+  local log_dir="${HOME}/.claude-mem-file/logs"
   local log_date
   log_date="$(date +%Y-%m-%d)"
   local log_file="${log_dir}/worker-${log_date}.log"
@@ -1319,8 +1319,8 @@ start_worker() {
   WORKER_PID=$!
 
   # Write PID file for future management
-  local pid_file="${HOME}/.claude-mem/worker.pid"
-  mkdir -p "${HOME}/.claude-mem"
+  local pid_file="${HOME}/.claude-mem-file/worker.pid"
+  mkdir -p "${HOME}/.claude-mem-file"
   INSTALLER_PID_FILE="$pid_file" INSTALLER_WORKER_PID="$WORKER_PID" node -e "
     const info = {
       pid: parseInt(process.env.INSTALLER_WORKER_PID, 10),
@@ -1379,7 +1379,7 @@ verify_health() {
     warn "Worker health check timed out after ${max_attempts} attempts"
     warn "The worker may still be starting up. Check status with:"
     warn "  curl http://127.0.0.1:37777/api/health"
-    warn "  Or check logs: ~/.claude-mem/logs/"
+    warn "  Or check logs: ~/.claude-mem-file/logs/"
     return 1
   fi
 
@@ -1418,7 +1418,7 @@ setup_observation_feed() {
   echo ""
   echo -e "  ${COLOR_BOLD}Real-Time Observation Feed${COLOR_RESET}"
   echo ""
-  echo "  claude-mem can stream AI-compressed observations to a messaging"
+  echo "  claude-mem-file can stream AI-compressed observations to a messaging"
   echo "  channel in real time. Every time an agent learns something,"
   echo "  you'll see it in your chat."
   echo ""
@@ -1426,7 +1426,7 @@ setup_observation_feed() {
   if [[ "$NON_INTERACTIVE" == "true" ]]; then
     info "Non-interactive mode: skipping observation feed setup"
     info "Configure later in ~/.openclaw/openclaw.json under"
-    info "  plugins.entries.claude-mem.config.observationFeed"
+    info "  plugins.entries.claude-mem-file.config.observationFeed"
     return 0
   fi
 
@@ -1440,7 +1440,7 @@ setup_observation_feed() {
     info "Skipped observation feed setup."
     info "You can configure it later by re-running this installer or"
     info "editing ~/.openclaw/openclaw.json under"
-    info "  plugins.entries.claude-mem.config.observationFeed"
+    info "  plugins.entries.claude-mem-file.config.observationFeed"
     return 0
   fi
 
@@ -1557,9 +1557,9 @@ write_observation_feed_config() {
     jq --arg channel "$FEED_CHANNEL" --arg target "$FEED_TARGET_ID" '
       .plugins //= {} |
       .plugins.entries //= {} |
-      .plugins.entries["claude-mem"] //= {"enabled": true, "config": {}} |
-      .plugins.entries["claude-mem"].config //= {} |
-      .plugins.entries["claude-mem"].config.observationFeed = {
+      .plugins.entries["claude-mem-file"] //= {"enabled": true, "config": {}} |
+      .plugins.entries["claude-mem-file"].config //= {} |
+      .plugins.entries["claude-mem-file"].config.observationFeed = {
         "enabled": true,
         "channel": $channel,
         "to": $target
@@ -1580,9 +1580,9 @@ with open(config_path) as f:
 
 config.setdefault('plugins', {})
 config['plugins'].setdefault('entries', {})
-config['plugins']['entries'].setdefault('claude-mem', {'enabled': True, 'config': {}})
-config['plugins']['entries']['claude-mem'].setdefault('config', {})
-config['plugins']['entries']['claude-mem']['config']['observationFeed'] = {
+config['plugins']['entries'].setdefault('claude-mem-file', {'enabled': True, 'config': {}})
+config['plugins']['entries']['claude-mem-file'].setdefault('config', {})
+config['plugins']['entries']['claude-mem-file']['config']['observationFeed'] = {
     'enabled': True,
     'channel': channel,
     'to': target_id
@@ -1606,14 +1606,14 @@ with open(config_path, 'w') as f:
 
       if (!config.plugins) config.plugins = {};
       if (!config.plugins.entries) config.plugins.entries = {};
-      if (!config.plugins.entries['claude-mem']) {
-        config.plugins.entries['claude-mem'] = { enabled: true, config: {} };
+      if (!config.plugins.entries['claude-mem-file']) {
+        config.plugins.entries['claude-mem-file'] = { enabled: true, config: {} };
       }
-      if (!config.plugins.entries['claude-mem'].config) {
-        config.plugins.entries['claude-mem'].config = {};
+      if (!config.plugins.entries['claude-mem-file'].config) {
+        config.plugins.entries['claude-mem-file'].config = {};
       }
 
-      config.plugins.entries['claude-mem'].config.observationFeed = {
+      config.plugins.entries['claude-mem-file'].config.observationFeed = {
         enabled: true,
         channel: channel,
         to: targetId
@@ -1632,9 +1632,9 @@ with open(config_path, 'w') as f:
   echo ""
   info "Restart your OpenClaw gateway to activate the observation feed."
   info "You should see these log lines:"
-  echo "  [claude-mem] Observation feed starting — channel: ${FEED_CHANNEL}, target: ${FEED_TARGET_ID}"
+  echo "  [claude-mem-file] Observation feed starting — channel: ${FEED_CHANNEL}, target: ${FEED_TARGET_ID}"
   echo ""
-  info "After restarting, run /claude-mem-feed in any OpenClaw chat to verify"
+  info "After restarting, run /claude-mem-file-feed in any OpenClaw chat to verify"
   info "the feed is connected."
 }
 
@@ -1663,9 +1663,9 @@ print_completion_summary() {
 
   # Show installed version from health data if available
   if [[ -n "$WORKER_VERSION" ]]; then
-    echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  claude-mem v${COLOR_BOLD}${WORKER_VERSION}${COLOR_RESET} installed and running"
+    echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  claude-mem-file v${COLOR_BOLD}${WORKER_VERSION}${COLOR_RESET} installed and running"
   else
-    echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  claude-mem plugin installed and enabled"
+    echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  claude-mem-file plugin installed and enabled"
   fi
 
   echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  Memory slot configured"
@@ -1677,7 +1677,7 @@ print_completion_summary() {
     echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  AI provider: ${COLOR_BOLD}${provider_display}${COLOR_RESET}"
   fi
 
-  echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  Settings written to ~/.claude-mem/settings.json"
+  echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  Settings written to ~/.claude-mem-file/settings.json"
 
   if [[ -n "$WORKER_PID" ]] && kill -0 "$WORKER_PID" 2>/dev/null; then
     echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  Worker running on port ${COLOR_BOLD}37777${COLOR_RESET} (PID: ${WORKER_PID})"
@@ -1686,7 +1686,7 @@ print_completion_summary() {
     uptime_formatted="$(format_uptime_ms "$WORKER_UPTIME")"
     echo -e "  ${COLOR_GREEN}✓${COLOR_RESET}  Worker running on port ${COLOR_BOLD}37777${COLOR_RESET} (PID: ${WORKER_REPORTED_PID}, uptime: ${uptime_formatted})"
   else
-    echo -e "  ${COLOR_YELLOW}⚠${COLOR_RESET}  Worker may not be running — check logs at ~/.claude-mem/logs/"
+    echo -e "  ${COLOR_YELLOW}⚠${COLOR_RESET}  Worker may not be running — check logs at ~/.claude-mem-file/logs/"
   fi
 
   # Show initialization warning if worker is alive but not yet initialized
@@ -1699,17 +1699,17 @@ print_completion_summary() {
   else
     echo -e "  ${COLOR_YELLOW}─${COLOR_RESET}  Observation feed: not configured (optional)"
     echo -e "     Configure later in ~/.openclaw/openclaw.json under"
-    echo -e "     plugins.entries.claude-mem.config.observationFeed"
+    echo -e "     plugins.entries.claude-mem-file.config.observationFeed"
   fi
 
   echo ""
   echo -e "  ${COLOR_BOLD}What's next?${COLOR_RESET}"
   echo ""
   echo -e "  ${COLOR_CYAN}1.${COLOR_RESET} Restart your OpenClaw gateway to load the plugin"
-  echo -e "  ${COLOR_CYAN}2.${COLOR_RESET} Verify with ${COLOR_BOLD}/claude-mem-status${COLOR_RESET} in any OpenClaw chat"
+  echo -e "  ${COLOR_CYAN}2.${COLOR_RESET} Verify with ${COLOR_BOLD}/claude-mem-file-status${COLOR_RESET} in any OpenClaw chat"
   echo -e "  ${COLOR_CYAN}3.${COLOR_RESET} Check the viewer UI at ${COLOR_BOLD}http://localhost:37777${COLOR_RESET}"
   if [[ "$FEED_CONFIGURED" == "true" ]]; then
-    echo -e "  ${COLOR_CYAN}4.${COLOR_RESET} Run ${COLOR_BOLD}/claude-mem-feed${COLOR_RESET} to check feed status"
+    echo -e "  ${COLOR_CYAN}4.${COLOR_RESET} Run ${COLOR_BOLD}/claude-mem-file-feed${COLOR_RESET} to check feed status"
   fi
   echo ""
   echo -e "  ${COLOR_BOLD}To re-run this installer:${COLOR_RESET}"
@@ -1749,10 +1749,10 @@ main() {
 
   # --- Step 3: Plugin installation (skip if upgrading and already installed) ---
   echo ""
-  info "${COLOR_BOLD}[3/8]${COLOR_RESET} Installing claude-mem plugin..."
+  info "${COLOR_BOLD}[3/8]${COLOR_RESET} Installing claude-mem-file plugin..."
 
   if [[ "$UPGRADE_MODE" == "true" ]] && is_claude_mem_installed; then
-    success "claude-mem already installed at ${CLAUDE_MEM_INSTALL_DIR}"
+    success "claude-mem-file already installed at ${CLAUDE_MEM_INSTALL_DIR}"
     info "Upgrade mode: skipping clone/build/register, updating settings only"
   else
     install_plugin
@@ -1830,7 +1830,7 @@ main() {
             sleep 1
           fi
           # Check PID file as fallback
-          local pid_file="${HOME}/.claude-mem/worker.pid"
+          local pid_file="${HOME}/.claude-mem-file/worker.pid"
           if [[ -f "$pid_file" ]]; then
             local file_pid
             file_pid="$(INSTALLER_PID_FILE="$pid_file" node -e "
@@ -1877,14 +1877,14 @@ main() {
     else
       warn "Port 37777 is occupied but not responding to health checks"
       warn "Another process may be using this port. Stop it and re-run the installer,"
-      warn "or change CLAUDE_MEM_WORKER_PORT in ~/.claude-mem/settings.json"
+      warn "or change CLAUDE_MEM_WORKER_PORT in ~/.claude-mem-file/settings.json"
     fi
   else
     if start_worker; then
       verify_health || true
     else
       warn "Worker startup failed — you can start it manually later"
-      warn "  cd ~/.openclaw/extensions/claude-mem && bun plugin/scripts/worker-service.cjs"
+      warn "  cd ~/.openclaw/extensions/claude-mem-file && bun plugin/scripts/worker-service.cjs"
     fi
   fi
 

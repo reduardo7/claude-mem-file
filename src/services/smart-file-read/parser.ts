@@ -120,7 +120,7 @@ function getUserAwareQueryKey(language: string, userConfig: UserGrammarConfig): 
   return getQueryKey(language);
 }
 
-// --- User-installable grammars via .claude-mem.json ---
+// --- User-installable grammars via .claude-mem-file.json ---
 
 export interface UserGrammarEntry {
   package: string;
@@ -146,14 +146,14 @@ const EMPTY_USER_GRAMMAR_CONFIG: UserGrammarConfig = {
 };
 
 /**
- * Load user grammar configuration from .claude-mem.json in a project root.
+ * Load user grammar configuration from .claude-mem-file.json in a project root.
  * Cached per project root. Returns empty config if file doesn't exist or is invalid.
  * User entries do NOT override bundled grammars.
  */
 export function loadUserGrammars(projectRoot: string): UserGrammarConfig {
   if (userGrammarCache.has(projectRoot)) return userGrammarCache.get(projectRoot)!;
 
-  const configPath = join(projectRoot, ".claude-mem.json");
+  const configPath = join(projectRoot, ".claude-mem-file.json");
   let rawConfig: Record<string, unknown>;
 
   try {
@@ -477,14 +477,6 @@ const QUERIES: Record<string, string> = {
 (import_declaration) @imp
 `,
 
-  php: `
-(function_definition name: (name) @name) @func
-(method_declaration name: (name) @name) @method
-(class_declaration name: (name) @name) @cls
-(interface_declaration name: (name) @name) @iface
-(trait_declaration name: (name) @name) @trait_def
-(namespace_use_declaration) @imp
-`,
 };
 
 function getQueryKey(language: string): string {

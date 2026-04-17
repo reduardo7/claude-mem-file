@@ -12,7 +12,7 @@ description: "Install Claude-Mem plugin for persistent memory across sessions"
 Install and configure Claude-Mem with a single command:
 
 ```bash
-npx claude-mem install
+npx claude-mem-file install
 ```
 
 The interactive installer will:
@@ -27,15 +27,15 @@ The interactive installer will:
 Install Claude-Mem directly from the plugin marketplace inside Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem
-/plugin install claude-mem
+/plugin marketplace add thedotmack/claude-mem-file
+/plugin install claude-mem-file
 ```
 
 Both methods will automatically configure hooks and start the worker service. Start a new Claude Code session and you'll see context from previous sessions automatically loaded.
 
-> **Important:** Claude-Mem is published on npm, but running `npm install -g claude-mem` installs the
+> **Important:** Claude-Mem is published on npm, but running `npm install -g claude-mem-file` installs the
 > **SDK/library only**. It does **not** register plugin hooks or start the worker service.
-> Always install via `npx claude-mem install` or the `/plugin` commands above.
+> Always install via `npx claude-mem-file install` or the `/plugin` commands above.
 
 ## System Requirements
 
@@ -52,8 +52,8 @@ For development or testing, you can clone and build from source:
 
 ```bash
 # Clone the repository
-git clone https://github.com/thedotmack/claude-mem.git
-cd claude-mem
+git clone https://github.com/thedotmack/claude-mem-file.git
+cd claude-mem-file
 
 # Install dependencies
 npm install
@@ -84,12 +84,12 @@ cat plugin/hooks/hooks.json
 
 #### 3. Data Directory Location
 
-Data is stored in `~/.claude-mem/`:
-- Database: `~/.claude-mem/claude-mem.db`
-- PID file: `~/.claude-mem/.worker.pid`
-- Port file: `~/.claude-mem/.worker.port`
-- Logs: `~/.claude-mem/logs/worker-YYYY-MM-DD.log`
-- Settings: `~/.claude-mem/settings.json`
+Data is stored in `~/.claude-mem-file/`:
+- Database: `~/.claude-mem-file/claude-mem-file.db`
+- PID file: `~/.claude-mem-file/.worker.pid`
+- Port file: `~/.claude-mem-file/.worker.port`
+- Logs: `~/.claude-mem-file/logs/worker-YYYY-MM-DD.log`
+- Settings: `~/.claude-mem-file/settings.json`
 
 Override with environment variable:
 ```bash
@@ -118,7 +118,7 @@ Upgrades are automatic when updating via the plugin marketplace. Key changes in 
 
 **v5.4.0+**: Skill-based search replaces MCP tools, saving ~2,250 tokens per session.
 
-See [CHANGELOG](https://github.com/thedotmack/claude-mem/blob/main/CHANGELOG.md) for complete version history.
+See [CHANGELOG](https://github.com/thedotmack/claude-mem-file/blob/main/CHANGELOG.md) for complete version history.
 
 ## Next Steps
 

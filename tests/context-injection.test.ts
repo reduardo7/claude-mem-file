@@ -12,7 +12,7 @@ import {
  * Tests for the shared context injection utility.
  *
  * injectContextIntoMarkdownFile is used by MCP integrations and OpenCode
- * installer to inject or update a <claude-mem-context> section in markdown files.
+ * installer to inject or update a <claude-mem-file-context> section in markdown files.
  */
 
 describe('Context Injection', () => {
@@ -33,8 +33,8 @@ describe('Context Injection', () => {
 
   describe('tag constants', () => {
     it('exports correct open and close tags', () => {
-      expect(CONTEXT_TAG_OPEN).toBe('<claude-mem-context>');
-      expect(CONTEXT_TAG_CLOSE).toBe('</claude-mem-context>');
+      expect(CONTEXT_TAG_OPEN).toBe('<claude-mem-file-context>');
+      expect(CONTEXT_TAG_CLOSE).toBe('</claude-mem-file-context>');
     });
   });
 

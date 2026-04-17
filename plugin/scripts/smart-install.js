@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Smart Install Script for claude-mem
+ * Smart Install Script for claude-mem-file
  *
  * Ensures Bun runtime and uv (Python package manager) are installed
  * (auto-installs if missing) and handles dependency installation when needed.
@@ -22,7 +22,7 @@ function isPluginDisabledInClaudeSettings() {
     const settingsPath = join(configDir, 'settings.json');
     if (!existsSync(settingsPath)) return false;
     const settings = JSON.parse(readFileSync(settingsPath, 'utf-8'));
-    return settings?.enabledPlugins?.['claude-mem@thedotmack'] === false;
+    return settings?.enabledPlugins?.['claude-mem-file@thedotmack'] === false;
   } catch {
     return false;
   }
@@ -340,12 +340,12 @@ function installUv() {
 }
 
 /**
- * Add shell alias for claude-mem command
+ * Add shell alias for claude-mem-file command
  */
 function installCLI() {
   const WORKER_CLI = join(ROOT, 'scripts', 'worker-service.cjs');
   const bunPath = getBunPath() || 'bun';
-  const aliasLine = `alias claude-mem='${bunPath} "${WORKER_CLI}"'`;
+  const aliasLine = `alias claude-mem-file='${bunPath} "${WORKER_CLI}"'`;
   const markerPath = join(ROOT, '.cli-installed');
 
   // Skip if already installed
@@ -356,17 +356,17 @@ function installCLI() {
       // Windows: Add to PATH via PowerShell profile
       const profilePath = join(process.env.USERPROFILE || homedir(), 'Documents', 'PowerShell', 'Microsoft.PowerShell_profile.ps1');
       const profileDir = join(process.env.USERPROFILE || homedir(), 'Documents', 'PowerShell');
-      const functionDef = `function claude-mem { & "${bunPath}" "${WORKER_CLI}" $args }\n`;
+      const functionDef = `function claude-mem-file { & "${bunPath}" "${WORKER_CLI}" $args }\n`;
 
       if (!existsSync(profileDir)) {
         execSync(`mkdir "${profileDir}"`, { stdio: 'ignore', shell: true });
       }
 
       const existingContent = existsSync(profilePath) ? readFileSync(profilePath, 'utf-8') : '';
-      if (!existingContent.includes('function claude-mem')) {
+      if (!existingContent.includes('function claude-mem-file')) {
         writeFileSync(profilePath, existingContent + '\n' + functionDef);
         console.error(`✅ PowerShell function added to profile`);
-        console.error('   Restart your terminal to use: claude-mem <command>');
+        console.error('   Restart your terminal to use: claude-mem-file <command>');
       }
     } else {
       // Unix: Add alias to shell configs
@@ -378,13 +378,13 @@ function installCLI() {
       for (const config of shellConfigs) {
         if (existsSync(config)) {
           const content = readFileSync(config, 'utf-8');
-          if (!content.includes('alias claude-mem=')) {
+          if (!content.includes('alias claude-mem-file=')) {
             writeFileSync(config, content + '\n' + aliasLine + '\n');
             console.error(`✅ Alias added to ${config}`);
           }
         }
       }
-      console.error('   Restart your terminal to use: claude-mem <command>');
+      console.error('   Restart your terminal to use: claude-mem-file <command>');
     }
 
     writeFileSync(markerPath, new Date().toISOString());
@@ -497,9 +497,9 @@ const MACHO_MAGIC_NATIVE  = 0xFEEDFACF; // native 64-bit (arm64/x86_64) — file
 const MACHO_MAGIC_SWAPPED = 0xCFFAEDFE; // byte-swapped 64-bit             — file bytes FE ED FA CF
 
 /**
- * Warn when the bundled claude-mem binary cannot run on the current platform.
+ * Warn when the bundled claude-mem-file binary cannot run on the current platform.
  *
- * The committed binary (plugin/scripts/claude-mem) is compiled for macOS arm64.
+ * The committed binary (plugin/scripts/claude-mem-file) is compiled for macOS arm64.
  * On Linux or Windows it produces "Exec format error" and silently fails.
  * This check surfaces the incompatibility at install time so users know why
  * the binary path doesn't work, and confirms the JS fallback (bun-runner.js →
@@ -507,7 +507,7 @@ const MACHO_MAGIC_SWAPPED = 0xCFFAEDFE; // byte-swapped 64-bit             — f
  *
  * Fixes #1547 — Plugin silently fails on Linux ARM64.
  */
-export function checkBinaryPlatformCompatibility(binaryPath = join(ROOT, 'scripts', 'claude-mem')) {
+export function checkBinaryPlatformCompatibility(binaryPath = join(ROOT, 'scripts', 'claude-mem-file')) {
 
   if (!existsSync(binaryPath)) {
     return; // Binary absent — nothing to check (e.g. after npm install which excludes it)
@@ -527,7 +527,7 @@ export function checkBinaryPlatformCompatibility(binaryPath = join(ROOT, 'script
 
     const magic = buf.readUInt32LE(0);
     if (magic === MACHO_MAGIC_NATIVE || magic === MACHO_MAGIC_SWAPPED) {
-      console.error('⚠️  Platform notice: The bundled claude-mem binary is macOS-only.');
+      console.error('⚠️  Platform notice: The bundled claude-mem-file binary is macOS-only.');
       console.error(`   Current platform: ${process.platform} ${process.arch}`);
       console.error('   The binary will not execute on this platform.');
       console.error('   Plugin functionality is provided by the JS fallback');
@@ -610,7 +610,7 @@ try {
 
     // Auto-restart worker to pick up new code
     const port = process.env.CLAUDE_MEM_WORKER_PORT || 37777;
-    console.error(`[claude-mem] Plugin updated to v${newVersion} - restarting worker...`);
+    console.error(`[claude-mem-file] Plugin updated to v${newVersion} - restarting worker...`);
     try {
       // Graceful shutdown via HTTP (curl is cross-platform enough)
       execSync(`curl -s -X POST http://127.0.0.1:${port}/api/admin/shutdown`, {

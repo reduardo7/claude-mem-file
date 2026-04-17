@@ -3,7 +3,10 @@ import type { FieldSpec, MatchRule, TranscriptSchema, WatchTarget } from './type
 interface ResolveContext {
   watch: WatchTarget;
   schema: TranscriptSchema;
-  session?: Record<string, unknown>;
+  // `session` is an opaque caller-defined state bag. The field-utils only
+  // reach into it via string-path lookups, so widening to `unknown` here lets
+  // callers pass typed interfaces (e.g. SessionState) without a cast.
+  session?: unknown;
 }
 
 function parsePath(path: string): Array<string | number> {

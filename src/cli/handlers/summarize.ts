@@ -57,8 +57,8 @@ export const summarizeHandler: EventHandler = {
     // empty summarize requests that pollute logs — upstream bug)
     if (!lastAssistantMessage || !lastAssistantMessage.trim()) {
       logger.debug('HOOK', 'No assistant message in transcript - skipping summary', {
-        sessionId,
-        transcriptPath
+        contentSessionId: sessionId,
+        transcriptPath,
       });
       return { continue: true, suppressOutput: true, exitCode: HOOK_EXIT_CODES.SUCCESS };
     }
@@ -112,8 +112,8 @@ export const summarizeHandler: EventHandler = {
           // This is the silent-failure path described in #1633: queue empties but no summary record exists.
           if (summaryStored === false) {
             logger.warn('HOOK', 'Summary was not stored: LLM response likely lacked valid <summary> tags (#1633)', {
-              sessionId,
-              waitedMs: Date.now() - waitStart
+              contentSessionId: sessionId,
+              waitedMs: Date.now() - waitStart,
             });
           }
           break;

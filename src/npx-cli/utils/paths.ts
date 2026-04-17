@@ -51,12 +51,12 @@ export function claudeSettingsPath(): string {
 
 /** Plugin cache directory for a specific version. */
 export function pluginCacheDirectory(version: string): string {
-  return join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem', version);
+  return join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem-file', version);
 }
 
-/** claude-mem data directory (default `~/.claude-mem`). */
+/** claude-mem-file data directory (default `~/.claude-mem-file`). */
 export function claudeMemDataDirectory(): string {
-  return join(homedir(), '.claude-mem');
+  return join(homedir(), '.claude-mem-file');
 }
 
 // ---------------------------------------------------------------------------

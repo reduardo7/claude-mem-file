@@ -1,10 +1,10 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/thedotmack/claude-mem">
+  <a href="https://github.com/thedotmack/claude-mem-file">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
     </picture>
   </a>
   <br>
@@ -47,40 +47,15 @@
 
 <h4 align="center">claude-mem-file — Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
-
 <br>
 
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem">
+      <a href="https://github.com/thedotmack/claude-mem-file">
         <picture>
           <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
+            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
             alt="Claude-Mem Preview"
             width="500"
           >
@@ -88,19 +63,19 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
+      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -120,7 +95,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and storing project knowledge as versioned Markdown in <code>docs/</code> — an Obsidian-style vault shared across all collaborators via git.
+  Claude-Mem-File seamlessly preserves context across sessions by capturing tool-use observations, generating semantic summaries, and storing everything as versioned Markdown inside a per-project Obsidian-compatible vault at <code>&lt;project-root&gt;/docs/vault/</code> — no SQLite database, no binary blobs, fully mergeable via git.
 </p>
 
 ---
@@ -138,6 +113,7 @@ Or install for Gemini CLI (auto-detects `~/.gemini`):
 ```bash
 npx claude-mem-file install --ide gemini-cli
 ```
+
 Or install for OpenCode:
 
 ```bash
@@ -147,9 +123,9 @@ npx claude-mem-file install --ide opencode
 Or install from the plugin marketplace inside Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem
+/plugin marketplace add thedotmack/claude-mem-file
 
-/plugin install claude-mem
+/plugin install claude-mem-file
 ```
 
 Restart Claude Code or Gemini CLI. Context from previous sessions will automatically appear in new sessions.
@@ -158,19 +134,20 @@ Restart Claude Code or Gemini CLI. Context from previous sessions will automatic
 
 ### 🦞 OpenClaw Gateway
 
-Install claude-mem as a persistent memory plugin on [OpenClaw](https://openclaw.ai) gateways with a single command:
+Install claude-mem-file as a persistent memory plugin on [OpenClaw](https://openclaw.ai) gateways with a single command:
 
 ```bash
 curl -fsSL https://install.cmem.ai/openclaw.sh | bash
 ```
 
-The installer handles dependencies, plugin setup, AI provider configuration, worker startup, and optional real-time observation feeds to Telegram, Discord, Slack, and more. See the [OpenClaw Integration Guide](https://docs.claude-mem.ai/openclaw-integration) for details.
+The installer handles dependencies, plugin setup, AI provider configuration, worker startup, and optional real-time observation feeds to Telegram, Discord, Slack, and more. See the [OpenClaw Integration Guide](https://docs.claude-mem-file.ai/openclaw-integration) for details.
 
 **Key Features:**
 
 - 🧠 **Persistent Memory** - Context survives across sessions
+- 📁 **Markdown Vault (Obsidian-compatible)** - Observations and sessions stored as `.md` files under `<project-root>/docs/vault/`, versionable and mergeable via git — no SQLite, no binary state on dev machines
 - 📊 **Progressive Disclosure** - Layered memory retrieval with token cost visibility
-- 🔍 **Skill-Based Search** - Query your project history with mem-search skill
+- 🔍 **Skill-Based Search** - Query your project history with mem-search skill (powered by in-memory `minisearch` over the vault)
 - 🖥️ **Web Viewer UI** - Real-time memory stream at http://localhost:37777
 - 💻 **Claude Desktop Skill** - Search memory from Claude Desktop conversations
 - 🔒 **Privacy Control** - Use `<private>` tags to exclude sensitive content from storage
@@ -179,39 +156,54 @@ The installer handles dependencies, plugin setup, AI provider configuration, wor
 - 🔗 **Citations** - Reference past observations with IDs (access via http://localhost:37777/api/observation/{id} or view all in the web viewer at http://localhost:37777)
 - 🧪 **Beta Channel** - Try experimental features like Endless Mode via version switching
 
+## Migrating from SQLite (legacy)
+
+Earlier releases stored memory in `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB). The new vault layout replaces all of that with plain Markdown in `<project-root>/docs/vault/`. Your prior memories are not lost — run the migration script once:
+
+```bash
+# from within any project that previously used claude-mem-file:
+npm run migrate-to-vault              # writes docs/vault/ from the legacy DB
+npm run migrate-to-vault:dry          # preview without writing
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # explicit paths
+```
+
+The script opens the SQLite database read-only and is idempotent (duplicates are detected via SHA-256 content hashes, so re-running is safe). Commit the resulting `docs/vault/` folder to your repo to share memory with your team.
+
 ---
 
 ## Documentation
 
-📚 **[View Full Documentation](https://docs.claude-mem.ai/)** - Browse on official website
+📚 **[View Full Documentation](https://docs.claude-mem-file.ai/)** - Browse on official website
 
 ### Getting Started
 
-- **[Installation Guide](https://docs.claude-mem.ai/installation)** - Quick start & advanced installation
-- **[Gemini CLI Setup](https://docs.claude-mem.ai/gemini-cli/setup)** - Dedicated guide for Google's Gemini CLI integration
-- **[Usage Guide](https://docs.claude-mem.ai/usage/getting-started)** - How Claude-Mem works automatically
-- **[Search Tools](https://docs.claude-mem.ai/usage/search-tools)** - Query your project history with natural language
-- **[Beta Features](https://docs.claude-mem.ai/beta-features)** - Try experimental features like Endless Mode
+- **[Installation Guide](https://docs.claude-mem-file.ai/installation)** - Quick start & advanced installation
+- **[Gemini CLI Setup](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Dedicated guide for Google's Gemini CLI integration
+- **[Usage Guide](https://docs.claude-mem-file.ai/usage/getting-started)** - How Claude-Mem works automatically
+- **[Search Tools](https://docs.claude-mem-file.ai/usage/search-tools)** - Query your project history with natural language
+- **[Beta Features](https://docs.claude-mem-file.ai/beta-features)** - Try experimental features like Endless Mode
 
 ### Best Practices
 
-- **[Context Engineering](https://docs.claude-mem.ai/context-engineering)** - AI agent context optimization principles
-- **[Progressive Disclosure](https://docs.claude-mem.ai/progressive-disclosure)** - Philosophy behind Claude-Mem's context priming strategy
+- **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - AI agent context optimization principles
+- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Philosophy behind Claude-Mem's context priming strategy
 
 ### Architecture
 
-- **[Overview](https://docs.claude-mem.ai/architecture/overview)** - System components & data flow
-- **[Architecture Evolution](https://docs.claude-mem.ai/architecture-evolution)** - The journey from v3 to v5
-- **[Hooks Architecture](https://docs.claude-mem.ai/hooks-architecture)** - How Claude-Mem uses lifecycle hooks
-- **[Hooks Reference](https://docs.claude-mem.ai/architecture/hooks)** - 7 hook scripts explained
-- **[Worker Service](https://docs.claude-mem.ai/architecture/worker-service)** - HTTP API & Bun management
+- **[Overview](https://docs.claude-mem-file.ai/architecture/overview)** - System components & data flow
+- **[Architecture Evolution](https://docs.claude-mem-file.ai/architecture-evolution)** - The journey from v3 to v5
+- **[Hooks Architecture](https://docs.claude-mem-file.ai/hooks-architecture)** - How Claude-Mem uses lifecycle hooks
+- **[Hooks Reference](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook scripts explained
+- **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & Bun management
 - **[Docs Vault](docs/)** - Obsidian-style Markdown vault for shared project knowledge
 
 ### Configuration & Development
 
-- **[Configuration](https://docs.claude-mem.ai/configuration)** - Environment variables & settings
-- **[Development](https://docs.claude-mem.ai/development)** - Building, testing, contributing
-- **[Troubleshooting](https://docs.claude-mem.ai/troubleshooting)** - Common issues & solutions
+- **[Configuration](https://docs.claude-mem-file.ai/configuration)** - Environment variables & settings
+- **[Development](https://docs.claude-mem-file.ai/development)** - Building, testing, contributing
+- **[Troubleshooting](https://docs.claude-mem-file.ai/troubleshooting)** - Common issues & solutions
 
 ---
 
@@ -225,7 +217,7 @@ The installer handles dependencies, plugin setup, AI provider configuration, wor
 4. **Docs Vault** (`docs/`) - Obsidian-style Markdown vault committed to the repository; the shared source of truth for all architectural decisions, context, and knowledge across sessions and collaborators
 5. **mem-search Skill** - Natural language queries with progressive disclosure
 
-See [Architecture Overview](https://docs.claude-mem.ai/architecture/overview) for details.
+See [Architecture Overview](https://docs.claude-mem-file.ai/architecture/overview) for details.
 
 ---
 
@@ -240,6 +232,7 @@ Claude-Mem provides intelligent memory search through **4 MCP tools** following 
 3. **`get_observations`** - Fetch full details ONLY for filtered IDs (~500-1,000 tokens/result)
 
 **How It Works:**
+
 - Claude uses MCP tools to search your memory
 - Start with `search` to get an index of results
 - Use `timeline` to see what was happening around specific observations
@@ -256,15 +249,15 @@ Claude-Mem provides intelligent memory search through **4 MCP tools** following 
 
 ```typescript
 // Step 1: Search for index
-search(query="authentication bug", type="bugfix", limit=10)
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
 
 // Step 2: Review index, identify relevant IDs (e.g., #123, #456)
 
 // Step 3: Fetch full details
-get_observations(ids=[123, 456])
+get_observations((ids = [123, 456]));
 ```
 
-See [Search Tools Guide](https://docs.claude-mem.ai/usage/search-tools) for detailed examples.
+See [Search Tools Guide](https://docs.claude-mem-file.ai/usage/search-tools) for detailed examples.
 
 ---
 
@@ -272,7 +265,7 @@ See [Search Tools Guide](https://docs.claude-mem.ai/usage/search-tools) for deta
 
 Claude-Mem offers a **beta channel** with experimental features like **Endless Mode** (biomimetic memory architecture for extended sessions). Switch between stable and beta versions from the web viewer UI at http://localhost:37777 → Settings.
 
-See **[Beta Features Documentation](https://docs.claude-mem.ai/beta-features)** for details on Endless Mode and how to try it.
+See **[Beta Features Documentation](https://docs.claude-mem-file.ai/beta-features)** for details on Endless Mode and how to try it.
 
 ---
 
@@ -283,6 +276,7 @@ See **[Beta Features Documentation](https://docs.claude-mem.ai/beta-features)** 
 - **Bun**: JavaScript runtime and process manager (auto-installed if missing)
 
 ---
+
 ### Windows Setup Notes
 
 If you see an error like:
@@ -297,21 +291,22 @@ Make sure Node.js and npm are installed and added to your PATH. Download the lat
 
 ## Configuration
 
-Settings are managed in `~/.claude-mem/settings.json` (auto-created with defaults on first run). Configure AI model, worker port, data directory, log level, and context injection settings.
+Settings are managed in `~/.claude-mem-file/settings.json` (auto-created with defaults on first run). Configure AI model, worker port, data directory, log level, and context injection settings.
 
-See the **[Configuration Guide](https://docs.claude-mem.ai/configuration)** for all available settings and examples.
+See the **[Configuration Guide](https://docs.claude-mem-file.ai/configuration)** for all available settings and examples.
 
 ### Mode & Language Configuration
 
 Claude-Mem supports multiple workflow modes and languages via the `CLAUDE_MEM_MODE` setting.
 
 This option controls both:
+
 - The workflow behavior (e.g. code, chill, investigation)
 - The language used in generated observations
 
 #### How to Configure
 
-Edit your settings file at `~/.claude-mem/settings.json`:
+Edit your settings file at `~/.claude-mem-file/settings.json`:
 
 ```json
 {
@@ -327,11 +322,11 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 
 #### Available Modes
 
-| Mode | Description |
-|------------|-------------------------|
-| `code` | Default English mode |
+| Mode       | Description             |
+| ---------- | ----------------------- |
+| `code`     | Default English mode    |
 | `code--zh` | Simplified Chinese mode |
-| `code--ja` | Japanese mode |
+| `code--ja` | Japanese mode           |
 
 Language-specific modes follow the pattern `code--[lang]` where `[lang]` is the ISO 639-1 language code (e.g., `zh` for Chinese, `ja` for Japanese, `es` for Spanish).
 
@@ -339,12 +334,11 @@ Language-specific modes follow the pattern `code--[lang]` where `[lang]` is the 
 
 #### After Changing Mode
 
-Restart Claude Code to apply the new mode configuration.
----
+## Restart Claude Code to apply the new mode configuration.
 
 ## Development
 
-See the **[Development Guide](https://docs.claude-mem.ai/development)** for build instructions, testing, and contribution workflow.
+See the **[Development Guide](https://docs.claude-mem-file.ai/development)** for build instructions, testing, and contribution workflow.
 
 ---
 
@@ -352,7 +346,7 @@ See the **[Development Guide](https://docs.claude-mem.ai/development)** for buil
 
 If experiencing issues, describe the problem to Claude and the troubleshoot skill will automatically diagnose and provide fixes.
 
-See the **[Troubleshooting Guide](https://docs.claude-mem.ai/troubleshooting)** for common issues and solutions.
+See the **[Troubleshooting Guide](https://docs.claude-mem-file.ai/troubleshooting)** for common issues and solutions.
 
 ---
 
@@ -375,7 +369,7 @@ Contributions are welcome! Please:
 4. Update documentation
 5. Submit a Pull Request
 
-See [Development Guide](https://docs.claude-mem.ai/development) for contribution workflow.
+See [Development Guide](https://docs.claude-mem-file.ai/development) for contribution workflow.
 
 ---
 
@@ -401,8 +395,8 @@ See the [LICENSE](LICENSE) file for full details.
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem/issues)
-- **Repository**: [github.com/thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
+- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
+- **Repository**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
 - **Official X Account**: [@Claude_Memory](https://x.com/Claude_Memory)
 - **Official Discord**: [Join Discord](https://discord.com/invite/J4wttp9vDu)
 - **Author**: Alex Newman ([@thedotmack](https://github.com/thedotmack))

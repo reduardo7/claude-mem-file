@@ -2,7 +2,7 @@
  * Tag Stripping Utilities
  *
  * Implements the tag system for meta-observation control:
- * 1. <claude-mem-context> - System-level tag for auto-injected observations
+ * 1. <claude-mem-file-context> - System-level tag for auto-injected observations
  *    (prevents recursive storage when context injection is active)
  * 2. <private> - User-level tag for manual privacy control
  *    (allows users to mark content they don't want persisted)
@@ -36,7 +36,7 @@ const MAX_TAG_COUNT = 100;
  */
 function countTags(content: string): number {
   const privateCount = (content.match(/<private>/g) || []).length;
-  const contextCount = (content.match(/<claude-mem-context>/g) || []).length;
+  const contextCount = (content.match(/<claude-mem-file-context>/g) || []).length;
   const systemInstructionCount = (content.match(/<system_instruction>/g) || []).length;
   const systemInstructionHyphenCount = (content.match(/<system-instruction>/g) || []).length;
 const persistedOutputCount = (content.match(/<persisted-output>/g) || []).length;
@@ -61,7 +61,7 @@ function stripTagsInternal(content: string): string {
   }
 
   return content
-    .replace(/<claude-mem-context>[\s\S]*?<\/claude-mem-context>/g, '')
+    .replace(/<claude-mem-file-context>[\s\S]*?<\/claude-mem-file-context>/g, '')
     .replace(/<private>[\s\S]*?<\/private>/g, '')
     .replace(/<system_instruction>[\s\S]*?<\/system_instruction>/g, '')
     .replace(/<system-instruction>[\s\S]*?<\/system-instruction>/g, '')

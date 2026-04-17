@@ -1,13 +1,13 @@
 {
-  "name": "claude-mem",
-  "version": "12.1.6",
+  "name": "claude-mem-file",
+  "version": "13.0.0",
   "description": "Memory compression system for Claude Code - persist context across sessions",
   "author": {
     "name": "Alex Newman",
     "url": "https://github.com/thedotmack"
   },
-  "homepage": "https://github.com/thedotmack/claude-mem#readme",
-  "repository": "https://github.com/thedotmack/claude-mem",
+  "homepage": "https://github.com/thedotmack/claude-mem-file#readme",
+  "repository": "https://github.com/thedotmack/claude-mem-file",
   "license": "AGPL-3.0",
   "keywords": [
     "claude",
@@ -23,16 +23,16 @@
     "nodejs"
   ],
   "interface": {
-    "displayName": "claude-mem",
+    "displayName": "claude-mem-file",
     "shortDescription": "Persistent memory and context compression across coding sessions.",
-    "longDescription": "claude-mem captures coding-session activity, compresses it into reusable observations, and injects relevant context back into future Claude Code and Codex-compatible sessions.",
+    "longDescription": "claude-mem-file captures coding-session activity, compresses it into reusable observations, and injects relevant context back into future Claude Code and Codex-compatible sessions.",
     "developerName": "Alex Newman",
     "category": "Productivity",
     "capabilities": [
       "Interactive",
       "Write"
     ],
-    "websiteURL": "https://github.com/thedotmack/claude-mem",
+    "websiteURL": "https://github.com/thedotmack/claude-mem-file",
     "defaultPrompt": [
       "Find what I already learned about this codebase before I start a new task.",
       "Show recent observations related to the files I am editing right now.",

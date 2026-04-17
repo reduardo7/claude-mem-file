@@ -118,7 +118,7 @@ status: archived
 | Risk | Medium |
 
 **What it does:**
-- Adds `claude-mem generate` and `claude-mem clean` CLI commands
+- Adds `claude-mem-file generate` and `claude-mem-file clean` CLI commands
 - Fixes validation bugs (deleted folders recreated from stale DB)
 - Fixes Windows path handling
 - Adds automatic shell alias installation

@@ -1,5 +1,5 @@
 /**
- * McpIntegrations - MCP-based IDE integrations for claude-mem
+ * McpIntegrations - MCP-based IDE integrations for claude-mem-file
  *
  * Handles MCP config writing and context injection for IDEs that support
  * the Model Context Protocol. These are "MCP-only" integrations: they provide
@@ -28,11 +28,11 @@ import { injectContextIntoMarkdownFile } from '../../utils/context-injection.js'
 // Shared Constants
 // ============================================================================
 
-const PLACEHOLDER_CONTEXT = `# claude-mem: Cross-Session Memory
+const PLACEHOLDER_CONTEXT = `# claude-mem-file: Cross-Session Memory
 
 *No context yet. Complete your first session and context will appear here.*
 
-Use claude-mem's MCP search tools for manual memory queries.`;
+Use claude-mem-file's MCP search tools for manual memory queries.`;
 
 // ============================================================================
 // Shared Utilities
@@ -67,7 +67,7 @@ function writeMcpJsonConfig(
     existingConfig[serversKeyName] = {};
   }
 
-  existingConfig[serversKeyName]['claude-mem'] = buildMcpServerEntry(mcpServerPath);
+  existingConfig[serversKeyName]['claude-mem-file'] = buildMcpServerEntry(mcpServerPath);
 
   writeFileSync(configFilePath, JSON.stringify(existingConfig, null, 2) + '\n');
 }
@@ -139,7 +139,7 @@ function installMcpIntegration(config: McpInstallerConfig): () => Promise<number
       }
       summaryLines.push('');
       summaryLines.push('Next steps:');
-      summaryLines.push('  1. Start claude-mem worker: npx claude-mem start');
+      summaryLines.push('  1. Start claude-mem-file worker: npx claude-mem-file start');
       summaryLines.push(`  2. Restart ${config.ideLabel} to pick up the MCP server`);
       summaryLines.push('');
       console.log(summaryLines.join('\n'));
@@ -173,7 +173,7 @@ const ANTIGRAVITY_CONFIG: McpInstallerConfig = {
   configPath: path.join(homedir(), '.gemini', 'antigravity', 'mcp_config.json'),
   configKey: 'mcpServers',
   contextFile: {
-    path: path.join(process.cwd(), '.agent', 'rules', 'claude-mem-context.md'),
+    path: path.join(process.cwd(), '.agent', 'rules', 'claude-mem-file-context.md'),
     isWorkspaceRelative: true,
   },
 };
@@ -191,7 +191,7 @@ const ROO_CODE_CONFIG: McpInstallerConfig = {
   configPath: path.join(process.cwd(), '.roo', 'mcp.json'),
   configKey: 'mcpServers',
   contextFile: {
-    path: path.join(process.cwd(), '.roo', 'rules', 'claude-mem-context.md'),
+    path: path.join(process.cwd(), '.roo', 'rules', 'claude-mem-file-context.md'),
     isWorkspaceRelative: true,
   },
 };
@@ -220,12 +220,12 @@ function getGooseConfigPath(): string {
 }
 
 /**
- * Check if a YAML string already has a claude-mem entry under mcpServers.
+ * Check if a YAML string already has a claude-mem-file entry under mcpServers.
  * Uses string matching to avoid needing a YAML parser.
  */
 function gooseConfigHasClaudeMemEntry(yamlContent: string): boolean {
-  // Look for "claude-mem:" indented under mcpServers
-  return yamlContent.includes('claude-mem:') &&
+  // Look for "claude-mem-file:" indented under mcpServers
+  return yamlContent.includes('claude-mem-file:') &&
     yamlContent.includes('mcpServers:');
 }
 
@@ -237,7 +237,7 @@ function buildGooseMcpYamlBlock(mcpServerPath: string): string {
   // Goose expects the mcpServers section at the top level
   return [
     'mcpServers:',
-    '  claude-mem:',
+    '  claude-mem-file:',
     `    command: ${process.execPath}`,
     '    args:',
     `      - ${mcpServerPath}`,
@@ -245,11 +245,11 @@ function buildGooseMcpYamlBlock(mcpServerPath: string): string {
 }
 
 /**
- * Build just the claude-mem server entry (for appending under existing mcpServers).
+ * Build just the claude-mem-file server entry (for appending under existing mcpServers).
  */
 function buildGooseClaudeMemEntryYaml(mcpServerPath: string): string {
   return [
-    '  claude-mem:',
+    '  claude-mem-file:',
     `    command: ${process.execPath}`,
     '    args:',
     `      - ${mcpServerPath}`,
@@ -257,7 +257,7 @@ function buildGooseClaudeMemEntryYaml(mcpServerPath: string): string {
 }
 
 /**
- * Install claude-mem MCP integration for Goose.
+ * Install claude-mem-file MCP integration for Goose.
  *
  * - Writes/merges MCP config into ~/.config/goose/config.yaml
  * - Uses string manipulation for YAML (no parser dependency)
@@ -283,18 +283,18 @@ export async function installGooseMcpIntegration(): Promise<number> {
       let yamlContent = readFileSync(configPath, 'utf-8');
 
       if (gooseConfigHasClaudeMemEntry(yamlContent)) {
-        // Already configured — replace the claude-mem block
-        // Find the claude-mem entry and replace it
-        const claudeMemPattern = /( {2}claude-mem:\n(?:.*\n)*?(?= {2}\S|\n\n|^\S|$))/m;
+        // Already configured — replace the claude-mem-file block
+        // Find the claude-mem-file entry and replace it
+        const claudeMemPattern = /( {2}claude-mem-file:\n(?:.*\n)*?(?= {2}\S|\n\n|^\S|$))/m;
         const newEntry = buildGooseClaudeMemEntryYaml(mcpServerPath) + '\n';
 
         if (claudeMemPattern.test(yamlContent)) {
           yamlContent = yamlContent.replace(claudeMemPattern, newEntry);
         }
         writeFileSync(configPath, yamlContent);
-        console.log(`  Updated existing claude-mem entry in: ${configPath}`);
+        console.log(`  Updated existing claude-mem-file entry in: ${configPath}`);
       } else if (yamlContent.includes('mcpServers:')) {
-        // mcpServers section exists but no claude-mem entry — append under it
+        // mcpServers section exists but no claude-mem-file entry — append under it
         const mcpServersIndex = yamlContent.indexOf('mcpServers:');
         const insertionPoint = mcpServersIndex + 'mcpServers:'.length;
         const newEntry = '\n' + buildGooseClaudeMemEntryYaml(mcpServerPath);
@@ -305,7 +305,7 @@ export async function installGooseMcpIntegration(): Promise<number> {
           yamlContent.slice(insertionPoint);
 
         writeFileSync(configPath, yamlContent);
-        console.log(`  Added claude-mem to existing mcpServers in: ${configPath}`);
+        console.log(`  Added claude-mem-file to existing mcpServers in: ${configPath}`);
       } else {
         // No mcpServers section — append the entire block
         const mcpBlock = '\n' + buildGooseMcpYamlBlock(mcpServerPath) + '\n';
@@ -329,7 +329,7 @@ Note: This is an MCP-only integration providing search tools and context.
 Transcript capture is not available for Goose.
 
 Next steps:
-  1. Start claude-mem worker: npx claude-mem start
+  1. Start claude-mem-file worker: npx claude-mem-file start
   2. Restart Goose to pick up the MCP server
 `);
 

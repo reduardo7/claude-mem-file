@@ -1,5 +1,5 @@
 /**
- * Smoke test for OpenClaw claude-mem plugin registration.
+ * Smoke test for OpenClaw claude-mem-file plugin registration.
  * Validates the plugin structure works independently of the full OpenClaw runtime.
  *
  * Run: node test-sse-consumer.js
@@ -13,10 +13,10 @@ const eventHandlers = new Map();
 const logs = [];
 
 const mockApi = {
-  id: "claude-mem",
+  id: "claude-mem-file",
   name: "Claude-Mem (Persistent Memory)",
   version: "1.0.0",
-  source: "/test/extensions/claude-mem/dist/index.js",
+  source: "/test/extensions/claude-mem-file/dist/index.js",
   config: {},
   pluginConfig: {},
   logger: {
@@ -58,27 +58,27 @@ let failures = 0;
 if (!registeredService) {
   console.error("FAIL: No service was registered");
   failures++;
-} else if (registeredService.id !== "claude-mem-observation-feed") {
+} else if (registeredService.id !== "claude-mem-file-observation-feed") {
   console.error(
-    `FAIL: Service ID is "${registeredService.id}", expected "claude-mem-observation-feed"`
+    `FAIL: Service ID is "${registeredService.id}", expected "claude-mem-file-observation-feed"`
   );
   failures++;
 } else {
-  console.log("OK: Service registered with id 'claude-mem-observation-feed'");
+  console.log("OK: Service registered with id 'claude-mem-file-observation-feed'");
 }
 
-if (!registeredCommands.has("claude-mem-feed")) {
-  console.error("FAIL: No 'claude-mem-feed' command registered");
+if (!registeredCommands.has("claude-mem-file-feed")) {
+  console.error("FAIL: No 'claude-mem-file-feed' command registered");
   failures++;
 } else {
-  console.log("OK: Command registered with name 'claude-mem-feed'");
+  console.log("OK: Command registered with name 'claude-mem-file-feed'");
 }
 
-if (!registeredCommands.has("claude-mem-status")) {
-  console.error("FAIL: No 'claude-mem-status' command registered");
+if (!registeredCommands.has("claude-mem-file-status")) {
+  console.error("FAIL: No 'claude-mem-file-status' command registered");
   failures++;
 } else {
-  console.log("OK: Command registered with name 'claude-mem-status'");
+  console.log("OK: Command registered with name 'claude-mem-file-status'");
 }
 
 const expectedEvents = ["before_agent_start", "tool_result_persist", "agent_end", "gateway_start"];

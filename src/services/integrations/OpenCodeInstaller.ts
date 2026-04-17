@@ -1,7 +1,7 @@
 /**
- * OpenCodeInstaller - OpenCode IDE integration installer for claude-mem
+ * OpenCodeInstaller - OpenCode IDE integration installer for claude-mem-file
  *
- * Installs the claude-mem plugin into OpenCode's plugin directory and
+ * Installs the claude-mem-file plugin into OpenCode's plugin directory and
  * sets up context injection via AGENTS.md.
  *
  * Install strategy: File-based (Option A)
@@ -9,7 +9,7 @@
  * - Plugins in that directory are auto-loaded at startup
  *
  * Context injection:
- * - Appends/updates <claude-mem-context> section in AGENTS.md
+ * - Appends/updates <claude-mem-file-context> section in AGENTS.md
  *
  * Respects OPENCODE_CONFIG_DIR env var for config directory resolution.
  */
@@ -55,7 +55,7 @@ export function getOpenCodeAgentsMdPath(): string {
  * Resolve the path to the installed plugin file.
  */
 export function getInstalledPluginPath(): string {
-  return path.join(getOpenCodePluginsDirectory(), 'claude-mem.js');
+  return path.join(getOpenCodePluginsDirectory(), 'claude-mem-file.js');
 }
 
 // ============================================================================
@@ -89,8 +89,8 @@ export function findBuiltPluginPath(): string | null {
 }
 
 /**
- * Install the claude-mem plugin into OpenCode's plugins directory.
- * Copies the built plugin bundle to ~/.config/opencode/plugins/claude-mem.js
+ * Install the claude-mem-file plugin into OpenCode's plugins directory.
+ * Copies the built plugin bundle to ~/.config/opencode/plugins/claude-mem-file.js
  *
  * @returns 0 on success, 1 on failure
  */
@@ -129,10 +129,10 @@ export function installOpenCodePlugin(): number {
 // ============================================================================
 
 /**
- * Inject or update claude-mem context in OpenCode's AGENTS.md file.
+ * Inject or update claude-mem-file context in OpenCode's AGENTS.md file.
  *
  * If the file doesn't exist, creates it with the context section.
- * If the file exists, replaces the existing <claude-mem-context> section
+ * If the file exists, replaces the existing <claude-mem-file-context> section
  * or appends one at the end.
  *
  * @param contextContent - The context content to inject (without tags)
@@ -187,7 +187,7 @@ export async function syncContextToAgentsMd(
 // ============================================================================
 
 /**
- * Remove the claude-mem plugin from OpenCode.
+ * Remove the claude-mem-file plugin from OpenCode.
  * Removes the plugin file and cleans up the AGENTS.md context section.
  *
  * @returns 0 on success, 1 on failure
@@ -274,7 +274,7 @@ export function checkOpenCodeStatus(): number {
     const content = readFileSync(agentsMdPath, 'utf-8');
     const hasContextTags = content.includes(CONTEXT_TAG_OPEN);
     console.log(`  Exists: yes`);
-    console.log(`  Has claude-mem context: ${hasContextTags ? 'yes' : 'no'}`);
+    console.log(`  Has claude-mem-file context: ${hasContextTags ? 'yes' : 'no'}`);
   } else {
     console.log(`  Exists: no`);
   }
@@ -306,7 +306,7 @@ export async function installOpenCodeIntegration(): Promise<number> {
 
 *No context yet. Complete your first session and context will appear here.*
 
-Use claude-mem search tools for manual memory queries.`;
+Use claude-mem-file search tools for manual memory queries.`;
 
   // Try to fetch real context from worker first
   try {
@@ -363,7 +363,7 @@ Plugin installed to: ${getInstalledPluginPath()}
 Context file: ${getOpenCodeAgentsMdPath()}
 
 Next steps:
-  1. Start claude-mem worker: npx claude-mem start
+  1. Start claude-mem-file worker: npx claude-mem-file start
   2. Restart OpenCode to load the plugin
   3. Memory capture is automatic from then on
 `);

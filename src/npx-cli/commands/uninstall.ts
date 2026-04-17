@@ -1,5 +1,5 @@
 /**
- * Uninstall command for `npx claude-mem uninstall`.
+ * Uninstall command for `npx claude-mem-file uninstall`.
  *
  * Removes the plugin from the marketplace directory, cache, plugin
  * registrations, and Claude settings. Optionally cleans up IDE-specific
@@ -36,7 +36,7 @@ function removeMarketplaceDirectory(): boolean {
 }
 
 function removeCacheDirectory(): boolean {
-  const cacheDirectory = join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem');
+  const cacheDirectory = join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem-file');
   if (existsSync(cacheDirectory)) {
     rmSync(cacheDirectory, { recursive: true, force: true });
     return true;
@@ -54,16 +54,16 @@ function removeFromKnownMarketplaces(): void {
 
 function removeFromInstalledPlugins(): void {
   const installedPlugins = readJsonSafe<Record<string, any>>(installedPluginsPath(), {});
-  if (installedPlugins.plugins?.['claude-mem@thedotmack']) {
-    delete installedPlugins.plugins['claude-mem@thedotmack'];
+  if (installedPlugins.plugins?.['claude-mem-file@thedotmack']) {
+    delete installedPlugins.plugins['claude-mem-file@thedotmack'];
     writeJsonFileAtomic(installedPluginsPath(), installedPlugins);
   }
 }
 
 function removeFromClaudeSettings(): void {
   const settings = readJsonSafe<Record<string, any>>(claudeSettingsPath(), {});
-  if (settings.enabledPlugins?.['claude-mem@thedotmack'] !== undefined) {
-    delete settings.enabledPlugins['claude-mem@thedotmack'];
+  if (settings.enabledPlugins?.['claude-mem-file@thedotmack'] !== undefined) {
+    delete settings.enabledPlugins['claude-mem-file@thedotmack'];
     writeJsonFileAtomic(claudeSettingsPath(), settings);
   }
 }
@@ -73,10 +73,10 @@ function removeFromClaudeSettings(): void {
 // ---------------------------------------------------------------------------
 
 export async function runUninstallCommand(): Promise<void> {
-  p.intro(pc.bgRed(pc.white(' claude-mem uninstall ')));
+  p.intro(pc.bgRed(pc.white(' claude-mem-file uninstall ')));
 
   if (!isPluginInstalled()) {
-    p.log.warn('claude-mem does not appear to be installed.');
+    p.log.warn('claude-mem-file does not appear to be installed.');
 
     // Still offer to clean up partial state
     if (process.stdin.isTTY) {
@@ -95,7 +95,7 @@ export async function runUninstallCommand(): Promise<void> {
     }
   } else if (process.stdin.isTTY) {
     const shouldContinue = await p.confirm({
-      message: 'Are you sure you want to uninstall claude-mem?',
+      message: 'Are you sure you want to uninstall claude-mem-file?',
       initialValue: false,
     });
 
@@ -208,11 +208,11 @@ export async function runUninstallCommand(): Promise<void> {
 
   p.note(
     [
-      `Your data directory at ${pc.cyan('~/.claude-mem')} was preserved.`,
-      'To remove it manually: rm -rf ~/.claude-mem',
+      `Your data directory at ${pc.cyan('~/.claude-mem-file')} was preserved.`,
+      'To remove it manually: rm -rf ~/.claude-mem-file',
     ].join('\n'),
     'Note',
   );
 
-  p.outro(pc.green('claude-mem has been uninstalled.'));
+  p.outro(pc.green('claude-mem-file has been uninstalled.'));
 }

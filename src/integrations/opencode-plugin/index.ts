@@ -1,7 +1,7 @@
 /**
- * OpenCode Plugin for claude-mem
+ * OpenCode Plugin for claude-mem-file
  *
- * Integrates claude-mem persistent memory with OpenCode (110k+ stars).
+ * Integrates claude-mem-file persistent memory with OpenCode (110k+ stars).
  * Runs inside OpenCode's Bun-based plugin runtime.
  *
  * Plugin hooks:
@@ -112,7 +112,7 @@ async function workerPost(
       body: JSON.stringify(body),
     });
     if (!response.ok) {
-      console.warn(`[claude-mem] Worker POST ${path} returned ${response.status}`);
+      console.warn(`[claude-mem-file] Worker POST ${path} returned ${response.status}`);
       return null;
     }
     return (await response.json()) as Record<string, unknown>;
@@ -120,7 +120,7 @@ async function workerPost(
     // Gracefully handle ECONNREFUSED — worker may not be running
     const message = error instanceof Error ? error.message : String(error);
     if (!message.includes("ECONNREFUSED")) {
-      console.warn(`[claude-mem] Worker POST ${path} failed: ${message}`);
+      console.warn(`[claude-mem-file] Worker POST ${path} failed: ${message}`);
     }
     return null;
   }
@@ -137,7 +137,7 @@ function workerPostFireAndForget(
   }).catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
     if (!message.includes("ECONNREFUSED")) {
-      console.warn(`[claude-mem] Worker POST ${path} failed: ${message}`);
+      console.warn(`[claude-mem-file] Worker POST ${path} failed: ${message}`);
     }
   });
 }
@@ -146,14 +146,14 @@ async function workerGetText(path: string): Promise<string | null> {
   try {
     const response = await fetch(`${WORKER_BASE_URL}${path}`);
     if (!response.ok) {
-      console.warn(`[claude-mem] Worker GET ${path} returned ${response.status}`);
+      console.warn(`[claude-mem-file] Worker GET ${path} returned ${response.status}`);
       return null;
     }
     return await response.text();
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     if (!message.includes("ECONNREFUSED")) {
-      console.warn(`[claude-mem] Worker GET ${path} failed: ${message}`);
+      console.warn(`[claude-mem-file] Worker GET ${path} failed: ${message}`);
     }
     return null;
   }
@@ -193,7 +193,7 @@ function getOrCreateContentSessionId(openCodeSessionId: string): string {
 export const ClaudeMemPlugin = async (ctx: OpenCodePluginContext) => {
   const projectName = ctx.project?.name || "opencode";
 
-  console.log(`[claude-mem] OpenCode plugin loading (project: ${projectName})`);
+  console.log(`[claude-mem-file] OpenCode plugin loading (project: ${projectName})`);
 
   return {
     // ------------------------------------------------------------------
@@ -316,7 +316,7 @@ export const ClaudeMemPlugin = async (ctx: OpenCodePluginContext) => {
     tool: {
       claude_mem_search: {
         description:
-          "Search claude-mem memory database for past observations, sessions, and context",
+          "Search claude-mem-file memory database for past observations, sessions, and context",
         args: {
           query: {
             type: "string",
@@ -336,7 +336,7 @@ export const ClaudeMemPlugin = async (ctx: OpenCodePluginContext) => {
           );
 
           if (!text) {
-            return "claude-mem worker is not running. Start it with: npx claude-mem start";
+            return "claude-mem-file worker is not running. Start it with: npx claude-mem-file start";
           }
 
           try {

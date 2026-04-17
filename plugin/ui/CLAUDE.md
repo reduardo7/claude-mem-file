@@ -1,4 +1,4 @@
-<claude-mem-context>
+<claude-mem-file-context>
 # Recent Activity
 
 ### Nov 5, 2025
@@ -16,7 +16,7 @@
 | #5133 | 7:29 PM | ✅ | Version 5.2.3 Released with Build Process | ~487 |
 | #4916 | 1:49 PM | ⚖️ | Claude Mem Pro Premium Offering Implementation Plan Finalized | ~946 |
 | #4902 | 1:35 PM | 🟣 | Claude Mem Pro Premium Project Initialization | ~679 |
-| #4901 | 1:31 PM | ⚖️ | Premium claude-mem Project Architecture and Planning | ~797 |
+| #4901 | 1:31 PM | ⚖️ | Premium claude-mem-file Project Architecture and Planning | ~797 |
 
 ### Dec 1, 2025
 
@@ -57,4 +57,4 @@
 | #32966 | " | 🔵 | viewer.html contains modal CSS including modal-header and modal-body | ~218 |
 | #32967 | " | 🔵 | ContextSettingsModal.tsx uses CSS classes defined in viewer.html | ~218 |
 | #32968 | " | 🔵 | Need to add CSS for footer to viewer.html | ~223 |
-</claude-mem-context>
+</claude-mem-file-context>

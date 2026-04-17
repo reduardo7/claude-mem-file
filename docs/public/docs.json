@@ -3,11 +3,11 @@
   "name": "Claude-Mem",
   "description": "Persistent memory compression system that preserves context across Claude Code sessions",
   "theme": "mint",
-  "favicon": "/claude-mem-logomark.webp",
+  "favicon": "/claude-mem-file-logomark.webp",
   "logo": {
-    "light": "/claude-mem-logo-for-light-mode.webp",
-    "dark": "/claude-mem-logo-for-dark-mode.webp",
-    "href": "https://github.com/thedotmack/claude-mem"
+    "light": "/claude-mem-file-logo-for-light-mode.webp",
+    "dark": "/claude-mem-file-logo-for-dark-mode.webp",
+    "href": "https://github.com/thedotmack/claude-mem-file"
   },
   "colors": {
     "primary": "#3B82F6",
@@ -18,13 +18,13 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/thedotmack/claude-mem"
+        "href": "https://github.com/thedotmack/claude-mem-file"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Install",
-      "href": "https://github.com/thedotmack/claude-mem#quick-start"
+      "href": "https://github.com/thedotmack/claude-mem-file#quick-start"
     }
   },
   "navigation": {
@@ -105,7 +105,7 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/thedotmack/claude-mem"
+      "github": "https://github.com/thedotmack/claude-mem-file"
     },
     "links": [
       {
@@ -113,11 +113,11 @@
         "items": [
           {
             "label": "Documentation",
-            "href": "https://github.com/thedotmack/claude-mem"
+            "href": "https://github.com/thedotmack/claude-mem-file"
           },
           {
             "label": "Issues",
-            "href": "https://github.com/thedotmack/claude-mem/issues"
+            "href": "https://github.com/thedotmack/claude-mem-file/issues"
           }
         ]
       },
@@ -126,7 +126,7 @@
         "items": [
           {
             "label": "License (AGPL-3.0)",
-            "href": "https://github.com/thedotmack/claude-mem/blob/main/LICENSE"
+            "href": "https://github.com/thedotmack/claude-mem-file/blob/main/LICENSE"
           }
         ]
       }

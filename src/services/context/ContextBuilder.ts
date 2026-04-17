@@ -8,7 +8,7 @@
 import path from 'path';
 import { homedir } from 'os';
 import { unlinkSync } from 'fs';
-import { SessionStore } from '../sqlite/SessionStore.js';
+import { VaultStore } from '../vault/index.js';
 import { logger } from '../../utils/logger.js';
 import { getProjectContext } from '../../utils/project-name.js';
 
@@ -44,11 +44,14 @@ const VERSION_MARKER_PATH = path.join(
 );
 
 /**
- * Initialize database connection with error handling
+ * Initialize vault-backed storage with error handling. Returns a fully
+ * initialized VaultStore or null if the vault cannot be opened.
  */
-function initializeDatabase(): SessionStore | null {
+async function initializeDatabase(): Promise<VaultStore | null> {
   try {
-    return new SessionStore();
+    const vault = new VaultStore();
+    await vault.initialize();
+    return vault;
   } catch (error: any) {
     if (error.code === 'ERR_DLOPEN_FAILED') {
       try {
@@ -142,14 +145,11 @@ export async function generateContext(
     config.sessionCount = 999999;
   }
 
-  // Initialize database
-  const db = initializeDatabase();
-  if (!db) {
-    return '';
-  }
+  // Initialize vault
+  const db = await initializeDatabase();
+  if (!db) return '';
 
   try {
-    // Query data for all projects (supports worktree: parent + worktree combined)
     const observations = projects.length > 1
       ? queryObservationsMulti(db, projects, config, platformSource)
       : queryObservations(db, project, config, platformSource);
@@ -157,24 +157,20 @@ export async function generateContext(
       ? querySummariesMulti(db, projects, config, platformSource)
       : querySummaries(db, project, config, platformSource);
 
-    // Handle empty state
     if (observations.length === 0 && summaries.length === 0) {
       return renderEmptyState(project, forHuman);
     }
 
-    // Build and return context
-    const output = buildContextOutput(
+    return buildContextOutput(
       project,
       observations,
       summaries,
       config,
       cwd,
       input?.session_id,
-      forHuman
+      forHuman,
     );
-
-    return output;
   } finally {
-    db.close();
+    await db.close();
   }
 }

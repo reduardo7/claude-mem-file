@@ -1,4 +1,4 @@
-<claude-mem-context>
+<claude-mem-file-context>
 # Recent Activity
 
 ### Oct 25, 2025
@@ -133,4 +133,4 @@
 | #27555 | 4:48 PM | ✅ | Version bump committed to main branch | ~242 |
 | #27553 | " | ✅ | Version consistency verified across all configuration files | ~195 |
 | #27551 | 4:47 PM | ✅ | Marketplace.json version updated to 7.3.1 | ~207 |
-</claude-mem-context>
+</claude-mem-file-context>

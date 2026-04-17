@@ -470,13 +470,13 @@ export class GeminiAgent {
 
   /**
    * Get Gemini configuration from settings or environment
-   * Issue #733: Uses centralized ~/.claude-mem/.env for credentials, not random project .env files
+   * Issue #733: Uses centralized ~/.claude-mem-file/.env for credentials, not random project .env files
    */
   private getGeminiConfig(): { apiKey: string; model: GeminiModel; rateLimitingEnabled: boolean } {
-    const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+    const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
     const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
 
-    // API key: check settings first, then centralized claude-mem .env (NOT process.env)
+    // API key: check settings first, then centralized claude-mem-file .env (NOT process.env)
     // This prevents Issue #733 where random project .env files could interfere
     const apiKey = settings.CLAUDE_MEM_GEMINI_API_KEY || getCredential('GEMINI_API_KEY') || '';
 
@@ -513,10 +513,10 @@ export class GeminiAgent {
 
 /**
  * Check if Gemini is available (has API key configured)
- * Issue #733: Uses centralized ~/.claude-mem/.env, not random project .env files
+ * Issue #733: Uses centralized ~/.claude-mem-file/.env, not random project .env files
  */
 export function isGeminiAvailable(): boolean {
-  const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+  const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
   const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
   return !!(settings.CLAUDE_MEM_GEMINI_API_KEY || getCredential('GEMINI_API_KEY'));
 }
@@ -525,7 +525,7 @@ export function isGeminiAvailable(): boolean {
  * Check if Gemini is the selected provider
  */
 export function isGeminiSelected(): boolean {
-  const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+  const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
   const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
   return settings.CLAUDE_MEM_PROVIDER === 'gemini';
 }

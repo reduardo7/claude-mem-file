@@ -562,7 +562,7 @@ NEVER fetch full details without filtering first. 10x token savings.`,
 // Create the MCP server
 const server = new Server(
   {
-    name: 'claude-mem',
+    name: 'claude-mem-file',
     version: packageVersion,
   },
   {

@@ -1,11 +1,13 @@
 ---
 tags:
   - architecture
-date: 2025-11-07
+date: 2026-04-17
 status: active
 ---
 
-# claude-mem Architecture Overview
+# claude-mem-file Architecture Overview
+
+> **Storage note:** As of v13 the storage layer is being migrated from SQLite + ChromaDB to a per-project Markdown vault at `<project-root>/docs/vault/`. See [[markdown-vault-refactor-plan]] for the migration plan and current status. The legacy SQLite/Chroma diagram below will be deleted once Phase 4-5 of the refactor ships.
 
 ## System Layers
 
@@ -24,12 +26,20 @@ status: active
 |  Worker Daemon (Express, port 37777)                      |
 |  +-- SessionManager (session lifecycle)                   |
 |  +-- SDKAgent (Claude Agent SDK)                          |
-|  +-- SearchManager (search orchestration)                 |
+|  +-- Search (minisearch over vault, in-memory)            |
 |  +-- ProcessRegistry (subprocess management)              |
-|  +-- ChromaSync (embedding synchronization)               |
 +-----------------------------------------------------------+
-|  Storage Layer                                            |
-|  +-- SQLite (claude-mem.db) -- structured data            |
+|  Storage Layer — TARGET (v13+)                            |
+|  +-- VaultStore (src/services/vault)                      |
+|  |    reads/writes <project-root>/docs/vault/**/*.md      |
+|  |    - observations/YYYY-MM-DD/obs-<ts>-<hash8>.md       |
+|  |    - sessions/YYYY-MM-DD/session-*.md                  |
+|  |    - .obsidian/ (Obsidian-compatible config)           |
+|  +-- SearchIndex (minisearch, in-memory)                  |
+|  +-- chokidar watcher (live re-index on edits)            |
++-----------------------------------------------------------+
+|  Storage Layer — LEGACY (being removed)                   |
+|  +-- SQLite (claude-mem-file.db) -- structured data       |
 |  +-- ChromaDB (chroma.sqlite3) -- vector embeddings       |
 |  +-- MCP Server (interface for Claude Code)               |
 +-----------------------------------------------------------+
@@ -116,7 +126,7 @@ The conversion between them is handled by SessionStore and is critical for FK co
 
 ## Storage
 
-### SQLite (claude-mem.db)
+### SQLite (claude-mem-file.db)
 
 | Table | Key fields | Purpose |
 |-------|-----------|---------|

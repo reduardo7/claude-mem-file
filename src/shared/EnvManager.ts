@@ -1,8 +1,8 @@
 /**
- * EnvManager - Centralized environment variable management for claude-mem
+ * EnvManager - Centralized environment variable management for claude-mem-file
  *
- * Provides isolated credential storage in ~/.claude-mem/.env
- * This ensures claude-mem uses its own configured credentials,
+ * Provides isolated credential storage in ~/.claude-mem-file/.env
+ * This ensures claude-mem-file uses its own configured credentials,
  * not random ANTHROPIC_API_KEY values from project .env files.
  *
  * Issue #733: SDK was auto-discovering API keys from user's shell environment,
@@ -14,8 +14,8 @@ import { join, dirname } from 'path';
 import { homedir } from 'os';
 import { logger } from '../utils/logger.js';
 
-// Path to claude-mem's centralized .env file
-const DATA_DIR = join(homedir(), '.claude-mem');
+// Path to claude-mem-file's centralized .env file
+const DATA_DIR = join(homedir(), '.claude-mem-file');
 export const ENV_FILE_PATH = join(DATA_DIR, '.env');
 
 // Environment variables to STRIP from subprocess environment (blocklist approach)
@@ -30,7 +30,7 @@ const BLOCKED_ENV_VARS = [
   'CLAUDECODE',         // Prevent "cannot be launched inside another Claude Code session" error
 ];
 
-// Credential keys that claude-mem manages
+// Credential keys that claude-mem-file manages
 export const MANAGED_CREDENTIAL_KEYS = [
   'ANTHROPIC_API_KEY',
   'GEMINI_API_KEY',
@@ -83,9 +83,9 @@ function parseEnvFile(content: string): Record<string, string> {
  */
 function serializeEnvFile(env: Record<string, string>): string {
   const lines: string[] = [
-    '# claude-mem credentials',
-    '# This file stores API keys for claude-mem memory agent',
-    '# Edit this file or use claude-mem settings to configure',
+    '# claude-mem-file credentials',
+    '# This file stores API keys for claude-mem-file memory agent',
+    '# Edit this file or use claude-mem-file settings to configure',
     '',
   ];
 
@@ -101,7 +101,7 @@ function serializeEnvFile(env: Record<string, string>): string {
 }
 
 /**
- * Load credentials from ~/.claude-mem/.env
+ * Load credentials from ~/.claude-mem-file/.env
  * Returns empty object if file doesn't exist (means use CLI billing)
  */
 export function loadClaudeMemEnv(): ClaudeMemEnv {
@@ -128,7 +128,7 @@ export function loadClaudeMemEnv(): ClaudeMemEnv {
 }
 
 /**
- * Save credentials to ~/.claude-mem/.env
+ * Save credentials to ~/.claude-mem-file/.env
  */
 export function saveClaudeMemEnv(env: ClaudeMemEnv): void {
   try {
@@ -200,10 +200,10 @@ export function saveClaudeMemEnv(env: ClaudeMemEnv): void {
  * - ANTHROPIC_BASE_URL (custom proxy endpoints)
  * - Platform-specific vars (USERPROFILE, XDG_*, etc.)
  *
- * If claude-mem has an explicit ANTHROPIC_API_KEY in ~/.claude-mem/.env, it's re-injected
+ * If claude-mem-file has an explicit ANTHROPIC_API_KEY in ~/.claude-mem-file/.env, it's re-injected
  * after stripping, so the managed credential takes precedence over any ambient value.
  *
- * @param includeCredentials - Whether to include API keys from ~/.claude-mem/.env (default: true)
+ * @param includeCredentials - Whether to include API keys from ~/.claude-mem-file/.env (default: true)
  */
 export function buildIsolatedEnv(includeCredentials: boolean = true): Record<string, string> {
   // 1. Start with full process environment
@@ -217,11 +217,11 @@ export function buildIsolatedEnv(includeCredentials: boolean = true): Record<str
   // 2. Override SDK entrypoint marker
   isolatedEnv.CLAUDE_CODE_ENTRYPOINT = 'sdk-ts';
 
-  // 3. Re-inject managed credentials from claude-mem's .env file
+  // 3. Re-inject managed credentials from claude-mem-file's .env file
   if (includeCredentials) {
     const credentials = loadClaudeMemEnv();
 
-    // Only add ANTHROPIC_API_KEY if explicitly configured in claude-mem
+    // Only add ANTHROPIC_API_KEY if explicitly configured in claude-mem-file
     // If not configured, CLI billing will be used (via ANTHROPIC_AUTH_TOKEN passthrough)
     if (credentials.ANTHROPIC_API_KEY) {
       isolatedEnv.ANTHROPIC_API_KEY = credentials.ANTHROPIC_API_KEY;
@@ -233,7 +233,7 @@ export function buildIsolatedEnv(includeCredentials: boolean = true): Record<str
       isolatedEnv.ANTHROPIC_BASE_URL = credentials.ANTHROPIC_BASE_URL;
     }
     // Note: GEMINI_API_KEY and OPENROUTER_API_KEY pass through from process.env,
-    // but claude-mem's .env takes precedence if configured
+    // but claude-mem-file's .env takes precedence if configured
     if (credentials.GEMINI_API_KEY) {
       isolatedEnv.GEMINI_API_KEY = credentials.GEMINI_API_KEY;
     }
@@ -254,7 +254,7 @@ export function buildIsolatedEnv(includeCredentials: boolean = true): Record<str
 }
 
 /**
- * Get a specific credential from claude-mem's .env
+ * Get a specific credential from claude-mem-file's .env
  * Returns undefined if not set (which means use default/CLI billing)
  */
 export function getCredential(key: keyof ClaudeMemEnv): string | undefined {
@@ -263,7 +263,7 @@ export function getCredential(key: keyof ClaudeMemEnv): string | undefined {
 }
 
 /**
- * Set a specific credential in claude-mem's .env
+ * Set a specific credential in claude-mem-file's .env
  * Pass empty string to remove the credential
  */
 export function setCredential(key: keyof ClaudeMemEnv, value: string): void {
@@ -273,7 +273,7 @@ export function setCredential(key: keyof ClaudeMemEnv, value: string): void {
 }
 
 /**
- * Check if claude-mem has an Anthropic API key configured
+ * Check if claude-mem-file has an Anthropic API key configured
  * If false, it means CLI billing should be used
  */
 export function hasAnthropicApiKey(): boolean {
@@ -286,7 +286,7 @@ export function hasAnthropicApiKey(): boolean {
  */
 export function getAuthMethodDescription(): string {
   if (hasAnthropicApiKey()) {
-    return 'API key (from ~/.claude-mem/.env)';
+    return 'API key (from ~/.claude-mem-file/.env)';
   }
   if (process.env.CLAUDE_CODE_OAUTH_TOKEN) {
     return 'Claude Code OAuth token (from parent process)';

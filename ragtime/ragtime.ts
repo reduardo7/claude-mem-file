@@ -24,7 +24,7 @@ const CONFIG = {
   corpusPath: process.env.RAGTIME_CORPUS_PATH ||
     path.join(process.cwd(), "datasets", "epstein-mode"),
 
-  // Path to claude-mem plugin
+  // Path to claude-mem-file plugin
   pluginPath: process.env.RAGTIME_PLUGIN_PATH ||
     path.join(process.cwd(), "plugin"),
 

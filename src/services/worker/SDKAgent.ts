@@ -94,7 +94,7 @@ export class SDKAgent {
     const maxConcurrent = parseInt(settings.CLAUDE_MEM_MAX_CONCURRENT_AGENTS, 10) || 2;
     await waitForSlot(maxConcurrent);
 
-    // Build isolated environment from ~/.claude-mem/.env
+    // Build isolated environment from ~/.claude-mem-file/.env
     // This prevents Issue #733: random ANTHROPIC_API_KEY from project .env files
     // being used instead of the configured auth method (CLI subscription or explicit API key)
     const isolatedEnv = sanitizeEnv(buildIsolatedEnv());
@@ -103,7 +103,7 @@ export class SDKAgent {
     logger.info('SDK', 'Starting SDK query', {
       sessionDbId: session.sessionDbId,
       contentSessionId: session.contentSessionId,
-      memorySessionId: session.memorySessionId,
+      memorySessionId: session.memorySessionId ?? undefined,
       hasRealMemorySessionId,
       shouldResume,
       resume_parameter: shouldResume ? session.memorySessionId : '(none - fresh start)',
@@ -137,13 +137,13 @@ export class SDKAgent {
         // instead of polluting user's actual project resume lists
         cwd: OBSERVER_SESSIONS_DIR,
         // Only resume if shouldResume is true (memorySessionId exists, not first prompt, not forceInit)
-        ...(shouldResume && { resume: session.memorySessionId }),
+        ...(shouldResume && session.memorySessionId ? { resume: session.memorySessionId } : {}),
         disallowedTools,
         abortController: session.abortController,
         pathToClaudeCodeExecutable: claudePath,
         // Custom spawn function captures PIDs to fix zombie process accumulation
         spawnClaudeCodeProcess: createPidCapturingSpawn(session.sessionDbId),
-        env: isolatedEnv  // Use isolated credentials from ~/.claude-mem/.env, not process.env
+        env: isolatedEnv  // Use isolated credentials from ~/.claude-mem-file/.env, not process.env
       }
     });
 
@@ -257,7 +257,7 @@ export class SDKAgent {
           // Detect invalid API key — SDK returns this as response text, not an error.
           // Throw so it surfaces in health endpoint and prevents silent failures.
           if (typeof textContent === 'string' && textContent.includes('Invalid API key')) {
-            throw new Error('Invalid API key: check your API key configuration in ~/.claude-mem/settings.json or ~/.claude-mem/.env');
+            throw new Error('Invalid API key: check your API key configuration in ~/.claude-mem-file/settings.json or ~/.claude-mem-file/.env');
           }
 
           // Parse and process response using shared ResponseProcessor
@@ -476,14 +476,14 @@ export class SDKAgent {
       logger.debug('SDK', 'Claude executable auto-detection failed', {}, error as Error);
     }
 
-    throw new Error('Claude executable not found. Please either:\n1. Add "claude" to your system PATH, or\n2. Set CLAUDE_CODE_PATH in ~/.claude-mem/settings.json');
+    throw new Error('Claude executable not found. Please either:\n1. Add "claude" to your system PATH, or\n2. Set CLAUDE_CODE_PATH in ~/.claude-mem-file/settings.json');
   }
 
   /**
    * Get model ID from settings or environment
    */
   private getModelId(): string {
-    const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+    const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
     const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
     return settings.CLAUDE_MEM_MODEL;
   }

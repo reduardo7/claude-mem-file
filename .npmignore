@@ -9,7 +9,7 @@ antipattern-czar/
 
 # Heavy binaries installed at runtime via smart-install.js
 plugin/node_modules/
-plugin/scripts/claude-mem
+plugin/scripts/claude-mem-file
 plugin/bun.lock
 plugin/data/
 plugin/data.backup/

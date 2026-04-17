@@ -1,5 +1,5 @@
 /**
- * Install command for `npx claude-mem install`.
+ * Install command for `npx claude-mem-file install`.
  *
  * Replaces the git-clone + build workflow. The npm package already ships
  * a pre-built `plugin/` directory; this command copies it into the right
@@ -67,7 +67,7 @@ function registerMarketplace(): void {
   knownMarketplaces['thedotmack'] = {
     source: {
       source: 'github',
-      repo: 'thedotmack/claude-mem',
+      repo: 'thedotmack/claude-mem-file',
     },
     installLocation: marketplaceDirectory(),
     lastUpdated: new Date().toISOString(),
@@ -87,7 +87,7 @@ function registerPlugin(version: string): void {
   const cachePath = pluginCacheDirectory(version);
   const now = new Date().toISOString();
 
-  installedPlugins.plugins['claude-mem@thedotmack'] = [
+  installedPlugins.plugins['claude-mem-file@thedotmack'] = [
     {
       scope: 'user',
       installPath: cachePath,
@@ -104,7 +104,7 @@ function enablePluginInClaudeSettings(): void {
   const settings = readJsonSafe<Record<string, any>>(claudeSettingsPath(), {});
 
   if (!settings.enabledPlugins) settings.enabledPlugins = {};
-  settings.enabledPlugins['claude-mem@thedotmack'] = true;
+  settings.enabledPlugins['claude-mem-file@thedotmack'] = true;
 
   writeJsonFileAtomic(claudeSettingsPath(), settings);
 }
@@ -124,7 +124,7 @@ async function setupIDEs(selectedIDEs: string[]): Promise<string[]> {
         // marketplace registration, plugin installation, and enablement.
         try {
           execSync(
-            'claude plugin marketplace add thedotmack/claude-mem && claude plugin install claude-mem',
+            'claude plugin marketplace add thedotmack/claude-mem-file && claude plugin install claude-mem-file',
             { stdio: 'inherit' },
           );
           log.success('Claude Code: plugin installed via CLI.');
@@ -143,7 +143,7 @@ async function setupIDEs(selectedIDEs: string[]): Promise<string[]> {
           if (mcpResult === 0) {
             log.success('Cursor: hooks + MCP installed.');
           } else {
-            log.success('Cursor: hooks installed (MCP setup failed — run `npx claude-mem cursor mcp` to retry).');
+            log.success('Cursor: hooks installed (MCP setup failed — run `npx claude-mem-file cursor mcp` to retry).');
           }
         } else {
           log.error('Cursor: hook installation failed.');
@@ -350,8 +350,8 @@ function runNpmInstallInMarketplace(): void {
   execSync('npm install --production', {
     cwd: marketplaceDir,
     stdio: 'pipe',
-    ...(IS_WINDOWS ? { shell: true as const } : {}),
-  });
+    ...(IS_WINDOWS ? ({ shell: true } as { shell: true }) : {}),
+  } as Parameters<typeof execSync>[1]);
 }
 
 // ---------------------------------------------------------------------------
@@ -369,8 +369,8 @@ function runSmartInstall(): boolean {
   try {
     execSync(`node "${smartInstallPath}"`, {
       stdio: 'inherit',
-      ...(IS_WINDOWS ? { shell: true as const } : {}),
-    });
+      ...(IS_WINDOWS ? ({ shell: true } as { shell: true }) : {}),
+    } as Parameters<typeof execSync>[1]);
     return true;
   } catch {
     log.warn('smart-install encountered an issue. You may need to install Bun/uv manually.');
@@ -391,9 +391,9 @@ export async function runInstallCommand(options: InstallOptions = {}): Promise<v
   const version = readPluginVersion();
 
   if (isInteractive) {
-    p.intro(pc.bgCyan(pc.black(' claude-mem install ')));
+    p.intro(pc.bgCyan(pc.black(' claude-mem-file install ')));
   } else {
-    console.log('claude-mem install');
+    console.log('claude-mem-file install');
   }
   log.info(`Version: ${pc.cyan(version)}`);
   log.info(`Platform: ${process.platform} (${process.arch})`);
@@ -541,24 +541,24 @@ export async function runInstallCommand(options: InstallOptions = {}): Promise<v
     'Open Claude Code and start a conversation -- memory is automatic!',
     `View your memories: ${pc.underline(`http://localhost:${workerPort}`)}`,
     `Search past work: use ${pc.bold('/mem-search')} in Claude Code`,
-    `Start worker: ${pc.bold('npx claude-mem start')}`,
+    `Start worker: ${pc.bold('npx claude-mem-file start')}`,
   ];
 
   if (isInteractive) {
     p.note(nextSteps.join('\n'), 'Next Steps');
     if (failedIDEs.length > 0) {
-      p.outro(pc.yellow('claude-mem installed with some IDE setup failures.'));
+      p.outro(pc.yellow('claude-mem-file installed with some IDE setup failures.'));
     } else {
-      p.outro(pc.green('claude-mem installed successfully!'));
+      p.outro(pc.green('claude-mem-file installed successfully!'));
     }
   } else {
     console.log('\n  Next Steps');
     nextSteps.forEach(l => console.log(`  ${l}`));
     if (failedIDEs.length > 0) {
-      console.log('\nclaude-mem installed with some IDE setup failures.');
+      console.log('\nclaude-mem-file installed with some IDE setup failures.');
       process.exitCode = 1;
     } else {
-      console.log('\nclaude-mem installed successfully!');
+      console.log('\nclaude-mem-file installed successfully!');
     }
   }
 }

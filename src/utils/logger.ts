@@ -1,5 +1,5 @@
 /**
- * Structured Logger for claude-mem Worker Service
+ * Structured Logger for claude-mem-file Worker Service
  * Provides readable, traceable logging with correlation IDs and data flow tracking
  */
 
@@ -15,7 +15,39 @@ export enum LogLevel {
   SILENT = 4
 }
 
-export type Component = 'HOOK' | 'WORKER' | 'SDK' | 'PARSER' | 'DB' | 'SYSTEM' | 'HTTP' | 'SESSION' | 'CHROMA' | 'CHROMA_MCP' | 'CHROMA_SYNC' | 'FOLDER_INDEX' | 'CLAUDE_MD' | 'QUEUE';
+export type Component =
+  | 'HOOK'
+  | 'WORKER'
+  | 'SDK'
+  | 'SDK_SPAWN'
+  | 'PARSER'
+  | 'DB'
+  | 'SYSTEM'
+  | 'HTTP'
+  | 'SESSION'
+  | 'CHROMA'
+  | 'CHROMA_MCP'
+  | 'CHROMA_SYNC'
+  | 'FOLDER_INDEX'
+  | 'CLAUDE_MD'
+  | 'QUEUE'
+  | 'VAULT'
+  | 'SEARCH'
+  | 'TRANSCRIPT'
+  | 'SHUTDOWN'
+  | 'CURSOR'
+  | 'CONFIG'
+  | 'OPENCLAW'
+  | 'CONSOLE'
+  | 'PROJECT_NAME'
+  | 'AGENTS_MD'
+  | 'BRANCH'
+  | 'PROCESS'
+  | 'SETTINGS'
+  | 'SECURITY'
+  | 'ENV'
+  | 'WINDSURF'
+  | 'OPENCODE';
 
 interface LogContext {
   sessionId?: number;
@@ -26,7 +58,7 @@ interface LogContext {
 
 // NOTE: This default must match DEFAULT_DATA_DIR in src/shared/SettingsDefaultsManager.ts
 // Inlined here to avoid circular dependency with SettingsDefaultsManager
-const DEFAULT_DATA_DIR = join(homedir(), '.claude-mem');
+const DEFAULT_DATA_DIR = join(homedir(), '.claude-mem-file');
 
 class Logger {
   private level: LogLevel | null = null;
@@ -59,7 +91,7 @@ class Logger {
 
       // Create log file path with date
       const date = new Date().toISOString().split('T')[0];
-      this.logFilePath = join(logsDir, `claude-mem-${date}.log`);
+      this.logFilePath = join(logsDir, `claude-mem-file-${date}.log`);
     } catch (error) {
       // If log file initialization fails, just log to console
       console.error('[LOGGER] Failed to initialize log file:', error);

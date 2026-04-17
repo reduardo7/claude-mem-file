@@ -361,7 +361,7 @@ describe('Hook Lifecycle - stderr Suppression (#1181)', () => {
     // No stderr output should have leaked from the handler dispatcher itself
     // (logger may write to stderr as fallback if log file unavailable, but that's
     // the logger's responsibility, not the dispatcher's)
-    const dispatcherStderr = stderrOutput.filter(s => s.includes('[claude-mem] Unknown event'));
+    const dispatcherStderr = stderrOutput.filter(s => s.includes('[claude-mem-file] Unknown event'));
     expect(dispatcherStderr).toHaveLength(0);
   });
 });
@@ -401,7 +401,7 @@ describe('hookCommand - stderr suppression', () => {
     // Should restore stderr in finally block
     expect(hookCommandSource).toContain("process.stderr.write = originalStderrWrite");
     // Should NOT have console.error for error reporting
-    expect(hookCommandSource).not.toContain("console.error(`[claude-mem]");
+    expect(hookCommandSource).not.toContain("console.error(`[claude-mem-file]");
     expect(hookCommandSource).not.toContain("console.error(`Hook error:");
   });
 });

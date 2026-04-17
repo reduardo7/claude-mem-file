@@ -2,7 +2,7 @@
  * Settings Routes
  *
  * Handles settings management, MCP toggle, and branch switching.
- * Settings are stored in ~/.claude-mem/settings.json
+ * Settings are stored in ~/.claude-mem-file/settings.json
  */
 
 import express, { Request, Response } from 'express';
@@ -13,7 +13,7 @@ import { getPackageRoot } from '../../../../shared/paths.js';
 import { logger } from '../../../../utils/logger.js';
 import { SettingsManager } from '../../SettingsManager.js';
 import { getBranchInfo, switchBranch, pullUpdates } from '../../BranchManager.js';
-import { ModeManager } from '../../domain/ModeManager.js';
+import { ModeManager } from '../../../domain/ModeManager.js';
 import { BaseRouteHandler } from '../BaseRouteHandler.js';
 import { SettingsDefaultsManager } from '../../../../shared/SettingsDefaultsManager.js';
 import { clearPortCache } from '../../../../shared/worker-utils.js';
@@ -41,17 +41,17 @@ export class SettingsRoutes extends BaseRouteHandler {
   }
 
   /**
-   * Get environment settings (from ~/.claude-mem/settings.json)
+   * Get environment settings (from ~/.claude-mem-file/settings.json)
    */
   private handleGetSettings = this.wrapHandler((req: Request, res: Response): void => {
-    const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+    const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
     this.ensureSettingsFile(settingsPath);
     const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
     res.json(settings);
   });
 
   /**
-   * Update environment settings (in ~/.claude-mem/settings.json) with validation
+   * Update environment settings (in ~/.claude-mem-file/settings.json) with validation
    */
   private handleUpdateSettings = this.wrapHandler((req: Request, res: Response): void => {
     // Validate all settings
@@ -65,7 +65,7 @@ export class SettingsRoutes extends BaseRouteHandler {
     }
 
     // Read existing settings
-    const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+    const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
     this.ensureSettingsFile(settingsPath);
     let settings: any = {};
 
@@ -77,7 +77,7 @@ export class SettingsRoutes extends BaseRouteHandler {
         logger.error('SETTINGS', 'Failed to parse settings file', { settingsPath }, parseError as Error);
         res.status(500).json({
           success: false,
-          error: 'Settings file is corrupted. Delete ~/.claude-mem/settings.json to reset.'
+          error: 'Settings file is corrupted. Delete ~/.claude-mem-file/settings.json to reset.'
         });
         return;
       }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Build script for claude-mem hooks
+ * Build script for claude-mem-file hooks
  * Bundles TypeScript hooks into individual standalone executables using esbuild
  */
 
@@ -39,7 +39,7 @@ const CONTEXT_GENERATOR = {
  * This post-build step removes those hardcoded assignments so the runtime
  * globals are used instead.
  *
- * See: https://github.com/thedotmack/claude-mem/issues/1410
+ * See: https://github.com/thedotmack/claude-mem-file/issues/1410
  */
 function stripHardcodedDirname(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
@@ -70,7 +70,7 @@ function stripHardcodedDirname(filePath) {
 }
 
 async function buildHooks() {
-  console.log('🔨 Building claude-mem hooks and worker service...\n');
+  console.log('🔨 Building claude-mem-file hooks and worker service...\n');
 
   try {
     // Read version from package.json
@@ -95,10 +95,10 @@ async function buildHooks() {
     // Note: bun:sqlite is a Bun built-in, no external dependencies needed for SQLite
     console.log('\n📦 Generating plugin package.json...');
     const pluginPackageJson = {
-      name: 'claude-mem-plugin',
+      name: 'claude-mem-file-plugin',
       version: version,
       private: true,
-      description: 'Runtime dependencies for claude-mem bundled hooks',
+      description: 'Runtime dependencies for claude-mem-file bundled hooks',
       type: 'module',
       dependencies: {
         'tree-sitter-cli': '^0.26.5',

@@ -194,7 +194,9 @@ function normalizeSummaryForStorage(summary: ParsedSummary | null): {
 }
 
 /**
- * Sync observations to Chroma and broadcast to SSE clients
+ * Broadcast stored observations to SSE clients. The vault already has the
+ * canonical copy (via DualWriteBridge); Chroma sync was removed in the vault
+ * refactor, so this step is purely UI fan-out.
  */
 async function syncAndBroadcastObservations(
   observations: ParsedObservation[],
@@ -209,32 +211,6 @@ async function syncAndBroadcastObservations(
   for (let i = 0; i < observations.length; i++) {
     const obsId = result.observationIds[i];
     const obs = observations[i];
-    const chromaStart = Date.now();
-
-    // Sync to Chroma (fire-and-forget, skipped if Chroma is disabled)
-    dbManager.getChromaSync()?.syncObservation(
-      obsId,
-      session.contentSessionId,
-      session.project,
-      obs,
-      session.lastPromptNumber,
-      result.createdAtEpoch,
-      discoveryTokens
-    ).then(() => {
-      const chromaDuration = Date.now() - chromaStart;
-      logger.debug('CHROMA', 'Observation synced', {
-        obsId,
-        duration: `${chromaDuration}ms`,
-        type: obs.type,
-        title: obs.title || '(untitled)'
-      });
-    }).catch((error) => {
-      logger.error('CHROMA', `${agentName} chroma sync failed, continuing without vector search`, {
-        obsId,
-        type: obs.type,
-        title: obs.title || '(untitled)'
-      }, error);
-    });
 
     // Broadcast to SSE clients (for web UI)
     // BUGFIX: Use obs.files_read and obs.files_modified (not obs.files)
@@ -263,7 +239,7 @@ async function syncAndBroadcastObservations(
   // Only runs if CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED is true (default: false)
   const settings = SettingsDefaultsManager.loadFromFile(USER_SETTINGS_PATH);
   // Handle both string 'true' and boolean true from JSON settings
-  const settingValue = settings.CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED;
+  const settingValue = settings.CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED as unknown as string | boolean;
   const folderClaudeMdEnabled = settingValue === 'true' || settingValue === true;
 
   if (folderClaudeMdEnabled) {
@@ -287,7 +263,9 @@ async function syncAndBroadcastObservations(
 }
 
 /**
- * Sync summary to Chroma and broadcast to SSE clients
+ * Broadcast a stored summary to SSE clients. The vault already has the
+ * canonical record (via DualWriteBridge); Chroma sync was removed in the
+ * vault refactor, so this step is purely UI fan-out.
  */
 async function syncAndBroadcastSummary(
   summary: ParsedSummary | null,
@@ -302,31 +280,6 @@ async function syncAndBroadcastSummary(
   if (!summaryForStore || !result.summaryId) {
     return;
   }
-
-  const chromaStart = Date.now();
-
-  // Sync to Chroma (fire-and-forget, skipped if Chroma is disabled)
-  dbManager.getChromaSync()?.syncSummary(
-    result.summaryId,
-    session.contentSessionId,
-    session.project,
-    summaryForStore,
-    session.lastPromptNumber,
-    result.createdAtEpoch,
-    discoveryTokens
-  ).then(() => {
-    const chromaDuration = Date.now() - chromaStart;
-    logger.debug('CHROMA', 'Summary synced', {
-      summaryId: result.summaryId,
-      duration: `${chromaDuration}ms`,
-      request: summaryForStore.request || '(no request)'
-    });
-  }).catch((error) => {
-    logger.error('CHROMA', `${agentName} chroma sync failed, continuing without vector search`, {
-      summaryId: result.summaryId,
-      request: summaryForStore.request || '(no request)'
-    }, error);
-  });
 
   // Broadcast to SSE clients (for web UI)
   broadcastSummary(worker, {

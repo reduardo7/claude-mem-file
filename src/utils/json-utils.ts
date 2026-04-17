@@ -1,5 +1,5 @@
 /**
- * Shared JSON file utilities for claude-mem.
+ * Shared JSON file utilities for claude-mem-file.
  *
  * Provides safe read/write helpers used across the CLI and services.
  */

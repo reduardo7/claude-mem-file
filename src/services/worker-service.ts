@@ -18,15 +18,13 @@ import { HOOK_TIMEOUTS } from '../shared/hook-constants.js';
 import { SettingsDefaultsManager } from '../shared/SettingsDefaultsManager.js';
 import { getAuthMethodDescription } from '../shared/EnvManager.js';
 import { logger } from '../utils/logger.js';
-import { ChromaMcpManager } from './sync/ChromaMcpManager.js';
-import { ChromaSync } from './sync/ChromaSync.js';
 import { configureSupervisorSignalHandlers, getSupervisor, startSupervisor } from '../supervisor/index.js';
 import { sanitizeEnv } from '../supervisor/env-sanitizer.js';
 
 // Worker spawn / Windows-cooldown helpers are defined in ./worker-spawner.ts
 // so that lightweight consumers (e.g. the MCP server running under Node) can
 // ensure the worker daemon is up without importing this entire module — which
-// transitively pulls in the SQLite database layer via ChromaSync/DatabaseManager.
+// transitively pulls in the SQLite cache and the vault index.
 import { ensureWorkerStarted as ensureWorkerStartedShared } from './worker-spawner.js';
 
 // Re-export for backward compatibility — canonical implementation in shared/plugin-state.ts
@@ -81,8 +79,6 @@ import { OpenRouterAgent, isOpenRouterSelected, isOpenRouterAvailable } from './
 import { PaginationHelper } from './worker/PaginationHelper.js';
 import { SettingsManager } from './worker/SettingsManager.js';
 import { SearchManager } from './worker/SearchManager.js';
-import { FormattingService } from './worker/FormattingService.js';
-import { TimelineService } from './worker/TimelineService.js';
 import { SessionEventBroadcaster } from './worker/events/SessionEventBroadcaster.js';
 import { DEFAULT_CONFIG_PATH, DEFAULT_STATE_PATH, expandHomePath, loadTranscriptWatchConfig, writeSampleConfig } from './transcripts/config.js';
 import { TranscriptWatcher } from './transcripts/watcher.js';
@@ -142,7 +138,8 @@ export class WorkerService {
   // Service layer
   private dbManager: DatabaseManager;
   private sessionManager: SessionManager;
-  private sseBroadcaster: SSEBroadcaster;
+  // Public so agents can read .sseBroadcaster via the WorkerRef contract.
+  sseBroadcaster: SSEBroadcaster;
   private sdkAgent: SDKAgent;
   private geminiAgent: GeminiAgent;
   private openRouterAgent: OpenRouterAgent;
@@ -153,9 +150,6 @@ export class WorkerService {
 
   // Route handlers
   private searchRoutes: SearchRoutes | null = null;
-
-  // Chroma MCP manager (lazy - connects on first use)
-  private chromaMcpManager: ChromaMcpManager | null = null;
 
   // Transcript watcher for Codex and other transcript-based clients
   private transcriptWatcher: TranscriptWatcher | null = null;
@@ -301,7 +295,7 @@ export class WorkerService {
     this.server.registerRoutes(new DataRoutes(this.paginationHelper, this.dbManager, this.sessionManager, this.sseBroadcaster, this, this.startTime));
     this.server.registerRoutes(new SettingsRoutes(this.settingsManager));
     this.server.registerRoutes(new LogsRoutes());
-    this.server.registerRoutes(new MemoryRoutes(this.dbManager, 'claude-mem'));
+    this.server.registerRoutes(new MemoryRoutes(this.dbManager, 'claude-mem-file'));
   }
 
   /**
@@ -359,14 +353,7 @@ export class WorkerService {
         runOneTimeChromaMigration();
       }
 
-      // Initialize ChromaMcpManager only if Chroma is enabled
-      const chromaEnabled = settings.CLAUDE_MEM_CHROMA_ENABLED !== 'false';
-      if (chromaEnabled) {
-        this.chromaMcpManager = ChromaMcpManager.getInstance();
-        logger.info('SYSTEM', 'ChromaMcpManager initialized (lazy - connects on first use)');
-      } else {
-        logger.info('SYSTEM', 'Chroma disabled via CLAUDE_MEM_CHROMA_ENABLED=false, skipping ChromaMcpManager');
-      }
+      logger.info('SYSTEM', 'Vault-backed storage active (Chroma/semantic search removed)');
 
       const modeId = settings.CLAUDE_MEM_MODE;
       ModeManager.getInstance().loadMode(modeId);
@@ -374,39 +361,21 @@ export class WorkerService {
 
       await this.dbManager.initialize();
 
-      // Reset any messages that were processing when worker died
-      const { PendingMessageStore } = await import('./sqlite/PendingMessageStore.js');
-      const pendingStore = new PendingMessageStore(this.dbManager.getSessionStore().db, 3);
-      const resetCount = pendingStore.resetStaleProcessingMessages(0); // 0 = reset ALL processing
-      if (resetCount > 0) {
-        logger.info('SYSTEM', `Reset ${resetCount} stale processing messages to pending`);
-      }
+      // Queue is in-memory now: nothing to reset on startup — any in-flight
+      // messages died with the previous worker process. Hooks retry client-side.
 
-      // Initialize search services
-      const formattingService = new FormattingService();
-      const timelineService = new TimelineService();
-      const searchManager = new SearchManager(
-        this.dbManager.getSessionSearch(),
-        this.dbManager.getSessionStore(),
-        this.dbManager.getChromaSync(),
-        formattingService,
-        timelineService
-      );
+      // Initialize search and corpus services over the vault.
+      const searchManager = new SearchManager({
+        vault: this.dbManager.getVaultStore(),
+        adapter: this.dbManager.getSessionStore(),
+      });
       this.searchRoutes = new SearchRoutes(searchManager);
       this.server.registerRoutes(this.searchRoutes);
       logger.info('WORKER', 'SearchManager initialized and search routes registered');
 
-      // Register corpus routes (knowledge agents) — needs SearchOrchestrator from search module
-      const { SearchOrchestrator } = await import('./worker/search/SearchOrchestrator.js');
-      const corpusSearchOrchestrator = new SearchOrchestrator(
-        this.dbManager.getSessionSearch(),
-        this.dbManager.getSessionStore(),
-        this.dbManager.getChromaSync()
-      );
       const corpusBuilder = new CorpusBuilder(
-        this.dbManager.getSessionStore(),
-        corpusSearchOrchestrator,
-        this.corpusStore
+        this.dbManager.getVaultStore(),
+        this.corpusStore,
       );
       const knowledgeAgent = new KnowledgeAgent(this.corpusStore);
       this.server.registerRoutes(new CorpusRoutes(this.corpusStore, corpusBuilder, knowledgeAgent));
@@ -421,15 +390,6 @@ export class WorkerService {
 
       await this.startTranscriptWatcher(settings);
 
-      // Auto-backfill Chroma for all projects if out of sync with SQLite (fire-and-forget)
-      if (this.chromaMcpManager) {
-        ChromaSync.backfillAllProjects().then(() => {
-          logger.info('CHROMA_SYNC', 'Backfill check complete for all projects');
-        }).catch(error => {
-          logger.error('CHROMA_SYNC', 'Backfill failed (non-blocking)', {}, error as Error);
-        });
-      }
-
       // Mark MCP as externally ready once the bundled stdio server binary exists.
       // Codex/Claude Desktop connect to this binary directly; the loopback client
       // below is only a best-effort self-check and should not mark health false.
@@ -438,10 +398,15 @@ export class WorkerService {
 
       // Best-effort loopback MCP self-check
       getSupervisor().assertCanSpawn('mcp server');
+      const rawEnv = sanitizeEnv(process.env);
+      const env: Record<string, string> = {};
+      for (const [key, value] of Object.entries(rawEnv)) {
+        if (typeof value === 'string') env[key] = value;
+      }
       const transport = new StdioClientTransport({
         command: 'node',
         args: [mcpServerPath],
-        env: sanitizeEnv(process.env)
+        env,
       });
 
       const MCP_INIT_TIMEOUT_MS = 300000;
@@ -870,43 +835,23 @@ export class WorkerService {
     sessionsSkipped: number;
     startedSessionIds: number[];
   }> {
-    const { PendingMessageStore } = await import('./sqlite/PendingMessageStore.js');
-    const pendingStore = new PendingMessageStore(this.dbManager.getSessionStore().db, 3);
-    const sessionStore = this.dbManager.getSessionStore();
+    const pendingStore = this.sessionManager.getPendingMessageStore();
 
-    // Clean up stale 'active' sessions before processing
-    // Sessions older than 6 hours without activity are likely orphaned
+    // Stale-session cleanup used to mark DB rows failed. Post-vault, the
+    // vault's session records are advisory: we just mark any in-memory
+    // queue entries for old sessions as abandoned.
     const STALE_SESSION_THRESHOLD_MS = 6 * 60 * 60 * 1000;
     const staleThreshold = Date.now() - STALE_SESSION_THRESHOLD_MS;
-
     try {
-      const staleSessionIds = sessionStore.db.prepare(`
-        SELECT id FROM sdk_sessions
-        WHERE status = 'active' AND started_at_epoch < ?
-      `).all(staleThreshold) as { id: number }[];
-
-      if (staleSessionIds.length > 0) {
-        const ids = staleSessionIds.map(r => r.id);
-        const placeholders = ids.map(() => '?').join(',');
-
-        sessionStore.db.prepare(`
-          UPDATE sdk_sessions
-          SET status = 'failed', completed_at_epoch = ?
-          WHERE id IN (${placeholders})
-        `).run(Date.now(), ...ids);
-
-        logger.info('SYSTEM', `Marked ${ids.length} stale sessions as failed`);
-
-        const msgResult = sessionStore.db.prepare(`
-          UPDATE pending_messages
-          SET status = 'failed', failed_at_epoch = ?
-          WHERE status = 'pending'
-          AND session_db_id IN (${placeholders})
-        `).run(Date.now(), ...ids);
-
-        if (msgResult.changes > 0) {
-          logger.info('SYSTEM', `Marked ${msgResult.changes} pending messages from stale sessions as failed`);
-        }
+      const sessions = this.dbManager.getVaultStore().listSessions({ status: 'active' });
+      const staleMemoryIds = sessions
+        .filter((s) => s.started_at_epoch < staleThreshold && s.memory_session_id)
+        .map((s) => s.memory_session_id as string);
+      for (const mid of staleMemoryIds) {
+        this.dbManager.getVaultStore().markSessionCompleted(mid, 'failed');
+      }
+      if (staleMemoryIds.length > 0) {
+        logger.info('SYSTEM', `Marked ${staleMemoryIds.length} stale sessions as failed`);
       }
     } catch (error) {
       logger.error('SYSTEM', 'Failed to clean up stale sessions', {}, error as Error);
@@ -982,7 +927,6 @@ export class WorkerService {
       sessionManager: this.sessionManager,
       mcpClient: this.mcpClient,
       dbManager: this.dbManager,
-      chromaMcpManager: this.chromaMcpManager || undefined
     });
   }
 
@@ -1148,7 +1092,7 @@ async function main() {
       const platform = process.argv[3];
       const event = process.argv[4];
       if (!platform || !event) {
-        console.error('Usage: claude-mem hook <platform> <event>');
+        console.error('Usage: claude-mem-file hook <platform> <event>');
         console.error('Platforms: claude-code, cursor, gemini-cli, raw');
         console.error('Events: context, session-init, observation, summarize, session-complete, user-message');
         process.exit(1);

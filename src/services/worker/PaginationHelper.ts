@@ -1,268 +1,166 @@
 /**
- * PaginationHelper: DRY pagination utility
+ * PaginationHelper: DRY pagination utility backed by the vault.
  *
- * Responsibility:
- * - DRY helper for paginated queries
- * - Eliminates copy-paste across observations/summaries/prompts endpoints
- * - Efficient LIMIT+1 trick to avoid COUNT(*) query
+ * Emits the same Observation/Summary/UserPrompt shapes the viewer UI expects,
+ * but reads from the Markdown vault instead of raw SQLite. Pagination uses
+ * list+slice; the vault's corpus is small enough that full scans stay cheap.
  */
 
 import { DatabaseManager } from './DatabaseManager.js';
 import { logger } from '../../utils/logger.js';
+import { DEFAULT_PLATFORM_SOURCE, normalizePlatformSource } from '../../shared/platform-source.js';
 import type { PaginatedResult, Observation, Summary, UserPrompt } from '../worker-types.js';
 
 export class PaginationHelper {
-  private dbManager: DatabaseManager;
+  constructor(private dbManager: DatabaseManager) {}
 
-  constructor(dbManager: DatabaseManager) {
-    this.dbManager = dbManager;
-  }
-
-  /**
-   * Strip project path from file paths using heuristic
-   * Converts "/Users/user/project/src/file.ts" -> "src/file.ts"
-   * Uses first occurrence of project name from left (project root)
-   */
   private stripProjectPath(filePath: string, projectName: string): string {
     const marker = `/${projectName}/`;
     const index = filePath.indexOf(marker);
-
-    if (index !== -1) {
-      // Strip everything before and including the project name
-      return filePath.substring(index + marker.length);
-    }
-
-    // Fallback: return original path if project name not found
+    if (index !== -1) return filePath.substring(index + marker.length);
     return filePath;
   }
 
-  /**
-   * Strip project path from JSON array of file paths
-   */
   private stripProjectPaths(filePathsStr: string | null, projectName: string): string | null {
     if (!filePathsStr) return filePathsStr;
-
     try {
-      // Parse JSON array
       const paths = JSON.parse(filePathsStr) as string[];
-
-      // Strip project path from each file
-      const strippedPaths = paths.map(p => this.stripProjectPath(p, projectName));
-
-      // Return as JSON string
-      return JSON.stringify(strippedPaths);
+      return JSON.stringify(paths.map((p) => this.stripProjectPath(p, projectName)));
     } catch (err) {
       logger.debug('WORKER', 'File paths is plain string, using as-is', {}, err as Error);
       return filePathsStr;
     }
   }
 
-  /**
-   * Sanitize observation by stripping project paths from files
-   */
   private sanitizeObservation(obs: Observation): Observation {
     return {
       ...obs,
       files_read: this.stripProjectPaths(obs.files_read, obs.project),
-      files_modified: this.stripProjectPaths(obs.files_modified, obs.project)
+      files_modified: this.stripProjectPaths(obs.files_modified, obs.project),
     };
   }
 
-  /**
-   * Get paginated observations
-   */
-  getObservations(offset: number, limit: number, project?: string, platformSource?: string): PaginatedResult<Observation> {
-    const db = this.dbManager.getSessionStore().db;
-    let query = `
-      SELECT
-        o.id,
-        o.memory_session_id,
-        o.project,
-        COALESCE(s.platform_source, 'claude') as platform_source,
-        o.type,
-        o.title,
-        o.subtitle,
-        o.narrative,
-        o.text,
-        o.facts,
-        o.concepts,
-        o.files_read,
-        o.files_modified,
-        o.prompt_number,
-        o.created_at,
-        o.created_at_epoch
-      FROM observations o
-      LEFT JOIN sdk_sessions s ON o.memory_session_id = s.memory_session_id
-    `;
-    const params: unknown[] = [];
-    const conditions: string[] = [];
-
-    if (project) {
-      conditions.push('o.project = ?');
-      params.push(project);
-    }
-    if (platformSource) {
-      conditions.push(`COALESCE(s.platform_source, 'claude') = ?`);
-      params.push(platformSource);
-    }
-    if (conditions.length > 0) {
-      query += ` WHERE ${conditions.join(' AND ')}`;
-    }
-
-    query += ' ORDER BY o.created_at_epoch DESC LIMIT ? OFFSET ?';
-    params.push(limit + 1, offset);
-
-    const results = db.prepare(query).all(...params) as Observation[];
-    const result: PaginatedResult<Observation> = {
-      items: results.slice(0, limit),
-      hasMore: results.length > limit,
-      offset,
-      limit
-    };
-
-    // Strip project paths from file paths before returning
-    return {
-      ...result,
-      items: result.items.map(obs => this.sanitizeObservation(obs))
-    };
-  }
-
-  /**
-   * Get paginated summaries
-   */
-  getSummaries(offset: number, limit: number, project?: string, platformSource?: string): PaginatedResult<Summary> {
-    const db = this.dbManager.getSessionStore().db;
-
-    let query = `
-      SELECT
-        ss.id,
-        s.content_session_id as session_id,
-        COALESCE(s.platform_source, 'claude') as platform_source,
-        ss.request,
-        ss.investigated,
-        ss.learned,
-        ss.completed,
-        ss.next_steps,
-        ss.project,
-        ss.created_at,
-        ss.created_at_epoch
-      FROM session_summaries ss
-      JOIN sdk_sessions s ON ss.memory_session_id = s.memory_session_id
-    `;
-    const params: any[] = [];
-
-    const conditions: string[] = [];
-
-    if (project) {
-      conditions.push('ss.project = ?');
-      params.push(project);
-    }
-
-    if (platformSource) {
-      conditions.push(`COALESCE(s.platform_source, 'claude') = ?`);
-      params.push(platformSource);
-    }
-
-    if (conditions.length > 0) {
-      query += ` WHERE ${conditions.join(' AND ')}`;
-    }
-
-    query += ' ORDER BY ss.created_at_epoch DESC LIMIT ? OFFSET ?';
-    params.push(limit + 1, offset);
-
-    const stmt = db.prepare(query);
-    const results = stmt.all(...params) as Summary[];
-
-    return {
-      items: results.slice(0, limit),
-      hasMore: results.length > limit,
-      offset,
-      limit
-    };
-  }
-
-  /**
-   * Get paginated user prompts
-   */
-  getPrompts(offset: number, limit: number, project?: string, platformSource?: string): PaginatedResult<UserPrompt> {
-    const db = this.dbManager.getSessionStore().db;
-
-    let query = `
-      SELECT
-        up.id,
-        up.content_session_id,
-        s.project,
-        COALESCE(s.platform_source, 'claude') as platform_source,
-        up.prompt_number,
-        up.prompt_text,
-        up.created_at,
-        up.created_at_epoch
-      FROM user_prompts up
-      JOIN sdk_sessions s ON up.content_session_id = s.content_session_id
-    `;
-    const params: any[] = [];
-
-    const conditions: string[] = [];
-
-    if (project) {
-      conditions.push('s.project = ?');
-      params.push(project);
-    }
-
-    if (platformSource) {
-      conditions.push(`COALESCE(s.platform_source, 'claude') = ?`);
-      params.push(platformSource);
-    }
-
-    if (conditions.length > 0) {
-      query += ` WHERE ${conditions.join(' AND ')}`;
-    }
-
-    query += ' ORDER BY up.created_at_epoch DESC LIMIT ? OFFSET ?';
-    params.push(limit + 1, offset);
-
-    const stmt = db.prepare(query);
-    const results = stmt.all(...params) as UserPrompt[];
-
-    return {
-      items: results.slice(0, limit),
-      hasMore: results.length > limit,
-      offset,
-      limit
-    };
-  }
-
-  /**
-   * Generic pagination implementation (DRY)
-   */
-  private paginate<T>(
-    table: string,
-    columns: string,
+  getObservations(
     offset: number,
     limit: number,
-    project?: string
-  ): PaginatedResult<T> {
-    const db = this.dbManager.getSessionStore().db;
+    project?: string,
+    platformSource?: string,
+  ): PaginatedResult<Observation> {
+    const vault = this.dbManager.getVaultStore();
+    const store = this.dbManager.getSessionStore();
+    const all = vault.listObservations({ project, orderBy: 'date_desc' });
+    const filtered = platformSource
+      ? all.filter((o) => {
+          const session = o.memory_session_id
+            ? vault.getSessionByMemoryId(o.memory_session_id)
+            : null;
+          return normalizePlatformSource(session?.platform_source ?? DEFAULT_PLATFORM_SOURCE) ===
+            platformSource;
+        })
+      : all;
 
-    let query = `SELECT ${columns} FROM ${table}`;
-    const params: any[] = [];
+    const page = filtered.slice(offset, offset + limit + 1);
+    const hasMore = page.length > limit;
+    void store;
+    const items = page.slice(0, limit).map((o) => {
+      const session = o.memory_session_id
+        ? vault.getSessionByMemoryId(o.memory_session_id)
+        : null;
+      return this.sanitizeObservation({
+        id: this.dbManager.obsNumFor(o.id),
+        memory_session_id: o.memory_session_id,
+        project: o.project,
+        platform_source: session?.platform_source ?? DEFAULT_PLATFORM_SOURCE,
+        type: o.type,
+        title: o.title,
+        subtitle: o.subtitle,
+        narrative: o.narrative,
+        text: o.narrative ?? o.text ?? null,
+        facts: o.facts.length ? JSON.stringify(o.facts) : null,
+        concepts: o.concepts.length ? JSON.stringify(o.concepts) : null,
+        files_read: o.files_read.length ? JSON.stringify(o.files_read) : null,
+        files_modified: o.files_modified.length ? JSON.stringify(o.files_modified) : null,
+        prompt_number: o.prompt_number,
+        created_at: o.created_at,
+        created_at_epoch: o.created_at_epoch,
+      } as Observation);
+    });
+    return { items, hasMore, offset, limit };
+  }
 
-    if (project) {
-      query += ' WHERE project = ?';
-      params.push(project);
+  getSummaries(
+    offset: number,
+    limit: number,
+    project?: string,
+    platformSource?: string,
+  ): PaginatedResult<Summary> {
+    const vault = this.dbManager.getVaultStore();
+    const sessions = vault.listSessions({ project });
+    const rows: Summary[] = [];
+    for (const session of sessions) {
+      if (platformSource && normalizePlatformSource(session.platform_source) !== platformSource) continue;
+      const summary = session.memory_session_id
+        ? vault.getSummaryForSession(session.memory_session_id)
+        : null;
+      if (!summary) continue;
+      rows.push({
+        id: this.dbManager.summaryNumFor(summary.id),
+        session_id: session.content_session_id,
+        platform_source: session.platform_source,
+        request: summary.request,
+        investigated: summary.investigated,
+        learned: summary.learned,
+        completed: summary.completed,
+        next_steps: summary.next_steps,
+        project: summary.project,
+        created_at: summary.created_at,
+        created_at_epoch: summary.created_at_epoch,
+      } as Summary);
     }
-
-    query += ' ORDER BY created_at_epoch DESC LIMIT ? OFFSET ?';
-    params.push(limit + 1, offset); // Fetch one extra to check hasMore
-
-    const stmt = db.prepare(query);
-    const results = stmt.all(...params) as T[];
-
+    rows.sort((a, b) => (b.created_at_epoch as number) - (a.created_at_epoch as number));
+    const page = rows.slice(offset, offset + limit + 1);
     return {
-      items: results.slice(0, limit),
-      hasMore: results.length > limit,
+      items: page.slice(0, limit),
+      hasMore: page.length > limit,
       offset,
-      limit
+      limit,
+    };
+  }
+
+  getPrompts(
+    offset: number,
+    limit: number,
+    project?: string,
+    platformSource?: string,
+  ): PaginatedResult<UserPrompt> {
+    const vault = this.dbManager.getVaultStore();
+    const sessions = vault.listSessions(project ? { project } : {});
+    const rows: UserPrompt[] = [];
+    for (const session of sessions) {
+      if (platformSource && normalizePlatformSource(session.platform_source) !== platformSource) continue;
+      const prompts = vault
+        .listRecentPrompts(session.project, Number.MAX_SAFE_INTEGER)
+        .filter((p) => p.content_session_id === session.content_session_id);
+      for (const p of prompts) {
+        rows.push({
+          id: this.dbManager.promptNumFor(p.id),
+          content_session_id: p.content_session_id,
+          project: session.project,
+          platform_source: session.platform_source,
+          prompt_number: p.prompt_number,
+          prompt_text: p.prompt_text,
+          created_at: p.created_at,
+          created_at_epoch: p.created_at_epoch,
+        } as UserPrompt);
+      }
+    }
+    rows.sort((a, b) => (b.created_at_epoch as number) - (a.created_at_epoch as number));
+    const page = rows.slice(offset, offset + limit + 1);
+    return {
+      items: page.slice(0, limit),
+      hasMore: page.length > limit,
+      offset,
+      limit,
     };
   }
 }

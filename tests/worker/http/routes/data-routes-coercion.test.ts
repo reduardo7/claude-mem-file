@@ -139,57 +139,7 @@ describe('DataRoutes Type Coercion', () => {
     });
   });
 
-  describe('handleGetSdkSessionsByIds — memorySessionIds coercion', () => {
-    let handler: (req: Request, res: Response) => void;
-
-    beforeEach(() => {
-      const mockApp = {
-        get: mock(() => {}),
-        post: mock((path: string, fn: any) => {
-          if (path === '/api/sdk-sessions/batch') handler = fn;
-        }),
-        delete: mock(() => {}),
-      };
-      routes.setupRoutes(mockApp as any);
-    });
-
-    it('should accept a native array of strings', () => {
-      const { req, res, jsonSpy } = createMockReqRes({ memorySessionIds: ['abc', 'def'] });
-      handler(req as Request, res as Response);
-
-      expect(mockGetSdkSessionsBySessionIds).toHaveBeenCalledWith(['abc', 'def']);
-      expect(jsonSpy).toHaveBeenCalled();
-    });
-
-    it('should coerce a JSON-encoded string array to native array', () => {
-      const { req, res, jsonSpy } = createMockReqRes({ memorySessionIds: '["abc","def"]' });
-      handler(req as Request, res as Response);
-
-      expect(mockGetSdkSessionsBySessionIds).toHaveBeenCalledWith(['abc', 'def']);
-      expect(jsonSpy).toHaveBeenCalled();
-    });
-
-    it('should coerce a comma-separated string to native array', () => {
-      const { req, res, jsonSpy } = createMockReqRes({ memorySessionIds: 'abc,def' });
-      handler(req as Request, res as Response);
-
-      expect(mockGetSdkSessionsBySessionIds).toHaveBeenCalledWith(['abc', 'def']);
-      expect(jsonSpy).toHaveBeenCalled();
-    });
-
-    it('should trim whitespace from comma-separated values', () => {
-      const { req, res, jsonSpy } = createMockReqRes({ memorySessionIds: 'abc, def , ghi' });
-      handler(req as Request, res as Response);
-
-      expect(mockGetSdkSessionsBySessionIds).toHaveBeenCalledWith(['abc', 'def', 'ghi']);
-      expect(jsonSpy).toHaveBeenCalled();
-    });
-
-    it('should reject non-array, non-string values', () => {
-      const { req, res, statusSpy } = createMockReqRes({ memorySessionIds: 42 });
-      handler(req as Request, res as Response);
-
-      expect(statusSpy).toHaveBeenCalledWith(400);
-    });
-  });
+  // `/api/sdk-sessions/batch` endpoint was removed in v13. Coercion tests for
+  // `memorySessionIds` no longer apply — the only live coercion surface is the
+  // observations batch endpoint above.
 });

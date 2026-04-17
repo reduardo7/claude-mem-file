@@ -1,7 +1,7 @@
 /**
  * Tag Stripping Utility Tests
  *
- * Tests the tag privacy system for <private>, <claude-mem-context>, and <system_instruction> tags.
+ * Tests the tag privacy system for <private>, <claude-mem-file-context>, and <system_instruction> tags.
  * These tags enable users and the system to exclude content from memory storage.
  *
  * Sources:
@@ -38,14 +38,14 @@ describe('Tag Stripping Utilities', () => {
         expect(result).toBe('public content  more public');
       });
 
-      it('should strip single <claude-mem-context> tag', () => {
-        const input = 'public content <claude-mem-context>injected context</claude-mem-context> more public';
+      it('should strip single <claude-mem-file-context> tag', () => {
+        const input = 'public content <claude-mem-file-context>injected context</claude-mem-file-context> more public';
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('public content  more public');
       });
 
       it('should strip both tag types in mixed content', () => {
-        const input = '<private>secret</private> public <claude-mem-context>context</claude-mem-context> end';
+        const input = '<private>secret</private> public <claude-mem-file-context>context</claude-mem-file-context> end';
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('public  end');
       });
@@ -64,8 +64,8 @@ describe('Tag Stripping Utilities', () => {
         expect(result).toBe('middle  end');
       });
 
-      it('should strip multiple <claude-mem-context> blocks', () => {
-        const input = '<claude-mem-context>ctx1</claude-mem-context><claude-mem-context>ctx2</claude-mem-context> content';
+      it('should strip multiple <claude-mem-file-context> blocks', () => {
+        const input = '<claude-mem-file-context>ctx1</claude-mem-file-context><claude-mem-file-context>ctx2</claude-mem-file-context> content';
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('content');
       });
@@ -73,13 +73,13 @@ describe('Tag Stripping Utilities', () => {
       it('should handle many interleaved tags', () => {
         let input = 'start';
         for (let i = 0; i < 10; i++) {
-          input += ` <private>p${i}</private> <claude-mem-context>c${i}</claude-mem-context>`;
+          input += ` <private>p${i}</private> <claude-mem-file-context>c${i}</claude-mem-file-context>`;
         }
         input += ' end';
         const result = stripMemoryTagsFromPrompt(input);
         // Tags are stripped but spaces between them remain
         expect(result).not.toContain('<private>');
-        expect(result).not.toContain('<claude-mem-context>');
+        expect(result).not.toContain('<claude-mem-file-context>');
         expect(result).toContain('start');
         expect(result).toContain('end');
       });
@@ -93,7 +93,7 @@ describe('Tag Stripping Utilities', () => {
       });
 
       it('should return empty string for entirely context-tagged prompt', () => {
-        const input = '<claude-mem-context>all is context</claude-mem-context>';
+        const input = '<claude-mem-file-context>all is context</claude-mem-file-context>';
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('');
       });
@@ -110,7 +110,7 @@ describe('Tag Stripping Utilities', () => {
       });
 
       it('should handle whitespace-only after stripping', () => {
-        const input = '<private>content</private>   <claude-mem-context>more</claude-mem-context>';
+        const input = '<private>content</private>   <claude-mem-file-context>more</claude-mem-file-context>';
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('');
       });
@@ -149,13 +149,13 @@ end`;
         expect(result).toBe('public\n\nend');
       });
 
-      it('should strip multiline content within <claude-mem-context> tags', () => {
+      it('should strip multiline content within <claude-mem-file-context> tags', () => {
         const input = `start
-<claude-mem-context>
+<claude-mem-file-context>
 # Recent Activity
 - Item 1
 - Item 2
-</claude-mem-context>
+</claude-mem-file-context>
 finish`;
         const result = stripMemoryTagsFromPrompt(input);
         expect(result).toBe('start\n\nfinish');
@@ -208,9 +208,9 @@ finish`;
         expect(parsed.content).toBe(' public');
       });
 
-      it('should strip claude-mem-context tags from JSON', () => {
+      it('should strip claude-mem-file-context tags from JSON', () => {
         const jsonContent = JSON.stringify({
-          data: '<claude-mem-context>injected</claude-mem-context> real data'
+          data: '<claude-mem-file-context>injected</claude-mem-file-context> real data'
         });
         const result = stripMemoryTagsFromJson(jsonContent);
         const parsed = JSON.parse(result);
@@ -229,7 +229,7 @@ finish`;
 
       it('should handle tool_response with tags', () => {
         const toolResponse = {
-          output: 'result <claude-mem-context>context data</claude-mem-context>',
+          output: 'result <claude-mem-file-context>context data</claude-mem-file-context>',
           status: 'success'
         };
         const result = stripMemoryTagsFromJson(JSON.stringify(toolResponse));
@@ -348,7 +348,7 @@ after`;
     });
 
     it('should strip <system-reminder> mixed with other tag types', () => {
-      const input = '<system-reminder>reminder</system-reminder> public <private>secret</private> <claude-mem-context>ctx</claude-mem-context> end';
+      const input = '<system-reminder>reminder</system-reminder> public <private>secret</private> <claude-mem-file-context>ctx</claude-mem-file-context> end';
       const result = stripMemoryTagsFromPrompt(input);
       expect(result).toBe('public   end');
     });
@@ -373,10 +373,10 @@ after`;
 <system-reminder>
 Contents of /path/to/CLAUDE.md:
 
-<claude-mem-context>
+<claude-mem-file-context>
 # Recent Activity
 - Item 1
-</claude-mem-context>
+</claude-mem-file-context>
 </system-reminder>
 after`;
       const result = stripMemoryTagsFromPrompt(input);
@@ -384,7 +384,7 @@ after`;
     });
 
     it('should strip realistic tool result with nested CLAUDE.md content', () => {
-      const input = `Here is the file content.\n\n<system-reminder>\nContents of /project/src/CLAUDE.md:\n\n<claude-mem-context>\n# Recent Activity\n\n### Dec 14, 2025\n| ID | Time | Title |\n|-----|------|-------|\n| #123 | 11:30 PM | Some observation |\n</claude-mem-context>\n</system-reminder>`;
+      const input = `Here is the file content.\n\n<system-reminder>\nContents of /project/src/CLAUDE.md:\n\n<claude-mem-file-context>\n# Recent Activity\n\n### Dec 14, 2025\n| ID | Time | Title |\n|-----|------|-------|\n| #123 | 11:30 PM | Some observation |\n</claude-mem-file-context>\n</system-reminder>`;
       const result = stripMemoryTagsFromPrompt(input);
       expect(result).toBe('Here is the file content.');
     });

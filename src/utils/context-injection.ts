@@ -1,8 +1,8 @@
 /**
- * Shared context injection utilities for claude-mem.
+ * Shared context injection utilities for claude-mem-file.
  *
  * Provides tag constants and a function to inject or update a
- * <claude-mem-context> section in any markdown file. Used by
+ * <claude-mem-file-context> section in any markdown file. Used by
  * MCP integrations and OpenCode installer.
  */
 
@@ -13,15 +13,15 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs';
 // Tag Constants
 // ============================================================================
 
-export const CONTEXT_TAG_OPEN = '<claude-mem-context>';
-export const CONTEXT_TAG_CLOSE = '</claude-mem-context>';
+export const CONTEXT_TAG_OPEN = '<claude-mem-file-context>';
+export const CONTEXT_TAG_CLOSE = '</claude-mem-file-context>';
 
 // ============================================================================
 // Context Injection
 // ============================================================================
 
 /**
- * Inject or update a <claude-mem-context> section in a markdown file.
+ * Inject or update a <claude-mem-file-context> section in a markdown file.
  * Creates the file if it doesn't exist. Preserves content outside the tags.
  *
  * @param filePath - Absolute path to the target markdown file.

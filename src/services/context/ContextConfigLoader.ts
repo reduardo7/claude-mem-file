@@ -12,10 +12,10 @@ import type { ContextConfig } from './types.js';
 
 /**
  * Load all context configuration settings
- * Priority: ~/.claude-mem/settings.json > env var > defaults
+ * Priority: ~/.claude-mem-file/settings.json > env var > defaults
  */
 export function loadContextConfig(): ContextConfig {
-  const settingsPath = path.join(homedir(), '.claude-mem', 'settings.json');
+  const settingsPath = path.join(homedir(), '.claude-mem-file', 'settings.json');
   const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
 
   // Always read types/concepts from the active mode definition
