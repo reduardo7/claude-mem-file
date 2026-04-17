@@ -45,7 +45,7 @@
   <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+<h4 align="center">claude-mem-file — Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <p align="center">
   <a href="LICENSE">
@@ -120,7 +120,7 @@
 </p>
 
 <p align="center">
-  Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.
+  Claude-Mem-File seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and storing project knowledge as versioned Markdown in <code>docs/</code> — an Obsidian-style vault shared across all collaborators via git.
 </p>
 
 ---
@@ -130,18 +130,18 @@
 Install with a single command:
 
 ```bash
-npx claude-mem install
+npx claude-mem-file install
 ```
 
 Or install for Gemini CLI (auto-detects `~/.gemini`):
 
 ```bash
-npx claude-mem install --ide gemini-cli
+npx claude-mem-file install --ide gemini-cli
 ```
 Or install for OpenCode:
 
 ```bash
-npx claude-mem install --ide opencode
+npx claude-mem-file install --ide opencode
 ```
 
 Or install from the plugin marketplace inside Claude Code:
@@ -154,7 +154,7 @@ Or install from the plugin marketplace inside Claude Code:
 
 Restart Claude Code or Gemini CLI. Context from previous sessions will automatically appear in new sessions.
 
-> **Note:** Claude-Mem is also published on npm, but `npm install -g claude-mem` installs the **SDK/library only** — it does not register the plugin hooks or set up the worker service. Always install via `npx claude-mem install` or the `/plugin` commands above.
+> **Note:** Claude-Mem-File is also published on npm, but `npm install -g claude-mem-file` installs the **SDK/library only** — it does not register the plugin hooks or set up the worker service. Always install via `npx claude-mem-file install` or the `/plugin` commands above.
 
 ### 🦞 OpenClaw Gateway
 
@@ -205,8 +205,7 @@ The installer handles dependencies, plugin setup, AI provider configuration, wor
 - **[Hooks Architecture](https://docs.claude-mem.ai/hooks-architecture)** - How Claude-Mem uses lifecycle hooks
 - **[Hooks Reference](https://docs.claude-mem.ai/architecture/hooks)** - 7 hook scripts explained
 - **[Worker Service](https://docs.claude-mem.ai/architecture/worker-service)** - HTTP API & Bun management
-- **[Database](https://docs.claude-mem.ai/architecture/database)** - SQLite schema & FTS5 search
-- **[Search Architecture](https://docs.claude-mem.ai/architecture/search-architecture)** - Hybrid search with Chroma vector database
+- **[Docs Vault](docs/)** - Obsidian-style Markdown vault for shared project knowledge
 
 ### Configuration & Development
 
@@ -223,9 +222,8 @@ The installer handles dependencies, plugin setup, AI provider configuration, wor
 1. **5 Lifecycle Hooks** - SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd (6 hook scripts)
 2. **Smart Install** - Cached dependency checker (pre-hook script, not a lifecycle hook)
 3. **Worker Service** - HTTP API on port 37777 with web viewer UI and 10 search endpoints, managed by Bun
-4. **SQLite Database** - Stores sessions, observations, summaries
+4. **Docs Vault** (`docs/`) - Obsidian-style Markdown vault committed to the repository; the shared source of truth for all architectural decisions, context, and knowledge across sessions and collaborators
 5. **mem-search Skill** - Natural language queries with progressive disclosure
-6. **Chroma Vector Database** - Hybrid semantic + keyword search for intelligent context retrieval
 
 See [Architecture Overview](https://docs.claude-mem.ai/architecture/overview) for details.
 
@@ -283,8 +281,6 @@ See **[Beta Features Documentation](https://docs.claude-mem.ai/beta-features)** 
 - **Node.js**: 18.0.0 or higher
 - **Claude Code**: Latest version with plugin support
 - **Bun**: JavaScript runtime and process manager (auto-installed if missing)
-- **uv**: Python package manager for vector search (auto-installed if missing)
-- **SQLite 3**: For persistent storage (bundled)
 
 ---
 ### Windows Setup Notes
