@@ -89,6 +89,14 @@ Claude-mem is designed with a clean separation between open-source core function
 
 This architecture preserves the open-source nature of the project while enabling sustainable development through optional paid features.
 
+## Docs as Shared Memory (Obsidian-style)
+
+The `docs/` folder serves as a shared, project-level memory — similar to an Obsidian vault. All architectural decisions, context, plans, and notes relevant to the project should be stored here as Markdown files so they can be versioned, shared across sessions, and accessible to all team members collaborating on the repo.
+
+- Prefer writing context/decisions/plans to `docs/` over ephemeral conversation notes
+- Files in `docs/` are the source of truth for project knowledge
+- This memory is collaborative: changes are committed and shared via git
+
 ## Important
 
 No need to edit the changelog ever, it's generated automatically.
