@@ -34,7 +34,7 @@ Use claude-mem-file's persistent memory in Cursor without a Claude Code subscrip
 
 ```bash
 # Clone the repository
-git clone https://github.com/thedotmack/claude-mem-file.git
+git clone https://github.com/reduardo7/claude-mem-file.git
 cd claude-mem-file
 
 # Install dependencies
@@ -221,7 +221,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ```powershell
 # Clone and build
-git clone https://github.com/thedotmack/claude-mem-file.git
+git clone https://github.com/reduardo7/claude-mem-file.git
 cd claude-mem-file
 bun install
 bun run build

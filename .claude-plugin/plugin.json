@@ -5,7 +5,7 @@
   "author": {
     "name": "Alex Newman"
   },
-  "repository": "https://github.com/thedotmack/claude-mem-file",
+  "repository": "https://github.com/reduardo7/claude-mem-file",
   "license": "AGPL-3.0",
   "keywords": [
     "claude",
@@ -20,5 +20,5 @@
     "typescript",
     "nodejs"
   ],
-  "homepage": "https://github.com/thedotmack/claude-mem-file#readme"
+  "homepage": "https://github.com/reduardo7/claude-mem-file#readme"
 }

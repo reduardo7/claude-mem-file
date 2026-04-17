@@ -45,7 +45,7 @@ Settings are managed in `~/.claude-mem-file/settings.json`. The file is auto-cre
 
 - **Source**: `<project-root>/src/`
 - **Built Plugin**: `<project-root>/plugin/`
-- **Installed Plugin**: `~/.claude/plugins/marketplaces/thedotmack/`
+- **Installed Plugin**: `~/.claude/plugins/marketplaces/reduardo7/`
 - **Memory Vault**: `<project-root>/docs/vault/` (versioned via git, per-project, mergeable)
 - **Project Docs**: `<project-root>/docs/` (architectural decisions, design notes)
 

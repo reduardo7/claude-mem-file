@@ -35,6 +35,11 @@
   <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
 </p>
 
+> [!NOTE]
+> **This is a fork of [claude-mem](https://github.com/thedotmack/claude-mem)** by [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> This fork replaces the SQLite/binary storage backend with a **filesystem-only approach**: all memory is stored as plain Markdown files under `<project-root>/docs/vault/`, fully versionable via git and shareable with every member of your team. No local databases, no binary blobs — just files you can read, edit, commit, and merge.
+
 <h4 align="center">claude-mem-file — Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
@@ -42,10 +47,10 @@
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem-file">
+      <a href="https://github.com/reduardo7/claude-mem-file">
         <picture>
           <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
             alt="Claude-Mem-File Preview"
             width="500"
           >
@@ -53,19 +58,19 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -113,7 +118,7 @@ npx claude-mem-file install --ide opencode
 Or install from the plugin marketplace inside Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem-file
+/plugin marketplace add reduardo7/claude-mem-file
 
 /plugin install claude-mem-file
 ```
@@ -307,7 +312,7 @@ Edit your settings file at `~/.claude-mem-file/settings.json`:
 Modes are defined in `plugin/modes/`. To see all available modes locally:
 
 ```bash
-ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
 ```
 
 #### Available Modes
@@ -345,7 +350,7 @@ See the **[Troubleshooting Guide](https://docs.claude-mem-file.ai/troubleshootin
 Create comprehensive bug reports with the automated generator:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -385,8 +390,8 @@ See the [LICENSE](LICENSE) file for full details.
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repository**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Issues**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repository**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
 - **Official X Account**: [@Claude_Memory](https://x.com/Claude_Memory)
 - **Official Discord**: [Join Discord](https://discord.com/invite/J4wttp9vDu)
 - **Author**: Alex Newman ([@thedotmack](https://github.com/thedotmack))

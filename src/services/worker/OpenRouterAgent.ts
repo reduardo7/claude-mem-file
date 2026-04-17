@@ -374,7 +374,7 @@ export class OpenRouterAgent {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
-        'HTTP-Referer': siteUrl || 'https://github.com/thedotmack/claude-mem-file',
+        'HTTP-Referer': siteUrl || 'https://github.com/reduardo7/claude-mem-file',
         'X-Title': appName || 'claude-mem-file',
         'Content-Type': 'application/json',
       },

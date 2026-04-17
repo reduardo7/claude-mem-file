@@ -1,11 +1,11 @@
 {
-  "name": "thedotmack",
+  "name": "reduardo7",
   "owner": {
-    "name": "Alex Newman"
+    "name": "Eduardo Cuomo"
   },
   "metadata": {
-    "description": "Plugins by Alex Newman (thedotmack)",
-    "homepage": "https://github.com/thedotmack/claude-mem-file"
+    "description": "Plugins by Eduardo Cuomo (reduardo7)",
+    "homepage": "https://github.com/reduardo7/claude-mem-file"
   },
   "plugins": [
     {

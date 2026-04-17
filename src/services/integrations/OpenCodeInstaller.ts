@@ -72,7 +72,7 @@ export function findBuiltPluginPath(): string | null {
     // Marketplace install location (production)
     path.join(
       process.env.CLAUDE_CONFIG_DIR || path.join(homedir(), '.claude'),
-      'plugins', 'marketplaces', 'thedotmack',
+      'plugins', 'marketplaces', 'reduardo7',
       'dist', 'opencode-plugin', 'index.js',
     ),
     // Development location (relative to this module's package root)

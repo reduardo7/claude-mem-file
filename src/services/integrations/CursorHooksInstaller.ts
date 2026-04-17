@@ -233,7 +233,7 @@ export function configureCursorMcp(target: CursorInstallTarget): number {
 
   if (!mcpServerPath) {
     console.error('Could not find MCP server script');
-    console.error('   Expected at: ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/mcp-server.cjs');
+    console.error('   Expected at: ~/.claude/plugins/marketplaces/reduardo7/plugin/scripts/mcp-server.cjs');
     return 1;
   }
 
@@ -302,7 +302,7 @@ export async function installCursorHooks(target: CursorInstallTarget): Promise<n
   const workerServicePath = findWorkerServicePath();
   if (!workerServicePath) {
     console.error('Could not find worker-service.cjs');
-    console.error('   Expected at: ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs');
+    console.error('   Expected at: ~/.claude/plugins/marketplaces/reduardo7/plugin/scripts/worker-service.cjs');
     return 1;
   }
 

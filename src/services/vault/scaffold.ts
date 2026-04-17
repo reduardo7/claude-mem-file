@@ -4,7 +4,7 @@ import { getVaultPaths, type VaultPaths } from './paths.js';
 const README_BODY = `# Memory Vault
 
 This folder is an [Obsidian](https://obsidian.md)-compatible Markdown vault where
-[claude-mem-file](https://github.com/thedotmack/claude-mem-file) stores the
+[claude-mem-file](https://github.com/reduardo7/claude-mem-file) stores the
 learnings captured during each Claude Code session.
 
 - **sessions/** — one Markdown file per session, grouped by date

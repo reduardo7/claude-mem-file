@@ -9,7 +9,7 @@ assignees: ''
 
 ## Before submitting
 
-- [ ] I searched [existing issues](https://github.com/thedotmack/claude-mem-file/issues) and confirmed this is not a duplicate
+- [ ] I searched [existing issues](https://github.com/reduardo7/claude-mem-file/issues) and confirmed this is not a duplicate
 
 ---
 
@@ -19,15 +19,15 @@ assignees: ''
 
 ```bash
 # Navigate to the plugin directory
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 
 # Run the bug report tool
 npm run bug-report
 ```
 
 **Plugin Paths:**
-- **macOS/Linux**: `~/.claude/plugins/marketplaces/thedotmack`
-- **Windows**: `%USERPROFILE%\.claude\plugins\marketplaces\thedotmack`
+- **macOS/Linux**: `~/.claude/plugins/marketplaces/reduardo7`
+- **Windows**: `%USERPROFILE%\.claude\plugins\marketplaces\reduardo7`
 
 **Features:**
 - 🌎 Auto-translates any language to English

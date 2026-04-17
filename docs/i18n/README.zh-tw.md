@@ -1,27 +1,18 @@
-🌐 這是自動翻譯。歡迎社群貢獻修正！
+🌐 這是機器翻譯版本。歡迎社群糾錯！
 
 ---
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+# claude-mem-file
 
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -31,10 +22,12 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
   <a href="README.bn.md">🇧🇩 বাংলা</a> •
+  <a href="README.ur.md">🇵🇰 اردو</a> •
   <a href="README.ro.md">🇷🇴 Română</a> •
   <a href="README.sv.md">🇸🇪 Svenska</a> •
   <a href="README.it.md">🇮🇹 Italiano</a> •
@@ -45,42 +38,44 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">為 <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> 打造的持久記憶壓縮系統</h4>
-
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — 專為 <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> 打造的持久記憶壓縮系統。</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/thedotmack/claude-mem-file">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem-File Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="#快速開始">快速開始</a> •
@@ -93,28 +88,59 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File 透過自動擷取工具使用觀察、產生語意摘要並在未來的工作階段中提供使用，無縫保留跨工作階段的脈絡。這使 Claude 即使在工作階段結束或重新連線後，仍能維持對專案的知識連續性。
+  Claude-Mem-File 透過擷取工具使用觀察、產生語意摘要，並將所有內容以版本化 Markdown 形式儲存於每個專案的 Obsidian 相容保存庫 <code>&lt;project-root&gt;/docs/vault/</code>，無縫保留跨工作階段的脈絡——無需 SQLite 資料庫、無二進位大型物件，可透過 git 完全合併。
 </p>
 
 ---
 
 ## 快速開始
 
-在終端機中開啟新的 Claude Code 工作階段，並輸入以下指令：
+使用單一指令安裝：
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-重新啟動 Claude Code。先前工作階段的脈絡將自動出現在新的工作階段中。
+或為 Gemini CLI 安裝（自動偵測 `~/.gemini`）：
+
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
+
+或為 OpenCode 安裝：
+
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+或從 Claude Code 內的外掛市集安裝：
+
+```bash
+/plugin marketplace add thedotmack/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+重新啟動 Claude Code 或 Gemini CLI。先前工作階段的脈絡將自動出現在新的工作階段中。
+
+> **注意：** Claude-Mem-File 也發布於 npm，但 `npm install -g claude-mem-file` 僅安裝 **SDK/函式庫**——不會註冊外掛掛鉤或設定 worker 服務。請務必透過 `npx claude-mem-file install` 或上述 `/plugin` 指令安裝。
+
+### 🦞 OpenClaw Gateway
+
+使用單一指令將 claude-mem-file 作為持久記憶外掛安裝於 [OpenClaw](https://openclaw.ai) 閘道器：
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+安裝程式負責處理相依性、外掛設定、AI 供應商配置、worker 啟動，以及可選的即時觀察資料饋送至 Telegram、Discord、Slack 等平台。詳情請參閱 [OpenClaw 整合指南](https://docs.claude-mem-file.ai/openclaw-integration)。
 
 **主要功能：**
 
 - 🧠 **持久記憶** - 脈絡跨工作階段保留
+- 📁 **Markdown 保存庫（Obsidian 相容）** - 觀察與工作階段以 `.md` 檔案形式儲存於 `<project-root>/docs/vault/`，可透過 git 進行版本控制與合併——無 SQLite、開發機器無二進位狀態
 - 📊 **漸進式揭露** - 具有 Token 成本可見性的分層記憶擷取
-- 🔍 **技能式搜尋** - 使用 mem-search 技能查詢專案歷史
+- 🔍 **技能式搜尋** - 使用 mem-search 技能查詢專案歷史（由保存庫上的記憶體內 `minisearch` 驅動）
 - 🖥️ **網頁檢視介面** - 在 http://localhost:37777 即時檢視記憶串流
 - 💻 **Claude Desktop 技能** - 從 Claude Desktop 對話中搜尋記憶
 - 🔒 **隱私控制** - 使用 `<private>` 標籤排除敏感內容的儲存
@@ -123,15 +149,31 @@
 - 🔗 **引用** - 使用 ID 參考過去的觀察（透過 http://localhost:37777/api/observation/{id} 存取，或在 http://localhost:37777 的網頁檢視器中檢視全部）
 - 🧪 **Beta 通道** - 透過版本切換試用 Endless Mode 等實驗性功能
 
+## 從 SQLite 遷移（舊版）
+
+舊版將記憶儲存於 `~/.claude-mem-file/claude-mem-file.db`（SQLite + FTS5 + ChromaDB）。新的保存庫配置以 `<project-root>/docs/vault/` 中的純 Markdown 取代了所有這些。您之前的記憶不會遺失——只需執行一次遷移腳本：
+
+```bash
+# 在任何先前使用 claude-mem-file 的專案中執行：
+npm run migrate-to-vault              # 從舊版資料庫寫入 docs/vault/
+npm run migrate-to-vault:dry          # 預覽而不寫入
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # 明確指定路徑
+```
+
+腳本以唯讀方式開啟 SQLite 資料庫，且為冪等操作（重複項目透過 SHA-256 內容雜湊偵測，重複執行是安全的）。將生成的 `docs/vault/` 資料夾提交至您的儲存庫，以便與團隊共享記憶。
+
 ---
 
 ## 文件
 
-📚 **[檢視完整文件](docs/)** - 在 GitHub 上瀏覽 Markdown 文件
+📚 **[檢視完整文件](https://docs.claude-mem-file.ai/)** - 在官方網站上瀏覽
 
 ### 入門指南
 
 - **[安裝指南](https://docs.claude-mem-file.ai/installation)** - 快速開始與進階安裝
+- **[Gemini CLI 設定](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Google Gemini CLI 整合的專屬指南
 - **[使用指南](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File 如何自動運作
 - **[搜尋工具](https://docs.claude-mem-file.ai/usage/search-tools)** - 使用自然語言查詢專案歷史
 - **[Beta 功能](https://docs.claude-mem-file.ai/beta-features)** - 試用 Endless Mode 等實驗性功能
@@ -148,8 +190,7 @@
 - **[Hooks 架構](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File 如何使用生命週期掛鉤
 - **[Hooks 參考](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 個掛鉤腳本說明
 - **[Worker 服務](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API 與 Bun 管理
-- **[資料庫](https://docs.claude-mem-file.ai/architecture/database)** - SQLite 結構描述與 FTS5 搜尋
-- **[搜尋架構](https://docs.claude-mem-file.ai/architecture/search-architecture)** - 使用 Chroma 向量資料庫的混合搜尋
+- **[Docs Vault](../)** - 用於共享專案知識的 Obsidian 風格 Markdown 保存庫
 
 ### 設定與開發
 
@@ -166,9 +207,8 @@
 1. **5 個生命週期掛鉤** - SessionStart、UserPromptSubmit、PostToolUse、Stop、SessionEnd（6 個掛鉤腳本）
 2. **智慧安裝** - 快取的相依性檢查器（pre-hook 腳本，非生命週期掛鉤）
 3. **Worker 服務** - 連接埠 37777 上的 HTTP API，含網頁檢視介面與 10 個搜尋端點，由 Bun 管理
-4. **SQLite 資料庫** - 儲存工作階段、觀察、摘要
+4. **Docs Vault**（`docs/`）- 提交至儲存庫的 Obsidian 風格 Markdown 保存庫；跨工作階段和協作者的所有架構決策、脈絡和知識的共享真實來源
 5. **mem-search 技能** - 具有漸進式揭露的自然語言查詢
-6. **Chroma 向量資料庫** - 用於智慧脈絡擷取的混合語意 + 關鍵字搜尋
 
 詳情請參閱[架構概覽](https://docs.claude-mem-file.ai/architecture/overview)。
 
@@ -196,19 +236,18 @@ Claude-Mem-File 透過遵循 Token 高效的 **3 層工作流程模式**，以 *
 
 1. **`search`** - 使用全文查詢搜尋記憶索引，依類型/日期/專案過濾
 2. **`timeline`** - 取得特定觀察或查詢周圍的時間脈絡
-3. **`get_observations`** - 依 ID 擷取完整觀察詳情（批次處理多個 ID）
-4. **`__IMPORTANT`** - 工作流程文件（Claude 永遠可見）
+3. **`get_observations`** - 依 ID 擷取完整觀察詳情（務必批次處理多個 ID）
 
 **使用範例：**
 
 ```typescript
 // 步驟 1：搜尋索引
-search(query="authentication bug", type="bugfix", limit=10)
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
 
 // 步驟 2：檢閱索引，識別相關 ID（例如 #123、#456）
 
 // 步驟 3：擷取完整詳情
-get_observations(ids=[123, 456])
+get_observations((ids = [123, 456]));
 ```
 
 詳細範例請參閱[搜尋工具指南](https://docs.claude-mem-file.ai/usage/search-tools)。
@@ -228,8 +267,18 @@ Claude-Mem-File 提供具有實驗性功能的 **Beta 通道**，例如 **Endles
 - **Node.js**：18.0.0 或更高版本
 - **Claude Code**：具有外掛支援的最新版本
 - **Bun**：JavaScript 執行環境與程序管理員（如缺少將自動安裝）
-- **uv**：用於向量搜尋的 Python 套件管理員（如缺少將自動安裝）
-- **SQLite 3**：用於持久儲存（已內建）
+
+---
+
+### Windows 設定注意事項
+
+如果看到以下錯誤：
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+請確保 Node.js 和 npm 已安裝並加入您的 PATH。從 https://nodejs.org 下載最新的 Node.js 安裝程式，並在安裝後重新啟動終端機。
 
 ---
 
@@ -239,7 +288,46 @@ Claude-Mem-File 提供具有實驗性功能的 **Beta 通道**，例如 **Endles
 
 所有可用設定與範例請參閱 **[設定指南](https://docs.claude-mem-file.ai/configuration)**。
 
----
+### 模式與語言設定
+
+Claude-Mem-File 透過 `CLAUDE_MEM_MODE` 設定支援多種工作流程模式與語言。
+
+此選項同時控制：
+
+- 工作流程行為（例如 code、chill、investigation）
+- 生成觀察時使用的語言
+
+#### 如何設定
+
+編輯位於 `~/.claude-mem-file/settings.json` 的設定檔案：
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+模式定義於 `plugin/modes/`。若要在本機查看所有可用模式：
+
+```bash
+ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+```
+
+#### 可用模式
+
+| 模式       | 說明                    |
+| ---------- | ----------------------- |
+| `code`     | 預設英語模式            |
+| `code--zh` | 簡體中文模式            |
+| `code--ja` | 日語模式                |
+
+特定語言模式遵循 `code--[lang]` 格式，其中 `[lang]` 為 ISO 639-1 語言代碼（例如 `zh` 代表中文，`ja` 代表日語，`es` 代表西班牙語）。
+
+> 注意：`code--zh`（簡體中文）已內建——無需額外安裝或更新外掛。
+
+#### 變更模式後
+
+## 重新啟動 Claude Code 以套用新的模式設定。
 
 ## 開發
 
@@ -299,7 +387,7 @@ Copyright (C) 2025 Alex Newman (@thedotmack). All rights reserved.
 
 ## 支援
 
-- **文件**：[docs/](docs/)
+- **文件**：[docs/](../)
 - **Issues**：[GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
 - **儲存庫**：[github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
 - **官方 X 帳號**：[@Claude_Memory](https://x.com/Claude_Memory)
@@ -309,3 +397,9 @@ Copyright (C) 2025 Alex Newman (@thedotmack). All rights reserved.
 ---
 
 **使用 Claude Agent SDK 建置** | **由 Claude Code 驅動** | **以 TypeScript 開發**
+
+---
+
+### 關於 $CMEM？
+
+$CMEM 是由第三方在未事先徵得 Claude-Mem-File 同意的情況下創建的 Solana 代幣，但已獲得 Claude-Mem-File 創建者（Alex Newman，@thedotmack）正式認可。該代幣作為社群成長的催化劑，以及將即時代理資料傳遞給最需要它的開發者和知識工作者的媒介。$CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

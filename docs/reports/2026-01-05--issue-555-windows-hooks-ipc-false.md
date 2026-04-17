@@ -191,7 +191,7 @@ Generate hooks.json at install time with resolved absolute paths:
 
 ```json
 {
-  "command": "node \"C:\\Users\\username\\.claude\\plugins\\marketplaces\\thedotmack\\plugin\\scripts\\smart-install.js\""
+  "command": "node \"C:\\Users\\username\\.claude\\plugins\\marketplaces\\reduardo7\\plugin\\scripts\\smart-install.js\""
 }
 ```
 

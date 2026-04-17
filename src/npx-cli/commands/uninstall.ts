@@ -36,7 +36,7 @@ function removeMarketplaceDirectory(): boolean {
 }
 
 function removeCacheDirectory(): boolean {
-  const cacheDirectory = join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem-file');
+  const cacheDirectory = join(pluginsDirectory(), 'cache', 'reduardo7', 'claude-mem-file');
   if (existsSync(cacheDirectory)) {
     rmSync(cacheDirectory, { recursive: true, force: true });
     return true;
@@ -46,24 +46,24 @@ function removeCacheDirectory(): boolean {
 
 function removeFromKnownMarketplaces(): void {
   const knownMarketplaces = readJsonSafe<Record<string, any>>(knownMarketplacesPath(), {});
-  if (knownMarketplaces['thedotmack']) {
-    delete knownMarketplaces['thedotmack'];
+  if (knownMarketplaces['reduardo7']) {
+    delete knownMarketplaces['reduardo7'];
     writeJsonFileAtomic(knownMarketplacesPath(), knownMarketplaces);
   }
 }
 
 function removeFromInstalledPlugins(): void {
   const installedPlugins = readJsonSafe<Record<string, any>>(installedPluginsPath(), {});
-  if (installedPlugins.plugins?.['claude-mem-file@thedotmack']) {
-    delete installedPlugins.plugins['claude-mem-file@thedotmack'];
+  if (installedPlugins.plugins?.['claude-mem-file@reduardo7']) {
+    delete installedPlugins.plugins['claude-mem-file@reduardo7'];
     writeJsonFileAtomic(installedPluginsPath(), installedPlugins);
   }
 }
 
 function removeFromClaudeSettings(): void {
   const settings = readJsonSafe<Record<string, any>>(claudeSettingsPath(), {});
-  if (settings.enabledPlugins?.['claude-mem-file@thedotmack'] !== undefined) {
-    delete settings.enabledPlugins['claude-mem-file@thedotmack'];
+  if (settings.enabledPlugins?.['claude-mem-file@reduardo7'] !== undefined) {
+    delete settings.enabledPlugins['claude-mem-file@reduardo7'];
     writeJsonFileAtomic(claudeSettingsPath(), settings);
   }
 }

@@ -681,7 +681,7 @@ run_openclaw() {
 # Flow based on openclaw/Dockerfile.e2e
 ###############################################################################
 
-CLAUDE_MEM_REPO="https://github.com/thedotmack/claude-mem-file.git"
+CLAUDE_MEM_REPO="https://github.com/reduardo7/claude-mem-file.git"
 CLAUDE_MEM_BRANCH="${CLI_BRANCH:-main}"
 PLUGIN_FRESHLY_INSTALLED=""
 
@@ -1239,7 +1239,7 @@ find_claude_mem_install_dir() {
   local -a search_paths=(
     "$resolved_dir"
     "${HOME}/.openclaw/extensions/claude-mem-file"
-    "${HOME}/.claude/plugins/marketplaces/thedotmack"
+    "${HOME}/.claude/plugins/marketplaces/reduardo7"
     "${HOME}/.openclaw/plugins/claude-mem-file"
   )
 
@@ -1291,7 +1291,7 @@ start_worker() {
     error "Cannot find claude-mem-file plugin installation directory"
     error "Expected worker-service.cjs in one of:"
     error "  ~/.openclaw/extensions/claude-mem-file/plugin/scripts/"
-    error "  ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/"
+    error "  ~/.claude/plugins/marketplaces/reduardo7/plugin/scripts/"
     error ""
     error "Try reinstalling the plugin and re-running this installer."
     return 1

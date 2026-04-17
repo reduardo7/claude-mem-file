@@ -24,9 +24,9 @@ export function claudeConfigDirectory(): string {
   return process.env.CLAUDE_CONFIG_DIR || join(homedir(), '.claude');
 }
 
-/** Marketplace install directory for thedotmack. */
+/** Marketplace install directory for reduardo7. */
 export function marketplaceDirectory(): string {
-  return join(claudeConfigDirectory(), 'plugins', 'marketplaces', 'thedotmack');
+  return join(claudeConfigDirectory(), 'plugins', 'marketplaces', 'reduardo7');
 }
 
 /** Top-level plugins directory. */
@@ -51,7 +51,7 @@ export function claudeSettingsPath(): string {
 
 /** Plugin cache directory for a specific version. */
 export function pluginCacheDirectory(version: string): string {
-  return join(pluginsDirectory(), 'cache', 'thedotmack', 'claude-mem-file', version);
+  return join(pluginsDirectory(), 'cache', 'reduardo7', 'claude-mem-file', version);
 }
 
 /** claude-mem-file data directory (default `~/.claude-mem-file`). */
