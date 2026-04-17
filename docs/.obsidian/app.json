@@ -1,0 +1,15 @@
+{
+  "useTab": false,
+  "tabSize": 2,
+  "defaultViewMode": "source",
+  "promptDelete": true,
+  "trashOption": "system",
+  "userIgnoreFilters": [
+    "public/",
+    "i18n/",
+    "CLAUDE.md"
+  ],
+  "showUnsupportedFiles": false,
+  "newFileLocation": "current",
+  "newFileFolderPath": ""
+}

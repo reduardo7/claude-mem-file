@@ -1,3 +1,10 @@
+---
+tags:
+  - report
+date: 2026-02-04
+status: archived
+---
+
 # Claude-Mem PR Shipping Report
 *Generated: 2026-02-04*
 

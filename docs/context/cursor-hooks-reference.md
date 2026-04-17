@@ -1,3 +1,12 @@
+---
+tags:
+  - reference
+  - hooks
+  - cursor
+date: 2026-01-05
+status: active
+---
+
 # Hooks
 
 Hooks let you observe, control, and extend the agent loop using custom scripts. Hooks are spawned processes that communicate over stdio using JSON in both directions. They run before or after defined stages of the agent loop and can observe, block, or modify behavior.

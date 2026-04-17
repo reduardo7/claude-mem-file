@@ -1,3 +1,10 @@
+---
+tags:
+  - architecture
+date: 2025-11-07
+status: active
+---
+
 # claude-mem Architecture Overview
 
 ## System Layers

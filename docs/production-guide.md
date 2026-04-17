@@ -1,3 +1,10 @@
+---
+tags:
+  - guide
+date: 2026-01-05
+status: active
+---
+
 # claude-mem Production Guide
 
 Practical guide based on 23 days of production usage with 3,400+ observations across two physical servers and 8 projects.

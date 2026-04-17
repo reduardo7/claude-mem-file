@@ -1,5 +1,10 @@
 ---
-Title: Bug: SDK Agent fails on Windows when username contains spaces
+title: "Bug: SDK Agent fails on Windows when username contains spaces"
+tags:
+  - bug-fix
+  - windows
+date: 2026-01-04
+status: in-progress
 ---
 
 ## Bug Report

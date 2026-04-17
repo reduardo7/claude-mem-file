@@ -1,3 +1,11 @@
+---
+tags:
+  - reference
+  - sdk
+date: 2026-01-05
+status: active
+---
+
 # TypeScript SDK V2 interface (preview)
 
 Preview of the simplified V2 TypeScript Agent SDK, with session-based send/receive patterns for multi-turn conversations.

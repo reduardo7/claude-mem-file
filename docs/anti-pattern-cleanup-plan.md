@@ -1,3 +1,11 @@
+---
+tags:
+  - guide
+  - in-progress
+date: 2026-01-10
+status: in-progress
+---
+
 # Error Handling Anti-Pattern Cleanup Plan
 
 **Total: 132 anti-patterns to fix**

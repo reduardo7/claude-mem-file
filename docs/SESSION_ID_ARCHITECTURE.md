@@ -1,3 +1,10 @@
+---
+tags:
+  - architecture
+date: 2026-01-04
+status: active
+---
+
 # Session ID Architecture
 
 ## Overview

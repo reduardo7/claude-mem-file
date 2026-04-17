@@ -1,3 +1,11 @@
+---
+tags:
+  - report
+  - post-mortem
+date: 2026-01-04
+status: resolved
+---
+
 # Version Consistency Fix (Issue #XXX)
 
 ## Problem
