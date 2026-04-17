@@ -1,6 +1,7 @@
 🌐 这是机器翻译版本。欢迎社区纠错！
 
 ---
+
 # claude-mem-file
 
 <p align="center">
@@ -38,6 +39,11 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
+> [!NOTE]
+> **这是 [claude-mem](https://github.com/thedotmack/claude-mem) 的一个分支**，由 [Alex Newman (@thedotmack)](https://github.com/thedotmack) 创建。
+>
+> 此分支将 SQLite/二进制存储后端替换为 **纯文件系统方法**：所有内存存储为 `<project-root>/docs/vault/` 下的纯 Markdown 文件，完全可通过 git 进行版本管理，并可与团队的每位成员共享。无本地数据库，无二进制数据块——仅有您可以读取、编辑、提交和合并的文件。
+
 <h4 align="center">claude-mem-file — 为 <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> 构建的持久化内存压缩系统。</h4>
 
 <br>
@@ -45,10 +51,10 @@
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem-file">
+      <a href="https://github.com/reduardo7/claude-mem-file">
         <picture>
           <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
             alt="Claude-Mem-File Preview"
             width="500"
           >
@@ -56,19 +62,19 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -116,7 +122,7 @@ npx claude-mem-file install --ide opencode
 或在 Claude Code 内通过插件市场安装：
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem-file
+/plugin marketplace add reduardo7/claude-mem-file
 
 /plugin install claude-mem-file
 ```
@@ -190,7 +196,7 @@ bun scripts/migrate-to-vault.ts \
 - **[钩子架构](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File 如何使用生命周期钩子
 - **[钩子参考](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 个钩子脚本详解
 - **[Worker 服务](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API 与 Bun 管理
-- **[Docs Vault](../)** - 用于共享项目知识的 Obsidian 风格 Markdown vault
+- **[Docs Vault](docs/)** - 用于共享项目知识的 Obsidian 风格 Markdown vault
 
 ### 配置与开发
 
@@ -310,7 +316,7 @@ Claude-Mem-File 通过 `CLAUDE_MEM_MODE` 设置支持多种工作流模式和语
 模式定义在 `plugin/modes/` 中。查看本地所有可用模式：
 
 ```bash
-ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
 ```
 
 #### 可用模式
@@ -327,7 +333,7 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 
 #### 更改模式后
 
-## 重启 Claude Code 以应用新的模式配置。
+重启 Claude Code 以应用新的模式配置。
 
 ## 开发
 
@@ -348,7 +354,7 @@ ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
 使用自动生成器创建全面的 bug 报告：
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -388,8 +394,8 @@ Copyright (C) 2025 Alex Newman (@thedotmack)。保留所有权利。
 ## 支持
 
 - **文档**：[docs/](../)
-- **问题反馈**：[GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **仓库**：[github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **问题反馈**：[GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **仓库**：[github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
 - **官方 X 账号**：[@Claude_Memory](https://x.com/Claude_Memory)
 - **官方 Discord**：[加入 Discord](https://discord.com/invite/J4wttp9vDu)
 - **作者**：Alex Newman（[@thedotmack](https://github.com/thedotmack)）

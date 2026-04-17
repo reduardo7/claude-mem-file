@@ -1,27 +1,17 @@
-🌐 Ini adalah terjemahan otomatis. Koreksi dari komunitas sangat dipersilakan!
+🌐 Ini adalah terjemahan otomatis. Koreksi komunitas disambut!
 
----
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+# claude-mem-file
 
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -31,6 +21,7 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
@@ -46,42 +37,49 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">Sistem kompresi memori persisten yang dibangun untuk <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+> [!NOTE]
+> **Ini adalah fork dari [claude-mem](https://github.com/thedotmack/claude-mem)** oleh [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> Fork ini menggantikan backend penyimpanan SQLite/biner dengan **pendekatan hanya sistem file**: semua memori disimpan sebagai file Markdown biasa di bawah `<project-root>/docs/vault/`, sepenuhnya dapat diversi melalui git dan dapat dibagikan dengan setiap anggota tim Anda. Tidak ada database lokal, tidak ada blob biner — hanya file yang dapat Anda baca, edit, commit, dan merge.
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — Sistem kompresi memori persisten yang dibangun untuk <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/reduardo7/claude-mem-file">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem-File Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="#mulai-cepat">Mulai Cepat</a> •
@@ -94,28 +92,59 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File secara mulus mempertahankan konteks di seluruh sesi dengan secara otomatis menangkap observasi penggunaan alat, menghasilkan ringkasan semantik, dan membuatnya tersedia untuk sesi mendatang. Ini memungkinkan Claude untuk mempertahankan kontinuitas pengetahuan tentang proyek bahkan setelah sesi berakhir atau tersambung kembali.
+  Claude-Mem-File secara mulus mempertahankan konteks di seluruh sesi dengan menangkap observasi penggunaan alat, menghasilkan ringkasan semantik, dan menyimpan semuanya sebagai Markdown yang diversi di dalam vault Obsidian-kompatibel per-proyek di <code>&lt;project-root&gt;/docs/vault/</code> — tanpa database SQLite, tanpa blob biner, sepenuhnya dapat digabungkan melalui git.
 </p>
 
 ---
 
 ## Mulai Cepat
 
-Mulai sesi Claude Code baru di terminal dan masukkan perintah berikut:
+Instal dengan satu perintah:
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di sesi baru.
+Atau instal untuk Gemini CLI (deteksi otomatis `~/.gemini`):
+
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
+
+Atau instal untuk OpenCode:
+
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+Atau instal dari marketplace plugin di dalam Claude Code:
+
+```bash
+/plugin marketplace add reduardo7/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+Restart Claude Code atau Gemini CLI. Konteks dari sesi sebelumnya akan secara otomatis muncul di sesi baru.
+
+> **Catatan:** Claude-Mem-File juga dipublikasikan di npm, tetapi `npm install -g claude-mem-file` hanya menginstal **SDK/library** — tidak mendaftarkan hook plugin atau menyiapkan worker service. Selalu instal melalui `npx claude-mem-file install` atau perintah `/plugin` di atas.
+
+### 🦞 OpenClaw Gateway
+
+Instal claude-mem-file sebagai plugin memori persisten di gateway [OpenClaw](https://openclaw.ai) dengan satu perintah:
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+Installer menangani dependensi, setup plugin, konfigurasi penyedia AI, startup worker, dan feed observasi real-time opsional ke Telegram, Discord, Slack, dan lainnya. Lihat [Panduan Integrasi OpenClaw](https://docs.claude-mem-file.ai/openclaw-integration) untuk detail.
 
 **Fitur Utama:**
 
 - 🧠 **Memori Persisten** - Konteks bertahan di seluruh sesi
+- 📁 **Markdown Vault (Kompatibel Obsidian)** - Observasi dan sesi disimpan sebagai file `.md` di bawah `<project-root>/docs/vault/`, dapat diversi dan digabungkan melalui git — tidak ada SQLite, tidak ada state biner di mesin dev
 - 📊 **Progressive Disclosure** - Pengambilan memori berlapis dengan visibilitas biaya token
-- 🔍 **Pencarian Berbasis Skill** - Query riwayat proyek Anda dengan mem-search skill
+- 🔍 **Pencarian Berbasis Skill** - Query riwayat proyek Anda dengan mem-search skill (powered by `minisearch` dalam memori di atas vault)
 - 🖥️ **Web Viewer UI** - Stream memori real-time di http://localhost:37777
 - 💻 **Claude Desktop Skill** - Cari memori dari percakapan Claude Desktop
 - 🔒 **Kontrol Privasi** - Gunakan tag `<private>` untuk mengecualikan konten sensitif dari penyimpanan
@@ -123,6 +152,21 @@ Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di
 - 🤖 **Operasi Otomatis** - Tidak memerlukan intervensi manual
 - 🔗 **Kutipan** - Referensi observasi masa lalu dengan ID (akses melalui http://localhost:37777/api/observation/{id} atau lihat semua di web viewer di http://localhost:37777)
 - 🧪 **Beta Channel** - Coba fitur eksperimental seperti Endless Mode melalui peralihan versi
+
+## Migrasi dari SQLite (legacy)
+
+Rilis sebelumnya menyimpan memori di `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB). Layout vault baru menggantikan semua itu dengan Markdown biasa di `<project-root>/docs/vault/`. Memori sebelumnya Anda tidak hilang — jalankan skrip migrasi sekali:
+
+```bash
+# dari dalam proyek apa pun yang sebelumnya menggunakan claude-mem-file:
+npm run migrate-to-vault              # menulis docs/vault/ dari DB legacy
+npm run migrate-to-vault:dry          # pratinjau tanpa menulis
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # path eksplisit
+```
+
+Skrip membuka database SQLite read-only dan idempoten (duplikat terdeteksi melalui hash konten SHA-256, jadi menjalankan kembali aman). Commit folder `docs/vault/` yang dihasilkan ke repo Anda untuk berbagi memori dengan tim Anda.
 
 ---
 
@@ -133,6 +177,7 @@ Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di
 ### Memulai
 
 - **[Panduan Instalasi](https://docs.claude-mem-file.ai/installation)** - Mulai cepat & instalasi lanjutan
+- **[Setup Gemini CLI](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Panduan khusus untuk integrasi Google Gemini CLI
 - **[Panduan Penggunaan](https://docs.claude-mem-file.ai/usage/getting-started)** - Bagaimana Claude-Mem-File bekerja secara otomatis
 - **[Alat Pencarian](https://docs.claude-mem-file.ai/usage/search-tools)** - Query riwayat proyek Anda dengan bahasa alami
 - **[Fitur Beta](https://docs.claude-mem-file.ai/beta-features)** - Coba fitur eksperimental seperti Endless Mode
@@ -149,13 +194,12 @@ Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di
 - **[Arsitektur Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Bagaimana Claude-Mem-File menggunakan lifecycle hooks
 - **[Referensi Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 skrip hook dijelaskan
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & manajemen Bun
-- **[Database](https://docs.claude-mem-file.ai/architecture/database)** - Skema SQLite & pencarian FTS5
-- **[Arsitektur Pencarian](https://docs.claude-mem-file.ai/architecture/search-architecture)** - Pencarian hybrid dengan database vektor Chroma
+- **[Docs Vault](docs/)** - Vault Markdown gaya Obsidian untuk pengetahuan proyek bersama
 
 ### Konfigurasi & Pengembangan
 
-- **[Konfigurasi](https://docs.claude-mem-file.ai/configuration)** - Variabel environment & pengaturan
-- **[Pengembangan](https://docs.claude-mem-file.ai/development)** - Membangun, testing, kontribusi
+- **[Konfigurasi](https://docs.claude-mem-file.ai/configuration)** - Variabel lingkungan & pengaturan
+- **[Pengembangan](https://docs.claude-mem-file.ai/development)** - Membangun, testing, berkontribusi
 - **[Pemecahan Masalah](https://docs.claude-mem-file.ai/troubleshooting)** - Masalah umum & solusi
 
 ---
@@ -167,43 +211,47 @@ Restart Claude Code. Konteks dari sesi sebelumnya akan secara otomatis muncul di
 1. **5 Lifecycle Hooks** - SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd (6 skrip hook)
 2. **Smart Install** - Pemeriksa dependensi yang di-cache (skrip pre-hook, bukan lifecycle hook)
 3. **Worker Service** - HTTP API di port 37777 dengan web viewer UI dan 10 endpoint pencarian, dikelola oleh Bun
-4. **SQLite Database** - Menyimpan sesi, observasi, ringkasan
+4. **Docs Vault** (`docs/`) - Vault Markdown gaya Obsidian yang dicommit ke repositori; sumber kebenaran bersama untuk semua keputusan arsitektur, konteks, dan pengetahuan di seluruh sesi dan kolaborator
 5. **mem-search Skill** - Query bahasa alami dengan progressive disclosure
-6. **Chroma Vector Database** - Pencarian hybrid semantik + keyword untuk pengambilan konteks yang cerdas
 
 Lihat [Ringkasan Arsitektur](https://docs.claude-mem-file.ai/architecture/overview) untuk detail.
 
 ---
 
-## mem-search Skill
+## Alat Pencarian MCP
 
-Claude-Mem-File menyediakan pencarian cerdas melalui mem-search skill yang secara otomatis dipanggil saat Anda bertanya tentang pekerjaan masa lalu:
+Claude-Mem-File menyediakan pencarian memori cerdas melalui **4 alat MCP** mengikuti pola alur kerja **3-layer yang efisien token**:
+
+**Alur Kerja 3-Layer:**
+
+1. **`search`** - Dapatkan indeks kompak dengan ID (~50-100 token/hasil)
+2. **`timeline`** - Dapatkan konteks kronologis di sekitar hasil yang menarik
+3. **`get_observations`** - Ambil detail lengkap HANYA untuk ID yang difilter (~500-1,000 token/hasil)
 
 **Cara Kerja:**
-- Tanya saja secara alami: *"Apa yang kita lakukan sesi terakhir?"* atau *"Apakah kita sudah memperbaiki bug ini sebelumnya?"*
-- Claude secara otomatis memanggil mem-search skill untuk menemukan konteks yang relevan
 
-**Operasi Pencarian yang Tersedia:**
+- Claude menggunakan alat MCP untuk mencari memori Anda
+- Mulai dengan `search` untuk mendapatkan indeks hasil
+- Gunakan `timeline` untuk melihat apa yang terjadi di sekitar observasi tertentu
+- Gunakan `get_observations` untuk mengambil detail lengkap untuk ID yang relevan
+- **~10x penghematan token** dengan memfilter sebelum mengambil detail
 
-1. **Search Observations** - Pencarian teks lengkap di seluruh observasi
-2. **Search Sessions** - Pencarian teks lengkap di seluruh ringkasan sesi
-3. **Search Prompts** - Cari permintaan pengguna mentah
-4. **By Concept** - Temukan berdasarkan tag konsep (discovery, problem-solution, pattern, dll.)
-5. **By File** - Temukan observasi yang mereferensikan file tertentu
-6. **By Type** - Temukan berdasarkan tipe (decision, bugfix, feature, refactor, discovery, change)
-7. **Recent Context** - Dapatkan konteks sesi terbaru untuk sebuah proyek
-8. **Timeline** - Dapatkan timeline terpadu dari konteks di sekitar titik waktu tertentu
-9. **Timeline by Query** - Cari observasi dan dapatkan konteks timeline di sekitar kecocokan terbaik
-10. **API Help** - Dapatkan dokumentasi API pencarian
+**Alat MCP yang Tersedia:**
 
-**Contoh Query Bahasa Alami:**
+1. **`search`** - Cari indeks memori dengan query teks lengkap, filter berdasarkan tipe/tanggal/proyek
+2. **`timeline`** - Dapatkan konteks kronologis di sekitar observasi atau query tertentu
+3. **`get_observations`** - Ambil detail observasi lengkap berdasarkan ID (selalu batch beberapa ID)
 
-```
-"What bugs did we fix last session?"
-"How did we implement authentication?"
-"What changes were made to worker-service.ts?"
-"Show me recent work on this project"
-"What was happening when we added the viewer UI?"
+**Contoh Penggunaan:**
+
+```typescript
+// Langkah 1: Cari indeks
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
+
+// Langkah 2: Tinjau indeks, identifikasi ID yang relevan (mis. #123, #456)
+
+// Langkah 3: Ambil detail lengkap
+get_observations((ids = [123, 456]));
 ```
 
 Lihat [Panduan Alat Pencarian](https://docs.claude-mem-file.ai/usage/search-tools) untuk contoh detail.
@@ -222,9 +270,19 @@ Lihat **[Dokumentasi Fitur Beta](https://docs.claude-mem-file.ai/beta-features)*
 
 - **Node.js**: 18.0.0 atau lebih tinggi
 - **Claude Code**: Versi terbaru dengan dukungan plugin
-- **Bun**: JavaScript runtime dan process manager (otomatis diinstal jika tidak ada)
-- **uv**: Python package manager untuk pencarian vektor (otomatis diinstal jika tidak ada)
-- **SQLite 3**: Untuk penyimpanan persisten (terbundel)
+- **Bun**: Runtime JavaScript dan process manager (otomatis diinstal jika tidak ada)
+
+---
+
+### Catatan Setup Windows
+
+Jika Anda melihat kesalahan seperti:
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+Pastikan Node.js dan npm diinstal dan ditambahkan ke PATH Anda. Download installer Node.js terbaru dari https://nodejs.org dan restart terminal Anda setelah instalasi.
 
 ---
 
@@ -234,7 +292,46 @@ Pengaturan dikelola di `~/.claude-mem-file/settings.json` (otomatis dibuat denga
 
 Lihat **[Panduan Konfigurasi](https://docs.claude-mem-file.ai/configuration)** untuk semua pengaturan dan contoh yang tersedia.
 
----
+### Konfigurasi Mode & Bahasa
+
+Claude-Mem-File mendukung beberapa mode alur kerja dan bahasa melalui pengaturan `CLAUDE_MEM_MODE`.
+
+Opsi ini mengontrol keduanya:
+
+- Perilaku alur kerja (mis. code, chill, investigation)
+- Bahasa yang digunakan dalam observasi yang dihasilkan
+
+#### Cara Mengonfigurasi
+
+Edit file pengaturan Anda di `~/.claude-mem-file/settings.json`:
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+Mode didefinisikan di `plugin/modes/`. Untuk melihat semua mode yang tersedia secara lokal:
+
+```bash
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
+```
+
+#### Mode yang Tersedia
+
+| Mode       | Deskripsi            |
+| ---------- | -------------------- |
+| `code`     | Mode Inggris default  |
+| `code--zh` | Mode Cina Sederhana   |
+| `code--ja` | Mode Jepang           |
+
+Mode khusus bahasa mengikuti pola `code--[lang]` di mana `[lang]` adalah kode bahasa ISO 639-1 (mis. `zh` untuk Cina, `ja` untuk Jepang, `es` untuk Spanyol).
+
+> Catatan: `code--zh` (Cina Sederhana) sudah built-in — tidak diperlukan instalasi tambahan atau pembaruan plugin.
+
+#### Setelah Mengubah Mode
+
+Restart Claude Code untuk menerapkan konfigurasi mode baru.
 
 ## Pengembangan
 
@@ -244,7 +341,7 @@ Lihat **[Panduan Pengembangan](https://docs.claude-mem-file.ai/development)** un
 
 ## Pemecahan Masalah
 
-Jika mengalami masalah, jelaskan masalah ke Claude dan troubleshoot skill akan secara otomatis mendiagnosis dan memberikan perbaikan.
+Jika mengalami masalah, jelaskan masalah ke Claude dan skill troubleshoot akan secara otomatis mendiagnosis dan memberikan perbaikan.
 
 Lihat **[Panduan Pemecahan Masalah](https://docs.claude-mem-file.ai/troubleshooting)** untuk masalah umum dan solusi.
 
@@ -255,7 +352,7 @@ Lihat **[Panduan Pemecahan Masalah](https://docs.claude-mem-file.ai/troubleshoot
 Buat laporan bug yang komprehensif dengan generator otomatis:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -277,7 +374,7 @@ Lihat [Panduan Pengembangan](https://docs.claude-mem-file.ai/development) untuk 
 
 Proyek ini dilisensikan di bawah **GNU Affero General Public License v3.0** (AGPL-3.0).
 
-Copyright (C) 2025 Alex Newman (@thedotmack). All rights reserved.
+Copyright (C) 2025 Alex Newman (@thedotmack). Semua hak dilindungi.
 
 Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 
@@ -295,8 +392,10 @@ Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 ## Dukungan
 
 - **Dokumentasi**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repositori**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Issues**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repositori**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
+- **Akun X Resmi**: [@Claude_Memory](https://x.com/Claude_Memory)
+- **Discord Resmi**: [Join Discord](https://discord.com/invite/J4wttp9vDu)
 - **Penulis**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---
@@ -304,3 +403,7 @@ Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 **Built with Claude Agent SDK** | **Powered by Claude Code** | **Made with TypeScript**
 
 ---
+
+### Bagaimana Dengan $CMEM?
+
+$CMEM adalah token solana yang dibuat oleh pihak ketiga tanpa persetujuan sebelumnya dari Claude-Mem-File, tetapi secara resmi diadopsi oleh pembuat Claude-Mem-File (Alex Newman, @thedotmack). Token bertindak sebagai katalis komunitas untuk pertumbuhan dan kendaraan untuk membawa data agen real-time ke pengembang dan pekerja pengetahuan yang membutuhkannya paling banyak. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

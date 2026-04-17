@@ -39,6 +39,11 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
+> [!NOTE]
+> **Questo è un fork di [claude-mem](https://github.com/thedotmack/claude-mem)** di [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> Questo fork sostituisce il backend di archiviazione SQLite/binario con un **approccio solo filesystem**: tutta la memoria è archiviata come file Markdown semplici sotto `<project-root>/docs/vault/`, completamente versionabile via git e condivisibile con ogni membro del tuo team. Nessun database locale, nessun blob binario — solo file che puoi leggere, modificare, fare commit e unire.
+
 <h4 align="center">claude-mem-file — Sistema di compressione della memoria persistente creato per <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
@@ -46,10 +51,10 @@
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem-file">
+      <a href="https://github.com/reduardo7/claude-mem-file">
         <picture>
           <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
             alt="Claude-Mem-File Preview"
             width="500"
           >
@@ -57,19 +62,19 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -117,7 +122,7 @@ npx claude-mem-file install --ide opencode
 Oppure installa dal marketplace dei plugin all'interno di Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem-file
+/plugin marketplace add reduardo7/claude-mem-file
 
 /plugin install claude-mem-file
 ```
@@ -191,7 +196,7 @@ Lo script apre il database SQLite in sola lettura ed è idempotente (i duplicati
 - **[Architettura degli Hook](https://docs.claude-mem-file.ai/hooks-architecture)** - Come Claude-Mem-File utilizza gli hook del ciclo di vita
 - **[Riferimento Hook](https://docs.claude-mem-file.ai/architecture/hooks)** - Spiegazione dei 7 script hook
 - **[Servizio Worker](https://docs.claude-mem-file.ai/architecture/worker-service)** - API HTTP e gestione Bun
-- **[Docs Vault](../)** - Vault Markdown in stile Obsidian per la conoscenza condivisa del progetto
+- **[Docs Vault](docs/)** - Vault Markdown in stile Obsidian per la conoscenza condivisa del progetto
 
 ### Configurazione e Sviluppo
 
@@ -311,7 +316,7 @@ Modifica il file delle impostazioni in `~/.claude-mem-file/settings.json`:
 Le modalità sono definite in `plugin/modes/`. Per vedere tutte le modalità disponibili localmente:
 
 ```bash
-ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
 ```
 
 #### Modalità Disponibili
@@ -328,7 +333,7 @@ Le modalità specifiche per lingua seguono il pattern `code--[lang]` dove `[lang
 
 #### Dopo aver Cambiato Modalità
 
-## Riavvia Claude Code per applicare la nuova configurazione della modalità.
+Riavvia Claude Code per applicare la nuova configurazione della modalità.
 
 ## Sviluppo
 
@@ -349,7 +354,7 @@ Vedi la **[Guida alla Risoluzione dei Problemi](https://docs.claude-mem-file.ai/
 Crea report di bug completi con il generatore automatizzato:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -389,8 +394,8 @@ Vedi il file [LICENSE](LICENSE) per i dettagli completi.
 ## Supporto
 
 - **Documentazione**: [docs/](../)
-- **Problemi**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repository**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Problemi**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repository**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
 - **Account X Ufficiale**: [@Claude_Memory](https://x.com/Claude_Memory)
 - **Discord Ufficiale**: [Unisciti a Discord](https://discord.com/invite/J4wttp9vDu)
 - **Autore**: Alex Newman ([@thedotmack](https://github.com/thedotmack))

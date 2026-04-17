@@ -39,17 +39,22 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">claude-mem-file — Sistema de compressão de memória persistente construído para o <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+> [!NOTE]
+> **Este é um fork de [claude-mem](https://github.com/thedotmack/claude-mem)** por [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> Este fork substitui o backend de armazenamento SQLite/binário por uma **abordagem apenas de sistema de arquivos**: toda a memória é armazenada como arquivos Markdown simples em `<project-root>/docs/vault/`, totalmente versionável via git e compartilhável com todos os membros de sua equipe. Sem bancos de dados locais, sem blobs binários — apenas arquivos que você pode ler, editar, fazer commit e fazer merge.
+
+<h4 align="center">claude-mem-file — Sistema de compressão de memória persistente construído para <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
 
 <table align="center">
   <tr>
     <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem-file">
+      <a href="https://github.com/reduardo7/claude-mem-file">
         <picture>
           <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif"
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
             alt="Claude-Mem-File Preview"
             width="500"
           >
@@ -57,19 +62,19 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem-file&Date">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
         <picture>
           <source
             media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&theme=dark&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
           />
           <source
             media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
           />
           <img
             alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem-file&type=date&legend=top-left"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
             width="500"
           />
         </picture>
@@ -117,7 +122,7 @@ npx claude-mem-file install --ide opencode
 Ou instale pelo marketplace de plugins dentro do Claude Code:
 
 ```bash
-/plugin marketplace add thedotmack/claude-mem-file
+/plugin marketplace add reduardo7/claude-mem-file
 
 /plugin install claude-mem-file
 ```
@@ -311,7 +316,7 @@ Edite seu arquivo de configurações em `~/.claude-mem-file/settings.json`:
 Os modos são definidos em `plugin/modes/`. Para ver todos os modos disponíveis localmente:
 
 ```bash
-ls ~/.claude/plugins/marketplaces/thedotmack/plugin/modes/
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
 ```
 
 #### Modos Disponíveis
@@ -328,7 +333,9 @@ Os modos específicos de idioma seguem o padrão `code--[lang]` onde `[lang]` é
 
 #### Após Alterar o Modo
 
-## Reinicie o Claude Code para aplicar a nova configuração de modo.
+Reinicie o Claude Code para aplicar a nova configuração de modo.
+
+---
 
 ## Desenvolvimento
 
@@ -349,7 +356,7 @@ Consulte o **[Guia de Resolução de Problemas](https://docs.claude-mem-file.ai/
 Crie relatórios de bugs abrangentes com o gerador automatizado:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -389,8 +396,8 @@ Consulte o arquivo [LICENSE](LICENSE) para detalhes completos.
 ## Suporte
 
 - **Documentação**: [docs/](../)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repositório**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Issues**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repositório**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
 - **Conta Oficial no X**: [@Claude_Memory](https://x.com/Claude_Memory)
 - **Discord Oficial**: [Entrar no Discord](https://discord.com/invite/J4wttp9vDu)
 - **Autor**: Alex Newman ([@thedotmack](https://github.com/thedotmack))

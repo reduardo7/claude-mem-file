@@ -1,25 +1,19 @@
-<section dir="rtl">
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+🌐 هذه ترجمة آلية. تصحيحات المجتمع مرحب بها!
+
+---
+
+# claude-mem-file
 
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -29,6 +23,7 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
@@ -44,101 +39,136 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">أداة إضافية لـ <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> تعمل على أتمتة تسجيل معلومات الجلسات السابقه، وضغطها, ثم حقن السياق ذي الصلة في الجلسات المستقبلية.
-</h4>
+> [!NOTE]
+> **هذا فرع من [claude-mem](https://github.com/thedotmack/claude-mem)** بواسطة [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> يستبدل هذا الفرع خلفية تخزين SQLite/الثنائية برهج **يعتمد على نظام الملفات فقط**: يتم تخزين جميع الذاكرة كملفات Markdown عادية تحت `<project-root>/docs/vault/`، وقابلة للإصدار بالكامل عبر git وقابلة للمشاركة مع كل عضو في فريقك. لا قواعد بيانات محلية، لا نقوش ثنائية — فقط الملفات التي يمكنك قراءتها وتعديلها والالتزام بها ودمجها.
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — نظام ضغط الذاكرة المستمر المبني لـ <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/reduardo7/claude-mem-file">
+        <picture>
+          <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="500">
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left" />
+          <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" />
+          <img alt="Star History Chart" src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" width="500" />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
-
 <p align="center">
-  <a href="#بداية-سريعة">بداية سريعة</a> •
+  <a href="#البداية-السريعة">البداية السريعة</a> •
   <a href="#كيف-يعمل">كيف يعمل</a> •
-  <a href="#أدوات-البحث-mcp-search-tools">أدوات البحث</a> •
-  <a href="#المستندات">التوثيق</a> •
+  <a href="#أدوات-البحث-mcp">أدوات البحث</a> •
+  <a href="#التوثيق">التوثيق</a> •
   <a href="#الإعدادات">الإعدادات</a> •
   <a href="#استكشاف-الأخطاء-وإصلاحها">استكشاف الأخطاء وإصلاحها</a> •
-  <a href="#الترخيص-license">الترخيص</a>
+  <a href="#الترخيص">الترخيص</a>
 </p>
 
-<p align="center"  dir="rtl">
-Claude-Mem-File هو نظام متطور مصمم لضغط وحفظ الذاكرة لسياق عمل Claude Code. وظيفته الأساسية هي جعل "كلود" يتذكر ما فعله في جلسات العمل السابقة بسلاسة، عبر تسجيل تحركاته، وإنشاء ملخصات ذكية، واستدعائها في الجلسات المستقبلية. هذا يضمن عدم ضياع سياق المشروع حتى لو أغلقت البرنامج وفتحته لاحقاً.
+<p align="center">
+يحافظ Claude-Mem-File بسلاسة على السياق عبر الجلسات بالتقاط ملاحظات استخدام الأدوات، وإنشاء ملخصات دلالية، وتخزين كل شيء كـ Markdown مرقم داخل قبو Obsidian متوافق لكل مشروع في `<project-root>/docs/vault/` — بدون قاعدة بيانات SQLite، بدون نقوش ثنائية، قابل للدمج بالكامل عبر git.
 </p>
 
 ---
 
-## بداية سريعة 
+## البداية السريعة
 
-للبدء، افتح "Claude Code" في مبنى الأوامر (Terminal) واكتب الأوامر التالية:
-<div dir="ltr"  align="left">
+ثبّت بأمر واحد:
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-</div>
+أو ثبّت لـ Gemini CLI (كشف تلقائي لـ `~/.gemini`):
 
-بمجرد إعادة تشغيل Claude Code، سيتم استدعاء السياق من الجلسات السابقة تلقائيا عند الحاجة.
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
 
-**الميزات الرئيسية:**
+أو ثبّت لـ OpenCode:
 
-- 🧠 **ذاكرة مستديمه**:  سياق عملك لا ينتهي بانتهاء الجلسة، بل ينتقل معك للجلسة التالية.
-- 📊 **الكشف التدريجي** (Progressive Disclosure): نظام ذكي يستدعي المعلومات على طبقات، مما يمنحك رؤية واضحة لاستهلاك الـ "Tokens" (التكلفة).
-- 🔍 **بحث سريع** - استعلم عن سجل مشروعك باستخدام خاصية `mem-search`.
-- 🖥️ **واجهة مستخدم ويب** - رؤية معلومات الذاكرة مع  تحديث فوري عبر المتصفح من خلال الرابط: http://localhost:37777
-- 💻 **تكامل مع Claude Desktop** - إمكانية البحث في الذاكرة مباشرة من واجهة Claude المكتبية
-- 🔒 **التحكم في الخصوصية** - دعم وسم `<private>` لمنع النظام من تخزين أي معلومات حساسة.
-- ⚙️ **إعدادات السياق** - تحكم دقيق في السياق (context) التي سيتم حقنها في سياق المحادثة.
-- 🤖 **أتمتة كاملة:** - النظام يعمل في الخلفية دون الحاجة لتدخل يدوي منك.
-- 🔗 **الاستشهادات** - رجوع إلى الملاحظات السابقة باستخدام (http://localhost:37777/api/observation/{id} أو عرض جميع المعلومات على http://localhost:37777)
-- 🧪 **مزايا التجريبيه** - تجربة مميزات مثل "الوضع اللانهائي" (Endless Mode).
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+أو ثبّت من سوق المكونات الإضافية داخل Claude Code:
+
+```bash
+/plugin marketplace add reduardo7/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+أعد تشغيل Claude Code أو Gemini CLI. سيظهر السياق من الجلسات السابقة تلقائياً في الجلسات الجديدة.
+
+> **ملاحظة:** Claude-Mem-File منشور أيضاً على npm، لكن `npm install -g claude-mem-file` يثبّت فقط **مكتبة SDK** — لا يسجل خطافات المكونات الإضافية أو ينشئ خدمة العامل. ثبّت دائماً عبر `npx claude-mem-file install` أو أوامر `/plugin` أعلاه.
+
+### 🦞 بوابة OpenClaw
+
+ثبّت claude-mem-file كمكون إضافي للذاكرة المستمرة على بوابات [OpenClaw](https://openclaw.ai) بأمر واحد:
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+يتعامل المثبِّت مع التبعيات، إعداد المكونات الإضافية، إعدادات مزود الذكاء الاصطناعي، بدء العامل، وخلاصات الملاحظات في الوقت الفعلي إلى Telegram و Discord و Slack والمزيد. انظر [دليل تكامل OpenClaw](https://docs.claude-mem-file.ai/openclaw-integration) للتفاصيل.
+
+**المزايا الرئيسية:**
+
+- 🧠 **ذاكرة مستمرة** - السياق ينجو عبر الجلسات
+- 📁 **قبو Markdown (متوافق مع Obsidian)** - الملاحظات والجلسات مخزنة كملفات `.md` تحت `<project-root>/docs/vault/`، قابلة للإصدار والدمج عبر git — بدون SQLite، بدون حالة ثنائية على آلات التطوير
+- 📊 **الكشف التدريجي** - استرجاع الذاكرة المطبق على طبقات برؤية تكلفة الرموز
+- 🔍 **بحث مبني على المهارات** - استعلم عن سجل مشروعك باستخدام مهارة mem-search (مدعومة بـ `minisearch` في الذاكرة على القبو)
+- 🖥️ **واجهة مستخدم Web Viewer** - تدفق الذاكرة في الوقت الفعلي في http://localhost:37777
+- 💻 **مهارة Claude Desktop** - ابحث عن الذاكرة من محادثات Claude Desktop
+- 🔒 **التحكم في الخصوصية** - استخدم علامات `<private>` لاستبعاد المحتوى الحساس من التخزين
+- ⚙️ **إعدادات السياق** - تحكم دقيق على ما يتم حقنه من السياق
+- 🤖 **التشغيل التلقائي** - لا تدخل يدوي مطلوب
+- 🔗 **الاستشهادات** - اشر إلى الملاحظات السابقة برقم معرّف (access via http://localhost:37777/api/observation/{id} or view all in the web viewer at http://localhost:37777)
+- 🧪 **قناة بيتا** - جرّب الميزات التجريبية مثل Endless Mode عبر تبديل الإصدار
+
+## الهجرة من SQLite (قديم)
+
+خزنت الإصدارات السابقة الذاكرة في `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB). يستبدل التخطيط الجديد كل هذا بـ Markdown عادي في `<project-root>/docs/vault/`. لم تضع ذاكرتك السابقة — شغّل سكريبت الهجرة مرة واحدة:
+
+```bash
+# من داخل أي مشروع استخدم claude-mem-file سابقاً:
+npm run migrate-to-vault              # يكتب docs/vault/ من قاعدة البيانات القديمة
+npm run migrate-to-vault:dry          # معاينة بدون كتابة
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # مسارات صريحة
+```
+
+يفتح السكريبت قاعدة بيانات SQLite للقراءة فقط وهو سائمي (يتم اكتشاف النسخ المكررة عبر تجزئات محتوى SHA-256، لذا إعادة التشغيل آمنة). التزم مجلد `docs/vault/` الناتج لمشاركة الذاكرة مع فريقك.
 
 ---
 
-## المستندات 
+## التوثيق
 
-📚 **[عرض التوثيق الكامل](https://docs.claude-mem-file.ai/)** - تصفح على الموقع الرسمي
+📚 **[عرض التوثيق الكامل](https://docs.claude-mem-file.ai/)** - تصفح الموقع الرسمي
 
 ### البدء
 
 - **[دليل التثبيت](https://docs.claude-mem-file.ai/installation)** - البدء السريع والتثبيت المتقدم
-- **[دليل الاستخدام](https://docs.claude-mem-file.ai/usage/getting-started)** - كيف يعمل Claude-Mem-File تلقائيًا
-- **[أدوات البحث](https://docs.claude-mem-file.ai/usage/search-tools)** - استعلم عن سجل مشروعك بلغتك
-- **[الميزات التجريبية](https://docs.claude-mem-file.ai/beta-features)** - جرّب الميزات التجريبية مثل Endless Mode
+- **[إعداد Gemini CLI](https://docs.claude-mem-file.ai/gemini-cli/setup)** - دليل مخصص لتكامل Google Gemini CLI
+- **[دليل الاستخدام](https://docs.claude-mem-file.ai/usage/getting-started)** - كيف يعمل Claude-Mem-File تلقائياً
+- **[أدوات البحث](https://docs.claude-mem-file.ai/usage/search-tools)** - استعلم عن سجل مشروعك باللغة الطبيعية
+- **[ميزات بيتا](https://docs.claude-mem-file.ai/beta-features)** - جرّب ميزات تجريبية مثل Endless Mode
 
 ### أفضل الممارسات
 
@@ -148,17 +178,16 @@ Claude-Mem-File هو نظام متطور مصمم لضغط وحفظ الذاكر
 ### البنية المعمارية
 
 - **[نظرة عامة](https://docs.claude-mem-file.ai/architecture/overview)** - مكونات النظام وتدفق البيانات
-- **[تطور البنية المعمارية](https://docs.claude-mem-file.ai/architecture-evolution)** - تطور المعمارية من v3 إلى v5
-- **[بنية برامج الربط (Hooks)](https://docs.claude-mem-file.ai/hooks-architecture)** - كيف يستخدم Claude-Mem-File خطافات دورة الحياة
-- **[مرجع برامج الربط (Hooks)](https://docs.claude-mem-file.ai/architecture/hooks)** - شرح 7 سكريبتات خطافات
+- **[تطور البنية المعمارية](https://docs.claude-mem-file.ai/architecture-evolution)** - الرحلة من v3 إلى v5
+- **[بنية الخطافات](https://docs.claude-mem-file.ai/hooks-architecture)** - كيف يستخدم Claude-Mem-File خطافات دورة الحياة
+- **[مرجع الخطافات](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 سكريبتات خطافات مشروحة
 - **[خدمة العامل](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API وإدارة Bun
-- **[قاعدة البيانات](https://docs.claude-mem-file.ai/architecture/database)** - مخطط SQLite وبحث FTS5
-- **[بنية البحث](https://docs.claude-mem-file.ai/architecture/search-architecture)** - البحث المختلط مع قاعدة بيانات المتجهات Chroma
+- **[قبو الوثائق](docs/)** - قبو Markdown على طراز Obsidian للمعرفة المشتركة للمشروع
 
 ### الإعدادات والتطوير
 
 - **[الإعدادات](https://docs.claude-mem-file.ai/configuration)** - متغيرات البيئة والإعدادات
-- **[التطوير](https://docs.claude-mem-file.ai/development)** - البناء، الاختبار، سير العمل للمساهمة
+- **[التطوير](https://docs.claude-mem-file.ai/development)** - تعليمات البناء والاختبار والمساهمة
 - **[استكشاف الأخطاء وإصلاحها](https://docs.claude-mem-file.ai/troubleshooting)** - المشكلات الشائعة والحلول
 
 ---
@@ -167,85 +196,140 @@ Claude-Mem-File هو نظام متطور مصمم لضغط وحفظ الذاكر
 
 **المكونات الأساسية:**
 
-1. **5 برامج ربط (Hooks)** - SessionStart، UserPromptSubmit، PostToolUse، Stop، SessionEnd
-2. **تثبيت ذكي** - فاحص التبعيات المخزنة مؤقتًا
-3. **خدمة العامل** - HTTP API على المنفذ 37777 مع واجهة مستخدم عارض الويب و10 نقاط نهاية للبحث، تديرها Bun
-4. **قاعدة بيانات SQLite** - تخزن الجلسات، الملاحظات، الملخصات
+1. **5 خطافات دورة الحياة** - SessionStart و UserPromptSubmit و PostToolUse و Stop و SessionEnd (6 سكريبتات خطافات)
+2. **التثبيت الذكي** - فاحص التبعيات المخزن مؤقتاً (سكريبت ما قبل الخطاف، وليس خطاف دورة حياة)
+3. **خدمة العامل** - HTTP API على المنفذ 37777 مع واجهة مستخدم عارض الويب و 10 نقاط نهاية بحث، تديرها Bun
+4. **قبو الوثائق** (`docs/`) - قبو Markdown على طراز Obsidian مرتكب في المستودع؛ مصدر الحقيقة المشترك لجميع القرارات المعمارية والسياق والمعرفة عبر الجلسات والمتعاونين
 5. **مهارة mem-search** - استعلامات اللغة الطبيعية مع الكشف التدريجي
-6. **قاعدة بيانات المتجهات Chroma** - البحث الدلالي الهجين + الكلمات المفتاحية لاسترجاع السياق الذكي
 
 انظر [نظرة عامة على البنية المعمارية](https://docs.claude-mem-file.ai/architecture/overview) للتفاصيل.
 
 ---
 
-## أدوات البحث (MCP Search Tools)
-يوفر Claude-Mem-File بحثًا ذكيًا من خلال مهارة mem-search التي تُستدعى تلقائيًا عندما تسأل عن العمل السابق:
+## أدوات البحث MCP
+
+يوفر Claude-Mem-File بحثاً ذكياً عن الذاكرة من خلال **4 أدوات MCP** باتباع نمط سير عمل **3 طبقات** فعال من حيث الرموز:
+
+**سير العمل 3 طبقات:**
+
+1. **`search`** - احصل على فهرس مضغوط برقم معرّف (~50-100 رموز/نتيجة)
+2. **`timeline`** - احصل على السياق الزمني حول النتائج المثيرة للاهتمام
+3. **`get_observations`** - جلب التفاصيل الكاملة فقط لأرقام المعرّفات المرشحة (~500-1,000 رموز/نتيجة)
 
 **كيف يعمل:**
-- فقط اسأل بشكل طبيعي: *"ماذا فعلنا في الجلسة الأخيرة؟"* أو *"هل أصلحنا هذا الخطأ من قبل؟"*
-- يستدعي Claude تلقائيًا خاصية mem-search للعثور على السياق ذي الصلة
 
-**عمليات البحث المتاحة:**
+- يستخدم Claude أدوات MCP للبحث في ذاكرتك
+- ابدأ بـ `search` للحصول على فهرس النتائج
+- استخدم `timeline` لرؤية ما حدث حول ملاحظات محددة
+- استخدم `get_observations` لجلب التفاصيل الكاملة لأرقام المعرّفات ذات الصلة
+- **توفير ~10 مرات من الرموز** بتصفية قبل جلب التفاصيل
 
-1. **البحث في الملاحظات** - البحث النصي الكامل عبر الملاحظات
-2. **البحث في الجلسات** - البحث النصي الكامل عبر ملخصات الجلسات
-3. **البحث في المطالبات** - البحث في طلبات المستخدم الخام
-4. **حسب المفهوم** - البحث بواسطة وسوم المفهوم (discovery، problem-solution، pattern، إلخ.)
-5. **حسب الملف** - البحث عن الملاحظات التي تشير إلى ملفات محددة
-6. **حسب النوع** - البحث حسب النوع (decision، bugfix، feature، refactor، discovery، change)
-7. **السياق الحديث** - الحصول على سياق الجلسة الأخيرة لمشروع
-8. **الجدول الزمني** - الحصول على جدول زمني موحد للسياق حول نقطة زمنية محددة
-9. **الجدول الزمني حسب الاستعلام** - البحث عن الملاحظات والحصول على سياق الجدول الزمني حول أفضل تطابق
-10. **مساعدة API** - الحصول على توثيق API البحث
+**أدوات MCP المتاحة:**
 
-**أمثلة على الاستعلامات:**
+1. **`search`** - ابحث عن فهرس الذاكرة باستعلامات نص كامل، وصفّي حسب النوع/التاريخ/المشروع
+2. **`timeline`** - احصل على السياق الزمني حول ملاحظة محددة أو استعلام
+3. **`get_observations`** - جلب تفاصيل الملاحظات الكاملة برقم معرّف (ضع في دفعة أرقام معرّفات متعددة دائماً)
 
-```
-"What bugs did we fix last session?"
-"How did we implement authentication?"
-"What changes were made to worker-service.ts?"
-"Show me recent work on this project"
-"What was happening when we added the viewer UI?"
+**مثال الاستخدام:**
+
+```typescript
+// الخطوة 1: البحث عن فهرس
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
+
+// الخطوة 2: راجع الفهرس، حدد أرقام المعرّفات ذات الصلة (مثل #123 و #456)
+
+// الخطوة 3: جلب التفاصيل الكاملة
+get_observations((ids = [123, 456]));
 ```
 
 انظر [دليل أدوات البحث](https://docs.claude-mem-file.ai/usage/search-tools) لأمثلة مفصلة.
 
 ---
 
-## الميزات التجريبية
+## ميزات بيتا
 
-يقدم Claude-Mem-File **قناة تجريبية** بميزات تجريبية مثل **Endless Mode** (بنية ذاكرة بيوميمتية للجلسات الممتدة). بدّل بين الإصدارات المستقرة والتجريبية من واجهة مستخدم عارض الويب على http://localhost:37777 ← الإعدادات.
+يوفر Claude-Mem-File **قناة بيتا** مع ميزات تجريبية مثل **Endless Mode** (بنية ذاكرة بيوميمتية للجلسات الممتدة). بدّل بين الإصدارات المستقرة والتجريبية من واجهة مستخدم الويب في http://localhost:37777 → الإعدادات.
 
-انظر **[توثيق الميزات التجريبية](https://docs.claude-mem-file.ai/beta-features)** لتفاصيل حول Endless Mode وكيفية تجربته.
+انظر **[توثيق ميزات بيتا](https://docs.claude-mem-file.ai/beta-features)** للتفاصيل على Endless Mode وكيفية تجربته.
 
 ---
 
 ## متطلبات النظام
 
 - **Node.js**: 18.0.0 أو أعلى
-- **Claude Code**: أحدث إصدار مع دعم الإضافات
-- **Bun & uv**: (يتم تثبيتهما تلقائياً) لإدارة العمليات والبحث المتجه.
-- **SQLite 3**: للتخزين المستمر (مدمج)
+- **Claude Code**: أحدث إصدار مع دعم المكونات الإضافية
+- **Bun**: عداء JavaScript ومدير عمليات (يُثبّت تلقائياً إذا كان مفقوداً)
+
+---
+
+### ملاحظات إعداد Windows
+
+إذا رأيت خطأ مثل:
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+تأكد من تثبيت Node.js و npm وإضافتهما إلى PATH الخاص بك. حمّل أحدث مثبِّت Node.js من https://nodejs.org وأعد تشغيل المحطة الطرفية بعد التثبيت.
 
 ---
 
 ## الإعدادات
 
-تتم إدارة الإعدادات في `~/.claude-mem-file/settings.json` (يتم إنشاؤه تلقائيًا بالقيم الافتراضية عند التشغيل الأول). قم بتكوين نموذج الذكاء الاصطناعي، منفذ العامل، دليل البيانات، مستوى السجل، وإعدادات حقن السياق.
+تُدار الإعدادات في `~/.claude-mem-file/settings.json` (يُنشأ تلقائياً مع القيم الافتراضية عند التشغيل الأول). كوّن نموذج الذكاء الاصطناعي ومنفذ العامل ودليل البيانات ومستوى السجل وإعدادات حقن السياق.
 
 انظر **[دليل الإعدادات](https://docs.claude-mem-file.ai/configuration)** لجميع الإعدادات المتاحة والأمثلة.
 
----
+### إعدادات الوضع واللغة
+
+يدعم Claude-Mem-File أوضاع سير عمل ولغات متعددة عبر إعداد `CLAUDE_MEM_MODE`.
+
+يتحكم هذا الخيار في كليهما:
+
+- سلوك سير العمل (مثل code و chill و investigation)
+- اللغة المستخدمة في الملاحظات المُنشأة
+
+#### كيفية التكوين
+
+عدّل ملف الإعدادات الخاص بك في `~/.claude-mem-file/settings.json`:
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+تُعرّف الأوضاع في `plugin/modes/`. لرؤية جميع الأوضاع المتاحة محلياً:
+
+```bash
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
+```
+
+#### الأوضاع المتاحة
+
+| الوضع      | الوصف                  |
+| ---------- | ---------------------- |
+| `code`     | الوضع الإنجليزي الافتراضي |
+| `code--zh` | الوضع الصيني المبسط      |
+| `code--ja` | الوضع الياباني           |
+
+تتبع الأوضاع الخاصة باللغة النمط `code--[lang]` حيث `[lang]` هو رمز ISO 639-1 للغة (مثل `zh` للصينية و `ja` لليابانية و `es` للإسبانية).
+
+> ملاحظة: `code--zh` (الصينية المبسطة) مدمج بالفعل — لا توجد حاجة لتحديث إضافي أو المكون الإضافي.
+
+#### بعد تغيير الوضع
+
+أعد تشغيل Claude Code لتطبيق إعدادات الوضع الجديد.
 
 ## التطوير
 
-انظر **[دليل التطوير](https://docs.claude-mem-file.ai/development)** لتعليمات البناء، الاختبار، وسير عمل المساهمة.
+انظر **[دليل التطوير](https://docs.claude-mem-file.ai/development)** لتعليمات البناء والاختبار وسير عمل المساهمة.
 
 ---
 
 ## استكشاف الأخطاء وإصلاحها
 
-إذا واجهت مشكلة، اشرحها لـ Claude وسيقوم بتشغيل خاصية troubleshoot لإصلاحها ذاتياً.
+عند مواجهة المشاكل، اشرح المشكلة لـ Claude وستقوم مهارة استكشاف الأخطاء تلقائياً بالتشخيص والإصلاح.
 
 انظر **[دليل استكشاف الأخطاء وإصلاحها](https://docs.claude-mem-file.ai/troubleshooting)** للمشكلات الشائعة والحلول.
 
@@ -254,56 +338,60 @@ Claude-Mem-File هو نظام متطور مصمم لضغط وحفظ الذاكر
 ## تقارير الأخطاء
 
 أنشئ تقارير أخطاء شاملة باستخدام المولّد الآلي:
-<div align=left>
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
-</div>
 
 ## المساهمة
 
-المساهمات مرحب بها! يُرجى:
+المساهمات مرحب بها! يرجى:
 
-1. عمل Fork للمشروع (Repository)
-2. إنشاء فرع (branch)
+1. عمل Fork للمستودع
+2. إنشاء فرع ميزة
 3. إجراء التغييرات مع الاختبارات
-4. تحديث المستندات عند الحاجه
+4. تحديث التوثيق
 5. تقديم Pull Request
 
 انظر [دليل التطوير](https://docs.claude-mem-file.ai/development) لسير عمل المساهمة.
 
 ---
 
-## الترخيص (License)
+## الترخيص
 
-هذا المشروع مرخص بموجب **ترخيص GNU Affero العام الإصدار 3.0** (AGPL-3.0).
+هذا المشروع مرخص بموجب **رخصة GNU Affero العام الإصدار 3.0** (AGPL-3.0).
 
 حقوق النشر (C) 2025 Alex Newman (@thedotmack). جميع الحقوق محفوظة.
 
 انظر ملف [LICENSE](LICENSE) للتفاصيل الكاملة.
 
-**ماذا يعني هذا:**
+**ما يعنيه هذا:**
 
 - يمكنك استخدام وتعديل وتوزيع هذا البرنامج بحرية
-- إذا قمت بتعديل ونشر على خادم شبكة، يجب أن تتيح كود المصدر الخاص بك
-- الأعمال المشتقة يجب أن تكون مرخصة أيضًا تحت AGPL-3.0
+- إذا عدّلت ونشرت على خادم شبكة، يجب عليك توفير كود المصدر الخاص بك
+- الأعمال المشتقة يجب أن تُرخص أيضاً بموجب AGPL-3.0
 - لا يوجد ضمان لهذا البرنامج
 
-**ملاحظة حول Ragtime**: دليل `ragtime/` مرخص بشكل منفصل تحت **ترخيص PolyForm Noncommercial 1.0.0**. انظر [ragtime/LICENSE](ragtime/LICENSE) للتفاصيل.
+**ملاحظة حول Ragtime**: دليل `ragtime/` مرخص بشكل منفصل بموجب **رخصة PolyForm Noncommercial 1.0.0**. انظر [ragtime/LICENSE](ragtime/LICENSE) للتفاصيل.
 
 ---
 
 ## الدعم
 
 - **التوثيق**: [docs/](docs/)
-- **المشكلات**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **المستودع**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **المشاكل**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **المستودع**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
+- **حساب X الرسمي**: [@Claude_Memory](https://x.com/Claude_Memory)
+- **Discord الرسمي**: [انضم إلى Discord](https://discord.com/invite/J4wttp9vDu)
 - **المؤلف**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---
 
 **مبني باستخدام Claude Agent SDK** | **مدعوم بواسطة Claude Code** | **صُنع باستخدام TypeScript**
 
-</section>
+---
+
+### ماذا عن $CMEM؟
+
+$CMEM هو رمز solana أنشأته جهة خارجية بدون موافقة Claude-Mem-File المسبقة، لكن تبنّاه منشئ Claude-Mem-File (Alex Newman و @thedotmack). يعمل الرمز كمحفز مجتمع للنمو ومركبة لإحضار بيانات الوكيل في الوقت الفعلي للمطورين وعمال المعرفة الذين يحتاجون إليها أكثر. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

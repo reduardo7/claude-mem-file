@@ -3,11 +3,11 @@
 ---
 <h1 align="center">
   <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
+  <a href="https://github.com/reduardo7/claude-mem-file">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
+      <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
     </picture>
   </a>
   <br>
@@ -67,9 +67,9 @@
 <p align="center">
   <a href="https://trendshift.io/repositories/15496" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/trendshift-badge.svg">
+      <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="reduardo7/claude-mem-file | Trendshift" width="250" height="55"/>
     </picture>
   </a>
 </p>
@@ -77,9 +77,9 @@
 <br>
 
 <p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
+  <a href="https://github.com/reduardo7/claude-mem-file">
     <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
+      <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
     </picture>
   </a>
 </p>
@@ -105,7 +105,7 @@
 Inicie uma nova sessão do Claude Code no terminal e digite os seguintes comandos:
 
 ```
-> /plugin marketplace add thedotmack/claude-mem-file
+> /plugin marketplace add reduardo7/claude-mem-file
 
 > /plugin install claude-mem-file
 ```
@@ -256,7 +256,7 @@ Veja o **[Guia de Solução de Problemas](https://docs.claude-mem-file.ai/troubl
 Crie relatos de bug abrangentes com o gerador automatizado:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -296,8 +296,8 @@ Veja o arquivo [LICENSE](LICENSE) para detalhes completos.
 ## Suporte
 
 - **Documentação**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repositório**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Issues**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repositório**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
 - **Autor**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---

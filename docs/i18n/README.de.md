@@ -1,27 +1,19 @@
-🌐 Dies ist eine automatisierte Übersetzung. Korrekturen aus der Community sind willkommen!
+🌐 Dies ist eine maschinelle Übersetzung. Community-Korrektionen sind willkommen!
 
 ---
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+
+# claude-mem-file
 
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -31,6 +23,7 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
@@ -46,42 +39,35 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">Persistentes Speicherkomprimierungssystem entwickelt für <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+> [!NOTE]
+> **Dies ist ein Fork von [claude-mem](https://github.com/thedotmack/claude-mem)** von [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> Dieser Fork ersetzt das SQLite/Binary-Speicher-Backend durch einen **dateisystemgestützten Ansatz**: Der gesamte Speicher wird als einfache Markdown-Dateien unter `<project-root>/docs/vault/` gespeichert, vollständig über git versionierbar und mit jedem Mitglied Ihres Teams teilbar. Keine lokalen Datenbanken, keine Binär-Blobs – nur Dateien, die Sie lesen, bearbeiten, committen und zusammenführen können.
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — Persistentes Speicherkompressionssystem für <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/reduardo7/claude-mem-file">
+        <picture>
+          <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="500">
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left" />
+          <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" />
+          <img alt="Star History Chart" src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" width="500" />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="#schnellstart">Schnellstart</a> •
@@ -94,35 +80,81 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File bewahrt nahtlos Kontext über Sitzungen hinweg, indem es automatisch Beobachtungen zur Tool-Nutzung erfasst, semantische Zusammenfassungen generiert und diese für zukünftige Sitzungen verfügbar macht. Dies ermöglicht es Claude, die Kontinuität des Wissens über Projekte aufrechtzuerhalten, auch nachdem Sitzungen beendet wurden oder die Verbindung wiederhergestellt wird.
+  Claude-Mem-File bewahrt Kontext nahtlos über Sitzungen hinweg, indem es Beobachtungen zu Toolnutzung erfasst, semantische Zusammenfassungen generiert und alles als versioniertes Markdown in einem per-Projekt-Obsidian-kompatiblen Vault unter <code>&lt;project-root&gt;/docs/vault/</code> speichert — keine SQLite-Datenbank, keine Binär-Blobs, vollständig über git zusammenführbar.
 </p>
 
 ---
 
 ## Schnellstart
 
-Starten Sie eine neue Claude Code-Sitzung im Terminal und geben Sie die folgenden Befehle ein:
+Installieren Sie mit einem einzigen Befehl:
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-Starten Sie Claude Code neu. Kontext aus vorherigen Sitzungen wird automatisch in neuen Sitzungen angezeigt.
+Oder installieren Sie für Gemini CLI (erkennt automatisch `~/.gemini`):
+
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
+
+Oder installieren Sie für OpenCode:
+
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+Oder installieren Sie aus dem Plugin-Marketplace in Claude Code:
+
+```bash
+/plugin marketplace add reduardo7/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+Starten Sie Claude Code oder Gemini CLI neu. Kontext aus vorherigen Sitzungen wird automatisch in neuen Sitzungen angezeigt.
+
+> **Hinweis:** Claude-Mem-File wird auch auf npm veröffentlicht, aber `npm install -g claude-mem-file` installiert nur die **SDK/Bibliothek** – es registriert nicht die Plugin-Hooks oder richtet den Worker-Service ein. Installieren Sie immer über `npx claude-mem-file install` oder die `/plugin`-Befehle oben.
+
+### 🦞 OpenClaw Gateway
+
+Installieren Sie claude-mem-file als persistentes Speicher-Plugin auf [OpenClaw](https://openclaw.ai) Gateways mit einem einzigen Befehl:
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+Das Installationsskript verwaltet Abhängigkeiten, Plugin-Setup, KI-Provider-Konfiguration, Worker-Start und optionale Echtzeit-Beobachtungs-Feeds zu Telegram, Discord, Slack und mehr. Weitere Details finden Sie im [OpenClaw-Integrationsleitfaden](https://docs.claude-mem-file.ai/openclaw-integration).
 
 **Hauptmerkmale:**
 
 - 🧠 **Persistenter Speicher** - Kontext bleibt über Sitzungen hinweg erhalten
-- 📊 **Progressive Offenlegung** - Schichtweise Speicherabruf mit Sichtbarkeit der Token-Kosten
-- 🔍 **Skill-basierte Suche** - Durchsuchen Sie Ihre Projekthistorie mit dem mem-search Skill
-- 🖥️ **Web-Viewer-UI** - Echtzeit-Speicherstream unter http://localhost:37777
+- 📁 **Markdown Vault (Obsidian-kompatibel)** - Beobachtungen und Sitzungen werden als `.md`-Dateien unter `<project-root>/docs/vault/` gespeichert, versionierbar und über git zusammenführbar — keine SQLite, kein Binär-Status auf Entwicklungsmaschinen
+- 📊 **Progressive Offenlegung** - Schichtweise Speicherabruf mit Token-Kostensichtbarkeit
+- 🔍 **Skill-basierte Suche** - Durchsuchen Sie Ihre Projekthistorie mit dem mem-search Skill (unterstützt durch In-Memory `minisearch` über den Vault)
+- 🖥️ **Web-Viewer-UI** - Echtzeit-Speicher-Stream unter http://localhost:37777
 - 💻 **Claude Desktop Skill** - Durchsuchen Sie den Speicher aus Claude Desktop-Konversationen
 - 🔒 **Datenschutzkontrolle** - Verwenden Sie `<private>`-Tags, um sensible Inhalte von der Speicherung auszuschließen
 - ⚙️ **Kontextkonfiguration** - Feinkörnige Kontrolle darüber, welcher Kontext eingefügt wird
 - 🤖 **Automatischer Betrieb** - Keine manuelle Intervention erforderlich
-- 🔗 **Zitate** - Referenzieren Sie vergangene Beobachtungen mit IDs (Zugriff über http://localhost:37777/api/observation/{id} oder alle im Web-Viewer unter http://localhost:37777 anzeigen)
-- 🧪 **Beta-Kanal** - Probieren Sie experimentelle Funktionen wie den Endless Mode durch Versionswechsel aus
+- 🔗 **Zitate** - Referenzieren Sie frühere Beobachtungen mit IDs (Zugriff über http://localhost:37777/api/observation/{id} oder alle in der Web-Viewer unter http://localhost:37777 anzeigen)
+- 🧪 **Beta-Kanal** - Probieren Sie experimentelle Funktionen wie Endless Mode über Versionswechsel
+
+## Migration von SQLite (legacy)
+
+Frühere Versionen speicherten Speicher in `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB). Das neue Vault-Layout ersetzt all dies durch einfaches Markdown in `<project-root>/docs/vault/`. Ihre vorherigen Erinnerungen gehen nicht verloren – führen Sie das Migrationsskript einmal aus:
+
+```bash
+# aus einem Projekt, das zuvor claude-mem-file verwendet:
+npm run migrate-to-vault              # schreibt docs/vault/ aus der legacy DB
+npm run migrate-to-vault:dry          # Vorschau ohne zu schreiben
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # explizite Pfade
+```
+
+Das Skript öffnet die SQLite-Datenbank schreibgeschützt und ist idempotent (Duplikate werden über SHA-256-Content-Hashes erkannt, daher ist erneutes Ausführen sicher). Committen Sie den resultierenden `docs/vault/`-Ordner in Ihr Repo, um den Speicher mit Ihrem Team zu teilen.
 
 ---
 
@@ -133,14 +165,15 @@ Starten Sie Claude Code neu. Kontext aus vorherigen Sitzungen wird automatisch i
 ### Erste Schritte
 
 - **[Installationsanleitung](https://docs.claude-mem-file.ai/installation)** - Schnellstart & erweiterte Installation
+- **[Gemini CLI Setup](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Dedizierter Leitfaden für die Integration der Google Gemini CLI
 - **[Nutzungsanleitung](https://docs.claude-mem-file.ai/usage/getting-started)** - Wie Claude-Mem-File automatisch funktioniert
 - **[Suchwerkzeuge](https://docs.claude-mem-file.ai/usage/search-tools)** - Durchsuchen Sie Ihre Projekthistorie mit natürlicher Sprache
-- **[Beta-Funktionen](https://docs.claude-mem-file.ai/beta-features)** - Probieren Sie experimentelle Funktionen wie den Endless Mode
+- **[Beta-Funktionen](https://docs.claude-mem-file.ai/beta-features)** - Probieren Sie experimentelle Funktionen wie Endless Mode
 
 ### Best Practices
 
-- **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - Prinzipien der Kontextoptimierung für KI-Agenten
-- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Philosophie hinter Claude-Mems Kontext-Priming-Strategie
+- **[Context Engineering](https://docs.claude-mem-file.ai/context-engineering)** - Prinzipien der KI-Agenten-Kontextoptimierung
+- **[Progressive Disclosure](https://docs.claude-mem-file.ai/progressive-disclosure)** - Philosophie hinter Claude-Mem-Files Kontext-Priming-Strategie
 
 ### Architektur
 
@@ -149,8 +182,7 @@ Starten Sie Claude Code neu. Kontext aus vorherigen Sitzungen wird automatisch i
 - **[Hooks-Architektur](https://docs.claude-mem-file.ai/hooks-architecture)** - Wie Claude-Mem-File Lifecycle-Hooks verwendet
 - **[Hooks-Referenz](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 Hook-Skripte erklärt
 - **[Worker Service](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API & Bun-Verwaltung
-- **[Datenbank](https://docs.claude-mem-file.ai/architecture/database)** - SQLite-Schema & FTS5-Suche
-- **[Such-Architektur](https://docs.claude-mem-file.ai/architecture/search-architecture)** - Hybride Suche mit Chroma-Vektordatenbank
+- **[Docs Vault](docs/)** - Obsidian-ähnlicher Markdown-Vault für gemeinsames Projektwissen
 
 ### Konfiguration & Entwicklung
 
@@ -167,46 +199,50 @@ Starten Sie Claude Code neu. Kontext aus vorherigen Sitzungen wird automatisch i
 1. **5 Lifecycle-Hooks** - SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd (6 Hook-Skripte)
 2. **Smart Install** - Gecachter Abhängigkeitsprüfer (Pre-Hook-Skript, kein Lifecycle-Hook)
 3. **Worker Service** - HTTP API auf Port 37777 mit Web-Viewer-UI und 10 Such-Endpunkten, verwaltet von Bun
-4. **SQLite-Datenbank** - Speichert Sitzungen, Beobachtungen, Zusammenfassungen
+4. **Docs Vault** (`docs/`) - Obsidian-ähnlicher Markdown-Vault, der in das Repository committed wird; die gemeinsame Quelle der Wahrheit für alle architektonischen Entscheidungen, Kontexte und Wissen über Sitzungen und Mitarbeiter
 5. **mem-search Skill** - Natürlichsprachliche Abfragen mit progressiver Offenlegung
-6. **Chroma-Vektordatenbank** - Hybride semantische + Stichwortsuche für intelligenten Kontextabruf
 
-Siehe [Architekturübersicht](https://docs.claude-mem-file.ai/architecture/overview) für Details.
+Weitere Details finden Sie unter [Architecture Overview](https://docs.claude-mem-file.ai/architecture/overview).
 
 ---
 
-## mem-search Skill
+## MCP-Suchwerkzeuge
 
-Claude-Mem-File bietet intelligente Suche durch den mem-search Skill, der sich automatisch aktiviert, wenn Sie nach früheren Arbeiten fragen:
+Claude-Mem-File bietet intelligente Speichersuche durch **4 MCP-Tools**, die einem tokeneffizienten **3-Schichten-Workflow-Muster** folgen:
+
+**Der 3-Schichten-Workflow:**
+
+1. **`search`** - Erhalten Sie einen kompakten Index mit IDs (~50-100 Token/Ergebnis)
+2. **`timeline`** - Erhalten Sie chronologischen Kontext um interessante Ergebnisse
+3. **`get_observations`** - Vollständige Details NUR für gefilterte IDs abrufen (~500-1.000 Token/Ergebnis)
 
 **Wie es funktioniert:**
-- Fragen Sie einfach natürlich: *"Was haben wir in der letzten Sitzung gemacht?"* oder *"Haben wir diesen Fehler schon einmal behoben?"*
-- Claude aktiviert automatisch den mem-search Skill, um relevanten Kontext zu finden
 
-**Verfügbare Suchoperationen:**
+- Claude nutzt MCP-Tools, um Ihren Speicher zu durchsuchen
+- Beginnen Sie mit `search`, um einen Index von Ergebnissen zu erhalten
+- Verwenden Sie `timeline`, um zu sehen, was um spezifische Beobachtungen herum passierte
+- Verwenden Sie `get_observations`, um vollständige Details für relevante IDs abzurufen
+- **~10x Token-Ersparnis** durch Filterung vor dem Abrufen von Details
 
-1. **Search Observations** - Volltextsuche über Beobachtungen
-2. **Search Sessions** - Volltextsuche über Sitzungszusammenfassungen
-3. **Search Prompts** - Durchsuchen von rohen Benutzeranfragen
-4. **By Concept** - Suche nach Konzept-Tags (discovery, problem-solution, pattern, etc.)
-5. **By File** - Beobachtungen finden, die bestimmte Dateien referenzieren
-6. **By Type** - Suche nach Typ (decision, bugfix, feature, refactor, discovery, change)
-7. **Recent Context** - Aktuellen Sitzungskontext für ein Projekt abrufen
-8. **Timeline** - Einheitliche Zeitachse des Kontexts um einen bestimmten Zeitpunkt herum abrufen
-9. **Timeline by Query** - Nach Beobachtungen suchen und Zeitachsenkontext um die beste Übereinstimmung herum abrufen
-10. **API Help** - Such-API-Dokumentation abrufen
+**Verfügbare MCP-Tools:**
 
-**Beispiele für natürlichsprachliche Abfragen:**
+1. **`search`** - Speicherindex mit Volltextabfragen durchsuchen, nach Typ/Datum/Projekt filtern
+2. **`timeline`** - Chronologischen Kontext um eine spezifische Beobachtung oder Abfrage erhalten
+3. **`get_observations`** - Vollständige Beobachtungsdetails nach IDs abrufen (immer mehrere IDs stapeln)
 
+**Beispielverwendung:**
+
+```typescript
+// Schritt 1: Index durchsuchen
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
+
+// Schritt 2: Index überprüfen, relevante IDs identifizieren (z.B. #123, #456)
+
+// Schritt 3: Vollständige Details abrufen
+get_observations((ids = [123, 456]));
 ```
-"What bugs did we fix last session?"
-"How did we implement authentication?"
-"What changes were made to worker-service.ts?"
-"Show me recent work on this project"
-"What was happening when we added the viewer UI?"
-```
 
-Siehe [Suchwerkzeuge-Anleitung](https://docs.claude-mem-file.ai/usage/search-tools) für detaillierte Beispiele.
+Weitere Beispiele finden Sie im [Suchwerkzeuge-Leitfaden](https://docs.claude-mem-file.ai/usage/search-tools).
 
 ---
 
@@ -214,7 +250,7 @@ Siehe [Suchwerkzeuge-Anleitung](https://docs.claude-mem-file.ai/usage/search-too
 
 Claude-Mem-File bietet einen **Beta-Kanal** mit experimentellen Funktionen wie **Endless Mode** (biomimetische Speicherarchitektur für erweiterte Sitzungen). Wechseln Sie zwischen stabilen und Beta-Versionen über die Web-Viewer-UI unter http://localhost:37777 → Settings.
 
-Siehe **[Beta-Funktionen-Dokumentation](https://docs.claude-mem-file.ai/beta-features)** für Details zum Endless Mode und wie Sie ihn ausprobieren können.
+Weitere Details zu Endless Mode und wie Sie es ausprobieren können, finden Sie in der **[Beta-Funktionen-Dokumentation](https://docs.claude-mem-file.ai/beta-features)**.
 
 ---
 
@@ -223,8 +259,18 @@ Siehe **[Beta-Funktionen-Dokumentation](https://docs.claude-mem-file.ai/beta-fea
 - **Node.js**: 18.0.0 oder höher
 - **Claude Code**: Neueste Version mit Plugin-Unterstützung
 - **Bun**: JavaScript-Laufzeitumgebung und Prozessmanager (wird automatisch installiert, falls fehlend)
-- **uv**: Python-Paketmanager für Vektorsuche (wird automatisch installiert, falls fehlend)
-- **SQLite 3**: Für persistente Speicherung (enthalten)
+
+---
+
+### Windows-Setup-Hinweise
+
+Wenn Sie einen Fehler wie diesen sehen:
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+Stellen Sie sicher, dass Node.js und npm installiert sind und zu Ihrem PATH hinzugefügt wurden. Laden Sie das neueste Node.js-Installationsprogramm von https://nodejs.org herunter und starten Sie Ihr Terminal nach der Installation neu.
 
 ---
 
@@ -232,21 +278,60 @@ Siehe **[Beta-Funktionen-Dokumentation](https://docs.claude-mem-file.ai/beta-fea
 
 Einstellungen werden in `~/.claude-mem-file/settings.json` verwaltet (wird beim ersten Start automatisch mit Standardwerten erstellt). Konfigurieren Sie KI-Modell, Worker-Port, Datenverzeichnis, Log-Level und Kontext-Injektionseinstellungen.
 
-Siehe die **[Konfigurationsanleitung](https://docs.claude-mem-file.ai/configuration)** für alle verfügbaren Einstellungen und Beispiele.
+Weitere Informationen zu allen verfügbaren Einstellungen und Beispielen finden Sie im **[Konfigurationsleitfaden](https://docs.claude-mem-file.ai/configuration)**.
 
----
+### Modus & Sprachkonfiguration
+
+Claude-Mem-File unterstützt mehrere Workflow-Modi und Sprachen über die Einstellung `CLAUDE_MEM_MODE`.
+
+Diese Option steuert beide:
+
+- Das Workflow-Verhalten (z.B. code, chill, investigation)
+- Die in generierten Beobachtungen verwendete Sprache
+
+#### Wie man konfiguriert
+
+Bearbeiten Sie Ihre Einstellungsdatei unter `~/.claude-mem-file/settings.json`:
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+Modi werden in `plugin/modes/` definiert. Um alle verfügbaren Modi lokal zu sehen:
+
+```bash
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
+```
+
+#### Verfügbare Modi
+
+| Modus      | Beschreibung              |
+| ---------- | ------------------------- |
+| `code`     | Standard-English-Modus    |
+| `code--zh` | Vereinfachter Chinesischer Modus |
+| `code--ja` | Japanischer Modus         |
+
+Sprachspezifische Modi folgen dem Muster `code--[lang]`, wobei `[lang]` der ISO 639-1-Sprachcode ist (z.B. `zh` für Chinesisch, `ja` für Japanisch, `es` für Spanisch).
+
+> Hinweis: `code--zh` (Vereinfachtes Chinesisch) ist bereits integriert – keine zusätzliche Installation oder Plugin-Aktualisierung erforderlich.
+
+#### Nach Modus-Änderung
+
+## Starten Sie Claude Code neu, um die neue Moduskonfiguration anzuwenden.
 
 ## Entwicklung
 
-Siehe die **[Entwicklungsanleitung](https://docs.claude-mem-file.ai/development)** für Build-Anweisungen, Tests und Beitrags-Workflow.
+Weitere Informationen zu Build-Anweisungen, Tests und Beitrags-Workflow finden Sie im **[Entwicklungsleitfaden](https://docs.claude-mem-file.ai/development)**.
 
 ---
 
 ## Fehlerbehebung
 
-Wenn Sie Probleme haben, beschreiben Sie das Problem Claude und der troubleshoot Skill wird automatisch diagnostizieren und Lösungen bereitstellen.
+Wenn Sie Probleme haben, beschreiben Sie das Problem gegenüber Claude und die troubleshoot Skill wird automatisch diagnostizieren und Lösungen bereitstellen.
 
-Siehe die **[Fehlerbehebungsanleitung](https://docs.claude-mem-file.ai/troubleshooting)** für häufige Probleme und Lösungen.
+Weitere Informationen zu häufigen Problemen und Lösungen finden Sie im **[Fehlerbehebungsleitfaden](https://docs.claude-mem-file.ai/troubleshooting)**.
 
 ---
 
@@ -255,7 +340,7 @@ Siehe die **[Fehlerbehebungsanleitung](https://docs.claude-mem-file.ai/troublesh
 Erstellen Sie umfassende Fehlerberichte mit dem automatisierten Generator:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -269,7 +354,7 @@ Beiträge sind willkommen! Bitte:
 4. Aktualisieren Sie die Dokumentation
 5. Reichen Sie einen Pull Request ein
 
-Siehe [Entwicklungsanleitung](https://docs.claude-mem-file.ai/development) für den Beitrags-Workflow.
+Weitere Informationen zum Beitrags-Workflow finden Sie im [Entwicklungsleitfaden](https://docs.claude-mem-file.ai/development).
 
 ---
 
@@ -279,26 +364,34 @@ Dieses Projekt ist unter der **GNU Affero General Public License v3.0** (AGPL-3.
 
 Copyright (C) 2025 Alex Newman (@thedotmack). Alle Rechte vorbehalten.
 
-Siehe die [LICENSE](LICENSE)-Datei für vollständige Details.
+Weitere Details finden Sie in der [LICENSE](LICENSE)-Datei.
 
 **Was das bedeutet:**
 
 - Sie können diese Software frei verwenden, modifizieren und verteilen
 - Wenn Sie sie modifizieren und auf einem Netzwerkserver bereitstellen, müssen Sie Ihren Quellcode verfügbar machen
 - Abgeleitete Werke müssen ebenfalls unter AGPL-3.0 lizenziert werden
-- Es gibt KEINE GARANTIE für diese Software
+- Es gibt KEINE GEWÄHRLEISTUNG für diese Software
 
-**Hinweis zu Ragtime**: Das `ragtime/`-Verzeichnis ist separat unter der **PolyForm Noncommercial License 1.0.0** lizenziert. Siehe [ragtime/LICENSE](ragtime/LICENSE) für Details.
+**Hinweis zu Ragtime**: Das `ragtime/`-Verzeichnis ist separat unter der **PolyForm Noncommercial License 1.0.0** lizenziert. Weitere Details finden Sie unter [ragtime/LICENSE](ragtime/LICENSE).
 
 ---
 
-## Support
+## Unterstützung
 
 - **Dokumentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repository**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Issues**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repository**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
+- **Offizielles X-Konto**: [@Claude_Memory](https://x.com/Claude_Memory)
+- **Offizieller Discord**: [Discord beitreten](https://discord.com/invite/J4wttp9vDu)
 - **Autor**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---
 
 **Erstellt mit Claude Agent SDK** | **Powered by Claude Code** | **Made with TypeScript**
+
+---
+
+### Was ist mit $CMEM?
+
+$CMEM ist ein Solana-Token, der von einem Dritten ohne vorherige Zustimmung von Claude-Mem-File erstellt wurde, aber offiziell vom Schöpfer von Claude-Mem-File (Alex Newman, @thedotmack) akzeptiert wurde. Der Token fungiert als Community-Katalysator für Wachstum und als Fahrzeug, um Echtzeit-Agent-Daten zu den Entwicklern und Knowledge Workern zu bringen, die sie am meisten brauchen. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

@@ -1,26 +1,15 @@
 🌐 Bu otomatik bir çevirisidir. Topluluk düzeltmeleri memnuniyetle karşılanır!
 
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
-
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -30,6 +19,7 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
@@ -45,42 +35,35 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center"><a href="https://claude.com/claude-code" target="_blank">Claude Code</a> için geliştirilmiş kalıcı bellek sıkıştırma sistemi.</h4>
+> [!NOTE]
+> **Bu, [claude-mem](https://github.com/thedotmack/claude-mem) projesinin bir fork'u** [Alex Newman (@thedotmack)](https://github.com/thedotmack) tarafından.
+>
+> Bu fork, SQLite/binary depolama arka ucunu **yalnızca dosya sistemi yaklaşımı** ile değiştirir: tüm bellek `<project-root>/docs/vault/` altında düz Markdown dosyaları olarak depolanır, git üzerinden tamamen sürümlenebilir ve ekibinizin her üyesi ile paylaşılabilir. Yerel veritabanı yok, ikili blob'lar yok — sadece okuyabileceğiniz, düzenleyebileceğiniz, kaydedebileceğiniz ve birleştirebileceğiniz dosyalar.
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> için yerleşik kalıcı bellek sıkıştırma sistemi.</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/reduardo7/claude-mem-file">
+        <picture>
+          <img src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Önizlemesi" width="500">
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left" />
+          <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" />
+          <img alt="Star History Grafiği" src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left" width="500" />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="#hızlı-başlangıç">Hızlı Başlangıç</a> •
@@ -93,35 +76,81 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File, araç kullanım gözlemlerini otomatik olarak yakalayarak, anlamsal özetler oluşturarak ve bunları gelecekteki oturumlarda kullanılabilir hale getirerek bağlamı oturumlar arası sorunsuzca korur. Bu, Claude'un oturumlar sona erse veya yeniden bağlansa bile projeler hakkındaki bilgi sürekliliğini korumasını sağlar.
+  Claude-Mem-File, araç kullanım gözlemlerini yakalayarak, anlamsal özetler oluşturarak ve her proje için `<project-root>/docs/vault/` altında sürümlü bir Obsidian uyumlu kasaya depolayarak oturumlar arası bağlamı sorunsuzca korur — SQLite veritabanı yok, ikili blob yok, git üzerinden tamamen birleştirilebilir.
 </p>
 
 ---
 
 ## Hızlı Başlangıç
 
-Terminal üzerinden yeni bir Claude Code oturumu başlatın ve aşağıdaki komutları girin:
+Tek bir komutla yükleyin:
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-Claude Code'u yeniden başlatın. Önceki oturumlardaki bağlam otomatik olarak yeni oturumlarda görünecektir.
+Ya da Gemini CLI için yükleyin (`~/.gemini` otomatik olarak algılanır):
+
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
+
+Ya da OpenCode için yükleyin:
+
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+Ya da Claude Code içinde eklenti pazarından yükleyin:
+
+```bash
+/plugin marketplace add reduardo7/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+Claude Code veya Gemini CLI'ı yeniden başlatın. Önceki oturumlardan bağlam otomatik olarak yeni oturumlarda görünecektir.
+
+> **Not:** Claude-Mem-File ayrıca npm'de yayımlanır, ancak `npm install -g claude-mem-file` **yalnızca SDK/kütüphaneyi** yükler — eklenti hook'larını kaydetmez ya da worker servisini kurmaz. Daima `npx claude-mem-file install` veya yukarıdaki `/plugin` komutlarını kullanarak yükleyin.
+
+### 🦞 OpenClaw Ağ Geçidi
+
+Claude-mem-file'ı tek bir komutla [OpenClaw](https://openclaw.ai) ağ geçitlerine kalıcı bellek eklentisi olarak yükleyin:
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+Yükleyici bağımlılıkları, eklenti kurulumunu, AI sağlayıcı yapılandırmasını, worker başlatmayı ve Telegram, Discord, Slack'e isteğe bağlı gerçek zamanlı gözlem beslemesini işler. Ayrıntılar için [OpenClaw Entegrasyon Kılavuzu](https://docs.claude-mem-file.ai/openclaw-integration) bölümüne bakın.
 
 **Temel Özellikler:**
 
 - 🧠 **Kalıcı Bellek** - Bağlam oturumlar arası hayatta kalır
+- 📁 **Markdown Kasa (Obsidian uyumlu)** - Gözlemler ve oturumlar `<project-root>/docs/vault/` altında `.md` dosyaları olarak depolanır, git üzerinden sürümlü ve birleştirilebilir — SQLite yok, geliştirici makinalarında ikili durum yok
 - 📊 **Aşamalı Açıklama** - Token maliyeti görünürlüğü ile katmanlı bellek erişimi
-- 🔍 **Beceri Tabanlı Arama** - mem-search becerisi ile proje geçmişinizi sorgulayın
+- 🔍 **Beceri Tabanlı Arama** - mem-search becerisi ile proje geçmişinizi sorgulayın (kasa üzerinde bellek içi `minisearch` tarafından desteklenir)
 - 🖥️ **Web Görüntüleyici Arayüzü** - http://localhost:37777 adresinde gerçek zamanlı bellek akışı
 - 💻 **Claude Desktop Becerisi** - Claude Desktop konuşmalarından bellek araması yapın
 - 🔒 **Gizlilik Kontrolü** - Hassas içeriği depolamadan hariç tutmak için `<private>` etiketlerini kullanın
 - ⚙️ **Bağlam Yapılandırması** - Hangi bağlamın enjekte edileceği üzerinde detaylı kontrol
-- 🤖 **Otomatik Çalışma** - Manuel müdahale gerektirmez
+- 🤖 **Otomatik İşlem** - Manuel müdahale gerektirmez
 - 🔗 **Alıntılar** - ID'lerle geçmiş gözlemlere referans verin (http://localhost:37777/api/observation/{id} üzerinden erişin veya http://localhost:37777 adresindeki web görüntüleyicide tümünü görüntüleyin)
 - 🧪 **Beta Kanalı** - Sürüm değiştirme yoluyla Endless Mode gibi deneysel özellikleri deneyin
+
+## SQLite'ten Geçiş (eski versiyon)
+
+Önceki sürümler belleği `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB) adresinde depolardı. Yeni kasa düzeni tümünü `<project-root>/docs/vault/` altında düz Markdown ile değiştirir. Önceki belleğiniz kaybedilmemiştir — geçiş betiğini bir kez çalıştırın:
+
+```bash
+# daha önce claude-mem-file kullanmış herhangi bir proje içinde:
+npm run migrate-to-vault              # eski DB'den docs/vault/ yazar
+npm run migrate-to-vault:dry          # yazı yazmadan önizleyin
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # açık yollar
+```
+
+Betik, SQLite veritabanını salt okunur şekilde açar ve idempotent'tir (yineleniler SHA-256 içerik hash'leri aracılığıyla algılanır, bu nedenle yeniden çalıştırmak güvenlidir). Elde edilen `docs/vault/` klasörünü depoya kaydederek belleği ekibinizle paylaşın.
 
 ---
 
@@ -132,13 +161,14 @@ Claude Code'u yeniden başlatın. Önceki oturumlardaki bağlam otomatik olarak 
 ### Başlarken
 
 - **[Kurulum Kılavuzu](https://docs.claude-mem-file.ai/installation)** - Hızlı başlangıç ve gelişmiş kurulum
+- **[Gemini CLI Kurulumu](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Google'ın Gemini CLI entegrasyonu için özel kılavuz
 - **[Kullanım Kılavuzu](https://docs.claude-mem-file.ai/usage/getting-started)** - Claude-Mem-File otomatik olarak nasıl çalışır
 - **[Arama Araçları](https://docs.claude-mem-file.ai/usage/search-tools)** - Doğal dil ile proje geçmişinizi sorgulayın
 - **[Beta Özellikleri](https://docs.claude-mem-file.ai/beta-features)** - Endless Mode gibi deneysel özellikleri deneyin
 
 ### En İyi Uygulamalar
 
-- **[Bağlam Mühendisliği](https://docs.claude-mem-file.ai/context-engineering)** - AI ajan bağlam optimizasyon ilkeleri
+- **[Bağlam Mühendisliği](https://docs.claude-mem-file.ai/context-engineering)** - AI ajanı bağlam optimizasyonu ilkeleri
 - **[Aşamalı Açıklama](https://docs.claude-mem-file.ai/progressive-disclosure)** - Claude-Mem-File'in bağlam hazırlama stratejisinin ardındaki felsefe
 
 ### Mimari
@@ -148,8 +178,7 @@ Claude Code'u yeniden başlatın. Önceki oturumlardaki bağlam otomatik olarak 
 - **[Hooks Mimarisi](https://docs.claude-mem-file.ai/hooks-architecture)** - Claude-Mem-File yaşam döngüsü hook'larını nasıl kullanır
 - **[Hooks Referansı](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 hook betiği açıklandı
 - **[Worker Servisi](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API ve Bun yönetimi
-- **[Veritabanı](https://docs.claude-mem-file.ai/architecture/database)** - SQLite şeması ve FTS5 arama
-- **[Arama Mimarisi](https://docs.claude-mem-file.ai/architecture/search-architecture)** - Chroma vektör veritabanı ile hibrit arama
+- **[Docs Kasa](docs/)** - Paylaşılan proje bilgisi için Obsidian tarzı Markdown kasa
 
 ### Yapılandırma ve Geliştirme
 
@@ -166,46 +195,50 @@ Claude Code'u yeniden başlatın. Önceki oturumlardaki bağlam otomatik olarak 
 1. **5 Yaşam Döngüsü Hook'u** - SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd (6 hook betiği)
 2. **Akıllı Kurulum** - Önbelleğe alınmış bağımlılık kontrolcüsü (ön-hook betiği, yaşam döngüsü hook'u değil)
 3. **Worker Servisi** - Web görüntüleyici arayüzü ve 10 arama uç noktası ile 37777 portunda HTTP API, Bun tarafından yönetilir
-4. **SQLite Veritabanı** - Oturumları, gözlemleri, özetleri saklar
+4. **Docs Kasa** (`docs/`) - Depoya kaydedilen Obsidian tarzı Markdown kasa; tüm mimari kararlar, bağlam ve oturumlar ile işbirlikçiler arası bilginin paylaşılan gerçeklik kaynağı
 5. **mem-search Becerisi** - Aşamalı açıklama ile doğal dil sorguları
-6. **Chroma Vektör Veritabanı** - Akıllı bağlam erişimi için hibrit anlamsal + anahtar kelime arama
 
-Detaylar için [Mimari Genel Bakış](https://docs.claude-mem-file.ai/architecture/overview) bölümüne bakın.
+Ayrıntılar için [Mimari Genel Bakış](https://docs.claude-mem-file.ai/architecture/overview) bölümüne bakın.
 
 ---
 
-## mem-search Becerisi
+## MCP Arama Araçları
 
-Claude-Mem-File, geçmiş çalışmalarınız hakkında sorduğunuzda otomatik olarak devreye giren mem-search becerisi aracılığıyla akıllı arama sağlar:
+Claude-Mem-File, token açısından verimli **3 katmanlı iş akışı** deseni ile **4 MCP aracı** aracılığıyla akıllı bellek araması sağlar:
+
+**3 Katmanlı İş Akışı:**
+
+1. **`search`** - Kompakt indeks ile ID'ler al (~50-100 token/sonuç)
+2. **`timeline`** - İlginç sonuçlar etrafında kronolojik bağlam al
+3. **`get_observations`** - Filtrelenen ID'ler için tam detaylar al (~500-1,000 token/sonuç)
 
 **Nasıl Çalışır:**
-- Sadece doğal bir şekilde sorun: *"Geçen oturumda ne yaptık?"* veya *"Bu hatayı daha önce düzelttik mi?"*
-- Claude, ilgili bağlamı bulmak için otomatik olarak mem-search becerisini çağırır
 
-**Mevcut Arama İşlemleri:**
+- Claude, belleğinizi aramak için MCP araçlarını kullanır
+- Sonuçların indeksini almak için `search` ile başlayın
+- Belirli gözlemler etrafında ne olduğunu görmek için `timeline` kullanın
+- İlgili ID'ler için `get_observations` ile tam detaylar alın
+- **Detaylar alınmadan önce filtreleme ile ~10x token tasarrufu**
 
-1. **Search Observations** - Gözlemler arasında tam metin arama
-2. **Search Sessions** - Oturum özetleri arasında tam metin arama
-3. **Search Prompts** - Ham kullanıcı isteklerinde arama
-4. **By Concept** - Kavram etiketlerine göre bul (discovery, problem-solution, pattern, vb.)
-5. **By File** - Belirli dosyalara referans veren gözlemleri bul
-6. **By Type** - Türe göre bul (decision, bugfix, feature, refactor, discovery, change)
-7. **Recent Context** - Bir proje için yakın zamanlı oturum bağlamını al
-8. **Timeline** - Belirli bir zaman noktası etrafındaki birleşik bağlam zaman çizelgesini al
-9. **Timeline by Query** - Gözlemleri ara ve en iyi eşleşme etrafındaki zaman çizelgesi bağlamını al
-10. **API Help** - Arama API dokümantasyonunu al
+**Mevcut MCP Araçları:**
 
-**Örnek Doğal Dil Sorguları:**
+1. **`search`** - Tam metin sorguları ile bellek indeksini arayın, türe/tarihe/projeye göre filtreleyin
+2. **`timeline`** - Belirli bir gözlem veya sorgu etrafında kronolojik bağlam alın
+3. **`get_observations`** - ID'lere göre tam gözlem detaylarını alın (daima birden fazla ID'yi toplu olarak alın)
 
+**Örnek Kullanım:**
+
+```typescript
+// Adım 1: İndeks için ara
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
+
+// Adım 2: İndeksi gözden geçirin, ilgili ID'leri belirleyin (örn. #123, #456)
+
+// Adım 3: Tam detayları al
+get_observations((ids = [123, 456]));
 ```
-"Geçen oturumda hangi hataları düzelttik?"
-"Kimlik doğrulamayı nasıl uyguladık?"
-"worker-service.ts dosyasında hangi değişiklikler yapıldı?"
-"Bu projedeki son çalışmaları göster"
-"Görüntüleyici arayüzünü eklediğimizde ne oluyordu?"
-```
 
-Detaylı örnekler için [Arama Araçları Kılavuzu](https://docs.claude-mem-file.ai/usage/search-tools) bölümüne bakın.
+Ayrıntılı örnekler için [Arama Araçları Kılavuzu](https://docs.claude-mem-file.ai/usage/search-tools) bölümüne bakın.
 
 ---
 
@@ -213,7 +246,7 @@ Detaylı örnekler için [Arama Araçları Kılavuzu](https://docs.claude-mem-fi
 
 Claude-Mem-File, **Endless Mode** (genişletilmiş oturumlar için biyomimetik bellek mimarisi) gibi deneysel özellikler içeren bir **beta kanalı** sunar. http://localhost:37777 → Settings adresindeki web görüntüleyici arayüzünden kararlı ve beta sürümleri arasında geçiş yapın.
 
-Endless Mode hakkında detaylar ve nasıl deneyeceğiniz için **[Beta Özellikleri Dokümantasyonu](https://docs.claude-mem-file.ai/beta-features)** bölümüne bakın.
+Endless Mode hakkında ayrıntılar ve nasıl deneyeceğiniz için **[Beta Özellikleri Dokümantasyonu](https://docs.claude-mem-file.ai/beta-features)** bölümüne bakın.
 
 ---
 
@@ -222,8 +255,18 @@ Endless Mode hakkında detaylar ve nasıl deneyeceğiniz için **[Beta Özellikl
 - **Node.js**: 18.0.0 veya üzeri
 - **Claude Code**: Plugin desteği olan en son sürüm
 - **Bun**: JavaScript çalışma zamanı ve işlem yöneticisi (eksikse otomatik kurulur)
-- **uv**: Vektör arama için Python paket yöneticisi (eksikse otomatik kurulur)
-- **SQLite 3**: Kalıcı depolama için (dahildir)
+
+---
+
+### Windows Kurulum Notları
+
+Aşağıdakine benzer bir hata görürseniz:
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+Node.js ve npm'nin kurulu olduğundan ve PATH'a eklendiğinden emin olun. En son Node.js yükleyicisini https://nodejs.org adresinden indirin ve kurulumdan sonra terminalinizi yeniden başlatın.
 
 ---
 
@@ -233,7 +276,46 @@ Ayarlar `~/.claude-mem-file/settings.json` dosyasında yönetilir (ilk çalışt
 
 Tüm mevcut ayarlar ve örnekler için **[Yapılandırma Kılavuzu](https://docs.claude-mem-file.ai/configuration)** bölümüne bakın.
 
----
+### Mod ve Dil Yapılandırması
+
+Claude-Mem-File, `CLAUDE_MEM_MODE` ayarı aracılığıyla birden fazla iş akışı modu ve dili destekler.
+
+Bu seçenek her ikisini de kontrol eder:
+
+- İş akışı davranışı (örn. code, chill, investigation)
+- Oluşturulan gözlemlerde kullanılan dil
+
+#### Nasıl Yapılandırılır
+
+`~/.claude-mem-file/settings.json` adresindeki ayarlar dosyasını düzenleyin:
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+Modlar `plugin/modes/` içinde tanımlanır. Yerel olarak tüm mevcut modları görmek için:
+
+```bash
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
+```
+
+#### Mevcut Modlar
+
+| Mod        | Açıklama                |
+| ---------- | ----------------------- |
+| `code`     | Varsayılan İngilizce modu |
+| `code--zh` | Basitleştirilmiş Çince modu |
+| `code--ja` | Japonca modu            |
+
+Dile özel modlar `code--[lang]` deseni izler, `[lang]` ise ISO 639-1 dil kodu (örn. `zh` Çince için, `ja` Japonca için, `es` İspanyolca için).
+
+> Not: `code--zh` (Basitleştirilmiş Çince) zaten yerleşiktir — ek kurulum veya eklenti güncellenmesi gerekli değildir.
+
+#### Modu Değiştirdikten Sonra
+
+## Yeni mod yapılandırmasını uygulamak için Claude Code'u yeniden başlatın.
 
 ## Geliştirme
 
@@ -254,7 +336,7 @@ Yaygın sorunlar ve çözümler için **[Sorun Giderme Kılavuzu](https://docs.c
 Otomatik oluşturucu ile kapsamlı hata raporları oluşturun:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -287,17 +369,25 @@ Tam detaylar için [LICENSE](LICENSE) dosyasına bakın.
 - Türev çalışmalar da AGPL-3.0 altında lisanslanmalıdır
 - Bu yazılım için HİÇBİR GARANTİ yoktur
 
-**Ragtime Hakkında Not**: `ragtime/` dizini ayrı olarak **PolyForm Noncommercial License 1.0.0** altında lisanslanmıştır. Detaylar için [ragtime/LICENSE](ragtime/LICENSE) dosyasına bakın.
+**Ragtime Hakkında Not**: `ragtime/` dizini ayrı olarak **PolyForm Noncommercial License 1.0.0** altında lisanslanmıştır. Ayrıntılar için [ragtime/LICENSE](ragtime/LICENSE) dosyasına bakın.
 
 ---
 
 ## Destek
 
 - **Dokümantasyon**: [docs/](docs/)
-- **Sorunlar**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Depo**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Sorunlar**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Depo**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
+- **Resmi X Hesabı**: [@Claude_Memory](https://x.com/Claude_Memory)
+- **Resmi Discord**: [Discord'a Katılın](https://discord.com/invite/J4wttp9vDu)
 - **Yazar**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---
 
-**Claude Agent SDK ile geliştirilmiştir** | **Claude Code ile desteklenmektedir** | **TypeScript ile yapılmıştır**
+**Claude Agent SDK ile Yapılmıştır** | **Claude Code tarafından Desteklenmektedir** | **TypeScript ile Geliştirilmiştir**
+
+---
+
+### $CMEM Hakkında Ne?
+
+$CMEM, Claude-Mem-File'in önceden rızası olmaksızın bir 3. taraf tarafından oluşturulan ancak Claude-Mem-File'in yaratıcısı (Alex Newman, @thedotmack) tarafından resmi olarak kabul edilen bir Solana token'ı. Token, büyüme için bir topluluk katalizörü ve gerçek zamanlı ajan verilerini en çok ihtiyaç duyan geliştiriciler ve bilgi çalışanlarına getirmek için bir araç olarak hareket eder. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS

@@ -1,27 +1,19 @@
-🌐 Aceasta este o traducere automată. Corecțiile din partea comunității sunt binevenite!
+🌐 Aceasta este o traducere automată. Corecțiile comunității sunt binevenite!
 
 ---
-<h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/claude-mem-file-logo-for-light-mode.webp" alt="Claude-Mem-File" width="400">
-    </picture>
-  </a>
-  <br>
-</h1>
+
+# claude-mem-file
 
 <p align="center">
   <a href="README.zh.md">🇨🇳 中文</a> •
   <a href="README.zh-tw.md">🇹🇼 繁體中文</a> •
   <a href="README.ja.md">🇯🇵 日本語</a> •
+  <a href="README.pt.md">🇵🇹 Português</a> •
   <a href="README.pt-br.md">🇧🇷 Português</a> •
   <a href="README.ko.md">🇰🇷 한국어</a> •
   <a href="README.es.md">🇪🇸 Español</a> •
   <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a>
+  <a href="README.fr.md">🇫🇷 Français</a> •
   <a href="README.he.md">🇮🇱 עברית</a> •
   <a href="README.ar.md">🇸🇦 العربية</a> •
   <a href="README.ru.md">🇷🇺 Русский</a> •
@@ -31,6 +23,7 @@
   <a href="README.tr.md">🇹🇷 Türkçe</a> •
   <a href="README.uk.md">🇺🇦 Українська</a> •
   <a href="README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="README.tl.md">🇵🇭 Tagalog</a> •
   <a href="README.id.md">🇮🇩 Indonesia</a> •
   <a href="README.th.md">🇹🇭 ไทย</a> •
   <a href="README.hi.md">🇮🇳 हिन्दी</a> •
@@ -46,47 +39,54 @@
   <a href="README.no.md">🇳🇴 Norsk</a>
 </p>
 
-<h4 align="center">Sistem persistent de compresie a memoriei construit pentru <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+> [!NOTE]
+> **Aceasta este un fork al [claude-mem](https://github.com/thedotmack/claude-mem)** de către [Alex Newman (@thedotmack)](https://github.com/thedotmack).
+>
+> Acest fork înlocuiește backend-ul de stocare SQLite/binar cu o **abordare doar pe sistem de fișiere**: toată memoria este stocată ca fișiere Markdown simple sub `<project-root>/docs/vault/`, complet versionate prin git și partajate cu fiecare membru al echipei. Fără baze de date locale, fără blob-uri binare — doar fișiere pe care le puteți citi, edita, confirma și fuziona.
 
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem-file | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
-</p>
+<h4 align="center">claude-mem-file — Sistem persistent de compresie a memoriei construit pentru <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
 
 <br>
 
-<p align="center">
-  <a href="https://github.com/thedotmack/claude-mem-file">
-    <picture>
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem-file/main/docs/public/cm-preview.gif" alt="Claude-Mem-File Preview" width="800">
-    </picture>
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/reduardo7/claude-mem-file">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/reduardo7/claude-mem-file/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem-File Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#reduardo7/claude-mem-file&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=reduardo7/claude-mem-file&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="#start-rapid">Start Rapid</a> •
   <a href="#cum-funcționează">Cum Funcționează</a> •
-  <a href="#instrumente-de-căutare-mcp">Instrumente de Căutare</a> •
+  <a href="#instrumente-de-căutare-mcp">Instrumente de Căutare MCP</a> •
   <a href="#documentație">Documentație</a> •
   <a href="#configurare">Configurare</a> •
   <a href="#depanare">Depanare</a> •
@@ -94,35 +94,81 @@
 </p>
 
 <p align="center">
-  Claude-Mem-File păstrează contextul fără întrerupere între sesiuni prin capturarea automată a observațiilor de utilizare a instrumentelor, generarea de rezumate semantice și punerea lor la dispoziție în sesiunile viitoare. Aceasta permite lui Claude să mențină continuitatea cunoștințelor despre proiecte chiar și după încheierea sau reconectarea sesiunilor.
+  Claude-Mem-File păstrează fără probleme contextul între sesiuni prin capturarea observațiilor de utilizare a instrumentelor, generarea rezumatelor semantice și stocarea totul ca Markdown versionate într-un coffre Obsidian-compatibil per-proiect la <code>&lt;project-root&gt;/docs/vault/</code> — fără bază de date SQLite, fără blob-uri binare, complet fuzionabil prin git.
 </p>
 
 ---
 
 ## Start Rapid
 
-Porniți o nouă sesiune Claude Code în terminal și introduceți următoarele comenzi:
+Instalați cu o singură comandă:
 
-```
-> /plugin marketplace add thedotmack/claude-mem-file
-
-> /plugin install claude-mem-file
+```bash
+npx claude-mem-file install
 ```
 
-Reporniți Claude Code. Contextul din sesiunile anterioare va apărea automat în sesiunile noi.
+Sau instalați pentru Gemini CLI (auto-detectează `~/.gemini`):
+
+```bash
+npx claude-mem-file install --ide gemini-cli
+```
+
+Sau instalați pentru OpenCode:
+
+```bash
+npx claude-mem-file install --ide opencode
+```
+
+Sau instalați din piața de plugin-uri din interiorul Claude Code:
+
+```bash
+/plugin marketplace add reduardo7/claude-mem-file
+
+/plugin install claude-mem-file
+```
+
+Reporniți Claude Code sau Gemini CLI. Contextul din sesiunile anterioare va apărea automat în sesiunile noi.
+
+> **Notă:** Claude-Mem-File este, de asemenea, publicat pe npm, dar `npm install -g claude-mem-file` instalează **doar SDK-ul/biblioteca** — nu înregistrează hook-urile plugin-ului sau nu configurează serviciul worker. Instalați întotdeauna prin `npx claude-mem-file install` sau comenzile `/plugin` de mai sus.
+
+### 🦞 OpenClaw Gateway
+
+Instalați claude-mem-file ca plugin de memorie persistentă pe gateway-uri [OpenClaw](https://openclaw.ai) cu o singură comandă:
+
+```bash
+curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+```
+
+Instalatorul gestionează dependențele, configurarea plugin-ului, configurația furnizorului AI, pornirea worker-ului și feed-uri de observații în timp real opționale la Telegram, Discord, Slack și multe altele. Consultați [Ghidul de Integrare OpenClaw](https://docs.claude-mem-file.ai/openclaw-integration) pentru detalii.
 
 **Caracteristici Principale:**
 
 - 🧠 **Memorie Persistentă** - Contextul supraviețuiește între sesiuni
-- 📊 **Dezvăluire Progresivă** - Recuperare stratificată a memoriei cu vizibilitatea costurilor în tokeni
-- 🔍 **Căutare Bazată pe Abilități** - Interogați istoricul proiectului cu abilitatea mem-search
+- 📁 **Coffre Markdown (Obsidian-compatibil)** - Observații și sesiuni stocate ca fișiere `.md` sub `<project-root>/docs/vault/`, versionate și fuzionabile prin git — fără SQLite, fără stare binară pe mașinile de dezvoltare
+- 📊 **Dezvăluire Progresivă** - Recuperare stratificată a memoriei cu vizibilitate asupra costurilor în tokeni
+- 🔍 **Căutare Bazată pe Abilități** - Interogați istoricul proiectului cu abilitatea mem-search (alimentată de `minisearch` în memorie peste coffre)
 - 🖥️ **Interfață Web Viewer** - Flux de memorie în timp real la http://localhost:37777
-- 💻 **Abilitate Claude Desktop** - Căutați în memorie din conversațiile Claude Desktop
+- 💻 **Abilitate Claude Desktop** - Căutați memoria din conversațiile Claude Desktop
 - 🔒 **Control al Confidențialității** - Utilizați etichete `<private>` pentru a exclude conținut sensibil de la stocare
 - ⚙️ **Configurare Context** - Control fin asupra contextului care este injectat
 - 🤖 **Operare Automată** - Nu necesită intervenție manuală
 - 🔗 **Citări** - Referință la observații anterioare cu ID-uri (accesați prin http://localhost:37777/api/observation/{id} sau vizualizați toate în web viewer la http://localhost:37777)
 - 🧪 **Canal Beta** - Încercați funcții experimentale precum Endless Mode prin comutarea versiunii
+
+## Migrare din SQLite (legacy)
+
+Versiunile anterioare au stocat memoria în `~/.claude-mem-file/claude-mem-file.db` (SQLite + FTS5 + ChromaDB). Noul layout al cofrelui înlocuiește totul cu Markdown plain în `<project-root>/docs/vault/`. Memoriile tale anterioare nu sunt pierdute — rulează scriptul de migrare o singură dată:
+
+```bash
+# dintr-un proiect care a folosit anterior claude-mem-file:
+npm run migrate-to-vault              # scrie docs/vault/ din baza de date legacy
+npm run migrate-to-vault:dry          # previzualizare fără scriere
+bun scripts/migrate-to-vault.ts \
+    --db ~/.claude-mem-file/claude-mem-file.db \
+    --out ./docs/vault                # căi explicite
+```
+
+Scriptul deschide baza de date SQLite doar în citire și este idempotent (duplicatele sunt detectate prin hash-uri de conținut SHA-256, deci re-rularea este sigură). Confirmă folderul rezultat `docs/vault/` în repo-ul tău pentru a partaja memoria cu echipa ta.
 
 ---
 
@@ -130,9 +176,10 @@ Reporniți Claude Code. Contextul din sesiunile anterioare va apărea automat î
 
 📚 **[Vizualizați Documentația Completă](https://docs.claude-mem-file.ai/)** - Răsfoiți pe site-ul oficial
 
-### Introducere
+### Noțiuni de Bază
 
 - **[Ghid de Instalare](https://docs.claude-mem-file.ai/installation)** - Start rapid și instalare avansată
+- **[Configurare Gemini CLI](https://docs.claude-mem-file.ai/gemini-cli/setup)** - Ghid dedicat pentru integrarea Google Gemini CLI
 - **[Ghid de Utilizare](https://docs.claude-mem-file.ai/usage/getting-started)** - Cum funcționează Claude-Mem-File automat
 - **[Instrumente de Căutare](https://docs.claude-mem-file.ai/usage/search-tools)** - Interogați istoricul proiectului cu limbaj natural
 - **[Funcții Beta](https://docs.claude-mem-file.ai/beta-features)** - Încercați funcții experimentale precum Endless Mode
@@ -146,11 +193,10 @@ Reporniți Claude Code. Contextul din sesiunile anterioare va apărea automat î
 
 - **[Prezentare Generală](https://docs.claude-mem-file.ai/architecture/overview)** - Componente de sistem și flux de date
 - **[Evoluția Arhitecturii](https://docs.claude-mem-file.ai/architecture-evolution)** - Parcursul de la v3 la v5
-- **[Arhitectura Hooks](https://docs.claude-mem-file.ai/hooks-architecture)** - Cum folosește Claude-Mem-File hook-urile de ciclu de viață
-- **[Referință Hooks](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 scripturi de hook explicate
+- **[Arhitectura Hook-urilor](https://docs.claude-mem-file.ai/hooks-architecture)** - Cum folosește Claude-Mem-File hook-urile de ciclu de viață
+- **[Referință Hook-uri](https://docs.claude-mem-file.ai/architecture/hooks)** - 7 scripturi de hook explicate
 - **[Serviciu Worker](https://docs.claude-mem-file.ai/architecture/worker-service)** - HTTP API și gestionare Bun
-- **[Baza de Date](https://docs.claude-mem-file.ai/architecture/database)** - Schemă SQLite și căutare FTS5
-- **[Arhitectura Căutării](https://docs.claude-mem-file.ai/architecture/search-architecture)** - Căutare hibridă cu baza de date vectorială Chroma
+- **[Baza de Date Docs](docs/)** - Coffre Markdown Obsidian-style pentru cunoștințele proiectului partajate
 
 ### Configurare și Dezvoltare
 
@@ -167,43 +213,47 @@ Reporniți Claude Code. Contextul din sesiunile anterioare va apărea automat î
 1. **5 Hook-uri de Ciclu de Viață** - SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd (6 scripturi de hook)
 2. **Instalare Inteligentă** - Verificator de dependențe în cache (script pre-hook, nu un hook de ciclu de viață)
 3. **Serviciu Worker** - HTTP API pe portul 37777 cu interfață web viewer și 10 endpoint-uri de căutare, gestionat de Bun
-4. **Bază de Date SQLite** - Stochează sesiuni, observații, rezumate
+4. **Baza de Date Docs** (`docs/`) - Coffre Markdown Obsidian-style confirmat în repository; sursa de adevăr partajată pentru toate deciziile arhitecturale, contextul și cunoștințele între sesiuni și colaboratori
 5. **Abilitatea mem-search** - Interogări în limbaj natural cu dezvăluire progresivă
-6. **Bază de Date Vectorială Chroma** - Căutare hibridă semantică + cuvinte cheie pentru recuperare inteligentă a contextului
 
 Consultați [Prezentarea Generală a Arhitecturii](https://docs.claude-mem-file.ai/architecture/overview) pentru detalii.
 
 ---
 
-## Abilitatea mem-search
+## Instrumente de Căutare MCP
 
-Claude-Mem-File oferă căutare inteligentă prin abilitatea mem-search care se invocă automat când întrebați despre lucrul trecut:
+Claude-Mem-File oferă căutare inteligentă a memoriei prin **4 instrumente MCP** urmând un **model de flux de lucru cu 3 straturi** eficient în tokeni:
+
+**Fluxul de Lucru cu 3 Straturi:**
+
+1. **`search`** - Obțineți index compact cu ID-uri (~50-100 tokeni/rezultat)
+2. **`timeline`** - Obțineți context cronologic în jurul rezultatelor interesante
+3. **`get_observations`** - Preluați detalii complete DOAR pentru ID-uri filtrate (~500-1.000 tokeni/rezultat)
 
 **Cum Funcționează:**
-- Întrebați natural: *"Ce am făcut în sesiunea trecută?"* sau *"Am rezolvat acest bug înainte?"*
-- Claude invocă automat abilitatea mem-search pentru a găsi contextul relevant
 
-**Operații de Căutare Disponibile:**
+- Claude folosește instrumente MCP pentru a căuta memoria
+- Începeți cu `search` pentru a obține un index de rezultate
+- Folosiți `timeline` pentru a vedea ce se întâmpla în jurul observațiilor specifice
+- Folosiți `get_observations` pentru a prelua detalii complete pentru ID-uri relevante
+- **~10x economie de tokeni** prin filtrare înainte de preluarea detaliilor
 
-1. **Search Observations** - Căutare full-text în observații
-2. **Search Sessions** - Căutare full-text în rezumatele sesiunilor
-3. **Search Prompts** - Căutare în cererile brute ale utilizatorilor
-4. **By Concept** - Găsire după etichete de concept (discovery, problem-solution, pattern, etc.)
-5. **By File** - Găsire de observații care fac referire la fișiere specifice
-6. **By Type** - Găsire după tip (decision, bugfix, feature, refactor, discovery, change)
-7. **Recent Context** - Obținere context recent al sesiunii pentru un proiect
-8. **Timeline** - Obținere cronologie unificată a contextului în jurul unui punct specific în timp
-9. **Timeline by Query** - Căutare observații și obținere context cronologic în jurul celei mai bune potriviri
-10. **API Help** - Obținere documentație API de căutare
+**Instrumente MCP Disponibile:**
 
-**Exemple de Interogări în Limbaj Natural:**
+1. **`search`** - Căutare index memorie cu interogări full-text, filtrare după tip/dată/proiect
+2. **`timeline`** - Obțineți context cronologic în jurul unei observații specifice sau interogări
+3. **`get_observations`** - Preluați detalii observații complete după ID-uri (întotdeauna batch-ați ID-uri multiple)
 
-```
-"What bugs did we fix last session?"
-"How did we implement authentication?"
-"What changes were made to worker-service.ts?"
-"Show me recent work on this project"
-"What was happening when we added the viewer UI?"
+**Exemplu de Utilizare:**
+
+```typescript
+// Pasul 1: Căutare index
+search((query = 'authentication bug'), (type = 'bugfix'), (limit = 10));
+
+// Pasul 2: Revedeți indexul, identificați ID-uri relevante (ex., #123, #456)
+
+// Pasul 3: Preluați detalii complete
+get_observations((ids = [123, 456]));
 ```
 
 Consultați [Ghidul Instrumentelor de Căutare](https://docs.claude-mem-file.ai/usage/search-tools) pentru exemple detaliate.
@@ -223,18 +273,67 @@ Consultați **[Documentația Funcțiilor Beta](https://docs.claude-mem-file.ai/b
 - **Node.js**: 18.0.0 sau superior
 - **Claude Code**: Versiunea cea mai recentă cu suport pentru plugin-uri
 - **Bun**: Runtime JavaScript și manager de procese (instalat automat dacă lipsește)
-- **uv**: Manager de pachete Python pentru căutare vectorială (instalat automat dacă lipsește)
-- **SQLite 3**: Pentru stocare persistentă (inclus)
+
+---
+
+### Notele de Configurare pentru Windows
+
+Dacă vedeți o eroare ca:
+
+```powershell
+npm : The term 'npm' is not recognized as the name of a cmdlet
+```
+
+Asigurați-vă că Node.js și npm sunt instalate și adăugate la PATH. Descărcați cel mai recent installer Node.js de la https://nodejs.org și reporniți terminalul după instalare.
 
 ---
 
 ## Configurare
 
-Setările sunt gestionate în `~/.claude-mem-file/settings.json` (creat automat cu valori implicite la prima rulare). Configurați modelul AI, portul worker, directorul de date, nivelul de log și setările de injectare a contextului.
+Setările sunt gestionate în `~/.claude-mem-file/settings.json` (create automat cu valori implicite la prima rulare). Configurați modelul AI, portul worker, directorul de date, nivelul de jurnal și setările de injectare a contextului.
 
 Consultați **[Ghidul de Configurare](https://docs.claude-mem-file.ai/configuration)** pentru toate setările disponibile și exemple.
 
----
+### Configurare Mod și Limbă
+
+Claude-Mem-File acceptă moduri de flux de lucru multiple și limbi prin setarea `CLAUDE_MEM_MODE`.
+
+Această opțiune controlează:
+
+- Comportamentul fluxului de lucru (ex. code, chill, investigation)
+- Limba folosită în observațiile generate
+
+#### Cum se Configurează
+
+Editați fișierul de setări la `~/.claude-mem-file/settings.json`:
+
+```json
+{
+  "CLAUDE_MEM_MODE": "code--zh"
+}
+```
+
+Modurile sunt definite în `plugin/modes/`. Pentru a vedea toate modurile disponibile local:
+
+```bash
+ls ~/.claude/plugins/marketplaces/reduardo7/plugin/modes/
+```
+
+#### Moduri Disponibile
+
+| Mod        | Descriere              |
+| ---------- | ---------------------- |
+| `code`     | Mod Englez Implicit    |
+| `code--zh` | Mod Chinez Simplificat |
+| `code--ja` | Mod Japonez            |
+
+Modurile specifice limbii urmează modelul `code--[lang]` unde `[lang]` este codul limbii ISO 639-1 (ex. `zh` pentru Chinez, `ja` pentru Japonez, `es` pentru Spaniolă).
+
+> Notă: `code--zh` (Chinez Simplificat) este deja construit — nu este necesară nicio instalare suplimentară sau actualizare de plugin.
+
+#### După Schimbarea Modului
+
+Reporniți Claude Code pentru a aplica noua configurație de mod.
 
 ## Dezvoltare
 
@@ -244,7 +343,7 @@ Consultați **[Ghidul de Dezvoltare](https://docs.claude-mem-file.ai/development
 
 ## Depanare
 
-Dacă întâmpinați probleme, descrieți problema lui Claude și abilitatea troubleshoot va diagnostica automat și va furniza soluții.
+Dacă întâmpinați probleme, descrieți problema lui Claude și abilitatea troubleshoot va diagnostica automat și va furniza reparații.
 
 Consultați **[Ghidul de Depanare](https://docs.claude-mem-file.ai/troubleshooting)** pentru probleme comune și soluții.
 
@@ -255,7 +354,7 @@ Consultați **[Ghidul de Depanare](https://docs.claude-mem-file.ai/troubleshooti
 Creați rapoarte comprehensive de bug-uri cu generatorul automat:
 
 ```bash
-cd ~/.claude/plugins/marketplaces/thedotmack
+cd ~/.claude/plugins/marketplaces/reduardo7
 npm run bug-report
 ```
 
@@ -292,13 +391,21 @@ Consultați fișierul [LICENSE](LICENSE) pentru detalii complete.
 
 ---
 
-## Suport
+## Sprijin
 
 - **Documentație**: [docs/](docs/)
-- **Probleme**: [GitHub Issues](https://github.com/thedotmack/claude-mem-file/issues)
-- **Repository**: [github.com/thedotmack/claude-mem-file](https://github.com/thedotmack/claude-mem-file)
+- **Probleme**: [GitHub Issues](https://github.com/reduardo7/claude-mem-file/issues)
+- **Repository**: [github.com/reduardo7/claude-mem-file](https://github.com/reduardo7/claude-mem-file)
+- **Cont Oficial X**: [@Claude_Memory](https://x.com/Claude_Memory)
+- **Discord Oficial**: [Alăturați-vă Discord](https://discord.com/invite/J4wttp9vDu)
 - **Autor**: Alex Newman ([@thedotmack](https://github.com/thedotmack))
 
 ---
 
 **Construit cu Claude Agent SDK** | **Alimentat de Claude Code** | **Realizat cu TypeScript**
+
+---
+
+### Ce Spuneți despre $CMEM?
+
+$CMEM este un token Solana creat de un terț fără consimțământul anterior al Claude-Mem-File, dar oficial îmbrățișat de creatorul Claude-Mem-File (Alex Newman, @thedotmack). Tokenul acționează ca catalizator comunitar pentru creștere și vehicul pentru aducerea datelor agentului în timp real către dezvoltatorii și lucrătorii cunoașterii care au nevoie de ea cel mai mult. $CMEM: 2TsmuYUrsctE57VLckZBYEEzdokUF8j8e1GavekWBAGS
