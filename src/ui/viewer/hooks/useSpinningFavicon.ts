@@ -54,6 +54,8 @@ export function useSpinningFavicon(isProcessing: boolean) {
         animationRef.current = requestAnimationFrame(animate);
         return;
       }
+      // image.complete is true even for broken images; naturalWidth === 0 means failed
+      if (image.naturalWidth === 0) return;
 
       // Rotate by ~4 degrees per frame (matches 1.5s for full rotation at 60fps)
       rotationRef.current += (2 * Math.PI) / 90;
