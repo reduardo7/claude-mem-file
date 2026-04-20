@@ -118,7 +118,7 @@ npx claude-mem-file install --ide opencode
 Or install from the plugin marketplace inside Claude Code:
 
 ```bash
-/plugin install claude-mem-file
+/plugin install https://github.com/reduardo7/claude-mem-file
 ```
 
 Restart Claude Code or Gemini CLI. Context from previous sessions will automatically appear in new sessions.
