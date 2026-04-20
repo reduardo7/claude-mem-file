@@ -118,8 +118,6 @@ npx claude-mem-file install --ide opencode
 Or install from the plugin marketplace inside Claude Code:
 
 ```bash
-/plugin marketplace add reduardo7/claude-mem-file
-
 /plugin install claude-mem-file
 ```
 
