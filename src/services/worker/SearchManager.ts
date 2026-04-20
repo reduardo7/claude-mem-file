@@ -33,17 +33,33 @@ interface NormalizedArgs {
 }
 
 export interface SearchManagerOptions {
-  vault: VaultStore;
-  adapter: VaultStoreAdapter;
+  vault: VaultStore | null;
+  adapter: VaultStoreAdapter | null;
 }
 
 export class SearchManager {
-  private vault: VaultStore;
-  private adapter: VaultStoreAdapter;
+  private _vault: VaultStore | null;
+  private _adapter: VaultStoreAdapter | null;
 
   constructor(opts: SearchManagerOptions) {
-    this.vault = opts.vault;
-    this.adapter = opts.adapter;
+    this._vault = opts.vault ?? null;
+    this._adapter = opts.adapter ?? null;
+  }
+
+  /** Called when the first project vault is ready. */
+  updateVault(vault: VaultStore, adapter: VaultStoreAdapter): void {
+    this._vault = vault;
+    this._adapter = adapter;
+  }
+
+  private get vault(): VaultStore {
+    if (!this._vault) throw new Error('SearchManager: vault not yet initialized (no project session started)');
+    return this._vault;
+  }
+
+  private get adapter(): VaultStoreAdapter {
+    if (!this._adapter) throw new Error('SearchManager: adapter not yet initialized (no project session started)');
+    return this._adapter;
   }
 
   // ---- Entry points matched to SearchRoutes -----------------------------

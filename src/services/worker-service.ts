@@ -364,22 +364,24 @@ export class WorkerService {
       // Queue is in-memory now: nothing to reset on startup — any in-flight
       // messages died with the previous worker process. Hooks retry client-side.
 
-      // Initialize search and corpus services over the vault.
-      const searchManager = new SearchManager({
-        vault: this.dbManager.getVaultStore(),
-        adapter: this.dbManager.getSessionStore(),
-      });
+      // SearchManager and CorpusBuilder require a vault — they are initialized lazily
+      // when the first project vault is created (on the first session-init hook).
+      // SearchRoutes/CorpusRoutes delegate to these managers; they return 503 until ready.
+      const searchManager = new SearchManager({ vault: null, adapter: null });
       this.searchRoutes = new SearchRoutes(searchManager);
       this.server.registerRoutes(this.searchRoutes);
-      logger.info('WORKER', 'SearchManager initialized and search routes registered');
 
-      const corpusBuilder = new CorpusBuilder(
-        this.dbManager.getVaultStore(),
-        this.corpusStore,
-      );
       const knowledgeAgent = new KnowledgeAgent(this.corpusStore);
+      const corpusBuilder = new CorpusBuilder(null, this.corpusStore);
       this.server.registerRoutes(new CorpusRoutes(this.corpusStore, corpusBuilder, knowledgeAgent));
-      logger.info('WORKER', 'CorpusRoutes registered');
+
+      this.dbManager.setOnFirstStoreCreated((vault, adapter) => {
+        searchManager.updateVault(vault, adapter);
+        corpusBuilder.updateVault(vault);
+        logger.info('WORKER', 'SearchManager and CorpusBuilder connected to first project vault');
+      });
+
+      logger.info('WORKER', 'Search and corpus routes registered (vault pending first project session)');
 
       // DB and search are ready — mark initialization complete so hooks can proceed.
       // MCP connection is tracked separately via mcpReady and is NOT required for
@@ -636,7 +638,7 @@ export class WorkerService {
             errorMessage
           });
           // Clear stale memorySessionId and force fresh init on next attempt
-          this.dbManager.getSessionStore().updateMemorySessionId(session.sessionDbId, null);
+          (this.dbManager.getAdapterForSessionDbId(session.sessionDbId) ?? this.dbManager.getSessionStore()).updateMemorySessionId(session.sessionDbId, null);
           session.memorySessionId = null;
           session.forceInit = true;
         }
@@ -762,7 +764,7 @@ export class WorkerService {
     if (!session.memorySessionId) {
       const syntheticId = `fallback-${sessionDbId}-${Date.now()}`;
       session.memorySessionId = syntheticId;
-      this.dbManager.getSessionStore().updateMemorySessionId(sessionDbId, syntheticId);
+      (this.dbManager.getAdapterForSessionDbId(sessionDbId) ?? this.dbManager.getSessionStore()).updateMemorySessionId(sessionDbId, syntheticId);
     }
 
     if (isGeminiAvailable()) {
@@ -843,12 +845,12 @@ export class WorkerService {
     const STALE_SESSION_THRESHOLD_MS = 6 * 60 * 60 * 1000;
     const staleThreshold = Date.now() - STALE_SESSION_THRESHOLD_MS;
     try {
-      const sessions = this.dbManager.getVaultStore().listSessions({ status: 'active' });
+      const sessions = this.dbManager.listAllActiveSessions();
       const staleMemoryIds = sessions
         .filter((s) => s.started_at_epoch < staleThreshold && s.memory_session_id)
         .map((s) => s.memory_session_id as string);
       for (const mid of staleMemoryIds) {
-        this.dbManager.getVaultStore().markSessionCompleted(mid, 'failed');
+        this.dbManager.markSessionCompletedByMemoryId(mid, 'failed');
       }
       if (staleMemoryIds.length > 0) {
         logger.info('SYSTEM', `Marked ${staleMemoryIds.length} stale sessions as failed`);

@@ -522,7 +522,7 @@ export class SessionRoutes extends BaseRouteHandler {
    * POST /api/sessions/observations
    * Body: { contentSessionId, tool_name, tool_input, tool_response, cwd }
    */
-  private handleObservationsByClaudeId = this.wrapHandler((req: Request, res: Response): void => {
+  private handleObservationsByClaudeId = this.wrapHandler(async (req: Request, res: Response): Promise<void> => {
     const { contentSessionId, tool_name, tool_input, tool_response, cwd } = req.body;
     const platformSource = normalizePlatformSource(req.body.platformSource);
     const project = typeof cwd === 'string' && cwd.trim() ? getProjectContext(cwd).primary : '';
@@ -557,10 +557,13 @@ export class SessionRoutes extends BaseRouteHandler {
     }
 
     try {
-      const store = this.dbManager.getSessionStore();
+      const store = cwd
+        ? await this.dbManager.getOrCreateAdapterForCwd(cwd)
+        : (this.dbManager.getAdapterForContentSession(contentSessionId) ?? this.dbManager.getSessionStore());
 
       // Get or create session
       const sessionDbId = store.createSDKSession(contentSessionId, project, '', undefined, platformSource);
+      if (cwd) this.dbManager.registerSession(contentSessionId, sessionDbId, cwd);
       const promptNumber = store.getPromptNumberFromUserPrompts(contentSessionId);
 
       // Privacy check: skip if user prompt was entirely private
@@ -759,7 +762,7 @@ export class SessionRoutes extends BaseRouteHandler {
    *
    * Returns: { sessionDbId, promptNumber, skipped: boolean, reason?: string }
    */
-  private handleSessionInitByClaudeId = this.wrapHandler((req: Request, res: Response): void => {
+  private handleSessionInitByClaudeId = this.wrapHandler(async (req: Request, res: Response): Promise<void> => {
     const { contentSessionId } = req.body;
 
     // Only contentSessionId is truly required — Cursor and other platforms
@@ -768,6 +771,7 @@ export class SessionRoutes extends BaseRouteHandler {
     const prompt = req.body.prompt || '[media prompt]';
     const platformSource = normalizePlatformSource(req.body.platformSource);
     const customTitle = req.body.customTitle || undefined;
+    const cwd: string = req.body.cwd || '';
 
     logger.info('HTTP', 'SessionRoutes: handleSessionInitByClaudeId called', {
       contentSessionId,
@@ -782,10 +786,13 @@ export class SessionRoutes extends BaseRouteHandler {
       return;
     }
 
-    const store = this.dbManager.getSessionStore();
+    const store = cwd
+      ? await this.dbManager.getOrCreateAdapterForCwd(cwd)
+      : (this.dbManager.getAdapterForContentSession(contentSessionId) ?? this.dbManager.getSessionStore());
 
     // Step 1: Create/get SDK session (idempotent INSERT OR IGNORE)
     const sessionDbId = store.createSDKSession(contentSessionId, project, prompt, customTitle, platformSource);
+    if (cwd) this.dbManager.registerSession(contentSessionId, sessionDbId, cwd);
 
     // Verify session creation with DB lookup
     const dbSession = store.getSessionById(sessionDbId);

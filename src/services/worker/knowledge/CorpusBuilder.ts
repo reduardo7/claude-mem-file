@@ -17,12 +17,24 @@ import type { CorpusFile, CorpusFilter, CorpusObservation, CorpusStats } from '.
 
 export class CorpusBuilder {
   private renderer: CorpusRenderer;
+  private _vaultStore: VaultStore | null;
 
   constructor(
-    private vaultStore: VaultStore,
+    vaultStore: VaultStore | null,
     private corpusStore: CorpusStore,
   ) {
+    this._vaultStore = vaultStore ?? null;
     this.renderer = new CorpusRenderer();
+  }
+
+  /** Called when the first project vault is ready. */
+  updateVault(vault: VaultStore): void {
+    this._vaultStore = vault;
+  }
+
+  private get vaultStore(): VaultStore {
+    if (!this._vaultStore) throw new Error('CorpusBuilder: vault not yet initialized (no project session started)');
+    return this._vaultStore;
   }
 
   async build(name: string, description: string, filter: CorpusFilter): Promise<CorpusFile> {
